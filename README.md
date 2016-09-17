@@ -6,7 +6,7 @@ Software Engineering Fall-2016
 
 |#|Name|Primary Task|
 |---|---|---|
-1|Justin Goulet
+1|[Justin Goulet](https://github.com/jstngoulet)|
 2|Christopher Larsen|
 3|Myles Merrill|
 4|Austin Miller|
