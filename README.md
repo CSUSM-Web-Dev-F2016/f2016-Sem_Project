@@ -82,13 +82,13 @@ The participant roles are subject to change at any time. Each participant will f
 
 ###Links
 >All links associated with the project will go here. These include items such as repository instructions, IDE setups, additional downloads and similar. For example, I placed the GitHub repo in the list below:
-- [GitHub Repository](https://github.com/Software-Engineering-CSUSM/Enter-Team-Name_ProjectName-2016)
-- [Slack Team](https://csusm-se-f2016.slack.com/) - Send [email](mailto:jstngoulet@me.com) for invite
-- [GitHub Help] (https://github.com/Software-Engineering-CSUSM/Enter-Team-Name_ProjectName-2016/blob/master/Git_Help.md "GitHub Help by J. Goulet")
+- [GitHub Repository](https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project)
+- [Slack Team](https://csusm-wp-f2016.slack.com/) - Send [email](mailto:jstngoulet@me.com) for invite
+- [GitHub Help] (https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Git_Help.md "GitHub Help by J. Goulet")
 - [Markdown Syntax Assistant] (http://www.markitdown.net/markdown)
 
 ###Repository Info
-> The repo is currently set to an organization, [Software-Engineering-CSUSM](https://github.com/Software-Engineering-CSUSM) so that it is not tied to a single individual, for credit purposes. As such: 
+> The repo is currently set to an organization, [Software-Engineering-CSUSM](https://github.com/CSUSM-Web-Dev-F2016) so that it is not tied to a single individual, for credit purposes. As such: 
 - All contributors will be known as **collaborators** instead of owners.
 - All contributors should create their own branches, which will be merged to the master when required.
 
