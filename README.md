@@ -85,6 +85,7 @@ The participant roles are subject to change at any time. Each participant will f
 - [Slack Team](https://csusm-wp-f2016.slack.com/) - Send [email](mailto:jstngoulet@me.com) for invite
 - [GitHub Help] (https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Git_Help.md "GitHub Help by J. Goulet")
 - [Markdown Syntax Assistant] (http://www.markitdown.net/markdown)
+- [Google Drive Document] (https://docs.google.com/document/d/1P2S9uP9beubHR9Vx3fXBjC6z45Ez7VrTnm_dBRMOlsE/edit)
 
 ### Repository Info
 > The repo is currently set to an organization, [Software-Engineering-CSUSM](https://github.com/CSUSM-Web-Dev-F2016) so that it is not tied to a single individual, for credit purposes. As such: 
