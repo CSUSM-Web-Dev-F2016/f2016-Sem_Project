@@ -7,7 +7,7 @@ Software Engineering Fall-2016
 |#|Name|Primary Task|
 |---|---|---|
 1|[Justin Goulet](https://github.com/jstngoulet)|
-2|Christopher Larsen|
+2|[Christopher Larsen](https://github.com/cjl0749)|
 3|Myles Merrill|
 4|Austin Miller|
 5|Mikal Callahan|
@@ -73,7 +73,6 @@ The participant roles are subject to change at any time. Each participant will f
             - Static/Const variables
     -  Develops the functionality for each action in the project
         - If buttons are required, buttons will need event listeners
-    
 
 ### Project Description
 >Project Description will go here. There will be a project summary and list of requirements we must fulfill.
