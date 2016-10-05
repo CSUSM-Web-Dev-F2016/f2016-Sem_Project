@@ -9,4 +9,4 @@
 |Christopher Larsen|5pm - 9pm|4pm - 5pm|5pm - 9pm|4pm - 5pm|4pm - 5pm|Depends|Depends|Hit me up on slack as I have 6 classes and work
 |Myles Merrill|
 |Austin Miller|
-|Mikal Callahan|
+|Mikal Callahan| 9 a.m. - 11:30 a.m. | 9 a.m. - 2 p.m. & after 4 p.m. | 9 a.m. - 11:30 a.m. | 9 a.m. - 2 p.m. & after 4 p.m. | 9 a.m. - 11:30 a.m. | Varies | Varies | May vary depending on work
