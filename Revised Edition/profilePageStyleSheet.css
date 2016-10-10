@@ -38,12 +38,12 @@ nav{
 }
 
 aside{
-     background: orange;
      position: relative;
      margin-top: 3em;
+     margin-bottom: 3em; 
      width: 25%;
      display: inline-flex;
-     height: 100%;
+     height: 90%;
 }
 
 aside.left{
@@ -69,7 +69,7 @@ footer{
 section{
      background: purple;
      display: inline-flex;
-     height: 100%;
+     height: 90%;
      position: absolute;
      margin: 3em;
      width: 40%;
@@ -92,7 +92,6 @@ section{
      height: 1em;
      text-align: center;
      position: absolute;
-     background-color: red;
      justify-content: center;
      font-size: 2em;
 }
@@ -102,5 +101,6 @@ section{
      height: 1em;
      text-align: center;
      position: absolute;
-     background-color: blue;
+     color: blue;
+     font-style: italic;
 }
