@@ -1,98 +1,4 @@
-html, body, head{
-  margin: 0px;
-}
 
-#header{
-     background-color: #507590;
-     top: 0px;
-     z-index: -1;
-}
-
-header{
-     background-color: #507590;
-     position: fixed;
-     top: 0px;
-     width: 100%;
-     height: 3em;
-}
-
-#logo {
-  position: absolute;
-  margin: 0;
-  left: 45%;
-  right: -52%;
-  top: 0px;
-  max-width: auto;
-  text-align: center;
-  max-height: 3em;
-  z-index: 2;
-}
-
-nav{
-     top: 0px;
-     z-index: 2;
-     position: fixed;
-     width: 100%;
-     height: 3em;
-     text-align: center;
-     margin: .75em;
-}
-
-/**Table for Nav bar */
-table.menu{
-  color: white;
-  right: 3em;
-  position: absolute;
-}
-
-th.menuItem{
-  padding-left: 10px;
-  padding-right: 10px;
-  margin: 10px;
-  border-radius: 5px;
-}
-
-th.menuItem:hover{
-  background-color:#4f6a77;
-}
-
-aside{
-     position: fixed;
-     margin-top: 3em;
-     margin-bottom: 3em; 
-     width: 25%;
-     display: inline-flex;
-     height: 90%;
-}
-
-aside.left{
-     left: 0px;
-     margin-left: 2em; 
-}
-
-aside.right{
-     right: 0px;
-     margin-right: 2em;
-}
-
-footer{
-     background-color: #507590;
-     bottom: 0;
-     position: fixed;
-     width: 100%;
-     height: 3em;
-}
-
-section{
-     display: inline-flex;
-     height: 100%;
-     position: absolute;
-     margin: 3em;
-     width: 40%;
-     left: 26.25%;
-     right: -26.25%;
-     z-index: -1;
-}
 
 #profileImage{
      border-radius: 50%;
@@ -121,45 +27,12 @@ section{
      font-style: italic;
 }
 
-.subsection{
-  border: 1px solid black;
-  top: 50%;
-  position: absolute;
-  border-radius: 10px; 
-
-  width: 100%; 
-}
-
 #favoritesSection{
 
   margin-top: 20%; 
   height: 30%;
   position: absolute;
   left: 0px;
-}
-
-#followersSection{
-  height: 17.5%;
-  top: 2.5%;
-  position: absolute;
-}
-
-#followingSection{
-  height: 17.5%;
-  top: 22.5%;
-  position: absolute;
-}
-
-#bestTastesSection{
-  height: 17.5%;
-  top: 42.5%;
-  position: absolute;
-}
-
-#calendarSection{
-  height: 30%;
-  top: 62.5%;
-  position: absolute;
 }
 
 .flex-container{

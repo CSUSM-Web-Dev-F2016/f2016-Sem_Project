@@ -5,6 +5,7 @@
 <head lang="en-us">
     <!-- Link documents to style sheet and JS code -->
     <link href="profilePageStyleSheet.css" rel="stylesheet" type="text/css">
+    <link href="PageLayout.css" rel="stylesheet" type="text/css">
 
     <!-- Set title of page -->
     <title>Profile</title>
@@ -22,11 +23,17 @@
         <table class="menu">
             <tbody>
                 <td>
-                    <th class="menuItem">Home</th>
+                    <th class="menuItem">
+                        <a href="profilePage.html">Home</a>
+                    </th>
                     <th>&nbsp&nbsp|&nbsp&nbsp</th>
-                    <th class="menuItem">Settings</th>
+                    <th class="menuItem">
+                        <a href="profilePage.html">Settings</a>
+                    </th>
                     <th>&nbsp&nbsp|&nbsp&nbsp</th>
-                    <th class="menuItem">Profile</th>
+                    <th class="menuItem">
+                        <a href="profilePage.html">Profile</a>
+                    </th>
                 </td>
             </tbody>
         </table>
@@ -45,19 +52,25 @@
             <span class="title">Favorites</span>
             <div id="favorites" class="flex-container">
                 <div class="flex-item">
-                    <img class="tableCellImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png">
+                    <a href="breweryPage.html">
+                        <img class="tableCellImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png">
+                    </a>
+                    <br>
                     <span class="cellTitle">Indian Joes</span>
                 </div>
                 <div class="flex-item">
                     <img class="tableCellImage" src="http://www.aztecbrewery.com/images/AztecBrewingCoOval4.5.png">
+                    <br>
                     <span class="cellTitle">Aztec</span>
                 </div>
                 <div class="flex-item">
                     <img class="tableCellImage" src="https://upload.wikimedia.org/wikipedia/en/6/68/LostAbbeyB%26WLogo.png">
+                    <br>
                     <span class="cellTitle">Lost Abbey</span>
                 </div>
                 <div class="flex-item">
                     <img class="tableCellImage" src="https://s-media-cache-ak0.pinimg.com/564x/c4/87/3a/c4873aa392c7e8c2c1166daff2ad169d.jpg">
+                    <br>
                     <span class="cellTitle">Barrel Harbor</span>
                 </div>
             </div>
@@ -66,7 +79,7 @@
 
     <!-- Right Side bar; will be used for side navigation panels -->
     <aside class="right">
-        <div id="followersSection" class="subsection">
+        <div id="RightSectionOne" class="subsection">
             <span class="title">Followers</span>
             <div id="followers" class="flex-container">
                 <div class="flex-item">Item 1</div>
@@ -75,7 +88,7 @@
                 <div class="flex-item">Item 4</div>
             </div>
         </div>
-        <div id="followingSection" class="subsection">
+        <div id="RightSectionTwo" class="subsection">
             <span class="title">Following Me</span>
             <div id="followers" class="flex-container">
                 <div class="flex-item">Item 1</div>
@@ -85,7 +98,7 @@
             </div>
         </div>
 
-        <div id="bestTastesSection" class="subsection">
+        <div id="RightSectionThree" class="subsection">
             <span class="title">Best Tastes</span>
             <div id="followers" class="flex-container">
                 <div class="flex-item">Item 1</div>
@@ -108,7 +121,7 @@
 
     <!-- Main content area -->
     <section>
-        Feed:
+        Feed;
     </section>
 
     <!-- Footer information; additional links etc -->
