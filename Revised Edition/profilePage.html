@@ -3,50 +3,118 @@
 <html>
 
 <head lang="en-us">
-     <!-- Link documents to style sheet and JS code -->
-     <link href="profilePageStyleSheet.css" rel="stylesheet" type="text/css">
+    <!-- Link documents to style sheet and JS code -->
+    <link href="profilePageStyleSheet.css" rel="stylesheet" type="text/css">
 
-     <!-- Set title of page -->
-     <title>Profile</title>
+    <!-- Set title of page -->
+    <title>Profile</title>
 
 </head>
 
 <body>
-     <!-- Header for Logo -->
-     <header>
-          <img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Webpage%20Documents/Beer_Hopper_Banner.png?raw=true">
-     </header>
+    <!-- Header for Logo -->
+    <header>
+        <img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Webpage%20Documents/Beer_Hopper_Banner.png?raw=true">
+    </header>
 
-     <!-- Navigation Panel; to the right of the logo -->
-     <nav>
+    <!-- Navigation Panel; to the right of the logo -->
+    <nav>
+        <table class="menu">
+            <tbody>
+                <td>
+                    <th class="menuItem">Home</th>
+                    <th>&nbsp&nbsp|&nbsp&nbsp</th>
+                    <th class="menuItem">Settings</th>
+                    <th>&nbsp&nbsp|&nbsp&nbsp</th>
+                    <th class="menuItem">Profile</th>
+                </td>
+            </tbody>
+        </table>
+    </nav>
 
-     </nav>
+    <!--Left side bar; will be profile information -->
+    <aside class="left">
+        <div id="profileInfo">
+            <img id="profileImage" alt="Profile Image" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Webpage%20Documents/ProfileImage/Pro-Pic.jpg?raw=true">
+            <br>
+            <span id="profileName">Justin Goulet</span>
+            <br><br>
+            <span id="editProfileBtn">Edit</span>
+        </div>
+        <div id="favoritesSection" class="subsection">
+            <span class="title">Favorites</span>
+            <div id="favorites" class="flex-container">
+                <div class="flex-item">
+                    <img class="tableCellImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png">
+                    <span class="cellTitle">Indian Joes</span>
+                </div>
+                <div class="flex-item">
+                    <img class="tableCellImage" src="http://www.aztecbrewery.com/images/AztecBrewingCoOval4.5.png">
+                    <span class="cellTitle">Aztec</span>
+                </div>
+                <div class="flex-item">
+                    <img class="tableCellImage" src="https://upload.wikimedia.org/wikipedia/en/6/68/LostAbbeyB%26WLogo.png">
+                    <span class="cellTitle">Lost Abbey</span>
+                </div>
+                <div class="flex-item">
+                    <img class="tableCellImage" src="https://s-media-cache-ak0.pinimg.com/564x/c4/87/3a/c4873aa392c7e8c2c1166daff2ad169d.jpg">
+                    <span class="cellTitle">Barrel Harbor</span>
+                </div>
+            </div>
+        </div>
+    </aside>
 
-     <!--Left side bar; will be profile information -->
-     <aside class="left">
-          <div id="profileInfo">
-               <img id="profileImage" alt="Profile Image" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Webpage%20Documents/ProfileImage/Pro-Pic.jpg?raw=true">
-               <br>
-               <span id="profileName">Justin Goulet</span>
-               <br><br>
-               <span id="editProfileBtn">Edit</span>
-          </div>
-     </aside>
+    <!-- Right Side bar; will be used for side navigation panels -->
+    <aside class="right">
+        <div id="followersSection" class="subsection">
+            <span class="title">Followers</span>
+            <div id="followers" class="flex-container">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+                <div class="flex-item">Item 4</div>
+            </div>
+        </div>
+        <div id="followingSection" class="subsection">
+            <span class="title">Following Me</span>
+            <div id="followers" class="flex-container">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+                <div class="flex-item">Item 4</div>
+            </div>
+        </div>
 
-     <!-- Right Side bar; will be used for side navigation panels -->
-     <aside class="right">
-          Right Side
-     </aside>
+        <div id="bestTastesSection" class="subsection">
+            <span class="title">Best Tastes</span>
+            <div id="followers" class="flex-container">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+                <div class="flex-item">Item 4</div>
+            </div>
+        </div>
 
-     <!-- Main content area -->
-     <section>
-          Feed:
-     </section>
+        <div id="calendarSection" class="subsection">
+            <span class="title">Calendar</span>
+            <div id="followers" class="flex-container">
+                <div class="flex-item">Item 1</div>
+                <div class="flex-item">Item 2</div>
+                <div class="flex-item">Item 3</div>
+                <div class="flex-item">Item 4</div>
+            </div>
+        </div>
+    </aside>
 
-     <!-- Footer information; additional links etc -->
-     <footer>
+    <!-- Main content area -->
+    <section>
+        Feed:
+    </section>
 
-     </footer>
+    <!-- Footer information; additional links etc -->
+    <footer>
+
+    </footer>
 
 </body>
 
