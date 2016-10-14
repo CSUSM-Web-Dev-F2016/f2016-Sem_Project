@@ -1,4 +1,4 @@
-Software Engineering Fall-2016
+Web Development Fall-2016
 =================================
 ## Team Name
 ### Team Members and Primary Abilities

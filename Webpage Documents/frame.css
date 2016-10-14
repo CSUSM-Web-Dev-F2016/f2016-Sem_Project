@@ -21,13 +21,13 @@
 
 html, body, head{
   margin: 0px;
+  display: flex;
+  flex-direction: column;
 }
 
 #logo {
   position: absolute;
   margin: 0;
-  left: 48%;
-  right: -52%;
   top: 0px;
   max-width: auto;
   text-align: center;
