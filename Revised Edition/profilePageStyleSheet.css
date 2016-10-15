@@ -1,81 +1,4 @@
-html, body, head{
-  margin: 0px;
-}
 
-#header{
-     background-color: #507590;
-     top: 0px;
-     z-index: -1;
-}
-
-header{
-     background-color: #507590;
-     position: fixed;
-     top: 0px;
-     width: 100%;
-     height: 3em;
-}
-
-#logo {
-  position: absolute;
-  margin: 0;
-  left: 45%;
-  right: -52%;
-  top: 0px;
-  max-width: auto;
-  text-align: center;
-  max-height: 3em;
-  z-index: 2;
-}
-
-nav{
-     top: 0px;
-     z-index: 2;
-     position: fixed;
-     width: 100%;
-     height: 3em;
-     text-align: center;
-     margin: .75em;
-}
-
-aside{
-     position: fixed;
-     margin-top: 3em;
-     margin-bottom: 3em; 
-     width: 25%;
-     display: inline-flex;
-     height: 90%;
-}
-
-aside.left{
-     left: 0px;
-     margin-left: 2em; 
-}
-
-aside.right{
-     right: 0px;
-     margin-right: 2em;
-}
-
-footer{
-     background-color: #507590;
-     bottom: 0;
-     position: fixed;
-     width: 100%;
-     height: 3em;
-}
-
-section{
-     background: purple;
-     display: inline-flex;
-     height: 100%;
-     position: absolute;
-     margin: 3em;
-     width: 40%;
-     left: 26.25%;
-     right: -26.25%;
-     z-index: 0;
-}
 
 #profileImage{
      border-radius: 50%;
@@ -83,7 +6,6 @@ section{
      margin-left: 12.5%;
      margin-top: 3em; 
      object-fit: contain;
-     background-color: white;
      text-align: center;
 }
 
@@ -103,4 +25,48 @@ section{
      position: absolute;
      color: blue;
      font-style: italic;
+}
+
+#favoritesSection{
+
+  margin-top: 20%; 
+  height: 30%;
+  position: absolute;
+  left: 0px;
+}
+
+.flex-container{
+  top: 15%;
+  display: -webkit-flex;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  flex-wrap: wrap;
+}
+
+.flex-item{
+  width: 40%;
+  height: 35%;
+  margin: 5%;
+  text-align: center;
+}
+
+/** For the cell custom class */
+img.tableCellImage{
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+span.title{
+  font-size: 100%;
+  color: gray;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  height: 15%;
+  font-style: italic;
+  justify-content: center;
 }
