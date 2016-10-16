@@ -1,7 +1,66 @@
-header {
+html, body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+body {}
+
+.header {
     background-color: #507590;
-    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    display: -webkit-flex;
     top: 0px;
     width: 100%;
     height: 3em;
+}
+
+#logo {
+    margin: 0;
+    left: 45%;
+    right: -52%;
+    top: 0px;
+    text-align: center;
+    max-height: 3em;
+    z-index: 2;
+    order: 0;
+}
+
+.centerDiv {
+    /*background-color: red;*/
+    height: 700px;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.centerElements {
+    align-items: center;
+}
+
+input[type=text] {
+    box-sizing: border-box;
+    border: 2px solid white;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 1rem;
+    width: 100%;
+}
+
+input[type=text]:focus {
+    border: 2px solid #507590;
+}
+
+input[type=button] {
+    background-color: #507590;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: .25rem;
+    padding: .5rem;
+    margin-top: .5rem;
+    width: 100%;
 }
