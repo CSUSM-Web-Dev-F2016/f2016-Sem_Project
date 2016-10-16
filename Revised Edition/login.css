@@ -45,12 +45,7 @@ html, body {
     flex-direction: row;
 }
 
-.centerElements {
-    flex: 1 1 0;
-    padding: 3rem 0;
-}
-
-.centerGrid {
+.grid {
     margin: 0 auto;
     max-width: 20rem;
     width: 90%;
