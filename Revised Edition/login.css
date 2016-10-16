@@ -28,25 +28,45 @@ body {}
     order: 0;
 }
 
+#loginForm {
+    order: 0;
+}
+
 .centerDiv {
     /*background-color: red;*/
+    -moz-box-align: center;
+    -moz-box-direction: normal;
+    -moz-box-orient: horizontal;
     height: 700px;
     display: -webkit-flex;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /*justify-content: center;*/
+    flex-direction: row;
 }
 
 .centerElements {
-    align-items: center;
+    flex: 1 1 0;
+    padding: 3rem 0;
+}
+
+.centerGrid {
+    margin: 0 auto;
+    max-width: 20rem;
+    width: 90%;
+}
+
+.centerText {
+    text-align: center;
 }
 
 input[type=text] {
     box-sizing: border-box;
-    border: 2px solid white;
+    border: .5px solid #93969b;
     border-radius: 4px;
     font-size: 16px;
     padding: 1rem;
+    margin-top: .25rem;
     width: 100%;
 }
 
