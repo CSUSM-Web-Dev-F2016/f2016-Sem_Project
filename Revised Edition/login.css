@@ -1,9 +1,9 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
 html, body {
     margin: 0;
     height: 100%;
     width: 100%;
-    font-family: 'Open Sans', serif;
+    font-family: 'Noto Sans Kannada', sans-serif;
 }
 
 .header {
@@ -70,7 +70,7 @@ input[type=text]:focus {
     border: 2px solid #507590;
 }
 
-input[type=button] {
+input[type=submit] {
     background-color: #507590;
     border: none;
     color: white;
