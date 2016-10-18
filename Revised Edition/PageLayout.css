@@ -1,0 +1,163 @@
+/** Font */
+@import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
+
+/** Main Page Attributes */
+html, body, head{
+  margin: 0px;
+     font-family: 'Noto Sans Kannada', sans-serif;
+}
+
+#header{
+     background-color: #507590;
+     top: 0px;
+     z-index: -1;
+}
+
+header{
+     background-color: #507590;
+     position: fixed;
+     top: 0px;
+     width: 100%;
+     height: 3em;
+}
+
+#logo {
+  position: absolute;
+  margin: 0;
+  left: 45%;
+  right: -52%;
+  top: 0px;
+  max-width: auto;
+  text-align: center;
+  max-height: 3em;
+  z-index: 2;
+}
+
+nav{
+     top: 0px;
+     z-index: 2;
+     position: fixed;
+     width: 100%;
+     height: 3em;
+     text-align: center;
+     margin: .75em;
+}
+
+
+/**Table for Nav bar */
+table.menu{
+  color: white;
+  right: 3em;
+  position: absolute;
+}
+
+th.menuItem{
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 10px;
+  border-radius: 5px;
+}
+
+th.menuItem:hover{
+  background-color:#4f6a77;
+}
+
+aside{
+     position: fixed;
+     margin-top: 3em;
+     margin-bottom: 3em; 
+     width: 25%;
+     display: inline-flex;
+     height: 90%;
+     font-family: 'Noto Sans Kannada', sans-serif;
+}
+
+aside.left{
+     left: 0px;
+     margin-left: 2em; 
+}
+
+a{
+    color: white;
+    text-decoration:unset;
+}
+
+aside.right{
+     right: 0px;
+     margin-right: 2em;
+     display: flex;
+     height: 100%;
+}
+
+footer{
+     background-color: #507590;
+     bottom: 0;
+     position: fixed;
+     width: 100%;
+     height: 1.5em;
+}
+
+section{
+     display: inline-flex;
+     height: 100%;
+     position: absolute;
+     margin: 3em;
+     width: 40%;
+     left: 26.25%;
+     right: -26.25%;
+     z-index: -1;
+}
+
+.subsection{
+  border: 1px solid black;
+  top: 50%;
+  position: absolute;
+  border-radius: 10px; 
+
+  mask-type: alpha;
+  -webkit-clip-path: inset(0 0 0 0);
+  clip-path: inset(0 0 0 0);
+  width: 100%; 
+}
+
+/** End main page attributes */
+
+
+/** For the tables onthe sides */
+.flex-container{
+  top: 15%;
+  display: -webkit-flex;
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 70%;
+  flex-wrap: wrap;
+}
+
+.flex-item{
+  width: 40%;
+  height: 35%;
+  margin: 5%;
+  text-align: center;
+}
+
+/** For the cell custom class */
+img.tableCellImage{
+  width: 75%;
+  height: 75%;
+  object-fit: contain;
+}
+
+span.title{
+  font-size: 100%;
+  color: gray;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  height: 15%;
+  font-style: italic;
+  justify-content: center;
+}
+/** End of table setup */
+
