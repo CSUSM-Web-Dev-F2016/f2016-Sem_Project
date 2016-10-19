@@ -3,9 +3,8 @@ section{
   top: 30%;
 }
 
-
-#RightSectionOne{
-  background-color: white;
+aside.right{
+  top: 30%;
 }
 
 #profileImage{
@@ -24,6 +23,28 @@ section{
      justify-content: center;
      font-size: 2em;
 }
+
+/** Right Side */
+#RightSectionOne{
+  height: 17.5%;
+  top: 2.5%;
+  position: absolute;
+}
+
+#RightSectionTwo{
+  height: 17.5%;
+  top: 22.5%;
+  position: absolute;
+}
+
+#calendarSection{
+  height: 17.5%;
+  top: 42.5%;
+  position: absolute;
+}
+
+
+/** End Right Side */
 
 #coverImage{
   height: 30%;
