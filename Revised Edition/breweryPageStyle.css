@@ -1,90 +1,37 @@
-html, body, head{
-  margin: 0px;
-}
-
-#header{
-     background-color: #507590;
-     top: 0px;
-}
-
-header{
-     background-color: #507590;
-     position: absolute;
-     top: 0px;
-     width: 100%;
-     height: 3em;
-}
-
-#logo {
-  position: absolute;
-  margin: 0;
-  left: 45%;
-  right: -52%;
-  top: 0px;
-  max-width: auto;
-  text-align: center;
-  max-height: 3em;
-  z-index: 2;
-}
-
-nav{
-     top: 0px;
-     z-index: 2;
-     position: absolute;
-     width: 100%;
-     height: 3em;
-     text-align: center;
-     margin: .75em;
-}
-
-aside{
-    background-color: #507590;
-     position: relative;
-     margin-top: 3em;
-     width: 25%;
-     display: inline-flex;
-}
-
-aside.left{
-     left: 0px;
-     position: absolute;
-     margin-left: 2em; 
-     height: 100%;
-}
-
-aside.right{
-     right: 0px;
-     position: absolute;
-     margin-right: 2em;
-     height: 100%;
-}
-
-footer{
-     background-color: #507590;
-     bottom: 0;
-     position: absolute;
-     width: 100%;
-     height: 3em;
-}
-
 section{
-     background: purple;
-     display: inline-flex;
-     height: 100%;
-     position: absolute;
-     margin: 3em;
-     width: 40%;
-     left: 26.25%;
-     right: -26.25%;
-     height: 60%;
-     bottom: 0px;
+  background-color: red;
+  top: 30%;
+}
+
+
+#RightSectionOne{
+  background-color: white;
+}
+
+#profileImage{
+     width: 75%;
+     margin-left: 12.5%;
+     margin-top: 3em; 
+     object-fit: contain;
+     text-align: center;
+}
+
+#profileName{
+     width: 100%;
+     height: 1em;
+     text-align: center;
+     position: relative;
+     justify-content: center;
+     font-size: 2em;
 }
 
 #coverImage{
-  height: 25%;
-  width: 60%;
-  margin-left: 20%; 
-  margin-top: 3.25em;
-  object-fit: contain;
-  position: absolute;
+  height: 30%;
+  width: 75%;
+  margin-left: 12.5%; 
+  margin-top: 3em;
+  object-fit: cover;
+  position: fixed;
+  background-color: lightblue;
+  z-index: -1;
 }
