@@ -143,11 +143,25 @@ section{
 }
 
 #favoritesSection{
-
-  margin-top: 20%; 
-  height: 30%;
+ 
+  margin-top: 0%;
+  height: 50%;
   position: absolute;
   left: 0px;
+}
+
+#calendarSection{
+  height: 27.5%;
+  top: 62.5%;
+  position: absolute;
+  padding-bottom: -6em;
+}
+
+#favorites.flex-item{
+  background-color: red;
+  width: 50%;
+  height: 33.3%;
+  margin: 0px;
 }
 
 .flex-container{
@@ -185,3 +199,25 @@ span.title{
   font-style: italic;
   justify-content: center;
 }
+
+/** Right Side */
+#RightSectionOne{
+  height: 17.5%;
+  top: 2.5%;
+  position: absolute;
+}
+
+#RightSectionTwo{
+  height: 17.5%;
+  top: 42.5%;
+  position: absolute;
+}
+
+#RightSectionThree{
+  height: 17.5%;
+  top: 22.5%;
+  position: absolute;
+}
+
+
+/** End Right Side */
