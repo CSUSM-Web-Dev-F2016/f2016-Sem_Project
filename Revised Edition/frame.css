@@ -1,0 +1,150 @@
+
+.header{
+     background-color: #507590;
+     position: absolute;
+     top: 0px;
+     width: 100%;
+     height: 3em;
+}
+
+.mainImage{
+  max-width:50%;
+  max-height:50%;
+  position: absolute;
+  top: 0px;
+}
+
+#header{
+     background-color: #507590;
+     top: 0px;
+}
+
+html, body, head{
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+#logo {
+  position: absolute;
+  margin: 0;
+  top: 0px;
+  max-width: auto;
+  text-align: center;
+  max-height: 3em;
+  z-index: 2;
+}
+
+#embeddedFrame{
+  border: none;
+}
+
+iframe.profilePicture{
+  position: relative;
+  max-width: 20%;
+  border: none;
+  border-radius: 50%;
+  max-height: 20%;
+  left: 50%;
+  right: -50%;
+  top: 12em;
+}
+
+p.profileText{
+  font-weight: 2em;
+  max-width: 20%;
+  text-align: center;
+   position: relative;
+   font-size: 24px;
+   top: 15em;
+   text-align: center;
+   left: 2em;
+}
+
+p.age{ font-weight: 2em;
+  max-width: 20%;
+  text-align: center;
+   position: relative;
+   font-size: 14px;
+   top: 24em;
+   text-align: center;
+   left: 3.5em;
+   font-style: italic;
+}
+
+
+.profileImageData{
+  width: 20%;
+  height: auto;
+  border-radius: 50%;
+  background-color: blue;
+  z-index: 0;
+  position: absolute;
+  margin-top: 5em;
+  margin-left: 3em; 
+}
+
+/** For the favorite breweries, directly under the profile pic*/
+iframe.favorites{
+  width: 20%;
+  height: 27.5em;
+  margin-top: 22em; 
+  margin-left: 3em;
+
+  /**Border Properties */
+  border-radius: 5px;
+  border: 2pt solid lightgray;
+  position: absolute;
+}
+
+/**For the Followers, the top right of the screen */
+iframe.followers{
+  border-style: none;
+ height: 11em;
+ top: 3em;
+
+  /**Border Properties */
+  border-radius: 5px;
+  border: 2pt solid lightgray;
+}
+
+iframe.following{
+  border-style: none;
+ top:18em;
+ height: 11em;
+  margin-top: .5em;
+
+  /**Border Properties */
+  border-radius: 5px;
+  border: 2pt solid lightgray;
+}
+
+iframe.bestTastes{
+  border-style: none;
+ top:29em;
+ height: 11em;
+  margin-top: .5em;
+
+  /**Border Properties */
+  border-radius: 5px;
+  border: 2pt solid lightgray;
+}
+
+iframe.calendar{
+  border-style: none;
+ top:20em;
+ height: 14em;
+  margin-top: .5em;
+
+  /**Border Properties */
+  border-radius: 5px;
+  border: 2pt solid lightgray;
+}
+
+div.rightSide{
+  width: 25%;
+  right: 0em;
+  position: absolute;
+  padding-right: 2em;  
+  top: 6em;
+}

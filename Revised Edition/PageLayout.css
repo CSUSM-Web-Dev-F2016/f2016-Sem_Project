@@ -1,6 +1,15 @@
 /** Font */
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
 
+/**
+
+  Important notes:
+  Width of Left/Right side bars: 
+  Width of main content:
+  Height of header bar:          3em
+
+  */
+
 /** Main Page Attributes */
 html, body, head{
   margin: 0px;
@@ -24,8 +33,8 @@ header{
 #logo {
   position: absolute;
   margin: 0;
+  display: block;
   left: 45%;
-  right: -52%;
   top: 0px;
   max-width: auto;
   text-align: center;
@@ -54,12 +63,22 @@ table.menu{
 th.menuItem{
   padding-left: 10px;
   padding-right: 10px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 5px;
+  margin-top: -10px; 
+  padding-top: 0px; 
 }
 
 th.menuItem:hover{
   background-color:#4f6a77;
+}
+
+.navBtn{
+  width: 1em;
+  height: 2em;
+  object-fit: contain;
+  display: block;
 }
 
 aside{
