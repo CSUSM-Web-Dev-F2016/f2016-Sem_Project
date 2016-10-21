@@ -1,363 +1,381 @@
 /** Font */
+
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
 
 /** Body of Page */
-body{
-     padding: 0px;
-     margin: 0px;
-     min-width: 500px;
+
+body {
+    padding: 0px;
+    margin: 0px;
+    min-width: 500px;
 }
 
-header{
-     background-color: #507590;
-     position: fixed;
-     top: 0px;
-     width: 100%;
-     height: 3em;
-     padding: 0px;
+header {
+    background-color: #507590;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 3em;
+    padding: 0px;
 }
 
-footer{
-     height: 1em;
-     width: 100%;
-     bottom: 0px;
-     background-color: #507590;
-     position: fixed;
+footer {
+    height: 1em;
+    width: 100%;
+    bottom: 0px;
+    background-color: #507590;
+    position: fixed;
 }
 
-#logo{
-     margin: auto;
-     object-fit: contain;
-     height: 3em;
-     position: fixed;
-     left: 45%;
+#logo {
+    margin: auto;
+    object-fit: contain;
+    height: 3em;
+    position: fixed;
+    left: 45%;
 }
 
-aside{
-     position: fixed;
-     margin-bottom: 3em; 
-     width: 20%;
-     max-height: 75%;
-     display: inline-flex;
-     font-family: 'Noto Sans Kannada', sans-serif;
-     min-width: 200px;;
+aside {
+    position: fixed;
+    margin-bottom: 3em;
+    width: 20%;
+    max-height: 75%;
+    display: inline-flex;
+    font-family: 'Noto Sans Kannada', sans-serif;
+    min-width: 200px;
+    ;
 }
 
-aside.left{
-     left: 0px;
-     margin-left: 2em;
-     margin-top: 3em;
-     background-color: white;
+aside.left {
+    left: 0px;
+    margin-left: 2em;
+    margin-top: 3em;
+    background-color: white;
 }
 
-a{
+a {
     color: white;
-    text-decoration:unset;
+    text-decoration: unset;
 }
 
-aside.right{
-     right: 0px;
-     margin-right: 2em;
-     margin-top: 1.5em;
-     
+aside.right {
+    right: 0px;
+    margin-right: 2em;
+    margin-top: 1.5em;
 }
+
 
 /** Nav Bar **/
-nav{
-     top: 0px;
-     z-index: 2;
-     position: fixed;
-     width: 100%;
-     height: 3em;
-     text-align: center;
-     margin: .75em;
+
+nav {
+    top: 0px;
+    z-index: 2;
+    position: fixed;
+    width: 100%;
+    height: 3em;
+    text-align: center;
+    margin: .75em;
 }
 
 
 /**Table for Nav bar */
-table.menu{
-  color: white;
-  right: 3em;
-  position: absolute;
+
+table.menu {
+    color: white;
+    right: 3em;
+    position: absolute;
 }
 
-th.menuItem{
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  border-radius: 2px;
-  margin-top: -10px; 
-  padding-top: 0px; 
+th.menuItem {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 2px;
+    margin-top: -10px;
+    padding-top: 0px;
 }
 
-th.menuItem:hover{
-  background-color:#4f6a77;
+th.menuItem:hover {
+    background-color: #4f6a77;
 }
 
-.navBtn{
-  width: 1em;
-  height: 2em;
-  object-fit: contain;
-  display: block;
+.navBtn {
+    width: 1em;
+    height: 2em;
+    object-fit: contain;
+    display: block;
 }
+
 
 /** nd Nav Bar */
 
+
 /** End of Body Main */
 
+
 /** Left Side */
+
+
 /** Create a parent container for the flex items */
-#profileContainer{
-  width: 100%;
-  height: 35%;
-  margin: auto;
-  margin-top: 0px;
-  font-weight: bold;
-  justify-content: center;
-  text-align: center;
-  position: absolute;
-  background-color: white;
+
+#profileContainer {
+    width: 100%;
+    height: 35%;
+    margin: auto;
+    margin-top: 0px;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    background-color: white;
 }
 
-
-#profileImg{
-     object-fit: scale-down;
-     text-align: center;
-     width: 150px;
-     height: 150px;
-     display: inline-block;
-     max-height: auto;
-     border: 5px solid white;
-     background-color: white;
-     border-radius: 50%;
-     box-shadow: 0px 5px 5px lightgray;
+#profileImg {
+    object-fit: scale-down;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    max-height: auto;
+    border: 5px solid white;
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: 0px 5px 5px lightgray;
 }
 
-p.profileName{
-  font-size: 24px;
-  padding-top: 0px;
-  margin-top: 15px;
-  margin-bottom: 0px;  
-  text-shadow:
-  -1px -1px 0 #fff,
-   1px -1px 0 #fff,
-   -1px 1px 0 #fff,
-    1px 1px 0 #fff;
+p.profileName {
+    font-size: 24px;
+    padding-top: 0px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
 }
 
-a.editBtn{
-     color: blue;
-     font-style: italic;
-     font-weight: lighter;
-     margin: 0px;
-     padding: 0px;
+a.editBtn {
+    color: blue;
+    font-style: italic;
+    font-weight: lighter;
+    margin: 0px;
+    padding: 0px;
 }
 
-a.editBtn:hover{
-     color:red;
+a.editBtn:hover {
+    color: red;
 }
 
-.basicSection{
-     border: 1px solid lightgray;
-     border-radius: 35%;
+.basicSection {
+    border: 1px solid lightgray;
+    border-radius: 35%;
 }
 
-div.favoritesSection{
-  width: 100%;
-  height: 45%; 
-  margin: auto;
-  margin-top: 100%;;
-  font-weight: bold;
-  justify-content: center;
-  text-align: center;
-  background-color: white;
-  display: flex;
+div.favoritesSection {
+    width: 100%;
+    height: 45%;
+    margin: auto;
+    margin-top: 100%;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
+    background-color: white;
+    display: flex;
 }
 
-#favorites{
-     height: 90%;
+#favorites {
+    height: 90%;
 }
 
-div.stdSection{
-     width: 100%;
-     margin: 10px;
-     border: 1px solid lightgray;
-     border-radius: 2px;
-     box-shadow: 0px 5px 5px lightgray;
-     background-color: white;
-     height: 75%;
-     margin-bottom: 25px;
-     margin-top: 0px; 
+div.stdSection {
+    width: 100%;
+    margin: 10px;
+    border: 1px solid lightgray;
+    border-radius: 2px;
+    box-shadow: 0px 5px 5px lightgray;
+    background-color: white;
+    height: 75%;
+    margin-bottom: 25px;
+    margin-top: 0px;
 }
 
-div.stdSection.FollowingBreweries{
-     margin-top: 160px;
-     height: 100px;
-     margin-bottom: 10px;
+div.stdSection.FollowingBreweries {
+    margin-top: 160px;
+    height: 100px;
+    margin-bottom: 10px;
 }
 
-div.stdSection.HighestRated{
-  margin-top: 0px;
-  height: 100px;
-     margin-bottom: 10px;
+div.stdSection.HighestRated {
+    margin-top: 0px;
+    height: 100px;
+    margin-bottom: 10px;
 }
 
-div.stdSection.Calendar{
-  margin-top: 0px;
-  height: 150px;
+div.stdSection.Calendar {
+    margin-top: 0px;
+    height: 150px;
 }
 
-div.stdSection.about{
-  margin-top: 250px;
-  height: 150px;
-  margin-bottom: 10px;
+div.stdSection.about {
+    margin-top: 250px;
+    height: 150px;
+    margin-bottom: 10px;
 }
 
-div.stdSection.FollowingBrewery{
-  margin-top: 10px;
-  height: 100px;
+div.stdSection.FollowingBrewery {
+    margin-top: 10px;
+    height: 100px;
 }
 
-div.stdSection:hover{
-     box-shadow: 0px 5px 5px gray;
+div.stdSection:hover {
+    box-shadow: 0px 5px 5px gray;
 }
 
-div.stdSectionTitle{
-     padding-top: 10px;
-     text-align: center;
+div.stdSectionTitle {
+    padding-top: 10px;
+    text-align: center;
 }
 
-div.stdSectionFooter{
-  width: 100%;
-  height: 15px;
-  margin-top:50px;
-  text-align: center;
-  color: #0000ff;
-  font-size: 12px;
-  position: absolute;
+div.stdSectionFooter {
+    width: 100%;
+    height: 15px;
+    margin-top: 50px;
+    text-align: center;
+    color: #0000ff;
+    font-size: 12px;
+    position: absolute;
 }
+
 
 /** Right Sections */
-#followers{
-     margin-top: 0px;
-     height: 100px;
+
+#followers {
+    margin-top: 0px;
+    height: 100px;
 }
 
-#following{
-     margin-top: 10px;
-     height: 100px;
+#following {
+    margin-top: 10px;
+    height: 100px;
 }
 
-#bestTastes{
-  margin-top: 10px;
-     height: 100px;
+#bestTastes {
+    margin-top: 10px;
+    height: 100px;
 }
 
-#eventCalendar{
-     height: 150px;
-     position: absolute;
+#eventCalendar {
+    height: 150px;
+    position: absolute;
 }
 
-.subsection{
-     position: absolute;
-     width: 100%;
-     padding: 0px;
-     margin-top: 25px;
-     margin-left: -10px;
+.subsection {
+    position: absolute;
+    width: 100%;
+    padding: 0px;
+    margin-top: 25px;
+    margin-left: -10px;
 }
+
 
 /** End of right section */
 
+
 /** Main Content */
-section{
-     width: 50%;
-     height: auto;
-  margin: auto;
-  margin-top: 3em;;
-  min-width: 450px; 
-  font-weight: bold;
-  justify-content: center;
-  text-align: center;
+
+section {
+    width: 50%;
+    height: auto;
+    margin: auto;
+    margin-top: 3em;
+    ;
+    min-width: 450px;
+    font-weight: bold;
+    justify-content: center;
+    text-align: center;
 }
 
-
-.newsFeedHeader{
-     text-align: left;
-     position: fixed;
-     background-color: white;
-     width: 100%;
-     padding: 10px;
+.newsFeedHeader {
+    text-align: left;
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    padding: 10px;
 }
 
-.newsFeedHeader.breweryPage{
-     margin: auto;
-     margin-top: 200px;;
-     max-width: 50%;
-     background-color: blue;
-     padding-right: 0px;
-     padding-left: 0px;
+.newsFeedHeader.breweryPage {
+    margin: auto;
+    margin-top: 200px;
+    ;
+    max-width: 50%;
+    background-color: blue;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
-div.newsFeedHeader.brewery{
-     background-color: green;
-     height: 50px;
-     margin-top: 250px;
-     max-width: 50%;
-     padding-right: 0px;
-     padding-left: 0px;
+div.newsFeedHeader.brewery {
+    background-color: green;
+    height: 50px;
+    margin-top: 250px;
+    max-width: 50%;
+    padding-right: 0px;
+    padding-left: 0px;
 }
 
-iframe{
-     background-color: white;
-     border: initial;
-     margin: auto;
-     background: transparent;
+iframe {
+    background-color: white;
+    border: initial;
+    margin: auto;
+    background: transparent;
 }
+
 
 /** for the table cell */
+
+
 /** Note that each one has a round image and a title */
-.tableCell{
-     width: 50%;
-     height: 30%;
-     display: flex;
-     flex-wrap: wrap;
-     justify-content: center;
+
+.tableCell {
+    width: 50%;
+    height: 30%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
-.tableCell.title{
-     padding-top: .5em;
-     width: 95%;
-     text-align: center;
-     bottom: 0px;
-     font-weight: lighter;
-     color: black;
-     font-size: 10px;
-     margin-bottom: 20px;
+.tableCell.title {
+    padding-top: .5em;
+    width: 95%;
+    text-align: center;
+    bottom: 0px;
+    font-weight: lighter;
+    color: black;
+    font-size: 10px;
+    margin-bottom: 20px;
 }
 
-.tableCell.img{
-     width: 75px;
-     height: 75px;
-     margin: auto;
-     object-fit: contain;
-     border-radius: 50%;
+.tableCell.img {
+    width: 75px;
+    height: 75px;
+    margin: auto;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
-img.tableCell{
-     width: 100%;
-     height: 100%;
-     padding-bottom: 10px;
+img.tableCell {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10px;
 }
+
 
 /** Brewery PAge View */
-#coverImage{
-  height: 200px;
-  width: 75%;
-  left: 12.5%;
-  margin: auto;
-  object-fit: cover;
-  position: fixed;
-  background-color: lightblue;
-  z-index: -1;
+
+#coverImage {
+    height: 200px;
+    width: 75%;
+    left: 12.5%;
+    margin: auto;
+    object-fit: cover;
+    position: fixed;
+    background-color: lightblue;
+    z-index: -1;
 }
