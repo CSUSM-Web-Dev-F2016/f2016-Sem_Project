@@ -139,6 +139,11 @@ p.profileName{
   padding-top: 0px;
   margin-top: 15px;
   margin-bottom: 0px;  
+  text-shadow:
+  -1px -1px 0 #fff,
+   1px -1px 0 #fff,
+   -1px 1px 0 #fff,
+    1px 1px 0 #fff;
 }
 
 a.editBtn{
@@ -186,6 +191,34 @@ div.stdSection{
      margin-top: 0px; 
 }
 
+div.stdSection.FollowingBreweries{
+     margin-top: 160px;
+     height: 100px;
+     margin-bottom: 10px;
+}
+
+div.stdSection.HighestRated{
+  margin-top: 0px;
+  height: 100px;
+     margin-bottom: 10px;
+}
+
+div.stdSection.Calendar{
+  margin-top: 0px;
+  height: 150px;
+}
+
+div.stdSection.about{
+  margin-top: 250px;
+  height: 150px;
+  margin-bottom: 10px;
+}
+
+div.stdSection.FollowingBrewery{
+  margin-top: 10px;
+  height: 100px;
+}
+
 div.stdSection:hover{
      box-shadow: 0px 5px 5px gray;
 }
@@ -193,6 +226,16 @@ div.stdSection:hover{
 div.stdSectionTitle{
      padding-top: 10px;
      text-align: center;
+}
+
+div.stdSectionFooter{
+  width: 100%;
+  height: 15px;
+  margin-top:50px;
+  text-align: center;
+  color: #0000ff;
+  font-size: 12px;
+  position: absolute;
 }
 
 /** Right Sections */
@@ -249,16 +292,20 @@ section{
 
 .newsFeedHeader.breweryPage{
      margin: auto;
-     margin-top: 250px;;
+     margin-top: 200px;;
      max-width: 50%;
      background-color: blue;
+     padding-right: 0px;
+     padding-left: 0px;
 }
 
 div.newsFeedHeader.brewery{
      background-color: green;
      height: 50px;
-     margin-top: 300px;
+     margin-top: 250px;
      max-width: 50%;
+     padding-right: 0px;
+     padding-left: 0px;
 }
 
 iframe{
@@ -285,6 +332,8 @@ iframe{
      bottom: 0px;
      font-weight: lighter;
      color: black;
+     font-size: 10px;
+     margin-bottom: 20px;
 }
 
 .tableCell.img{
@@ -303,7 +352,7 @@ img.tableCell{
 
 /** Brewery PAge View */
 #coverImage{
-  height: 250px;
+  height: 200px;
   width: 75%;
   left: 12.5%;
   margin: auto;
