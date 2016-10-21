@@ -11,7 +11,7 @@
 
 	<body>
 		<header>
-				  <img id="logo" alt="no" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Webpage%20Documents/Beer_Hopper_Banner.png?raw=true"> <!-- logo into header -->
+				  <img id="logo" alt="no" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true"> <!-- logo into header -->
 		</header>
 
 		<!-- Navigation Panel; to the right of the logo -->
@@ -40,29 +40,47 @@
 		<h3> General Settings: </h3> <!-- header for gs -->
 		<div class="generalsettings"><br> <!-- general settings class -->
 			<form> <!-- general settings form -->
-
-				First Name: <!-- first name label -->
-				<br><input id="fname" type="text" name="fname" placeholder="first name"><br> <!-- first name form -->
-				Last Name: <!-- last name label -->
-				<br><input id="lname" type="text" name="lname" placeholder="last name"><br> <!-- first name form -->
-				Username: <!-- username label -->
-				<br><input id="usersname" type="text" name="username" placeholder="username"><br> <!-- username form -->
-				Email: <!-- email label -->
-				<br><input id="email" type="email" name="email" placeholder="email"><br> <!--email form -->
-				Password: <!-- password label -->
-				<br><input id="password" type="password" name="password" placeholder="########"><br> <!-- password form -->
-				<br><input type="submit" value="comfirm" onclick=""> <!-- onclick do something -->
+				<div>First Name: </div><!-- first name label -->
+				<input id="fname" type="text" name="fname" placeholder="first name"><br> <!-- first name form -->
+				<div>Last Name: </div><!-- last name label -->
+				<input id="lname" type="text" name="lname" placeholder="last name"><br> <!-- first name form -->
+				<div>Username: </div><!-- username label -->
+				<input id="usersname" type="text" name="username" placeholder="username"><br> <!-- username form -->
+				<div>Email: </div><!-- email label -->
+				<input id="email" type="email" name="email" placeholder="email"><br> <!--email form -->
+				<div>Password: </div><!-- password label -->
+				<input id="password" type="password" name="password" placeholder="########"><br> <!-- password form -->
+				<div><br><input type="button" value="comfirm" onclick=""></div><!-- onclick do something -->
 			</form><br> <!-- end gernal settings form -->
 		</div> <!-- end general settings -->
 
+		<h3> My Breweries: </h3> <!-- header for my breweries -->
 		<div class="mybreweries"><br> <!-- my breweries class -->
-			<h3> My Breweries: </h3> <!-- header for my breweries -->
+			You have no breweries :(
+			<br><br><input type="button" value="Add Brewery" onclick="">
 		</div> <!-- end my breweries -->
 
+		<h3> Privacy Settings: </h3> <!-- header for ps -->
 		<div class="privacysettings"><br> <!-- privacy settings class -->
-			<h3> Privacy Settings: </h3> <!-- header for ps -->
+			<form>
+				Allow Beerhopper to send you occasional emails?
+				<select name="emailopt">
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+					</select>
+					<br><br>
+					Allow other users to search you via email?
+					<select name="searchopt">
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+						</select>
+						<br><br>
+					<input type="button" value="comfirm" onclick="">
+			</form>
 		</div>
 		<br><br>
+
+
 		<!-- whenever we have something -->
 		<footer>
 
