@@ -1,0 +1,146 @@
+/*
+  * css for settings page
+  */
+
+/* import noto sans font */
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
+
+/* general overview */
+html, body, head{
+  margin: 0px;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Noto Sans Kannada', sans-serif;
+}
+
+/* header stuff */
+header{
+   background-color: #507590;
+	color: inherit;
+   position: absolute;
+   top: 0px;
+   width: 100%;
+   height: 3em;
+	 /*flex-direction: column;*/
+}
+
+h3{
+	text-align: center;
+}
+
+/* logo magic */
+#logo {
+  position: absolute;
+  margin: 0;
+  left: 45%;
+  right: -52%;
+  top: 0px;
+  text-align: center;
+  max-height: 3em;
+  z-index: 2;
+}
+
+/* nav settings */
+nav{
+     top: 0px;
+     z-index: 2;
+     position: fixed;
+     width: 100%;
+     height: 3em;
+     text-align: center;
+     margin: .75em;
+}
+
+/**Table for Nav bar */
+table.menu{
+	background-color: inherit;
+  color: white;
+  right: 3em;
+  position: absolute;
+}
+
+/* Gets menu bar set up */
+th.menuItem{
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border-radius: 5px;
+  margin-top: -10px;
+  padding-top: 0px;
+}
+
+/* when hovering over */
+th.menuItem:hover{
+  background-color:#4f6a77;
+  color: inherit;
+}
+
+/* nav button options */
+.navBtn{
+  width: 1em;
+  height: 2em;
+  object-fit: contain;
+  display: block;
+}
+
+/* sets color of items */
+a{
+	background-color: inherit;
+   color: white;
+   text-decoration: none;
+}
+
+/* center "account settings" */
+#accountsettings{
+	text-align: center;
+}
+
+/* general settings magic */
+.generalsettings{
+	display: table;
+	margin: 0 auto;
+	vertical-align: middle;
+	width: 50%;
+	border: 3px solid #f1f1f1;
+	padding: 3%;
+}
+
+/* my breweries magic */
+.mybreweries{
+	display: table;
+	margin: 0 auto;
+	vertical-align: middle;
+	width: 80%;
+}
+
+/* privacysettings magic */
+.privacysettings{
+	display: table;
+	margin: 0 auto;
+	vertical-align: middle;
+	width: 80%;
+}
+
+/* input box layout */
+input[type=text], input[type=password], input[type=email] {
+	 width: 80%;
+	 padding: 5px 12px;
+	 margin: 5px 0px;
+	 background-color: #f1f1f1;
+	 color: inherit;
+	 display: inline-block;
+	/* border: 1px solid #ccc;*/
+	 box-sizing: border-box;
+
+}
+
+/* footer magic */
+footer{
+     background-color: #507590;
+	  color: inherit;
+     bottom: 0;
+     position: fixed;
+     width: 100%;
+     height: 1.5em;
+}
