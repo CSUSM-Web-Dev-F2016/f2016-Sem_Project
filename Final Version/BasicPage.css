@@ -185,16 +185,17 @@ div.favoritesSection {
     height: 90%;
 }
 
-div.stdSection {
-    width: 100%;
-    margin: 10px;
-    border: 1px solid lightgray;
-    border-radius: 2px;
-    box-shadow: 0px 5px 5px lightgray;
-    background-color: white;
-    height: 75%;
-    margin-bottom: 25px;
-    margin-top: 0px;
+
+div.stdSection{
+     width: 100%;
+     margin: 10px;
+     border: 1px solid lightgray;
+     border-radius: 2px;
+     box-shadow: 0px 5px 5px lightgray;
+     background-color: white;
+     height: 75%;
+     margin-bottom: 25px;
+     margin-top: 0px; 
 }
 
 div.stdSection.FollowingBreweries {
@@ -341,15 +342,56 @@ iframe {
     justify-content: center;
 }
 
-.tableCell.title {
-    padding-top: .5em;
-    width: 95%;
-    text-align: center;
-    bottom: 0px;
-    font-weight: lighter;
-    color: black;
-    font-size: 10px;
-    margin-bottom: 20px;
+div.table{
+  width: 100%;
+  height: auto;
+  margin-bottom: 0px;
+  display: flex;
+  flex-direction: row;
+     flex-wrap: wrap;
+}
+
+.smalltableCell{
+     width: 33%;
+     height: 25%;
+     display: flex;
+     justify-content: center;
+     margin-bottom: -15px;
+}
+
+.smalltableCell.title{
+  height: 10px;
+  width: 25%;
+     text-align: center;
+     font-weight: lighter;
+     color: black;
+     font-size: 10px;
+     margin-top: -12.5%;
+     margin-bottom: 10px;
+     margin-left: 5px;
+     position: absolute;
+}
+
+img.smalltableCell{
+    width: 50%;
+     height: 50%;
+     margin: auto;
+     object-fit: scale-down;
+     padding: 0px;
+     margin:0px;
+     border-radius: 50%;;
+     border: 2px solid lightgray;
+}
+
+.tableCell.title{
+     padding-top: .5em;
+     width: 95%;
+     text-align: center;
+     bottom: 0px;
+     font-weight: lighter;
+     color: black;
+     font-size: 10px;
+     margin-bottom: 20px;
 }
 
 .tableCell.img {
