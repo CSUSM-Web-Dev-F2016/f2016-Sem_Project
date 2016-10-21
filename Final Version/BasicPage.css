@@ -325,6 +325,39 @@ iframe{
      justify-content: center;
 }
 
+.smalltableCell{
+     width: 25%;
+     height: 25%;
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: center;
+     margin-bottom: 20px;
+}
+
+.smalltableCell.title{
+  height: 10px;
+  width: 25%;
+     text-align: center;
+     font-weight: lighter;
+     color: black;
+     font-size: 10px;
+     margin-top: -12.5%;
+     margin-bottom: 10px;
+     margin-left: 7.5px;
+     position: absolute;
+}
+
+img.smalltableCell{
+    width: 50%;
+     height: 50%;
+     margin: auto;
+     object-fit: scale-down;
+     padding: 0px;
+     margin:0px;
+     border-radius: 50%;;
+     border: 2px solid lightgray;
+}
+
 .tableCell.title{
      padding-top: .5em;
      width: 95%;
