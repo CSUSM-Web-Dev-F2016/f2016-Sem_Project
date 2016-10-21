@@ -1,17 +1,31 @@
+/*
+  * css for settings page
+  */
+
+/* import noto sans font */
+@import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
+
 /* general overview */
 html, body, head{
   margin: 0px;
   display: flex;
   flex-direction: column;
+  font-family: 'Noto Sans Kannada', sans-serif;
 }
 
 /* header stuff */
 header{
    background-color: #507590;
+	color: inherit;
    position: absolute;
    top: 0px;
    width: 100%;
    height: 3em;
+	 /*flex-direction: column;*/
+}
+
+h3{
+	text-align: center;
 }
 
 /* logo magic */
@@ -21,7 +35,6 @@ header{
   left: 45%;
   right: -52%;
   top: 0px;
-  /*max-width: auto; */ /* validator is not a fan */
   text-align: center;
   max-height: 3em;
   z-index: 2;
@@ -40,6 +53,7 @@ nav{
 
 /**Table for Nav bar */
 table.menu{
+	background-color: inherit;
   color: white;
   right: 3em;
   position: absolute;
@@ -49,19 +63,32 @@ table.menu{
 th.menuItem{
   padding-left: 10px;
   padding-right: 10px;
-  margin: 10px;
+  margin-left: 10px;
+  margin-right: 10px;
   border-radius: 5px;
+  margin-top: -10px;
+  padding-top: 0px;
 }
 
 /* when hovering over */
 th.menuItem:hover{
   background-color:#4f6a77;
+  color: inherit;
+}
+
+/* nav button options */
+.navBtn{
+  width: 1em;
+  height: 2em;
+  object-fit: contain;
+  display: block;
 }
 
 /* sets color of items */
 a{
-    color: white;
-    text-decoration: none;
+	background-color: inherit;
+   color: white;
+   text-decoration: none;
 }
 
 /* center "account settings" */
@@ -74,7 +101,9 @@ a{
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
-	width: 80%;
+	width: 50%;
+	border: 3px solid #f1f1f1;
+	padding: 3%;
 }
 
 /* my breweries magic */
@@ -96,17 +125,21 @@ a{
 /* input box layout */
 input[type=text], input[type=password], input[type=email] {
 	 width: 80%;
-	 padding: 12px 20px;
-	 margin: 8px 0;
+	 padding: 5px 12px;
+	 margin: 5px 0px;
+
 	 background-color: #f1f1f1;
+	 color: inherit;
 	 display: inline-block;
-	 border: 1px solid #ccc;
+	/* border: 1px solid #ccc;*/
 	 box-sizing: border-box;
+
 }
 
 /* footer magic */
 footer{
      background-color: #507590;
+	  color: inherit;
      bottom: 0;
      position: fixed;
      width: 100%;
