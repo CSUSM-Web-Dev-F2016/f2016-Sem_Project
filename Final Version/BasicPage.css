@@ -2,10 +2,10 @@
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
 
 /** Body of Page */
-body{
+ body{
      padding: 0px;
      margin: 0px;
-     min-width: 500px;
+     min-width: 1000px;
      font-family: 'Noto Sans Kannada', sans-serif;
 }
 
@@ -40,7 +40,8 @@ aside{
      width: 20%;
      max-height: 75%;
      display: inline-flex;
-     min-width: 200px;;
+     min-width: 250px;;
+     background-color: white;
 }
 
 aside.left{
@@ -159,6 +160,7 @@ a.editBtn{
      font-weight: lighter;
      margin: 0px;
      padding: 0px;
+     padding-bottom: 50px;
 }
 
 a.editBtn:hover{
@@ -172,14 +174,15 @@ a.editBtn:hover{
 
 div.favoritesSection{
   width: 100%;
-  height: 45%; 
   margin: auto;
   margin-top: 100%;;
-  font-weight: bold;
+  padding-top: 30px; 
   justify-content: center;
   text-align: center;
   background-color: white;
   display: flex;
+     flex: auto;
+     flex-wrap: wrap;
 }
 
 
@@ -293,7 +296,7 @@ section{
      height: auto;
   margin: auto;
   margin-top: 3em;;
-  min-width: 450px; 
+  min-width: 400px; 
   font-weight: bold;
   justify-content: center;
   text-align: center;
@@ -369,17 +372,16 @@ div.table{
      text-align: center;
      font-weight: lighter;
      color: black;
-     font-size: 14px;
-     margin-top: -40%;
+     font-size: 13px;
      margin-bottom: 10px;
      margin-left: 0px;
-     padding-top: 5px;
+     padding-top: 0px;
      padding-bottom: 10px;
 }
 
 img.smalltableCell{
-    width: 50%;
-     height: 50%;
+    width: 75%;
+     height: 75%;
      margin: auto;
      object-fit: scale-down;
      padding: 0px;
@@ -390,7 +392,6 @@ img.smalltableCell{
 }
 
 .tableCell.title{
-     padding-top: .5em;
      width: 95%;
      text-align: center;
      bottom: 0px;
@@ -404,6 +405,7 @@ img.smalltableCell{
      width: 75px;
      height: 75px;
      margin: auto;
+     -o-object-fit: contain;
      object-fit: contain;
      border-radius: 50%;
 }
