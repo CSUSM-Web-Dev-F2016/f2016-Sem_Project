@@ -1,14 +1,14 @@
 html, body, head {
   margin: 0px;
-  background-color: #f4f4f4;
+  background-color: white;
 }
 
 .container {
-  width: 600px;
+  width: 430px;
   margin: auto;
   margin-top: 90px;
-  border-style: solid;
-  border-width: 2px;
+  border: 2px solid black;
+  border-radius: 20px;
   color: black;
   font-weight: bold;
   justify-content: center;
@@ -22,28 +22,26 @@ html, body, head {
 }
 
 .box-line {
-  width: 100px;
+  width: 40px;
   height: 5px;
   background-color: black;
-  margin: 15px;
+  margin: 8px;
   margin-top: 37px;
 }
 
 .sign-up-form {
-  padding: 25px;
-  padding-top: 10px;
-  background-color: white;
 }
 
 .outer-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: white;
 }
 
 .inner-sections {
   background-color: white;
-  margin: 10px;
+  margin: 0px;
   padding: 10px;
   padding-left: 15px;
   padding-right: 15px;
@@ -74,12 +72,14 @@ input[type=password]:focus {
 
 button {
   margin-top: 15px;
+  margin-bottom: 20px;
   padding-left: 55px;
   padding-right: 55px;
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
   color: white;
+  text-shadow: -2px 2px black;
   font-size: 16px;
   background-color: #507590;
   border: 1px solid black;
@@ -87,7 +87,8 @@ button {
 
 button:hover {
   color: white;
-  background-color: #558095;
+  background-color: #598499;
+  text-shadow: -2px 2px black;
 }
 
 button:active {
