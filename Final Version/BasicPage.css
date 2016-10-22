@@ -100,8 +100,8 @@ th.menuItem:hover {
 }
 
 .navBtn {
-    width: 1em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
     object-fit: contain;
     display: block;
 }
@@ -325,27 +325,29 @@ section{
 .newsFeedHeader.breweryPage {
     margin: auto;
     margin-top: 200px;
-    ;
+    display: flex;
+    flex: auto;
     max-width: 50%;
-    background-color: blue;
+    font-weight: lighter;
     padding-right: 0px;
     padding-left: 0px;
 }
 
 div.newsFeedHeader.brewery {
-    background-color: green;
     height: 50px;
-    margin-top: 250px;
+    margin-top: 175px;
     max-width: 50%;
-    padding-right: 0px;
-    padding-left: 0px;
+    padding: 0px;
+    z-index: -2;
 }
 
 iframe {
     background-color: white;
     border: initial;
     margin: auto;
+    height: auto;
     background: transparent;
+    margin-top: 0px; 
 }
 
 
@@ -390,8 +392,7 @@ div.table{
      font-size: 13px;
      margin-bottom: 10px;
      margin-left: 0px;
-     padding-top: 0px;
-     padding-bottom: 5px;
+     padding-bottom: 15px;
 }
 
 img.smalltableCell{
