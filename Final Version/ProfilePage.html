@@ -5,14 +5,18 @@
 <head>
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="BasicPage.css" type="text/css">
+	<script src="contentSwitch.js"></script>
 	<title>Profile</title>
 	<meta charset="utf-8">
 </head>
 
 
 <body>
-	<header>
-		<img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
+	<header class="header">
+		<a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
+			<img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
+		</a>
+
 	</header>
 
 	<!-- Navigation Panel; to the right of the logo -->
@@ -20,14 +24,17 @@
 		<table class="menu">
 			<tbody>
 				<td>
+					<!-- Main Profile Page -->
 					<th class="menuItem">
-						<a href="ProfilePage.html"><img src="Local_Images/House.png" class="navBtn"></a>
+						<input type="image" id="homeBtn" src="Local_Images/House.png" class="navBtn" onclick="showSRC('http://cis444.cs.csusm.edu/goule001/Group_Project/BrewerySignUp.html')">
+						</input>
 					</th>
 					<th>|</th>
+
+					<!-- Settings -->
 					<th class="menuItem">
-						<a href="ProfilePage.html">
-							<img src="Local_Images/gear.png" class="navBtn">
-						</a>
+						<input type="image" id="settingsBtn" src="Local_Images/gear.png" class="navBtn" onclick="showSRC('http://cis444.cs.csusm.edu/goule001/Group_Project/settings.html')">
+						</input>
 					</th>
 				</td>
 			</tbody>
@@ -86,8 +93,7 @@
 					<div class="smalltableCell">
 						<a href="breweryPage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg"
-									alt="Logo">
+								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Logo">
 							</div>
 							<div class="smalltableCell title">
 								Ballast Point
@@ -97,8 +103,7 @@
 					<div class="smalltableCell">
 						<a href="breweryPage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png"
-									alt="Logo">
+								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Logo">
 							</div>
 							<div class="smalltableCell title">
 								Green Flash
@@ -109,8 +114,7 @@
 					<div class="smalltableCell">
 						<a href="breweryPage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg"
-									alt="Logo">
+								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Logo">
 							</div>
 							<div class="smalltableCell title">
 								Acoustic Ales
@@ -164,7 +168,7 @@
 							</div>
 						</a>
 					</div>
-					
+
 				</div>
 				<div class="stdSectionFooter">
 					more
@@ -272,15 +276,14 @@
 		</div>
 		<div class="newsFeed">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe src="BrewerySignUp.html" width="100%" height="850px" style="min-width:480px">
-				<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-				<br><br><br> Hello World
-
-
-				<br><br><br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br><br><br><br><br><br>
-				<br><br><br><br><br><br><br><br><br><br><br><br>
+			<iframe id="contentFrame" src="https://cis444.cs.csusm.edu/goule001/Group_Project/BrewerySignUp.html" width="100%" height="850px" style="min-width:480px" onload="resizeIframe(this);">
+			
+			<!--
+			<object>
+				<embed id="contentFrame" src=http://cis444.cs.csusm.edu/goule001/Group_Project/BrewerySignUp.html width="100%" height="850px"> 
+				</embed>
+			</object>
+			-->
 		</div>
 	</section>
 
