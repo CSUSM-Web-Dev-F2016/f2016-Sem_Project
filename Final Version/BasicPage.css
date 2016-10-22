@@ -6,6 +6,7 @@ body{
      padding: 0px;
      margin: 0px;
      min-width: 500px;
+     font-family: 'Noto Sans Kannada', sans-serif;
 }
 
 header{
@@ -39,7 +40,6 @@ aside{
      width: 20%;
      max-height: 75%;
      display: inline-flex;
-     font-family: 'Noto Sans Kannada', sans-serif;
      min-width: 200px;;
 }
 
@@ -118,6 +118,8 @@ th.menuItem:hover{
   text-align: center;
   position: absolute;
   background-color: white;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 
@@ -139,11 +141,16 @@ p.profileName{
   padding-top: 0px;
   margin-top: 15px;
   margin-bottom: 0px;  
+  width: 100%;
   text-shadow:
   -1px -1px 0 #fff,
    1px -1px 0 #fff,
    -1px 1px 0 #fff,
     1px 1px 0 #fff;
+}
+
+p.breweryLocation{
+  margin-bottom: 10px;
 }
 
 a.editBtn{
@@ -175,9 +182,6 @@ div.favoritesSection{
   display: flex;
 }
 
-#favorites{
-     height: 90%;
-}
 
 
 div.stdSection{
@@ -186,38 +190,44 @@ div.stdSection{
      border: 1px solid lightgray;
      border-radius: 2px;
      box-shadow: 0px 5px 5px lightgray;
-     background-color: white;
-     height: 75%;
+     overflow: hidden;
      margin-bottom: 25px;
      margin-top: 0px; 
+     flex: auto;
+     flex-wrap: wrap;
+     background-color: white;
 }
 
 div.stdSection.FollowingBreweries{
      margin-top: 160px;
-     height: 100px;
-     margin-bottom: 10px;
+     height: 30%;
+    margin-bottom: 10px;
+    position: relative;
 }
 
-div.stdSection.HighestRated{
-  margin-top: 0px;
-  height: 100px;
-     margin-bottom: 10px;
+div.stdSection.main{
+     height: 30%;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 div.stdSection.Calendar{
-  margin-top: 0px;
-  height: 150px;
+  height: 50%;
+  margin-bottom: 10px;
+     position: relative;
 }
 
 div.stdSection.about{
-  margin-top: 250px;
-  height: 150px;
+  margin-top: 275px;;
+  height: 30%;
   margin-bottom: 10px;
+  position: relative;
 }
 
 div.stdSection.FollowingBrewery{
-  margin-top: 10px;
-  height: 100px;
+  height: 30%;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 div.stdSection:hover{
@@ -226,38 +236,45 @@ div.stdSection:hover{
 
 div.stdSectionTitle{
      padding-top: 10px;
+     padding-bottom: 10px;
      text-align: center;
 }
 
 div.stdSectionFooter{
   width: 100%;
   height: 15px;
-  margin-top:50px;
   text-align: center;
   color: #0000ff;
   font-size: 12px;
-  position: absolute;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: relative;
 }
 
 /** Right Sections */
 #followers{
-     margin-top: 0px;
-     height: 100px;
+     height: 30%;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 #following{
-     margin-top: 10px;
-     height: 100px;
+     
+     height: 15%;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 #bestTastes{
-  margin-top: 10px;
-     height: 100px;
+     height: 30%;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 #eventCalendar{
-     height: 150px;
-     position: absolute;
+     height: 30%;
+    margin-bottom: 10px;
+    position: relative;
 }
 
 .subsection{
@@ -320,10 +337,10 @@ iframe{
 /** Note that each one has a round image and a title */
 .tableCell{
      width: 50%;
-     height: 30%;
      display: flex;
      flex-wrap: wrap;
      justify-content: center;
+     text-align: center;
 }
 
 div.table{
@@ -336,24 +353,28 @@ div.table{
 }
 
 .smalltableCell{
-     width: 33%;
+     width: 33.3%;
      height: 25%;
      display: flex;
      justify-content: center;
-     margin-bottom: -15px;
+     margin: auto;
+     position: relative;
+     margin-bottom: 0px;
+     padding: 0px;
 }
 
 .smalltableCell.title{
   height: 10px;
-  width: 25%;
+  width: 100%;
      text-align: center;
      font-weight: lighter;
      color: black;
-     font-size: 10px;
-     margin-top: -12.5%;
+     font-size: 14px;
+     margin-top: -40%;
      margin-bottom: 10px;
-     margin-left: 5px;
-     position: absolute;
+     margin-left: 0px;
+     padding-top: 5px;
+     padding-bottom: 10px;
 }
 
 img.smalltableCell{
@@ -365,6 +386,7 @@ img.smalltableCell{
      margin:0px;
      border-radius: 50%;;
      border: 2px solid lightgray;
+     margin-bottom: 0px;
 }
 
 .tableCell.title{
