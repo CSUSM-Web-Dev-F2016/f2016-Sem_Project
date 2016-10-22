@@ -445,3 +445,7 @@ img.tableCell {
     background-color: lightblue;
     z-index: -1;
 }
+
+#beerDes{
+  margin-top: 50px;
+}
