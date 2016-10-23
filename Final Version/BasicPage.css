@@ -322,6 +322,17 @@ section{
     padding: 10px;
 }
 
+.breweryPage.newsFeed{
+    top: 225px;
+    padding-top: 0px;
+    position: relative;
+    z-index: -1;
+}
+
+.contentFrame{
+    padding: 0px;
+}
+
 .newsFeedHeader.breweryPage {
     margin: auto;
     margin-top: 200px;
@@ -331,6 +342,7 @@ section{
     font-weight: lighter;
     padding-right: 0px;
     padding-left: 0px;
+    position: absolute;
 }
 
 div.newsFeedHeader.brewery {
@@ -338,7 +350,7 @@ div.newsFeedHeader.brewery {
     margin-top: 175px;
     max-width: 50%;
     padding: 0px;
-    z-index: -2;
+    z-index: 1;
 }
 
 iframe {
@@ -432,6 +444,10 @@ img.tableCell {
     padding-bottom: 10px;
 }
 
+.moreClicked{
+    color: blue;
+}
+
 
 /** Brewery PAge View */
 
@@ -442,7 +458,7 @@ img.tableCell {
     margin: auto;
     object-fit: cover;
     position: fixed;
-    background-color: lightblue;
+    background-color: white;
     z-index: -1;
 }
 

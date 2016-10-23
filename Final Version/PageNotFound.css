@@ -1,0 +1,44 @@
+
+body{
+     margin: 0px;
+     padding: 0px;
+}
+
+.PNFContainer{
+     width: 95%;
+     position: absolute;
+     flex: auto;
+     flex-wrap: wrap;
+     flex-direction: column;
+     margin: auto;
+     padding-top: 45px;
+     padding-bottom: 45px;
+}
+
+.PNFTitle{
+     font-size: 23px;
+    width: 90%;
+    margin: auto;
+    font-weight: lighter;
+    font-style: italic;
+    color: gray;
+    text-align: center;
+   padding-top: 10px;
+}
+
+.PNFDescription{
+     font-size: 16px;
+     width: 90%;
+     font-weight: lighter;
+    font-style: normal;
+    color: gray;
+    margin: auto;
+    text-align: center;
+   padding-top: 10px;
+}
+
+img.largeImageForPNF{
+     margin: auto;
+     width: 100%;
+     height: auto;
+}

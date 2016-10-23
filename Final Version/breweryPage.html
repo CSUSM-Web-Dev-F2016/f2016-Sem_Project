@@ -14,11 +14,11 @@
 <body>
 	<!-- Header for Logo -->
 	<header class="header">
-            <a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
-                <img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
-            </a>
+		<a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
+			<img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
+		</a>
 
-        </header>
+	</header>
 
 	<!-- Navigation Panel; to the right of the logo -->
 	<nav>
@@ -61,7 +61,7 @@
 				</div>
 				<div class="table">
 					<div class="smalltableCell">
-						<a href="breweryPage.html">
+						<a onclick="showSRC('PageNotFound.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/time.png?raw=true"
 									alt="Logo">
@@ -72,7 +72,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="breweryPage.html">
+						<a onclick="showSRC('EmptyForm.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/story.png?raw=true"
 									alt="Logo">
@@ -83,7 +83,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="breweryPage.html">
+						<a onclick="showSRC('PageNotFound.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/location.png?raw=true"
 									alt="Logo">
@@ -94,7 +94,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="breweryPage.html">
+						<a onclick="showSRC('PageNotFound.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Beer.png?raw=true"
 									alt="Logo">
@@ -105,7 +105,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="breweryPage.html">
+						<a onclick="showSRC('PageNotFound.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Follow.png?raw=true"
 									alt="Logo">
@@ -116,7 +116,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="breweryPage.html">
+						<a onclick="showSRC('PageNotFound.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/message.png?raw=true"
 									alt="Logo">
@@ -169,7 +169,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					more
+					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
 				</div>
 			</div>
 		</div>
@@ -216,7 +216,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					more
+					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -259,7 +259,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					more
+					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -273,9 +273,6 @@
 	</aside>
 
 
-	<!-- Footer information; additional links etc -->
-	<footer></footer>
-
 
 	<!-- Main content area -->
 	<section class="breweryPage">
@@ -286,17 +283,16 @@
 		<!-- News Feed -->
 		<!--<div class="newsFeedHeader breweryPage">
 		</div> -->
-		<div class="newsFeedHeader brewery">
+
+
+		<div class="breweryPage newsFeed">
 			<!-- For example purposes, add the add brewery panel -->
-			<div class="newsFeed">
-				<!-- For example purposes, add the add brewery panel -->
-				<iframe id="contentFrame" src="BrewerySignUp.html" width="100%" height="850px" style="min-width:480px" onload="resizeIframe(this);">
-			</div>
+			<iframe id="contentFrame" src="BrewerySignUp.html" width="100%" height="250px" style="min-width:480px" onload="resizeIframe(this);">
 		</div>
+
 	</section>
 
 	<!-- Footer information; additional links etc -->
-
 
 </body>
 
