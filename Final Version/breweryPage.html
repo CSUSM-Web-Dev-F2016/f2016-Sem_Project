@@ -2,115 +2,298 @@
 
 <html>
 
-	<head lang="en-us">
-		<!-- Link documents to style sheet and JS code -->
-		<link rel="stylesheet" href="BasicPage.css" type="text/css">
-		<!-- Set title of page -->
-		<title>Brewery Page</title>
+<head lang="en-us">
+	<!-- Link documents to style sheet and JS code -->
+	<link rel="stylesheet" href="BasicPage.css" type="text/css">
+	<!-- Set title of page -->
+	<title>Brewery Page</title>
+	<script src="contentSwitch.js"></script>
 
-	</head>
+</head>
 
-	<body>
-		<!-- Header for Logo -->
-		<header>
+<body>
+	<!-- Header for Logo -->
+	<header class="header">
+		<a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
 			<img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
-		</header>
+		</a>
 
-		<!-- Navigation Panel; to the right of the logo -->
-		<nav>
-			<table class="menu">
-				<tbody>
-					<td>
-						<th class="menuItem">
-							<a href="ProfilePage.html"><img src="Local_Images/House.png" class="navBtn"></a>
-						</th>
-						<th>|</th>
-						<th class="menuItem">
-							<a href="ProfilePage.html">
-								<img src="Local_Images/gear.png" class="navBtn">
-							</a>
-						</th>
-					</td>
-				</tbody>
-			</table>
-		</nav>
+	</header>
 
-		<!--Left side bar; will be profile information -->
-		<aside class="left">
+	<!-- Navigation Panel; to the right of the logo -->
+	<nav>
+		<table class="menu">
+			<tbody>
+				<td>
+					<!-- Main Profile Page -->
+					<th class="menuItem">
+						<input type="image" id="homeBtn" src="Local_Images/House.png" class="navBtn" onclick="goHomeAnd('BrewerySignUp.html')">
+						</input>
+					</th>
+					<th>|</th>
 
-			<div id="profileContainer">
-				<!-- Three items will appear here... Pic, Name and Edit Button -->
-				<img id="profileImg" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png" alt="JGoulet Rox">
-				<p class="profileName">Indian Joe's Brewery</p>
-				<p class="breweryLocation">Vista, CA
-				</p>
-			</div>
+					<!-- Settings -->
+					<th class="menuItem">
+						<input type="image" id="settingsBtn" src="Local_Images/gear.png" class="navBtn" onclick="goHomeAnd('settings.html')">
+						</input>
+					</th>
+				</td>
+			</tbody>
+		</table>
+	</nav>
 
-			<div class="subsection">
-				<div class="stdSection about" id="aboutSection">
-					<div class="stdSectionTitle">
-						About
+
+	<!--Left side bar; will be profile information -->
+	<aside class="left">
+
+		<div id="profileContainer">
+			<!-- Three items will appear here... Pic, Name and Edit Button -->
+			<img id="profileImg" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png" alt="JGoulet Rox">
+			<p class="profileName">Indian Joe's Brewery<br></p>
+			<p class="breweryLocation">Vista, CA <br></p>
+		</div>
+
+		<div class="subsection">
+			<!-- About Section -->
+			<div class="stdSection about" id="aboutSection">
+				<div class="stdSectionTitle">
+					About
+				</div>
+				<div class="table">
+					<div class="smalltableCell">
+						<a onclick="showSRC('PageNotFound.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/time.png?raw=true"
+									alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Hours
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a onclick="showSRC('EmptyForm.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/story.png?raw=true"
+									alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Story
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a onclick="showSRC('PageNotFound.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/location.png?raw=true"
+									alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Address
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a onclick="showSRC('PageNotFound.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Beer.png?raw=true"
+									alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Beers
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a onclick="showSRC('PageNotFound.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Follow.png?raw=true"
+									alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Follow
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a onclick="showSRC('PageNotFound.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/message.png?raw=true"
+									alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Message
+							</div>
+						</a>
 					</div>
 				</div>
+			</div>
 
-				<div class="stdSection FollowingBrewery" id="followingBreweries">
-					<div class="stdSectionTitle">
-						Followers
+			<!-- Followers Section -->
+			<div class="stdSection FollowingBrewery" id="followingBreweries">
+				<div class="stdSectionTitle">
+					Followers
+				</div>
+				<div class="table">
+					<div class="smalltableCell">
+						<a href="ProfilePage.html">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Mikal Callahan
+							</div>
+						</a>
 					</div>
-					<div class="stdSectionFooter">
-						more
+					<div class="smalltableCell">
+						<a href="ProfilePage.html">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Justin Goulet
+							</div>
+						</a>
+					</div>
+
+					<div class="smalltableCell">
+						<a href="ProfilePage.html">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
+									alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Myles Merrill
+							</div>
+						</a>
 					</div>
 				</div>
-			</div>
-		</aside>
-
-		<!-- Right Side bar; will be used for side navigation panels -->
-		<aside class="right">
-			<div class="subsection">
-				<div class="stdSection FollowingBreweries" id="followingBreweries">
-					<div class="stdSectionTitle">
-						Following
-					</div>
-					<div class="stdSectionFooter">
-						more
-					</div>
-				</div>
-
-				<div class="stdSection HighestRated" id="highestRated">
-					<div class="stdSectionTitle">
-						Highest Rated
-					</div>
-					<div class="stdSectionFooter">
-						more
-					</div>
-				</div>
-				<div class="stdSection Calendar" id="calendar">
-					<div class="stdSectionTitle">
-						Calendar
-					</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
 				</div>
 			</div>
-		</aside>
+		</div>
+	</aside>
 
-		<!-- Main content area -->
-		<section class="breweryPage">
-			<!-- Display the brewery's cover image -->
-			<div>
-				<img alt="Brewery Cover Image" id="coverImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/slide51.jpg">
-			</div>
-			<!-- News Feed -->
-			<div class="newsFeedHeader breweryPage">
-				Hello World
-			</div>
-			<div class="newsFeedHeader brewery">
-				<!-- For example purposes, add the add brewery panel -->
-				Hello
-			</div>
-		</section>
+	<!-- Right Side bar; will be used for side navigation panels -->
+	<aside class="right">
+		<div class="subsection">
+			<div class="stdSection FollowingBreweries" id="followingBreweries">
+				<div class="stdSectionTitle">
+					Following
+				</div>
+				<div class="table">
+					<div class="smalltableCell">
+						<a href="breweryPage.html">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Ballast Point
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a href="breweryPage.html">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Green Flash
+							</div>
+						</a>
+					</div>
 
-		<!-- Footer information; additional links etc -->
-		<footer></footer>
+					<div class="smalltableCell">
+						<a href="breweryPage.html">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Acoustic Ales
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+				</div>
+			</div>
 
-	</body>
+			<!-- Highest Rated -->
+			<div class="stdSection main" id="highestRated">
+				<div class="stdSectionTitle">
+					Highest Rated
+				</div>
+				<div class="table">
+					<div class="smalltableCell">
+						<a onclick="showSRC('BeerInfo.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Red Ale
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a onclick="showSRC('BeerInfo.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Peach Ale
+							</div>
+						</a>
+					</div>
+
+					<div class="smalltableCell">
+						<a onclick="showSRC('BeerInfo.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="Logo">
+							</div>
+							<div class="smalltableCell title">
+								Hazelnut Porter
+							</div>
+						</a>
+					</div>
+				</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+				</div>
+			</div>
+
+			<!-- Not yet implemented - Calendar -->
+			<div class="stdSection Calendar" id="calendar">
+				<div class="stdSectionTitle">
+					Calendar
+				</div>
+			</div>
+		</div>
+	</aside>
+
+
+
+	<!-- Main content area -->
+	<section class="breweryPage">
+		<!-- Display the brewery's cover image -->
+		<div>
+			<img alt="Brewery Cover Image" id="coverImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/slide51.jpg">
+		</div>
+		<!-- News Feed -->
+		<!--<div class="newsFeedHeader breweryPage">
+		</div> -->
+
+
+		<div class="breweryPage newsFeed">
+			<!-- For example purposes, add the add brewery panel -->
+			<iframe id="contentFrame" src="PageNotFound.html" width="100%" height="250px" style="min-width:480px" onload="resizeIframe(this);">
+		</div>
+
+	</section>
+
+	<!-- Footer information; additional links etc -->
+
+</body>
 
 </html>

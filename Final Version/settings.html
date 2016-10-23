@@ -1,0 +1,74 @@
+<!Doctype html>
+<html lang="en">
+<!-- settings page html-->
+
+	<head>
+		<meta charset="utf-8">
+		<title> Account Settings </title> <!-- title the page -->
+		<link rel="stylesheet" type="text/css" href="settings.css"> <!-- link to settings.css -->
+		<script src="settings.js"></script> <!-- ready up script magic -->
+	</head>
+
+	<body>
+
+		<br><br>
+		<h2 id="accountsettings"> Account Settings </h2> <!-- account settings header -->
+		<h3> General Settings: </h3> <!-- header for gs -->
+		<div class="generalsettings"><br> <!-- general settings class -->
+			<form> <!-- general settings form -->
+				<div>First Name: </div><!-- first name label -->
+				<input class="leftAlign" id="fname" type="text" name="fname"><br> <!-- first name form -->
+				<div>Last Name: </div><!-- last name label -->
+				<input class="leftAlign" id="lname" type="text" name="lname"><br> <!-- first name form -->
+				<div>Username: </div><!-- username label -->
+				<input class="leftAlign" id="usersname" type="text" name="username"><br> <!-- username form -->
+				<div>Email: </div><!-- email label -->
+				<input class="leftAlign" id="email" type="email" name="email"><br> <!--email form -->
+				<div>Password: </div><!-- password label -->
+				<input class="leftAlign" id="password" type="password" name="password" placeholder="*********"><br> <!-- password form -->
+				<div><br><input type="button" value="Confirm" onclick=""></div><!-- onclick do something -->
+			</form><br> <!-- end gernal settings form -->
+		</div> <!-- end general settings -->
+
+		<h3> My Breweries: </h3> <!-- header for my breweries -->
+		<div class="mybreweries"><br> <!-- my breweries class -->
+			You have no breweries 
+			<br><br><input type="button" value="Add Brewery" onclick="">
+		</div> <!-- end my breweries -->
+
+		<h3> Privacy Settings: </h3> <!-- header for ps -->
+		<div class="privacysettings"><br> <!-- privacy settings class -->
+			<form>
+				Allow Beerhopper to send you occasional emails?
+				<select name="emailopt"> <!-- option to opt out of emails -->
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+					</select>
+					<br><br>
+					Allow other users to search you via email? <!-- allow others to search you via email -->
+					<select name="searchopt">
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+					</select>
+					<br><br>
+					Show location on profile
+					<select name="showlocation">
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+						<option value="follow">Only to users I follow</option>
+					</select>
+					<br><br>
+					Opt out of personalized ads?
+					<select name="personalizedads">
+						<option value="yes">Yes</option>
+						<option value="no">No</option>
+						<option value="etc">Sell my soul for all the loot</option>
+					</select>
+						<br><br>
+					<input type="button" value="Confirm" onclick="">
+			</form>
+		</div>
+		<br><br>
+
+	</body>
+</html>
