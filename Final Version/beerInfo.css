@@ -1,9 +1,11 @@
+@import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
+
 html, body, head {
      padding: 0px;
      margin: 0px;
      padding-bottom: 25px;
-     padding-top: 50px;
      overflow: hidden;
+     font-family: 'Noto Sans Kannada', sans-serif;
 }
 
 
@@ -16,6 +18,7 @@ html, body, head {
      box-shadow: 0px 5px 5px lightgray;
      position: absolute;
      display: block;
+     background-color: white;
 }
 
 .beerImage{
@@ -27,6 +30,7 @@ html, body, head {
      display: inline-block;
      flex: auto;
      height: 12.5em;
+     object-fit: contain;
 }
 
 .mainContent{

@@ -2,12 +2,15 @@
 
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
 
+html, iframe{
+     font-family: 'Noto Sans Kannada', sans-serif;
+}
+
 /** Body of Page */
  body{
      padding: 0px;
      margin: 0px;
      min-width: 1000px;
-     font-family: 'Noto Sans Kannada', sans-serif;
 }
 
 header {
@@ -316,10 +319,18 @@ section{
 
 .newsFeedHeader {
     text-align: left;
+    margin-top: 10px; 
+    margin-bottom: 10px;
     position: fixed;
     background-color: white;
     width: 100%;
-    padding: 10px;
+}
+
+.newsFeed{
+    top: 3em;
+    display: flex;
+    height: auto;
+    position: relative;
 }
 
 .breweryPage.newsFeed{
@@ -330,7 +341,7 @@ section{
 }
 
 .contentFrame{
-    padding: 0px;
+    padding: 0px; 
 }
 
 .newsFeedHeader.breweryPage {
