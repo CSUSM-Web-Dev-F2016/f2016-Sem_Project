@@ -17,6 +17,10 @@ html, body {
     height: 3em;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
 #logo {
     margin: 0;
     left: 45%;
@@ -65,6 +69,7 @@ input[type=text] {
     margin-top: .25rem;
     width: 100%;
 }
+
 input[type=password] {
     box-sizing: border-box;
     border: .5px solid #93969b;
