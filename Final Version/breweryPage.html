@@ -5,13 +5,15 @@
 <head>
 	<!-- Link documents to style sheet and JS code -->
 	<link rel="stylesheet" href="BasicPage.css" type="text/css">
+	<script src="NewsFeedBuilder.js"></script>
+	<link rel="stylesheet" href="PageNotFound.css" type="text/css">
 	<!-- Set title of page -->
 	<title>Brewery Page</title>
 	<script src="contentSwitch.js"></script>
 
 </head>
 
-<body>
+<body onload="buildFeed();">
 	<!-- Header for Logo -->
 	<header class="header">
 		<a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
@@ -81,7 +83,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('Address.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/location.png?raw=true"
 									alt="Address Icon">
@@ -92,7 +94,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('BeerList.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Beer.png?raw=true"
 									alt="Beers Icon">
@@ -103,7 +105,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('FollowingPage.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Follow.png?raw=true"
 									alt="Follow Icon">
@@ -114,7 +116,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('Messaging.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/message.png?raw=true"
 									alt="Message">
@@ -214,7 +216,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -257,7 +259,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('BeerList.html')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -285,7 +287,11 @@
 
 		<div class="breweryPage newsFeed">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="PageNotFound.html" style="min-width:480px" title="subframe" onload="resizeIframe(this);"></iframe>
+			<!--<iframe id="contentFrame" src="PageNotFound.html" style="min-width:480px" title="subframe" onload="resizeIframe(this);"></iframe>
+		-->
+		<div class="newsFeed" id="MainArea">
+		</div>
+		
 		</div>
 
 	</section>

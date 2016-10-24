@@ -5,13 +5,17 @@
 <head>
 	<!-- CSS Files -->
 	<link rel="stylesheet" href="BasicPage.css" type="text/css">
+	<link rel="stylesheet" href="PageNotFound.css" type="text/css">
 	<script src="contentSwitch.js"></script>
+	<script src="NewsFeedBuilder.js"></script>
 	<title>Profile</title>
 	<meta charset="utf-8">
+
+	
 </head>
 
 
-<body>
+<body onload="buildFeed();">
 	<header class="header">
 		<a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
 			<img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
@@ -273,10 +277,12 @@
 			<!-- Black Field to Post -->
 
 		</div>
-		<div class="newsFeed">
+		<div class="newsFeed" id="MainArea">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="PageNotFound.html" title="subcontent" style="min-width:480px" onload="resizeIframe(this);"></iframe>
+			<!--<iframe id="contentFrame" src="NewsFeed.html" seamless="seamless" title="subcontent" style="min-width:480px; min-height:82.5%; visibi" onload="resizeIframe(this);"></iframe>
+			-->
 			
+
 			<!--
 			<object>
 				<embed id="contentFrame" src=http://cis444.cs.csusm.edu/goule001/Group_Project/BrewerySignUp.html width="100%" height="850px"> 
