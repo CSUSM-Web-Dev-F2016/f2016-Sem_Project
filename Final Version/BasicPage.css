@@ -323,7 +323,7 @@ section{
     margin-bottom: 10px;
     position: fixed;
     background-color: white;
-    width: 100%;
+    width: 50%;
 }
 
 .newsFeed{
@@ -458,7 +458,64 @@ img.tableCell {
 .moreClicked{
     color: blue;
 }
+/**Feed */
+div.newsFeedBox{
+     width: 95%;
+     position: absolute;
+     flex: auto;
+     flex-wrap: wrap;
+     flex-direction: column;
+     margin: auto;
+     font-weight: lighter;
+     font-style: italic;
+     color: gray;
+     border: 1px solid gray;
+     border-radius: 5px;
+     background: white;
+}
+div.newsFeedBox button{
+    float: right;
+    margin-bottom: 8px;
+    padding-left: 25px;
+    padding-right:25px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #507590;
+    border: 1px solid black;
+    
+}
+div.newsFeedBox button:hover {
+  color: white;
+  background-color: #598499;
+  text-shadow: -2px 2px #000000;
+}
 
+div.newsFeedBox button:active {
+  position: relative;
+  top: 2px;
+}
+
+.feedTxt textarea{
+    width: 100%;
+    box-sizing:border-box;
+    resize: none;
+}
+
+div.newsFeedBox:hover{
+   box-shadow: 0px 5px 5px lightgray;
+}
+.feedImg{
+    object-fit: scale-down;
+    text-align: center;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+/** End Feed */
 
 /** Brewery PAge View */
 
