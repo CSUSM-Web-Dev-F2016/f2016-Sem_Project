@@ -41,7 +41,7 @@ footer {
 
 aside{
      position: absolute;
-     margin-bottom: 3em; 
+     margin-bottom: 3em;
      width: 20%;
      max-height: 75%;
      height: 75%;
@@ -151,7 +151,7 @@ p.profileName{
   font-size: 24px;
   padding-top: 0px;
   margin-top: 15px;
-  margin-bottom: 0px;  
+  margin-bottom: 0px;
   padding-bottom: 5px;
   width: 100%;
   text-shadow:
@@ -188,7 +188,7 @@ div.favoritesSection{
   width: 100%;
   margin: auto;
   margin-top: 250px;;
-  padding-top: 30px; 
+  padding-top: 30px;
   justify-content: center;
   text-align: center;
   background-color: white;
@@ -207,7 +207,7 @@ div.stdSection{
      box-shadow: 0px 5px 5px lightgray;
      overflow: hidden;
      margin-bottom: 25px;
-     margin-top: 0px; 
+     margin-top: 0px;
      flex: auto;
      flex-wrap: wrap;
      background-color: white;
@@ -275,7 +275,7 @@ div.stdSectionFooter{
 }
 
 #following{
-     
+
      height: 15%;
     margin-bottom: 10px;
     position: relative;
@@ -311,7 +311,7 @@ section{
      height: auto;
   margin: auto;
   margin-top: 3em;;
-  min-width: 400px; 
+  min-width: 400px;
   font-weight: bold;
   justify-content: center;
   text-align: center;
@@ -319,7 +319,7 @@ section{
 
 .newsFeedHeader {
     text-align: left;
-    padding-top: 10px; 
+    padding-top: 10px;
     padding-bottom: 10px;
     position: fixed;
     background-color: white;
@@ -346,7 +346,7 @@ section{
 }
 
 .contentFrame{
-    padding: 0px; 
+    padding: 0px;
 }
 
 
@@ -377,7 +377,7 @@ iframe {
     height: 0px;
     width: 100%;
     background: transparent;
-    margin-top: 0px; 
+    margin-top: 0px;
 }
 
 

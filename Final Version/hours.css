@@ -1,4 +1,5 @@
 body{
+    padding-bottom: 35px;
 }
 
 .emptyForm{
@@ -6,12 +7,14 @@ body{
 	width: 99%;
 	text-align: center;
 	padding-top: 35px;
+	padding-bottom: 50px;
 	position: absolute;
 	display: flex;
 	flex-direction: column;
+	border-radius: 2px;
 }
 
-.title{
+.hourstitle{
 	font-size: 23px;
 	width: 90%;
 	margin: auto;
@@ -23,19 +26,15 @@ body{
   	padding-top: 10px;
   	display: flex;
 	justify-content: center;
-	border: solid;
-	border-radius: 5px;
 }
 
-.hours{
+.listhours{
 	font-style: italic;
 	width: 90%;
 	margin: auto;
-	padding-top: 8px;
+	padding-top: 0px;
 	padding-bottom: 15px;
 	text-align: center;
 	display: flex;
 	justify-content: center;
-	border: solid;
-	border-radius: 5px;
 }
