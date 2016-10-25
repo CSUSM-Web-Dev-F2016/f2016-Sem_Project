@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en-us">
 
-<head lang="en-us">
+<head>
 	<!-- Link documents to style sheet and JS code -->
 	<link rel="stylesheet" href="BasicPage.css" type="text/css">
+	<script src="NewsFeedBuilder.js"></script>
+	<link rel="stylesheet" href="PageNotFound.css" type="text/css">
 	<!-- Set title of page -->
 	<title>Brewery Page</title>
 	<script src="contentSwitch.js"></script>
 
 </head>
 
-<body>
+<body> <!-- onload="buildFeed();" -->
 	<!-- Header for Logo -->
 	<header class="header">
 		<a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
@@ -22,22 +24,20 @@
 
 	<!-- Navigation Panel; to the right of the logo -->
 	<nav>
-		<table class="menu">
+		<table class="menu" title="Menu">
 			<tbody>
-				<td>
+				<tr>
 					<!-- Main Profile Page -->
 					<th class="menuItem">
-						<input type="image" id="homeBtn" src="Local_Images/House.png" class="navBtn" onclick="goHomeAnd('BrewerySignUp.html')">
-						</input>
+						<input type="image" id="homeBtn" src="Local_Images/House.png" class="navBtn" onclick="goHomeAnd('BrewerySignUp.html')" alt="home">
 					</th>
 					<th>|</th>
 
 					<!-- Settings -->
 					<th class="menuItem">
-						<input type="image" id="settingsBtn" src="Local_Images/gear.png" class="navBtn" onclick="goHomeAnd('settings.html')">
-						</input>
+						<input type="image" id="settingsBtn" src="Local_Images/gear.png" class="navBtn" onclick="goHomeAnd('settings.html')" alt="home">
 					</th>
-				</td>
+				</tr>
 			</tbody>
 		</table>
 	</nav>
@@ -64,7 +64,7 @@
 						<a onclick="showSRC('PageNotFound.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/time.png?raw=true"
-									alt="Logo">
+									alt="Hours Icon">
 							</div>
 							<div class="smalltableCell title">
 								Hours
@@ -75,7 +75,7 @@
 						<a onclick="showSRC('EmptyForm.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/story.png?raw=true"
-									alt="Logo">
+									alt="Story Icon">
 							</div>
 							<div class="smalltableCell title">
 								Story
@@ -83,10 +83,10 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('Address.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/location.png?raw=true"
-									alt="Logo">
+									alt="Address Icon">
 							</div>
 							<div class="smalltableCell title">
 								Address
@@ -94,10 +94,10 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('BeerList.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Beer.png?raw=true"
-									alt="Logo">
+									alt="Beers Icon">
 							</div>
 							<div class="smalltableCell title">
 								Beers
@@ -105,10 +105,10 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('FollowingPage.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/Follow.png?raw=true"
-									alt="Logo">
+									alt="Follow Icon">
 							</div>
 							<div class="smalltableCell title">
 								Follow
@@ -116,10 +116,10 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('PageNotFound.html')">
+						<a onclick="showSRC('Messaging.html')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/Tizzle/Final%20Version/Local_Images/message.png?raw=true"
-									alt="Logo">
+									alt="Message">
 							</div>
 							<div class="smalltableCell title">
 								Message
@@ -130,7 +130,7 @@
 			</div>
 
 			<!-- Followers Section -->
-			<div class="stdSection FollowingBrewery" id="followingBreweries">
+			<div class="stdSection FollowingBrewery" id="followersOfBreweries">
 				<div class="stdSectionTitle">
 					Followers
 				</div>
@@ -138,7 +138,7 @@
 					<div class="smalltableCell">
 						<a href="ProfilePage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Logo">
+								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Mikal Image">
 							</div>
 							<div class="smalltableCell title">
 								Mikal Callahan
@@ -148,7 +148,7 @@
 					<div class="smalltableCell">
 						<a href="ProfilePage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Logo">
+								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Justin Image">
 							</div>
 							<div class="smalltableCell title">
 								Justin Goulet
@@ -160,7 +160,7 @@
 						<a href="ProfilePage.html">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
-									alt="Logo">
+									alt="Myles Image">
 							</div>
 							<div class="smalltableCell title">
 								Myles Merrill
@@ -186,7 +186,7 @@
 					<div class="smalltableCell">
 						<a href="breweryPage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Logo">
+								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Ballast Image">
 							</div>
 							<div class="smalltableCell title">
 								Ballast Point
@@ -196,7 +196,7 @@
 					<div class="smalltableCell">
 						<a href="breweryPage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Logo">
+								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Green Flash Image">
 							</div>
 							<div class="smalltableCell title">
 								Green Flash
@@ -207,7 +207,7 @@
 					<div class="smalltableCell">
 						<a href="breweryPage.html">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Logo">
+								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Acoustic Ales Image">
 							</div>
 							<div class="smalltableCell title">
 								Acoustic Ales
@@ -216,7 +216,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -229,7 +229,7 @@
 					<div class="smalltableCell">
 						<a onclick="showSRC('BeerInfo.html')">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="Logo">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="Red Ale Image">
 							</div>
 							<div class="smalltableCell title">
 								Red Ale
@@ -239,7 +239,7 @@
 					<div class="smalltableCell">
 						<a onclick="showSRC('BeerInfo.html')">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Logo">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Peach Ale Image">
 							</div>
 							<div class="smalltableCell title">
 								Peach Ale
@@ -250,7 +250,7 @@
 					<div class="smalltableCell">
 						<a onclick="showSRC('BeerInfo.html')">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="Logo">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="Hazlenut Porter Image">
 							</div>
 							<div class="smalltableCell title">
 								Hazelnut Porter
@@ -259,7 +259,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('BeerList.html')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -287,7 +287,11 @@
 
 		<div class="breweryPage newsFeed">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="PageNotFound.html" width="100%" height="250px" style="min-width:480px" onload="resizeIframe(this);">
+			<iframe id="contentFrame" src="NewsFeed.html" style="min-width:480px" title="subframe" onload="resizeIframe(this);"></iframe>
+	
+		<div class="newsFeed" id="MainArea">
+		</div>
+		
 		</div>
 
 	</section>
