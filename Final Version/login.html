@@ -1,50 +1,46 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en-us">
+    <!-- Link documents to style sheet and JS code -->
+    <link href="login.css" rel="stylesheet" type="text/css">
+    <meta charset="utf-8">
+    <!-- Set title of page -->
+    <title>Login Page</title>
 
-    <head lang="en-us">
-        <!-- Link documents to style sheet and JS code -->
-        <link href="login.css" rel="stylesheet" type="text/css">
-        <meta charset="utf-8">
-        <!-- Set title of page -->
-        <title>Login Page</title>
+</head>
 
-    </head>
+<body>
+    <header class="header">
+        <a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
+            <img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
+        </a>
 
-    <body>
-        <header class="header">
-            <a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
-                <img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
-            </a>
+    </header>
 
-        </header>
+    <br>
 
-        <br>
+    <div class="centerDiv">
+        <div class="grid">
+            <form id="loginForm" action="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
 
-        <div class="centerDiv">
-            <div class="grid">
-                <form id="loginForm" action="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
+                <label for="username" id="uLabel" class="hidden">Username:</label>
+                <input type="text" name="username" id="username" placeholder="Username"/>
 
-                    <label id="uLabel">
-                        <input type="text" id="username" placeholder="Username"/>
-                    </label>
-                    <br/>
-                    <label id="pLabel">
-                        <input type="password" id="password" placeholder="Password"/>
-                    </label>
-                    <br/>
-                    <label id="lButton">
-                        <input type="submit" id="loginButton" value="Login"/>
-                    </label>
-                </form>
+                <label for="password" id="pLabel" class="hidden">Pasword:</label>
+                <input type="password" id="password" placeholder="Password"/>
 
-                <p class="centerText">
-                    Not a member?
-                    <a href="#">Sign up now</a>
-                </p>
-            </div>
+                <label for="loginButton" id="lButton" class="hidden">Submit:</label>
+                <input type="submit" id="loginButton" value="Login"/>
 
+            </form>
+
+            <p class="centerText">
+                Not a member?
+                <a href="#">Sign up now</a>
+            </p>
         </div>
-    </body>
+
+    </div>
+</body>
 
 </html>
