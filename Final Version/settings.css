@@ -6,15 +6,19 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
 
 /* general overview */
+<<<<<<< HEAD
 html, body, head{
   /*margin: 0px;*/
+=======
+section{
+  margin: 0px;
+>>>>>>> fcfa17fd86bbdb29efed647e5f058e9e7a35acfc
   display: flex;
   padding: 0px;
   flex-direction: column;
   font-family: 'Noto Sans Kannada', sans-serif;
   margin-bottom: 0px;
 }
-
 h1{
   padding: 0px;
   margin: 0px;
@@ -35,14 +39,14 @@ a{
 /* general settings magic */
 .generalsettings{
 	display: table;
-	margin: 0 auto;
+	margin: 0px;
 	vertical-align: middle;
 	width: 95%;
 	border: 2px solid lightgray;
 	border-radius: 5px;
 	padding-left: 2%;
+	text-align: left;
 	padding-right: 2%;
-	padding-top: 1%;
 }
 
 .generalsettings:hover {
@@ -57,7 +61,6 @@ a{
 	width: 95%;
 	border: 2px solid lightgray;
 	border-radius: 5px;
-	padding: 2%;
 	text-align: center;
 }
 
@@ -74,9 +77,10 @@ a{
 	border: 2px solid lightgray;
 	border-radius: 5px;
 	padding: 2%;
-	text-align: center;
   margin-bottom: 50px;
 }
+
+
 
 .privacysettings:hover {
     box-shadow: 0px 5px 5px gray;
