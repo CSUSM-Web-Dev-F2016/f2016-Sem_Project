@@ -1,0 +1,41 @@
+body{
+}
+
+.emptyForm{
+	height: auto;
+	width: 99%;
+	text-align: center;
+	padding-top: 35px;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+}
+
+.title{
+	font-size: 23px;
+	width: 90%;
+	margin: auto;
+	font-weight: lighter;
+	font-style: italic;
+	background-color: inherit;
+	color: gray;
+	text-align: center;
+  	padding-top: 10px;
+  	display: flex;
+	justify-content: center;
+	border: solid;
+	border-radius: 5px;
+}
+
+.hours{
+	font-style: italic;
+	width: 90%;
+	margin: auto;
+	padding-top: 8px;
+	padding-bottom: 15px;
+	text-align: center;
+	display: flex;
+	justify-content: center;
+	border: solid;
+	border-radius: 5px;
+}

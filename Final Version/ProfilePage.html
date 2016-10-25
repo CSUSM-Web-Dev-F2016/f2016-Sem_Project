@@ -11,11 +11,12 @@
 	<title>Profile</title>
 	<meta charset="utf-8">
 
-	
+
 </head>
 
 
-<body> <!--  onload="buildFeed();" -->
+<body>
+	<!--  onload="buildFeed();" -->
 	<header class="header">
 		<a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
 			<img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
@@ -257,7 +258,7 @@
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					
+
 					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>
 			</div>
@@ -271,32 +272,31 @@
 	</aside>
 
 	<section>
-            <div class="newsFeedHeader">
-                Feed:
-                <!-- Black Field to Post -->
-                <div class="newsFeedBox">
-                    <img class="feedImg" id="feedImg" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Image in Feed">
-                    You:
-                    <hr />
-                    <div class="feedTxt">
-                        <form>
-                            <textarea id="postBox" wrap="soft" rows="5"></textarea>
-                            <br />
-                        </form>
-                    </div>
-
-                    <button type="submit" onclick="">Post</button>
-                </div>
-
-            </div>
+		<div class="newsFeedHeader">
+			Feed:
 			<!-- Black Field to Post -->
+			<div class="newsFeedBox">
+				<img class="feedImg" id="feedImg" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Image in Feed">				You:
+				<hr />
+				<div class="feedTxt">
+					<form>
+						<textarea id="postBox" wrap="soft" rows="5"></textarea>
+						<br />
+					</form>
+				</div>
+
+				<button type="submit" onclick="">Post</button>
+			</div>
+
+		</div>
+		<!-- Black Field to Post -->
 
 		</div>
 		<div class="newsFeed" id="MainArea">
 			<!-- For example purposes, add the add brewery panel -->
 			<iframe id="contentFrame" src="NewsFeed.html" title="subcontent" style="min-width:480px;" onload="resizeIframe(this);"></iframe>
-			
-			
+
+
 
 			<!--
 			<object>
