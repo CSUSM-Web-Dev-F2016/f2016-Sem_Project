@@ -518,6 +518,7 @@ div.newsFeedBox button:hover {
 div.newsFeedBox button:active {
   position: relative;
   width: 100%;
+  margin: 0px;
 }
 
 .feedTxt textarea{
