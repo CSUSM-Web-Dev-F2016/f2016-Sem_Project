@@ -8,12 +8,13 @@ function showSRC(address) {
   //window.alert("Hello world");
 
   //Get the section's DOM element
-  //var sectionDOM = document.getElementById("contentFrame");
+  var sectionDOM = document.getElementById("contentFrame");
 
   //Now, set the source of the DOM
-  //sectionDOM.src = address;
+  sectionDOM.src = address;
+  
 
-  document.getElementById("MainArea").innerHTML = "";
+  //document.getElementById("MainArea").innerHTML = "";
 
   //Instead, remove the current contents of the frame
   //document.getElementById("MainArea").innerHTML = address + "<p> This page will soon appear here";
@@ -21,35 +22,23 @@ function showSRC(address) {
   //var newElement = document.createElement("img");
   //newElement.src = "http://cis444.cs.csusm.edu/goule001/Group_Project/FollowingPage.html";
 
+/** This section works, but messes with CSS. come back to. */
+/*
   //document.getElementById("MainArea").appendChild(newElement);
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      //document.getElementById("MainArea").innerHTML = this.responseText;
+      document.getElementById("MainArea").innerHTML = this.responseText;
       //document.getElementById("MainArea").innerHTML = "";
-
-     
-
 
     }
     else {
-      //buildPNF();
+      buildPNF();
     }
   };
   xhttp.open("GET", "http://cis444.cs.csusm.edu/goule001/Group_Project/" + address, true);
   xhttp.send();
-
-   ifrm = document.createElement("IFRAME");
-      ifrm.src = "http://cis444.cs.csusm.edu/goule001/Group_Project/" + address;
-      ifrm.style.height = "1000px";
-
-      if(ifrm.innerHTML == "" && ifrm.showSRC.innerHTML == ""){
-        buildPNF(address);
-      }
-      else{
-        document.getElementById("MainArea").appendChild(ifrm);
-      }
-
+  */
 }
 
 /**
@@ -65,6 +54,7 @@ function goHomeAnd(address) {
   //Show the requested source after the page loaded
   //showSRC(address);
 }
+
 
 /**
  * Used to resize the iFrame based on the content
