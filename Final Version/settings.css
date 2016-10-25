@@ -6,8 +6,8 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
 
 /* general overview */
-section{
-  margin: 0px;
+html, body, head{
+  /*margin: 0px;*/
   display: flex;
   padding: 0px;
   flex-direction: column;

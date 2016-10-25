@@ -1,0 +1,24 @@
+.emptyForm{
+	height: auto;
+	width: 99%;
+	text-align: center;
+	padding-top: 35px;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+}
+
+.title{
+	font-size: 23px;
+	width: 90%;
+	margin: auto;
+	font-weight: lighter;
+	font-style: italic;
+	color: gray;
+	text-align: center;
+  	padding-top: 10px;
+  	display: flex;
+	justify-content: center;
+	border: solid;
+	border-radius: 5px;
+}
