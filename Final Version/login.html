@@ -7,11 +7,24 @@
     <!-- Set title of page -->
     <title>Login Page</title>
 
+
+	<!-- Analytics Script -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-83948702-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
 </head>
 
 <body>
     <header class="header">
-        <a href="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
+        <a href="ProfilePage.html">
             <img id="logo" alt="Beer Hopper Logo" src="https://github.com/CSUSM-Web-Dev-F2016/f2016-Sem_Project/blob/master/Final%20Version/Beer_Hopper_Banner.png?raw=true">
         </a>
 
@@ -21,7 +34,7 @@
 
     <div class="centerDiv">
         <div class="grid">
-            <form id="loginForm" action="http://cis444.cs.csusm.edu/goule001/Group_Project/ProfilePage.html">
+            <form id="loginForm" action="ProfilePage.html">
 
                 <label for="username" id="uLabel" class="hidden">Username:</label>
                 <input type="text" name="username" id="username" placeholder="Username"/>
@@ -36,11 +49,11 @@
 
             <p class="centerText">
                 Not a member?
-                <a href="http://cis444.cs.csusm.edu/goule001/Group_Project/UserSignUp.html">Sign up now</a>
+                <a href="UserSignUp.html">Sign up now</a>
             </p>
             <p class="centerText">
                 Want to add your brewery?
-                <a href="http://cis444.cs.csusm.edu/goule001/Group_Project/BrewerySignUp.html">Get started here</a>
+                <a href="BrewerySignUp.html">Get started here</a>
             </p>
         </div>
 
