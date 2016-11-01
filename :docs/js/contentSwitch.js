@@ -10,7 +10,7 @@ function showSRC(address) {
     var sectionDOM = document.getElementById("contentFrame");
 
     //Now, set the source of the DOM
-    sectionDOM.src = address;
+    sectionDOM.src = "../html/" + address;
 
 
     //document.getElementById("MainArea").innerHTML = "";
