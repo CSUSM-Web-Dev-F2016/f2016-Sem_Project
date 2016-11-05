@@ -3,14 +3,13 @@
 
 html, body, head {
   margin: 0px;
-  background-color: white;
+  background-color: transparent;
   font-family: 'Noto Sans Kannada', sans-serif;
 }
 
 .container {
-  width: 500px;
+  width: 100%;
   margin: auto;
-  margin-top: 45px;
   margin-bottom: 45px;
   border: 1px solid lightgray;
   border-radius: 2px;

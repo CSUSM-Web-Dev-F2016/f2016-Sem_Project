@@ -1,50 +1,89 @@
 <!DOCTYPE html>
 
 <html lang="en-us">
-    <!-- Link documents to style sheet and JS code -->
-    <link href="css/login.css" rel="stylesheet" type="text/css">
-    <meta charset="utf-8">
-    <!-- Set title of page -->
-    <title>Login Page</title>
+
+<head>
+	<!-- Import CSS Files -->
+	<link rel="stylesheet" href="css/header.css" type="text/css">
+	<link rel="stylesheet" href="css/masterPage.css" type="text/css">
+	<link rel="stylesheet" href="css/backgroundVideo.css" type="text/css">
+	<link rel="stylesheet" href="css/login.css" type="text/css">
+
+	<!-- Import JS Files -->
+
+	<!-- Header Bar -->
+	<div class="header">
+		<img class="logo" src="img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
+	</div>
+
+	<!-- Navigation Bar -->
+	<nav>
+		<!-- This is a tabe with two rows -->
+	</nav>
+
+	<!-- Put a background video that covers the entire page -->
+	<div class="is_overlay">
+		<video autoplay loop>
+			<source src="img/bw.mp4" type="video/mp4">
+			<source src="img/bw.webm" type="video/webm">
+		</video>
+	</div>
+
+	<!-- Meta data -->
+	<title>Beer Hopper</title>
+	<!-- Analytics Script -->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-83948702-3', 'auto');
+  ga('send', 'pageview');
+
+</script>
 
 </head>
 
 <body>
-    <header class="header">
-        <a href="html/ProfilePage.html">
-            <img id="logo" alt="Beer Hopper Logo" src="img/Beer_Hopper_Banner.png?raw=true">
-        </a>
 
-    </header>
 
-    <br>
+	<!-- Put the login page on the right side of the screen -->
+	<div class="centerDiv">
 
-    <div class="centerDiv">
-        <div class="grid">
-            <form id="loginForm" action="html/ProfilePage.html">
+		<!-- Ad the beer hopper banner to the left -->
+		<div class="banner">
+			<img src="img/Beer_Hopper_Banner.png" alt="Banner">
+		</div>
 
-                <label for="username" id="uLabel" class="hidden">Username:</label>
-                <input type="text" name="username" id="username" placeholder="Username"/>
+		<div class="grid">
+			<form id="loginForm" action="html/profilePage.html" class="loginForm">
 
-                <label for="password" id="pLabel" class="hidden">Pasword:</label>
-                <input type="password" id="password" placeholder="Password"/>
+				<label for="username" id="uLabel" class="hidden">Username:</label>
+				<input type="text" name="username" id="username" placeholder="Username" />
 
-                <label for="loginButton" id="lButton" class="hidden">Submit:</label>
-                <input type="submit" id="loginButton" value="Login"/>
+				<label for="password" id="pLabel" class="hidden">Pasword:</label>
+				<input type="password" id="password" placeholder="Password" />
 
-            </form>
+				<label for="loginButton" id="lButton" class="hidden">Submit:</label>
+				<input type="submit" id="loginButton" value="Login" />
 
-            <p class="centerText">
-                Not a member?
-                <a href="/html/UserSignUp.html">Sign up now</a>
-            </p>
-            <p class="centerText">
-                Want to add your brewery?
-                <a href="/html/BrewerySignUp.html">Get started here</a>
-            </p>
-        </div>
+			</form>
 
-    </div>
+			<p class="centerText">
+				Not a member?
+				<a href="/html/UserSignUp.html">Sign up now</a>
+			</p>
+			<p class="centerText">
+				Want to add your brewery?
+				<a href="/html/BrewerySignUp.html">Get started here</a>
+			</p>
+		</div>
+
+	</div>
+
+
 </body>
+
 
 </html>
