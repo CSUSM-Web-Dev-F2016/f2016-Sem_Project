@@ -16,6 +16,7 @@ h1{
      display: flex;
      padding-top: 0px;
      padding-bottom: 50px;
+    background-color: white;
 }
 
 .formTitle{
@@ -34,5 +35,5 @@ h1{
     padding: 10px;
     width: 95%;
     padding-right: 0px;
-    padding-bottom: 35px;
+    padding-bottom: 15px;
 }
