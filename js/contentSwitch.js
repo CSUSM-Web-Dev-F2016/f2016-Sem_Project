@@ -12,6 +12,8 @@ function showSRC(address) {
     //Now, set the source of the DOM
     sectionDOM.src = "../html/" + address;
 
+    sectionDOM.style.width = "100%";
+
 
     //document.getElementById("MainArea").innerHTML = "";
 
@@ -48,7 +50,7 @@ function goHomeAnd(address) {
     // window.alert("Hello World 2");
 
     //Navigate to the home page
-    window.location.href = "../html/ProfilePage.html";
+    window.location.href = "../html/profilePage.html";
 
     //Show the requested source after the page loaded
     //showSRC(address);
@@ -63,7 +65,8 @@ function resizeIframe(obj) {
     obj.style.height = 0;
 
     //Set the new height of the frame
-    obj.style.height = (obj.contentWindow.document.body.scrollHeight + 300) + 'px';
+    obj.style.height = (obj.contentWindow.document.body.scrollHeight + 75) + 'px';
+
 
 }
 
