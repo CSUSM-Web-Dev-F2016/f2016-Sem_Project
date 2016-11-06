@@ -56,6 +56,8 @@ section.breweryPage{
      margin: auto;
      margin-left: -25%;
      z-index: 0;
+
+/* For reflection underneath */
 }
 
 img.profileImg{
