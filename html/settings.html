@@ -20,7 +20,8 @@
 	</head>
 
 	<body>
-		<h2 id="accountsettings"> Account Settings </h2> <!-- account settings header -->
+		<div class="accountsettings">
+		<h2 id="accountsettingstitle"> Account Settings </h2> <!-- account settings header -->
 		<h3> General Settings: </h3> <!-- header for gs -->
 		<div class="generalsettings"><br> <!-- general settings class -->
 			<form> <!-- general settings form -->
@@ -34,14 +35,15 @@
 				<input class="leftAlign" id="email" type="email" name="email"><br> <!--email form -->
 				<div>Password: </div><!-- password label -->
 				<input class="leftAlign" id="password" type="password" name="password" placeholder="*********"><br> <!-- password form -->
-				<div><br><input type="button" value="Confirm" onclick=""></div><!-- onclick do something -->
+
 			</form><br> <!-- end gernal settings form -->
+		<br><button type="submit" onclick="">Comfirm</button><br><br><!-- onclick do something -->
 		</div> <!-- end general settings -->
 
 		<h3> My Breweries: </h3> <!-- header for my breweries -->
-		<div class="mybreweries"><br> <!-- my breweries class -->
+		<br><div class="mybreweries"><br> <!-- my breweries class -->
 			You have don't have any breweries
-			<br><br><input type="button" value="Add Brewery" onclick="">
+			<br><br><button type="submit" onclick="">Add Brewery</button>
 		</div> <!-- end my breweries -->
 
 		<h3> Privacy Settings: </h3> <!-- header for ps -->
@@ -73,9 +75,10 @@
 						<option value="etc">Sell my soul for all the loot</option>
 					</select>
 						<br><br>
-					<input type="button" value="Confirm" onclick="" class="input button">
 			</form>
+				<button onclick="" class="input button">Comfirm</button>
 		</div>
+	</div>
 		<br><br>
 	</body>
 </html>
