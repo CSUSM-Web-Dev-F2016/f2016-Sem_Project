@@ -80,9 +80,9 @@
                         <input type="password" name="re-enter-password">
                     </div>
                     <div class="inner-sections">
-                        Phone Number:
+                        Profile Picture URL:
                         <br>
-                        <input type="text" name="phone-number">
+                        <input type="text" name="ProfilePicURL">
                     </div>
                 </div>
                 <button type="submit" onclick="">Sign-Up</button>
