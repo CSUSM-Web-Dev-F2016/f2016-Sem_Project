@@ -6,6 +6,7 @@ html, body, head {
      top:10px;
      padding-bottom: 25px;
      font-family: 'Noto Sans Kannada', sans-serif;
+     background-color: transparent;
 }
 
 h1{

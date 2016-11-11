@@ -17,6 +17,20 @@
   ga('send', 'pageview');
 
 </script>
+
+<?php
+	 //Create a basic connection 
+    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
+
+    //Check the connection
+    if(mysqli_connect_errno()){
+        die("Connection Failed. ERR: " . mysqli_connect_error());
+    }
+    //echo "Connected Successfully";
+    //This code currently works :)
+
+?>
+
     </head>
     <body>
 
@@ -33,7 +47,7 @@
                     <div class="inner-sections">
                         Name:
                         <br>
-                        <input type="text" name="brewery-name">
+                        <input type="text" name="name" placeholder="" >
                     </div>
                     <div class="inner-sections">
                         Address:
@@ -43,7 +57,7 @@
                     <div class="inner-sections">
                         Email:
                         <br>
-                        <input type="text" name="brewery-email">
+                        <input type="text" name="email">
                     </div>
                     <div class="inner-sections">
                         State:
@@ -66,13 +80,43 @@
                         <input type="password" name="re-enter-password">
                     </div>
                     <div class="inner-sections">
-                        Phone Number:
+                        Profile Picture URL:
                         <br>
-                        <input type="text" name="phone-number">
+                        <input type="text" name="ProfilePicURL">
                     </div>
                 </div>
                 <button type="submit" onclick="">Sign-Up</button>
             </form>
+
+            <?php
+                //Define variables and set to empty values
+                $FName = $Address = $Email = $State = $Password = $Password2 = $ZipCode = $ProfilePicURl = "";
+
+                //Creates user after checking form input
+                function createUser(){
+                }
+
+                //Checks form input
+                function test_input($data) {
+                    $data = trim($data);            // Remove whitespace from both ends of text 
+                    $data = stripslashes($data);    // Removes all slashes from text 
+                    $data = htmlspecialchars($data);// Sets special chars
+                    return $data;                   // Return results
+                }
+
+                //Before the info is sent, we want to check all the vars 
+                if($_SERVER["REQUEST_METHOD"] == "POST"){
+                    $FName = test_input($_POST["name"]);
+                    $Address = test_input($_POST["address"]);
+                    $Email = test_input($_POST["email"]);
+                    $State = test_input($_POST["state"]);
+                    $Password = test_input($_POST["password"]);
+                    $Password2 = test_input($_POST["re-enter-password"]);
+                    $ZipCode = test_input($_POST["zip-code"]);
+                    $ProfilePicURl = test_input($_POST["ProfilePicURL"]);
+                }
+
+            ?>
         </div>
 
     </body>
