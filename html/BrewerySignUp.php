@@ -20,7 +20,17 @@
 
 </script>
 </head>
+<?php
+	 //Create a basic connection 
+    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
+    //Check the connection
+    if(mysqli_connect_errno()){
+        die("Connection Failed. ERR: " . mysqli_connect_error());
+    }
+    //echo "Connected Successfully";
+    //This code currently works :)
+?>
 <body>
 
 	<div class="container">
@@ -76,6 +86,15 @@
 			</div>
 			<button type="submit" onclick="">Sign-Up</button>
 		</form>
+
+		<!-- PHP for button action to create account -->
+		<?php
+
+		function createUserAccount(){
+			//Create a user account if all forms are correctly filled out 
+			
+		}
+		?>
 	</div>
 
 </body>
