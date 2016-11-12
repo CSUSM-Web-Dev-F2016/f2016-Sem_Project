@@ -206,6 +206,7 @@ div.table{
 
 
 iframe{
-  width: 99.5%;
+  width: 97.5%;
   padding-right:10px;
+  position: relative;
 }

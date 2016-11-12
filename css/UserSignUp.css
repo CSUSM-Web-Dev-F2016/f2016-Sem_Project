@@ -4,6 +4,33 @@ html, body, head {
     font-family: 'Noto Sans Kannada', sans-serif;
 }
 
+.hidden {
+    visibility: hidden;
+}
+
+#signUpForm {
+    order: 0;
+}
+
+.centerDiv {
+    -moz-box-align: center;
+    -moz-box-direction: normal;
+    -moz-box-orient: horizontal;
+    height: 50%;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    flex-direction: row;
+    width: 75%;
+    right: 10%;
+    top: 25%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 25px;
+    border-radius: 15px;
+}
+
 .container {
     width: 500px;
     margin: auto;
@@ -55,51 +82,59 @@ html, body, head {
     text-align: left;
 }
 
-input[type=text] {
-    padding: 5px;
-    font-size: 16px;
-    color: black;
-    background-color: #F4F4F4;
+.grid {
+    margin: 0 auto;
+    max-width: 20rem;
+    width: 90%;
+    padding: 25px;
+    background-color: rgba(25, 29, 36, .75);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
 }
 
-input[type=text]:focus {
-    background-color: white;
+.centerText {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: -.5rem;
+    color: white;
+}
+
+.centerText a {
+    color: white;
+}
+
+input[type=text] {
+    box-sizing: border-box;
+    border: .5px solid #93969b;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: .75rem;
+    margin-top: .25rem;
+    width: 100%;
 }
 
 input[type=password] {
-    padding: 5px;
+    box-sizing: border-box;
+    border: .5px solid #93969b;
+    border-radius: 4px;
     font-size: 16px;
-    color: black;
-    background-color: #F4F4F4;
+    padding: .75rem;
+    margin-top: .25rem;
+    width: 100%;
 }
 
-input[type=password]:focus {
-    background-color: white;
+input[type=text]:focus {
+    border: 2px solid #507590;
 }
 
-button {
-    margin-top: 15px;
-    margin-bottom: 20px;
-    padding-left: 55px;
-    padding-right: 55px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
+input[type=submit] {
+    background-color: #191d24;
+    opacity: 1;
+    border: none;
     color: white;
-    text-shadow: -2px 2px #333333;
     font-size: 16px;
-    background-color: #507590;
-    border: 1px solid gray;
-}
-
-button:hover {
-    color: white;
-    background-color: #598499;
-    text-shadow: -2px 2px #000000;
-    border: 1px solid black;
-}
-
-button:active {
-    position: relative;
-    top: 2px;
+    border-radius: .25rem;
+    padding: .5rem;
+    margin-top: .5rem;
+    width: 100%;
 }
