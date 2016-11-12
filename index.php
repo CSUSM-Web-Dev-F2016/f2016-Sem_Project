@@ -45,6 +45,9 @@
 
 </head>
 
+<!-- Require the DB access for login -->
+<?php require_once "php/DBConnection.php" ?>
+
 <body>
 
 
@@ -57,27 +60,83 @@
 		</div>
 
 		<div class="grid">
-			<form id="loginForm" action="html/profilePage.html" class="loginForm">
+			<form id="loginForm" action="index.php" class="loginForm" method="POST">
 
 				<label for="username" id="uLabel" class="hidden">Username:</label>
 				<input type="text" name="username" id="username" placeholder="Username" />
 
 				<label for="password" id="pLabel" class="hidden">Pasword:</label>
-				<input type="password" id="password" placeholder="Password" />
+				<input type="password" id="password" placeholder="Password" name="password"/>
 
 				<label for="loginButton" id="lButton" class="hidden">Submit:</label>
 				<input type="submit" id="loginButton" value="Login" />
 
 			</form>
 
+			<?php
+
+
+			/** Determines if the user exists, tehn if the password matches */
+			function getLoginInfo(){
+
+			$connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
+
+   		 	//Check the connection
+    		if(mysqli_connect_errno()){
+       			 die("Connection Failed. ERR: " . mysqli_connect_error());
+    		}
+   			 //echo "<p class\"centerText\"> Connection Success!</p>";
+				
+				$getLoginQuery = "SELECT Users.Email, Users.Password FROM Users WHERE Users.Email='" . $_POST['username'] . "'";
+		//echo "<p class\"centerText\" color=\"white\">" . $getLoginQuery . "</p>";
+
+				$loginInfoGathered = mysqli_query($connection, $getLoginQuery);
+
+
+				if($loginInfoGathered-> num_rows > 0){
+					//echo "<p class\"centerText\"> Found " . $loginInfoGathered-> num_rows . " rows</p>";
+
+					//If a row was found, check the password 
+					while($row = mysqli_fetch_assoc($loginInfoGathered)){
+						if($row["Password"] == $_POST["password"]){
+							//echo "<p class\"centerText\"> Correct Password Match </p>";
+
+							//Close the SQL connetion
+							$connection->close();
+
+							//Open the next page 
+							header("Location: ./html/profilePage.php?user=" . $row["Email"]);
+							break;
+
+						}else{
+							echo "<p class\"centerText\" style=\"color:red; text-align:center; font-size:20px\"> Not correct password. Try again</p>";
+						}
+					}
+				}else{
+					echo "<p class\"centerText\" style=\"color:red; text-align:center; font-size:20px\">Account Not found</p>";
+				}
+		
+				echo '</script>';
+			}
+			/** Adds the action listener to the submit button */
+			if($_SERVER['REQUEST_METHOD'] == 'POST'){
+				//Make sure the fields are not blank, first
+
+				//Get data from the table
+				getLoginInfo();
+			}
+			?>
+
 			<p class="centerText">
 				Not a member?
 				<a href="html/UserSignUp.php">Sign up now</a>
 			</p>
+
+			<!-- Maybe a future addition. For now, a user is required to be signed in 
 			<p class="centerText">
 				Want to add your brewery?
-				<a href="/html/BrewerySignUp.html">Get started here</a>
-			</p>
+				<a href="html/BrewerySignUp.html">Get started here</a> 
+			</p> -->
 		</div>
 
 	</div>
