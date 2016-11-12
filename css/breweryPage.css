@@ -59,11 +59,22 @@ section.breweryPage{
 
 /* For reflection underneath */
 }
+.profileName:hover{
+  color: lightgrey;
+}
+
+#coverImage:hover{
+  opacity: .75;
+}
 
 img.profileImg{
      top: -7em;
      left: 25%;
      position: absolute;
+}
+
+img.profileImg:hover{
+opacity: .75;
 }
 
 #profileContainer{
