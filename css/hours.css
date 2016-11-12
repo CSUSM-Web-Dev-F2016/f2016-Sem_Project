@@ -4,7 +4,7 @@ body{
 
 .emptyForm{
 	height: auto;
-	width: 99%;
+	width: 95%;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
@@ -12,6 +12,7 @@ body{
 	padding-top: 60px;
 	padding-bottom: 50px;
 	border-radius: 2px;
+	overflow: hidden;
 }
 
 .hoursborder{

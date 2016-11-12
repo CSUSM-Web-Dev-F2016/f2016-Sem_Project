@@ -12,6 +12,7 @@ body{
 	padding-top: 60px;
 	padding-bottom: 50px;
 	border-radius: 2px;
+	overflow: hidden;
 }
 
 .messageborder{
