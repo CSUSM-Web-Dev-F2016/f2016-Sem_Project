@@ -19,7 +19,7 @@
 </script>
 
 <?php
-	 //Create a basic connection 
+	 //Create a basic connection
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
     //Check the connection
@@ -100,13 +100,13 @@
 
                 //Checks form input
                 function test_input($data) {
-                    $data = trim($data);            // Remove whitespace from both ends of text 
-                    $data = stripslashes($data);    // Removes all slashes from text 
+                    $data = trim($data);            // Remove whitespace from both ends of text
+                    $data = stripslashes($data);    // Removes all slashes from text
                     $data = htmlspecialchars($data);// Sets special chars
                     return $data;                   // Return results
                 }
 
-                //Before the info is sent, we want to check all the vars 
+                //Before the info is sent, we want to check all the vars
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     $errorString = "";
