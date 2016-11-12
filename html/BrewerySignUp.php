@@ -21,7 +21,7 @@
 </script>
 </head>
 <?php
-	 //Create a basic connection 
+	 //Create a basic connection
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
     //Check the connection
@@ -91,8 +91,8 @@
 		<?php
 
 		function createUserAccount(){
-			//Create a user account if all forms are correctly filled out 
-			
+			//Create a user account if all forms are correctly filled out
+
 		}
 		?>
 	</div>
