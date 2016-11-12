@@ -56,7 +56,6 @@ section.breweryPage{
      margin: auto;
      margin-left: -25%;
      z-index: 0;
-
 /* For reflection underneath */
 }
 .profileName:hover{
@@ -64,7 +63,7 @@ section.breweryPage{
 }
 
 #coverImage:hover{
-  opacity: .75;
+  opacity: .9;
 }
 
 img.profileImg{
