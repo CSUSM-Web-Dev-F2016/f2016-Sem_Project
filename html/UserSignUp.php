@@ -19,7 +19,7 @@
 </script>
 
 <?php
-	 //Create a basic connection 
+	 //Create a basic connection
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
     //Check the connection
@@ -34,58 +34,15 @@
     </head>
     <body>
 
-        <div class="container">
-            <div class="sign-up-header">
-                <div class="box-line"></div>
-                <p>
-                    Sign Up!
-                </p>
-                <div class="box-line"></div>
-            </div>
-            <form class="sign-up-form">
-                <div class="outer-section">
-                    <div class="inner-sections">
-                        Name:
-                        <br>
-                        <input type="text" name="name" placeholder="" >
-                    </div>
-                    <div class="inner-sections">
-                        Address:
-                        <br>
-                        <input type="text" name="address">
-                    </div>
-                    <div class="inner-sections">
-                        Email:
-                        <br>
-                        <input type="text" name="email">
-                    </div>
-                    <div class="inner-sections">
-                        State:
-                        <br>
-                        <input type="text" name="state">
-                    </div>
-                    <div class="inner-sections">
-                        Password:
-                        <br>
-                        <input type="password" name="password">
-                    </div>
-                    <div class="inner-sections">
-                        Zip Code:
-                        <br>
-                        <input type="text" name="zip-code">
-                    </div>
-                    <div class="inner-sections">
-                        Re-Enter Password:
-                        <br>
-                        <input type="password" name="re-enter-password">
-                    </div>
-                    <div class="inner-sections">
-                        Profile Picture URL:
-                        <br>
-                        <input type="text" name="ProfilePicURL">
-                    </div>
-                </div>
-                <button type="submit" onclick="">Sign-Up</button>
+        <div class="centerDiv">
+          <div class="grid">
+            <form id="signUpForm" action="../html">
+              <label for="First Name" id="fName" class="hidden">First Name:</label>
+              <input type="text" name="firstName" id="firstName" placeholder="First Name"/>
+
+              <label for="Last Name" id="lName" class="hidden">Last Name:</label>
+              <input type="text" name="lastName" id="LastName" placeholder="Last Name"/>
+
             </form>
 
             <?php
@@ -98,13 +55,13 @@
 
                 //Checks form input
                 function test_input($data) {
-                    $data = trim($data);            // Remove whitespace from both ends of text 
-                    $data = stripslashes($data);    // Removes all slashes from text 
+                    $data = trim($data);            // Remove whitespace from both ends of text
+                    $data = stripslashes($data);    // Removes all slashes from text
                     $data = htmlspecialchars($data);// Sets special chars
                     return $data;                   // Return results
                 }
 
-                //Before the info is sent, we want to check all the vars 
+                //Before the info is sent, we want to check all the vars
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
                     $FName = test_input($_POST["name"]);
                     $Address = test_input($_POST["address"]);
