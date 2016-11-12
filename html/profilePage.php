@@ -62,15 +62,43 @@
 	</div>
 </head>
 
+<?php
+	 //Create a basic connection 
+    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
+
+    //Check the connection
+    if(mysqli_connect_errno()){
+        die("Connection Failed. ERR: " . mysqli_connect_error());
+    }
+    //echo "Connected Successfully";
+    //This code currently works :)
+
+	//Get the user's information
+	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $_GET["user"] . "'";
+	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
+
+	//Check to see if exists (it should since we already logged in)
+	if($userInfoResults-> num_rows > 0){
+		while($row = mysqli_fetch_assoc($userInfoResults)){
+			$FName = $row["FName"];
+			$LName = $row["LName"];
+			$PicURL = $row["ProfilePicURL"];
+			break; //Only want the first occurance
+		}
+	}else{
+		//Error getting info
+	}
+?>
+
 <body>
 
 	<!-- Profile Container -->
 	<div class="ProfileContainer">
 		<!-- Within the container, we have a rounded profile image -->
-		<img src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Profile Picture" id="profileImg" class="profileImage">
+		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage">
 		<br>
 		<hr>
-		<p class="profileName">Justin Goulet</p>
+		<p class="profileName"><?php echo $FName . " " . $LName?></p>
 		<a class="editBtn" onclick="showSRC('editName.html')">Edit</a>
 	</div>
 
@@ -84,7 +112,7 @@
 				</div>
 				<div class="table">
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 1">
 							</div>
@@ -94,7 +122,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://avatars3.githubusercontent.com/u/22226968?v=3&s=200" alt="Profile 2">
 							</div>
@@ -105,7 +133,7 @@
 					</div>
 
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
 									alt="Profile 3">
@@ -172,7 +200,7 @@
 				</div>
 				<div class="table">
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 4">
 							</div>
@@ -182,7 +210,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://avatars3.githubusercontent.com/u/22226968?v=3&s=200" alt="Profile 5">
 							</div>
@@ -193,7 +221,7 @@
 					</div>
 
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
 									alt="Profile 6">
@@ -226,7 +254,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 7">
 							</div>
@@ -303,7 +331,8 @@
 			Feed:
 			<!-- Black Field to Post -->
 			<div class="newsFeedBox">
-				<img class="feedImg" id="feedImg" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Image in Feed">				You:
+				<img class="feedImg" id="feedImg" src="<?php echo $PicURL ?>" alt="Image in Feed">
+				You:
 				<hr/>
 				<div class="feedTxt">
 					<form>
