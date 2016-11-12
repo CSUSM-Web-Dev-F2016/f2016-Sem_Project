@@ -104,88 +104,55 @@
 
 	<!-- Left Section -->
 	<aside class="left">
-		<!-- Favorites Section -->
-		<div class="favoritesSection">
-			<div class="stdSection" id="favorites">
+
+<div class="subsection">
+			<div class="stdSection" id="bestTastes">
 				<div class="stdSectionTitle">
-					Favorites
+					Best Tastes
 				</div>
 				<div class="table">
 					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
+						<a href="#" onclick="showSRC('BeerInfo.html');return false;">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 1">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Profile 10">
 							</div>
 							<div class="smalltableCell title">
-								Mikal Callahan
+								Peach Ale
 							</div>
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
+						<a onclick="showSRC('BeerInfo.html')">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars3.githubusercontent.com/u/22226968?v=3&s=200" alt="Profile 2">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="profile 11">
 							</div>
 							<div class="smalltableCell title">
-								Austin Miller
-							</div>
-						</a>
-					</div>
-
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
-									alt="Profile 3">
-							</div>
-							<div class="smalltableCell title">
-								Myles Merrill
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Ballast Image">
-							</div>
-							<div class="smalltableCell title">
-								Ballast Point
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Green Flash Image">
-							</div>
-							<div class="smalltableCell title">
-								Green Flash
+								Porter
 							</div>
 						</a>
 					</div>
 
 					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
+						<a onclick="showSRC('BeerInfo.html')">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Acoustic Ales Image">
+								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="profile 12">
 							</div>
 							<div class="smalltableCell title">
-								Acoustic Ales
+								Amber Ale
 							</div>
 						</a>
 					</div>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a href="#" onclick="showSRC('BeerInfo.html');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
-		</div>
+
 		<div class="stdSection" id="eventCalendar">
 			<div class="stdSectionTitle">
 				Calendar
 			</div>
-			<div>
-			</div>
+		</div>
 		</div>
 	</aside>
 
@@ -280,50 +247,10 @@
 				</div>
 			</div>
 
-			<div class="stdSection" id="bestTastes">
-				<div class="stdSectionTitle">
-					Best Tastes
-				</div>
-				<div class="table">
-					<div class="smalltableCell">
-						<a href="#" onclick="showSRC('BeerInfo.html');return false;">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Profile 10">
-							</div>
-							<div class="smalltableCell title">
-								Peach Ale
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="profile 11">
-							</div>
-							<div class="smalltableCell title">
-								Porter
-							</div>
-						</a>
-					</div>
-
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="profile 12">
-							</div>
-							<div class="smalltableCell title">
-								Amber Ale
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="stdSectionFooter">
-					<a href="#" onclick="showSRC('BeerInfo.html');return false;" class="moreClicked">more</a>
-				</div>
-			</div>
 
 
 		</div>
+		
 	</aside>
 
 	<section>
