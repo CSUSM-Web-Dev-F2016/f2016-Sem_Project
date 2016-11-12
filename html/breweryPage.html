@@ -15,7 +15,7 @@
 	<link rel="stylesheet" href="../css/hours.css" type="text/css">
 	<link rel="stylesheet" href="../css/message.css" type="text/css">-->
 
-	<script src="../js/NewsFeedBuilder.js"></script>
+  <script src="../js/NewsFeedBuilder.js"></script>
 	<script src="../js/contentSwitch.js"></script>
 
 	<!-- Set title of page -->
@@ -78,8 +78,8 @@
 
 		<div id="profileContainer">
 			<!-- Three items will appear here... Pic, Name and Edit Button -->
-			<img class="profileImg" id="profileImg" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png" alt="JGoulet Rox">
-			<p class="profileName">Indian Joe's Brewery<br></p>
+			<img class="profileImg" id="profileImg" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png" alt="JGoulet Rox" onclick="showSRC('editProfilePicture.html')">
+			<p class="profileName" onclick="showSRC('editBreweryName.html')">Indian Joe's Brewery<br></p>
 			<p class="breweryLocation">Vista, CA
 				<br></p>
 		</div>
@@ -304,7 +304,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/slide51.jpg">
+			<img alt="Brewery Cover Image" id="coverImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/slide51.jpg" onclick="showSRC('editCoverPicture.html')">
 		</div>
 		<!-- News Feed -->
 		<!--<div class="newsFeedHeader breweryPage">
