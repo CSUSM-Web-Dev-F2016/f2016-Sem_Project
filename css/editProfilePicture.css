@@ -11,7 +11,6 @@ h1 {
 }
 
 .container {
-<<<<<<< HEAD
   width: 100%;
   margin: auto;
   margin-top: 0px;
@@ -24,22 +23,20 @@ h1 {
   text-align: center;
   background-color: #FFFFFF;
   overflow: hidden;
-=======
-    width: 100%;
-    height: auto;
-    margin: auto;
-    margin-top: 45px;
-    margin-bottom: 45px;
-    border: 1px solid lightgray;
-    border-radius: 2px;
-    color: black;
-    font-weight: 500;
-    justify-content: center;
-    text-align: center;
-    background-color: #FFFFFF;
-    box-shadow: 0px 5px 5px lightgray;
-    overflow: hidden;
->>>>>>> Myles
+  width: 100%;
+  height: auto;
+  margin: auto;
+  margin-top: 45px;
+  margin-bottom: 45px;
+  border: 1px solid lightgray;
+  border-radius: 2px;
+  color: black;
+  font-weight: 500;
+  justify-content: center;
+  text-align: center;
+  background-color: #FFFFFF;
+  box-shadow: 0px 5px 5px lightgray;
+  overflow: hidden;
 }
 
 .container:hover {
@@ -90,7 +87,6 @@ input[type=text]:focus {
 }
 
 button {
-<<<<<<< HEAD
   margin-top: 15px;
   margin-bottom: 20px;
   padding-left: 55px;
@@ -110,26 +106,24 @@ button:hover {
   background-color: gray;
   text-shadow: -2px 2px #000000;
   border: 1px solid lightgray;
-=======
-    margin-top: 15px;
-    margin-bottom: 20px;
-    padding-left: 55px;
-    padding-right: 55px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border-radius: 10px;
-    color: white;
-    text-shadow: -2px 2px #333333;
-    font-size: 16px;
-    background-color: #191d24;
-    border: 1px solid gray;
+  margin-top: 15px;
+  margin-bottom: 20px;
+  padding-left: 55px;
+  padding-right: 55px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+  color: white;
+  text-shadow: -2px 2px #333333;
+  font-size: 16px;
+  background-color: #191d24;
+  border: 1px solid gray;
 }
 
 button:hover {
     color: white;
     background-color: rgba(26, 29, 36, .75);
     text-shadow: -2px 2px #000000;
->>>>>>> Myles
 }
 
 button:active {
