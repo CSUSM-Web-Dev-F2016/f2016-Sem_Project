@@ -63,7 +63,7 @@
 </head>
 
 <?php
-	 //Create a basic connection 
+	 //Create a basic connection
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
     //Check the connection
@@ -95,7 +95,7 @@
 	<!-- Profile Container -->
 	<div class="ProfileContainer">
 		<!-- Within the container, we have a rounded profile image -->
-		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage">
+		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage" onclick="showSRC('editProfilePicture.html')">
 		<br>
 		<hr>
 		<p class="profileName"><?php echo $FName . " " . $LName?></p>
