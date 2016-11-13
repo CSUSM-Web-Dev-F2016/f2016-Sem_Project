@@ -8,10 +8,11 @@ html, body, head {
 }
 
 .holder {
-  width: 100%;
+  width: 99.5%;
   margin: auto;
   border: 1px solid lightgray;
   border-radius: 2px;
+  background-color: white;
 }
 
 .holder:hover {
