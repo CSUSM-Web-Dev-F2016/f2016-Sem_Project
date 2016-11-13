@@ -45,8 +45,7 @@
 
 </head>
 
-<!-- Require the DB access for login -->
-<?php require_once "php/DBConnection.php" ?>
+
 
 <body>
 
@@ -104,8 +103,17 @@
 							//Close the SQL connetion
 							$connection->close();
 
+							//Start the session 
+	  						session_start();
+
+							//Set the username to search in the session var 
+							$_SESSION['currentUser'] = $row["Email"];
+
+							//Now, set the autoriazation token value so we know the user is logged in 
+							$_SESSION['loginToken'] = "yes";
+
 							//Open the next page 
-							header("Location: ./html/profilePage.php?user=" . $row["Email"]);
+							header("Location: ./html/profilePage.php");
 							break;
 
 						}else{

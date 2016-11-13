@@ -22,11 +22,7 @@ h1{
 }
 
 h3, h2{
-	text-shadow:
-  -1px -1px 0 #fff,
-   1px -1px 0 #fff,
-   -1px 1px 0 #fff,
-    1px 1px 0 #fff;
+	color: white;
 }
 
 /* sets color of items */
@@ -47,8 +43,8 @@ a{
 
 /* general settings magic */
 .generalsettings{
-	background-color: inherit;
-	color: white;
+	background-color: white;
+	color: black;
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
@@ -58,6 +54,7 @@ a{
 	padding-left: 2%;
 	padding-right: 2%;
 	padding-top: 1%;
+	padding-bottom: 50px;
 }
 
 div{
@@ -70,8 +67,8 @@ div{
 
 /* manage brewery magic */
 .mybreweries{
-	background-color: inherit;
-	color: white;
+	background-color: white;
+	color: black;
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
@@ -80,6 +77,7 @@ div{
 	border-radius: 5px;
 	padding: 2%;
 	text-align: center;
+	padding-bottom: 50px;
 }
 
 .mybreweries:hover {
@@ -88,8 +86,8 @@ div{
 
 /* privacy settings magic */
 .privacysettings{
-	background-color: inherit;
-	color: white;
+	background-color: white;
+	color: black;
 	display: table;
 	/*margin: 0 auto;*/
 	vertical-align: middle;
@@ -105,10 +103,6 @@ div{
     box-shadow: 0px 5px 5px gray;
 }
 
-/* alignment of text fields */
-input.leftAlign{
-  text-align: right;
-}
 
 div.generalsettings button{
 	border-radius: 10px;
@@ -156,6 +150,7 @@ div.privacysettings button:hover{
 }
 
 /* input box layout */
+
 input[type=text], input[type=password], input[type=email] {
 	 width: 100%;
 	 padding: 7px 10px;
@@ -165,4 +160,36 @@ input[type=text], input[type=password], input[type=email] {
 	 text-align: left;
 	 box-sizing: border-box;
 	 display:table-cell;
+}
+
+button {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 1px solid gray;
+	justify-content: center;
+	margin: auto;
+	margin: auto;
+	text-align: center;
+	margin-bottom: 25px;
+
+	/* Postion Stuff */
+	position: absolute;
+	width: 50%;
+	left: 25%;
+}
+
+
+button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
 }

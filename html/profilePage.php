@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en-us">
-
 <head>
 	<!-- Import CSS Files -->
 	<link rel="stylesheet" href="../css/header.css" type="text/css">
@@ -11,28 +9,35 @@
 	<link rel="stylesheet" href="../css/ProfileContainer.css" type="text/css">
 	<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
 	<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
-
 	<!-- Import JS Files -->
 	<script src="../js/contentSwitch.js"></script>
 	<script src="../js/calendarview.js"></script>
-
 	<!-- Analytics Script -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-83948702-3', 'auto');
   ga('send', 'pageview');
+  <?php
+  	//Start the session 
+	  session_start();
 
+//Get the token to prove the user was logged in 
+	  if(strlen($_SESSION['loginToken']) == 0){
+	//r	edirect to the login page 
+						  header("Location: ../index.php");
+}
+else{
+	//e	cho "<p>You rock";
+}
+?>
 </script>
-
 	<!-- Header Bar -->
 	<div class="header">
 		<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
 	</div>
-
 	<!-- Navigation Bar -->
 	<nav>
 		<table class="menu" title="Menu">
@@ -43,7 +48,6 @@
 						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="showSRC('BrewerySignUp.php')" alt="home">
 					</th>
 					<th>|</th>
-
 					<!-- Settings -->
 					<th class="menuItem">
 						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('settings.html')" alt="home">
@@ -52,31 +56,27 @@
 			</tbody>
 		</table>
 	</nav>
-
 	<!-- Meta data -->
 	<title>Profile</title>
-
 	<!-- For the background image -->
 	<div class="is_overlay">
 		<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
 	</div>
 </head>
-
 <?php
 	 //Create a basic connection
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
-    //Check the connection
+//Check the connection
     if(mysqli_connect_errno()){
-        die("Connection Failed. ERR: " . mysqli_connect_error());
-    }
-    //echo "Connected Successfully";
-    //This code currently works :)
+	die("Connection Failed. ERR: " . mysqli_connect_error());
+}
+//echo "Connected Successfully";
+//This code currently works :)
 
-	//Get the user's information
-	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $_GET["user"] . "'";
+//Get the user's information
+	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $_SESSION["currentUser"] . "'";
 	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
-
 	//Check to see if exists (it should since we already logged in)
 	if($userInfoResults-> num_rows > 0){
 		while($row = mysqli_fetch_assoc($userInfoResults)){
@@ -89,9 +89,7 @@
 		//Error getting info
 	}
 ?>
-
 <body>
-
 	<!-- Profile Container -->
 	<div class="ProfileContainer">
 		<!-- Within the container, we have a rounded profile image -->
@@ -101,11 +99,37 @@
 		<p class="profileName"><?php echo $FName . " " . $LName?></p>
 		<a class="editBtn" onclick="showSRC('editName.html')">Edit</a>
 	</div>
-
 	<!-- Left Section -->
 	<aside class="left">
-
-<div class="subsection">
+		<div class="subsection">
+			<div class="stdSection" id="About">
+				<div class="stdSectionTitle">
+				Info
+				</div>
+				<div class="table">
+				<div class="smalltableCell">
+						<a onclick="showSRC('FollowingPage.html')">
+							<div class="tableCell img">
+								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
+							</div>
+							<div class="smalltableCell title">
+								Follow
+							</div>
+						</a>
+					</div>
+					<div class="smalltableCell">
+						<a onclick="showSRC('message.html')">
+							<!-- message -->
+							<div class="tableCell img">
+								<img class="smalltableCell" src="../img/message.png?raw=true" alt="Message">
+							</div>
+							<div class="smalltableCell title">
+								Message
+							</div>
+						</a>
+					</div>
+					</div>
+			</div>
 			<div class="stdSection" id="bestTastes">
 				<div class="stdSectionTitle">
 					Best Tastes
@@ -131,7 +155,6 @@
 							</div>
 						</a>
 					</div>
-
 					<div class="smalltableCell">
 						<a onclick="showSRC('BeerInfo.html')">
 							<div class="tableCell img">
@@ -147,7 +170,6 @@
 					<a href="#" onclick="showSRC('BeerInfo.html');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
-
 		<div class="stdSection" id="eventCalendar">
 			<div class="stdSectionTitle">
 				Calendar
@@ -155,9 +177,6 @@
 		</div>
 		</div>
 	</aside>
-
-
-
 	<!-- Right Section -->
 	<aside class="right">
 		<div class="subsection">
@@ -186,7 +205,6 @@
 							</div>
 						</a>
 					</div>
-
 					<div class="smalltableCell">
 						<a href="../html/profilePage.php">
 							<div class="tableCell img">
@@ -198,61 +216,56 @@
 							</div>
 						</a>
 					</div>
-
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
 				</div>
 			</div>
-
 			<div class="stdSection" id="following">
 				<div class="stdSectionTitle">
 					Following
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Ballast 2">
-							</div>
-							<div class="smalltableCell title">
-								Ballast Point
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 7">
-							</div>
-							<div class="smalltableCell title">
-								Mikal Callahan
-							</div>
-						</a>
-					</div>
 
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Profile 9">
-							</div>
-							<div class="smalltableCell title">
-								Acoustic Ales
-							</div>
-						</a>
-					</div>
-				</div>
+				<!-- Using PHP, build the table -->
+				<?php
+					//Session is already started
+					//Get the breweryies the user is following, max 3
+					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $_SESSION['currentUser'] . "' GROUP BY u.BreweryID LIMIT 3";
+					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
+
+					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user. 
+					if($breweriesFollowingResults-> num_rows > 0){
+						//Use a while loop to build the form
+						while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
+							echo "<div class=\"smalltableCell\">";
+							echo "<button class=\"defaultSetBtn\" onclick=\"" . redirect($row['BreweryID']) . "\">";
+							echo "<div class=\"tableCell img\">";
+							echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
+							echo "</div>";
+							echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
+							echo "</button>";
+							echo "</div>";
+						}
+						
+					}else{
+						//Build custom when no rows are found
+						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Yet Following a Brewery<br>" . $_SESSION['currentUser'] . "<br>" . $getBreweriesFollowing . "</div>";
+						echo "</div>";
+					}
+
+					function redirect($val){
+						echo $val;
+					}
+					
+
+				?>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>
 			</div>
-
-
-
 		</div>
-		
 	</aside>
-
 	<section>
 		<div class="newsFeedHeader">
 			Feed:
@@ -267,26 +280,14 @@
 						<br/>
 					</form>
 				</div>
-
 				<button type="submit" onclick="">Post</button>
 			</div>
-
-		</div>
-		<!-- Black Field to Post -->
-
-		<div class="newsFeed" id="MainArea">
+			<div class="newsFeed" id="MainArea">
 			<!-- For example purposes, add the add brewery panel -->
 			<iframe id="contentFrame" src="../html/NewsFeed.html" title="subcontent" style="min-width:480px;" onload="resizeIframe(this);"></iframe>
-
-			<!--
-			<object>
-				<embed id="contentFrame" src=http://cis444.cs.csusm.edu/goule001/Group_Project/BrewerySignUp.html width="100%" height="850px">
-				</embed>
-			</object>
-			-->
 		</div>
+		</div>
+		<!-- Black Field to Post -->
 	</section>
-
 </body>
-
 </html>

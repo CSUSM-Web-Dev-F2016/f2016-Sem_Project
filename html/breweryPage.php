@@ -42,11 +42,24 @@
 
 </head>
 
+<?php
+  	//Start the session 
+	  session_start();
+
+	  //Get the token to prove the user was logged in 
+	  if(strlen($_SESSION['loginToken']) == 0){
+		  //redirect to the login page 
+		  header("Location: ../index.php");
+	  }else{
+		  //echo "<p>You rock";
+	  }
+  ?>
+
 <body>
 	<!-- onload="buildFeed();" -->
 	<!-- Header for Logo -->
 	<header class="header">
-		<a href="../html/profilePage.html">
+		<a href="../html/profilePage.php">
 			<img class="logo" id="logo" alt="Beer Hopper Logo" src="../img/Beer_Hopper_Banner.png?raw=true">
 		</a>
 
@@ -164,7 +177,7 @@
 				</div>
 				<div class="table">
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Mikal Image">
 							</div>
@@ -174,7 +187,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Justin Image">
 							</div>
@@ -185,7 +198,7 @@
 					</div>
 
 					<div class="smalltableCell">
-						<a href="../html/profilePage.html">
+						<a href="../html/profilePage.php">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
 									alt="Myles Image">
