@@ -4,12 +4,12 @@ body{
 
 .emptyForm{
 	height: auto;
-	width: 99%;
+	width: 99.5%;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
-	position: absolute;
-	padding-top: 60px;
+	position: relative;
+	/*padding-top: 60px;*/
 	padding-bottom: 50px;
 	border-radius: 2px;
 	overflow: hidden;
