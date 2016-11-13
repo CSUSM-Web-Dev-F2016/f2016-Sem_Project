@@ -206,7 +206,7 @@
                                 echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error Checking age<b>";
                             }
                         }else{
-                            echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error with creating account: <b>" . $createUserQuery . "<br>" . $connection->error . "</p>";
+                            echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error with creating account: <br>" . $connection->error . "</p>";
                         }
                     }
                 }
