@@ -14,32 +14,6 @@ function showSRC(address) {
 
     sectionDOM.style.width = "100%";
 
-
-    //document.getElementById("MainArea").innerHTML = "";
-
-    //Instead, remove the current contents of the frame
-    //document.getElementById("MainArea").innerHTML = address + "<p> This page will soon appear here";
-
-    //var newElement = document.createElement("img");
-    //newElement.src = "http://cis444.cs.csusm.edu/goule001/Group_Project/FollowingPage.html";
-
-    /** This section works, but messes with CSS. come back to. */
-    /*
-      //document.getElementById("MainArea").appendChild(newElement);
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("MainArea").innerHTML = this.responseText;
-          //document.getElementById("MainArea").innerHTML = "";
-
-        }
-        else {
-          buildPNF();
-        }
-      };
-      xhttp.open("GET", "http://cis444.cs.csusm.edu/goule001/Group_Project/" + address, true);
-      xhttp.send();
-      */
 }
 
 /**
@@ -50,7 +24,7 @@ function goHomeAnd(address) {
     // window.alert("Hello World 2");
 
     //Navigate to the home page
-    window.location.href = "../html/profilePage.html";
+    window.location.href = "../html/profilePage.php";
 
     //Show the requested source after the page loaded
     //showSRC(address);
