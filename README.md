@@ -10,7 +10,7 @@ Web Development Fall-2016
 2|[Christopher Larsen](https://github.com/cjl0749)|
 3|Myles Merrill|
 4|Austin Miller|
-5|Mikal Callahan|
+5|[Mikal Callahan](https://github.com/mikalcallahan)|
 
 
 ### Role Descriptions
@@ -27,10 +27,10 @@ The participant roles are subject to change at any time. Each participant will f
         - May be different than actual deadlines to increase productivity
     - Quality Assurance (QA)
     - Assists with any portion of the project that needs further work to meet assigned deadlines.
-    
+
 
 >#### UI Designer(s) - (2 People)
->- Tasked with managing the interface of the final project. The UI Designer(s) will work with team members to bring a high quality product, in terms of design, to the portfolio. 
+>- Tasked with managing the interface of the final project. The UI Designer(s) will work with team members to bring a high quality product, in terms of design, to the portfolio.
     - Designated person to ensure design of product meets that of project manager's design documentation
     - Takes feedback from team to ensure reliability and ease of User Interface
     - Works directly with project manager to create useful and intuitive design
@@ -40,7 +40,7 @@ The participant roles are subject to change at any time. Each participant will f
     - Creates code for overall UI
         - Ensures panels work as expected in terms of layout
         - Ensures classes may be accessed when needed by development team
-    
+
 >#### Analytics Manager / Database Enginner - (1 Person)
 >- Develops and maintains integrated analytics for overall project. Major tasks include creating necessary classes for custom analytic events, analytics db management where required and notifying development team of critical events that need attention. Task details include:
     - Integrating solutions such as Google Analytics, Google Firebase, or other analytics engine
@@ -61,7 +61,7 @@ The participant roles are subject to change at any time. Each participant will f
 	- Maintains data and troubleshoots errors when required
 	- Creates functions and methods when necessary
 	- Maintains additional tables to correlate analytics when required.
-    
+
 
 >#### Development Team - (2 People)
 >- Team in charge of overall development of project. This team is designated the task of creating the functional methods and procedures of the application and will integrate the use of the developed UI from the design team. So the work is spread out, the following tasks are designated to this team:
@@ -88,13 +88,13 @@ The participant roles are subject to change at any time. Each participant will f
 - [Google Drive Document] (https://docs.google.com/document/d/1P2S9uP9beubHR9Vx3fXBjC6z45Ez7VrTnm_dBRMOlsE/edit)
 
 ### Repository Info
-> The repo is currently set to an organization, [Software-Engineering-CSUSM](https://github.com/CSUSM-Web-Dev-F2016) so that it is not tied to a single individual, for credit purposes. As such: 
+> The repo is currently set to an organization, [Software-Engineering-CSUSM](https://github.com/CSUSM-Web-Dev-F2016) so that it is not tied to a single individual, for credit purposes. As such:
 - All contributors will be known as **collaborators** instead of owners.
 - All contributors should create their own branches, which will be merged to the master when required.
 
 ### Slack Info
 > We may use Slack integrations. Feel free to add any you like :smiley:
-    
+
 #### Let's start as soon as we can!
 
 It will be fun :smiley:

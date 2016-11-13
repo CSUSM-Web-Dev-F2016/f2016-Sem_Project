@@ -18,7 +18,7 @@ html, body, head{
 h1{
   padding: 0px;
   margin: 0px;
-  
+
 }
 
 h3, h2{
@@ -36,13 +36,19 @@ a{
    text-decoration: none;
 }
 
+.accountsettings{
+
+}
+
 /* center "account settings" */
-#accountsettings{
+#accountsettingstitle{
 	text-align: center;
 }
 
 /* general settings magic */
 .generalsettings{
+	background-color: inherit;
+	color: white;
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
@@ -55,7 +61,7 @@ a{
 }
 
 div{
-	background-color: white;
+/*	background-color: white;*/
 }
 
 .generalsettings:hover {
@@ -64,6 +70,8 @@ div{
 
 /* manage brewery magic */
 .mybreweries{
+	background-color: inherit;
+	color: white;
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
@@ -80,6 +88,8 @@ div{
 
 /* privacy settings magic */
 .privacysettings{
+	background-color: inherit;
+	color: white;
 	display: table;
 	/*margin: 0 auto;*/
 	vertical-align: middle;
@@ -98,6 +108,51 @@ div{
 /* alignment of text fields */
 input.leftAlign{
   text-align: right;
+}
+
+div.generalsettings button{
+	border-radius: 10px;
+	color: white;
+	text-shadow: -2px 2px #333333;
+	font-size: 16px;
+	background-color: #191d24;
+	border: 2px solid lightgray;
+}
+
+div.generalsettings button:hover{
+	color: white;
+	background-color: rgba(26, 29, 36, .75);
+	text-shadow: -2px 2px #000000;
+}
+
+div.mybreweries button{
+	border-radius: 10px;
+	color: white;
+	text-shadow: -2px 2px #333333;
+	font-size: 16px;
+	background-color: #191d24;
+	border: 2px solid lightgray;
+}
+
+div.mybreweries button:hover{
+	color: white;
+	background-color: rgba(26, 29, 36, .75);
+	text-shadow: -2px 2px #000000;
+}
+
+div.privacysettings button{
+	border-radius: 10px;
+	color: white;
+	text-shadow: -2px 2px #333333;
+	font-size: 16px;
+	background-color: #191d24;
+	border: 2px solid lightgray;
+}
+
+div.privacysettings button:hover{
+	color: white;
+	background-color: rgba(26, 29, 36, .75);
+	text-shadow: -2px 2px #000000;
 }
 
 /* input box layout */

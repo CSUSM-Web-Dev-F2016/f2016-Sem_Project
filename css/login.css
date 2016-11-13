@@ -1,9 +1,7 @@
 @import url(http://fonts.googleapis.com/earlyaccess/notosanskannada.css);
-
 .hidden {
     visibility: hidden;
 }
-
 
 #loginForm {
     order: 0;
@@ -23,7 +21,7 @@
     right: 10%;
     top: 25%;
     position: absolute;
-    background-color: rgba(255,255,255, .2);
+    background-color: rgba(255, 255, 255, .2);
     padding: 25px;
     border-radius: 15px;
 }
@@ -33,9 +31,9 @@
     max-width: 20rem;
     width: 90%;
     padding: 25px;
-    background-color: rgba(25,29,36, .75);
+    background-color: rgba(25, 29, 36, .75);
     border-radius: 5px;
-    box-shadow: 2px 2px 2px rgba(0,0,0, .9);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
 }
 
 .centerText {
@@ -45,7 +43,7 @@
     color: white;
 }
 
-.centerText a{
+.centerText a {
     color: white;
 }
 
@@ -85,10 +83,10 @@ input[type=submit] {
     width: 100%;
 }
 
+
 /** For the banner logo */
-.banner img{
+
+.banner img {
     position: relative;
     width: 100%;
 }
-
-

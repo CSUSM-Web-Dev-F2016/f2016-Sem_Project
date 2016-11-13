@@ -42,7 +42,7 @@ aside.right{
 
 .newsFeed{
   width: 100%;
-  position: absolute;
+  position: relative;
   display: flex;
   color: white;
 }
@@ -77,6 +77,11 @@ div.stdSection{
      background-color: rgba(25, 29, 36, 1);
      padding-left: 10px;
      padding-right: 10px;
+}
+
+#bestTastes{
+  widows: 100%;
+  position: relative;
 }
 
 
@@ -184,7 +189,7 @@ img.smalltableCell{
 }
 
 #eventCalendar{
-  width: 86%;
+  width: 90%;
   justify-content: center;
   position: absolute;
   display: flex;
@@ -207,5 +212,8 @@ div.table{
 
 iframe{
   width: 99.5%;
+  position: relative;
+  padding-top: 100px;
   padding-right:10px;
+  padding-bottom: 50px;
 }
