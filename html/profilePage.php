@@ -156,8 +156,14 @@ else{
 							}
 						}else{
 							//No rows yet; inform user;
-						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Favorite Beers Yet!<br>" . $_SESSION['currentUser'] . "</div>";
-						echo "</div>";
+							echo '<div class="smalltableCell">';
+									echo "<a onclick=\"showBeerView(" . "1" . ")\">";
+										echo '<div class="tableCell img">';
+											echo	"<img class=\"smalltableCell\" src=\"" .  "http://beerhopper.me/img/x.png" . "\"alt=\"" . "" . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\">" . "No Beers Yet" . "</div>";
+									echo "</a>";
+								echo "</div>";
 						}
 					?>
 				</div>
@@ -199,8 +205,14 @@ else{
 						}
 					}else{
 						//Just print a text saying 'no items found';
-						echo "<div class=\"smalltablecell title\" style=\"color:white\";>No Followers Yet!<br>" . $_SESSION['currentUser'] . "</div>";
-						echo "</div>";
+						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
+								echo "</button>";
+							echo "</form>";
 					}
 
 					?>
@@ -240,8 +252,15 @@ else{
 						
 					}else{
 						//Build custom when no rows are found
-						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Yet Following a Brewery<br>" . $_SESSION['currentUser'] . "</div>";
-						echo "</div>";
+						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
+								echo "</button>";
+								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
+							echo "</form>";
 					}
 					/** Does Not Work Yet **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){

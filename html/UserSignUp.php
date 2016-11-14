@@ -198,7 +198,9 @@
                             if($result = mysqli_query($connection, $ageQuery)){
                                 //Success, tak them to the main profile page., if there are more than 1 row
                                 if($result-> num_rows > 0){
-                                    header("Location:  ./profilePage.php?user=" . $Email);
+                                    session_start();
+                                    $_SESSION['currentUser'] = $_SESSION['signedInUser'] = $Email;
+                                    header("Location:  ./profilePage.php");
                                 }else {
                                     echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">User is not yet 21. Please come back when you are.<b>";
                                 }
