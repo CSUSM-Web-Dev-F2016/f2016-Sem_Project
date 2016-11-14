@@ -7,7 +7,6 @@
 
 /* general overview */
 html, body, head{
-  /*margin: 0px;*/
   display: flex;
   padding: 0px;
   flex-direction: column;
@@ -22,11 +21,14 @@ h1{
 }
 
 h3, h2{
+	/*
 	text-shadow:
   -1px -1px 0 #fff,
    1px -1px 0 #fff,
    -1px 1px 0 #fff,
     1px 1px 0 #fff;
+	*/
+	color:white;
 }
 
 /* sets color of items */
@@ -47,8 +49,8 @@ a{
 
 /* general settings magic */
 .generalsettings{
-	background-color: inherit;
-	color: white;
+	background-color: white;
+	color: black;
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
@@ -70,8 +72,8 @@ div{
 
 /* manage brewery magic */
 .mybreweries{
-	background-color: inherit;
-	color: white;
+	background-color: white;
+	color: black;
 	display: table;
 	margin: 0 auto;
 	vertical-align: middle;
@@ -88,8 +90,8 @@ div{
 
 /* privacy settings magic */
 .privacysettings{
-	background-color: inherit;
-	color: white;
+	background-color: white;
+	color: black;
 	display: table;
 	/*margin: 0 auto;*/
 	vertical-align: middle;
@@ -98,7 +100,7 @@ div{
 	border-radius: 5px;
 	padding: 2%;
 	text-align: center;
-  margin-bottom: 50px;
+  	margin-bottom: 50px;
 }
 
 .privacysettings:hover {
@@ -107,7 +109,7 @@ div{
 
 /* alignment of text fields */
 input.leftAlign{
-  text-align: right;
+ /* text-align: right;*/
 }
 
 div.generalsettings button{
@@ -117,6 +119,11 @@ div.generalsettings button{
 	font-size: 16px;
 	background-color: #191d24;
 	border: 2px solid lightgray;
+	width: 50%;
+	left: 25%;
+	justify-content: center;
+	text-align: center;
+	position: absolute;
 }
 
 div.generalsettings button:hover{
@@ -132,6 +139,8 @@ div.mybreweries button{
 	font-size: 16px;
 	background-color: #191d24;
 	border: 2px solid lightgray;
+	width: 50%;
+	left: 25%;
 }
 
 div.mybreweries button:hover{
@@ -147,6 +156,8 @@ div.privacysettings button{
 	font-size: 16px;
 	background-color: #191d24;
 	border: 2px solid lightgray;
+	width: 50%;
+	left: 25%;
 }
 
 div.privacysettings button:hover{
@@ -166,3 +177,34 @@ input[type=text], input[type=password], input[type=email] {
 	 box-sizing: border-box;
 	 display:table-cell;
 }
+/*
+button {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 1px solid gray;
+	justify-content: center;
+	/*margin: auto;
+	text-align: center;
+
+
+	/* Postion Stuff
+	position: absolute;
+	width: 50%;
+	left: 25%;
+}
+
+button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
+}
+*/
