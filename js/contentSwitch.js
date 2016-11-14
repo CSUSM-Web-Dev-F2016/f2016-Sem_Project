@@ -16,6 +16,19 @@ function showSRC(address) {
 
 }
 
+function showBeerView(beerID) {
+    //Get the section's DOM element
+    var sectionDOM = document.getElementById("contentFrame");
+
+    //Set the session id to the beer id
+    sessionStorage['currentBeer'] = beerID;
+
+    //Set the new page
+    sectionDOM.src = "../html/" + "BeerInfo.html";
+    
+    sectionDOM.style.width = "100%";
+}
+
 /**
  * Will eventually redirect to the homepage then open the iframe page address provided
  */
@@ -84,4 +97,14 @@ function buildPNF(address) {
     document.getElementById("MainArea").appendChild(mainElement);
     return;
 
+}
+
+function changeToBrewery(breweryID) {
+    //Set the current brewery ID
+    sessionStorage['breweryID'] = breweryID;
+
+    window.alert("Got it: " + breweryID);
+
+    //Change the current page location
+    window.location.assign("www.google.com");
 }

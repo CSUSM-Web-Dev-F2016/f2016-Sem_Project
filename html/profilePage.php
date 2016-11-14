@@ -27,7 +27,7 @@
 //Get the token to prove the user was logged in 
 	  if(strlen($_SESSION['loginToken']) == 0){
 	//r	edirect to the login page 
-						  header("Location: ../index.php");
+	 header("Location: ../index.php");
 }
 else{
 	//e	cho "<p>You rock";
@@ -165,6 +165,30 @@ else{
 							</div>
 						</a>
 					</div>
+
+					<!-- Get Favorited beers for this user -->
+					<?php
+						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $_SESSION['currentUser'] . "' AND b.BeerID=u.BeerID LIMIT 3";
+						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
+
+						if($favoritedBeersResults-> num_rows > 0){
+							while($row = mysqli_fetch_assoc($favoritedBeersResults)){
+								//There are rows
+								echo '<div class="smalltableCell">';
+									echo "<a onclick=\"showBeerView(" . $row['BeerID'] .")\">";
+										echo '<div class="tableCell img">';
+											echo	"<img class=\"smalltableCell\" src=\"" .  $row['PictureURL'] . "\"alt=\"" . $row['BeerName'] . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\">" . $row['BeerName'] . "</div>";
+									echo "</a>";
+								echo "</div>";
+							}
+						}else{
+							//No rows yet; inform user;
+						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Favorite Beers Yet!<br>" . $_SESSION['currentUser'] . "</div>";
+						echo "</div>";
+						}
+					?>
 				</div>
 				<div class="stdSectionFooter">
 					<a href="#" onclick="showSRC('BeerInfo.html');return false;" class="moreClicked">more</a>
@@ -185,37 +209,30 @@ else{
 					Following Me
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 4">
-							</div>
-							<div class="smalltableCell title">
-								Mikal Callahan
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars3.githubusercontent.com/u/22226968?v=3&s=200" alt="Profile 5">
-							</div>
-							<div class="smalltableCell title">
-								Austin Miller
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
-									alt="Profile 6">
-							</div>
-							<div class="smalltableCell title">
-								Myles Merrill
-							</div>
-						</a>
-					</div>
+					<!-- User 'Following me' -->
+					<?php
+					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name' FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $_SESSION['currentUser'] . "' LIMIT 3;";
+					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
+
+					if($usersFollowingMeResult-> num_rows > 0 ){
+						//If there are some rows, loop through them
+						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
+								echo "</button>";
+							echo "</form>";
+						}
+					}else{
+						//Just print a text saying 'no items found';
+						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Followers Yet!<br>" . $_SESSION['currentUser'] . "</div>";
+						echo "</div>";
+					}
+
+					?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
@@ -237,29 +254,47 @@ else{
 					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user. 
 					if($breweriesFollowingResults-> num_rows > 0){
 						//Use a while loop to build the form
+						
 						while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
-							echo "<div class=\"smalltableCell\">";
-							echo "<button class=\"defaultSetBtn\" onclick=\"" . redirect($row['BreweryID']) . "\">";
-							echo "<div class=\"tableCell img\">";
-							echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
-							echo "</div>";
-							echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
-							echo "</button>";
-							echo "</div>";
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['BreweryID'] . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
+								echo "</button>";
+							echo "</form>";
 						}
 						
 					}else{
 						//Build custom when no rows are found
-						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Yet Following a Brewery<br>" . $_SESSION['currentUser'] . "<br>" . $getBreweriesFollowing . "</div>";
+						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Yet Following a Brewery<br>" . $_SESSION['currentUser'] . "</div>";
 						echo "</div>";
 					}
 
-					function redirect($val){
-						echo $val;
+					if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    						if(isset($_GET['brewery'])){
+       						
+    						}elseif(isset($_GET['select'])){
+        						
+    						}else{
+							//Print all array elemetns
+							foreach($_POST as $key=>$value){
+							    	echo "<p style=\"color:white;\">" . $key; //It works! 
+								//$val = $key;
+
+							    //Now set the brewery id 
+								$_SESSION['breweryID'] = $key;
+								break;
+							}
+						}
+						//Load the brewery page 
+						header('Location:./breweryPage.php');
 					}
-					
 
 				?>
+				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>

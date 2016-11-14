@@ -40,6 +40,8 @@
 		<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
 	</div>
 
+	
+
 </head>
 
 <?php
@@ -51,8 +53,10 @@
 		  //redirect to the login page 
 		  header("Location: ../index.php");
 	  }else{
-		  //echo "<p>You rock";
+		  echo "<p style=\"color:white\">You rock: " . $_SESSION['breweryID'];
 	  }
+
+	
   ?>
 
 <body>
