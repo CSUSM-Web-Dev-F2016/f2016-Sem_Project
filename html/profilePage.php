@@ -144,8 +144,9 @@ else{
 						if($favoritedBeersResults-> num_rows > 0){
 							while($row = mysqli_fetch_assoc($favoritedBeersResults)){
 								//There are rows
+								$_Session['currentBeer'] = $row['BeerID'];
 								echo '<div class="smalltableCell">';
-									echo "<a onclick=\"showBeerView(" . $row['BeerID'] .")\">";
+									echo "<a onclick=\"showBeerView(" . $row['BeerID'] . ")\">";
 										echo '<div class="tableCell img">';
 											echo	"<img class=\"smalltableCell\" src=\"" .  $row['PictureURL'] . "\"alt=\"" . $row['BeerName'] . "\">";
 										echo "</div>";
@@ -233,6 +234,7 @@ else{
 									echo "</div>";
 									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
 								echo "</button>";
+								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
 							echo "</form>";
 						}
 						
@@ -246,21 +248,17 @@ else{
 
     						if(isset($_GET['brewery'])){
        						
-    						}elseif(isset($_GET['select'])){
-        						
+    						}elseif(isset($_POST['name'])){
+        							echo "<p style=\"color:white;\"> Opening name";
     						}else{
 							//Print all array elemetns
 							foreach($_POST as $key=>$value){
-							    	echo "<p style=\"color:white;\">" . $key; //It works! 
+							    	echo "<p style=\"color:white;\"><br>" . $key; //It works! 
 								//$val = $key;
-
-							    //Now set the brewery id 
-								$_SESSION['breweryID'] = $key;
-								break;
 							}
 						}
 						//Load the brewery page 
-						header('Location:./breweryPage.php');
+						header("Location:./breweryPage.php");
 					}
 
 				?>
