@@ -176,17 +176,10 @@ input[type=email] {
     box-sizing: border-box;
     display: table-cell;
 }
-<<<<<<< HEAD
 
 button {
     margin-top: 15px;
     margin-bottom: 20px;
-=======
-/*
-button {
-    margin-top: 15px;
-    margin-bottom: 25px;
->>>>>>> mikal
     padding-left: 55px;
     padding-right: 55px;
     padding-top: 10px;
@@ -212,9 +205,4 @@ button:hover {
     color: white;
     background-color: rgba(26, 29, 36, .75);
     text-shadow: -2px 2px #000000;
-<<<<<<< HEAD
 }
-=======
-}
-*/
->>>>>>> mikal
