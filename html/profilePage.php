@@ -135,36 +135,6 @@ else{
 					Best Tastes
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="#" onclick="showSRC('BeerInfo.html');return false;">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Profile 10">
-							</div>
-							<div class="smalltableCell title">
-								Peach Ale
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="profile 11">
-							</div>
-							<div class="smalltableCell title">
-								Porter
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="profile 12">
-							</div>
-							<div class="smalltableCell title">
-								Amber Ale
-							</div>
-						</a>
-					</div>
 
 					<!-- Get Favorited beers for this user -->
 					<?php
@@ -191,7 +161,7 @@ else{
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a href="#" onclick="showSRC('BeerInfo.html');return false;" class="moreClicked">more</a>
+					<a href="#" onclick="showSRC('BeerInfo.php');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
 		<div class="stdSection" id="eventCalendar">
@@ -228,7 +198,7 @@ else{
 						}
 					}else{
 						//Just print a text saying 'no items found';
-						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Followers Yet!<br>" . $_SESSION['currentUser'] . "</div>";
+						echo "<div class=\"smalltablecell title\" style=\"color:white\";>No Followers Yet!<br>" . $_SESSION['currentUser'] . "</div>";
 						echo "</div>";
 					}
 
@@ -271,7 +241,7 @@ else{
 						echo "<div class=\"smalltablecell title\" style=\"color:white\";>Not Yet Following a Brewery<br>" . $_SESSION['currentUser'] . "</div>";
 						echo "</div>";
 					}
-
+					/** Does Not Work Yet **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     						if(isset($_GET['brewery'])){

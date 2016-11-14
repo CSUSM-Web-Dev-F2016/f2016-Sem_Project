@@ -21,11 +21,14 @@ function showBeerView(beerID) {
     var sectionDOM = document.getElementById("contentFrame");
 
     //Set the session id to the beer id
-    sessionStorage['currentBeer'] = beerID;
+    '<%Session["currentBeer"] = "' + beerID + '"; %>';
+    window.alert('<%=Session["currentBeer"] %>');
+
+    //window.alert(beerID);
 
     //Set the new page
-    sectionDOM.src = "../html/" + "BeerInfo.html";
-    
+    sectionDOM.src = "../html/" + "BeerInfo.php";
+
     sectionDOM.style.width = "100%";
 }
 
