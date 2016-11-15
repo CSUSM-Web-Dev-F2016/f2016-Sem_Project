@@ -53,7 +53,38 @@
 		  //redirect to the login page 
 		  header("Location: ../index.php");
 	  }else{
-		  echo "<p style=\"color:white\">You rock: " . $_SESSION['breweryID'];
+		  //echo "<p style=\"color:white\">You rock: " . $_GET['id'] . "<br></p>";
+	  }
+
+	  	//Connect to the DB
+	 	$connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
+
+		//Check the connection
+    		if(mysqli_connect_errno()){
+       		die("Connection Failed. ERR: " . mysqli_connect_error());
+    		}
+
+	  //Start the SQL Query to get the brewery information
+	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
+	  $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
+
+	  //Check to see if the brewery exists, should only be one result
+	  if($getBreweryInnfoResults-> num_rows > 0){
+		  //If the brewery exists, get the info 
+		  while($row = mysqli_fetch_assoc($getBreweryInnfoResults)){
+			//echo "<p style=\"color:white;\">Hello World</p>";
+
+			  //Save the values
+			  $BreweryName = $row['BreweryName'];
+			  $ProfilePicURL = $row['ProfilePicURL'];
+			  $CoverPicURL = $row['CoverPicURL'];
+			  $City = $row['City'];
+
+			  //If the cover pic does not exist, set it to the 
+		  }
+	  }else{
+		  //DNE Exist (Show page not found)
+		  header("Location: ./PageNotFound.html?breweryID=" . $_GET['id']);
 	  }
 
 	
@@ -95,9 +126,9 @@
 
 		<div id="profileContainer">
 			<!-- Three items will appear here... Pic, Name and Edit Button -->
-			<img class="profileImg" id="profileImg" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png" alt="JGoulet Rox" onclick="showSRC('editProfilePicture.html')">
-			<p class="profileName" onclick="showSRC('editBreweryName.html')">Indian Joe's Brewery<br></p>
-			<p class="breweryLocation">Vista, CA
+			<img class="profileImg" id="profileImg" src="<?php echo $ProfilePicURL; ?>" alt="<?php echo $BreweryName; ?>" onclick="showSRC('editProfilePicture.html')">
+			<p class="profileName" onclick="showSRC('editBreweryName.html')"><?php echo $BreweryName; ?><br></p>
+			<p class="breweryLocation"><?php echo $City;?>
 				<br></p>
 		</div>
 
@@ -272,7 +303,7 @@
 				</div>
 				<div class="table">
 					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
+						<a onclick="showSRC('BeerInfo.php')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="Red Ale Image">
 							</div>
@@ -282,7 +313,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
+						<a onclick="showSRC('BeerInfo.php')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Peach Ale Image">
 							</div>
@@ -293,7 +324,7 @@
 					</div>
 
 					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
+						<a onclick="showSRC('BeerInfo.php')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="Hazlenut Porter Image">
 							</div>
@@ -321,7 +352,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/slide51.jpg" onclick="showSRC('editCoverPicture.html')">
+			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="showSRC('editCoverPicture.html')">
 		</div>
 		<!-- News Feed -->
 		<!--<div class="newsFeedHeader breweryPage">

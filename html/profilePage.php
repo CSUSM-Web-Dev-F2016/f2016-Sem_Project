@@ -240,13 +240,13 @@ else{
 						
 						while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
 							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['BreweryID'] . "\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
 									echo "<div class=\"tableCell img\">";
 										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
 									echo "</div>";
 									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
 								echo "</button>";
-								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
+								echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
 							echo "</form>";
 						}
 						
@@ -265,19 +265,33 @@ else{
 					/** Does Not Work Yet **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-    						if(isset($_GET['brewery'])){
-       						
+    						if(isset($_POST['brewery'])){
+       						//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>"; 
+							  $_Session['breweryID'] = end(array_keys($_POST));
+
+							  //Navigate to the brewery page iwth the new id 
+							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+
     						}elseif(isset($_POST['name'])){
         							echo "<p style=\"color:white;\"> Opening name";
     						}else{
 							//Print all array elemetns
 							foreach($_POST as $key=>$value){
-							    	echo "<p style=\"color:white;\"><br>" . $key; //It works! 
+							    	//echo "<p style=\"color:white;\"><br>" . $key; //It works! 
 								//$val = $key;
+								//$_Session['breweryID'] = " . $key . ";
+
+								//Redirect in javascript
+								//echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $key . "\";</script>";
+								//break;
 							}
+
+
+						
 						}
 						//Load the brewery page 
-						header("Location:./breweryPage.php");
+						//header("Location:./breweryPage.php");
+
 					}
 
 				?>
