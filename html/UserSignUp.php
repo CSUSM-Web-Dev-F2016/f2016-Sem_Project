@@ -47,22 +47,22 @@
                     <div class="inner-sections">
                         First Name: <span style="color:red;">*</span>
                         <br>
-                        <input type="text" name="name" placeholder="" text=<?php echo $FName;?>>
+                        <input type="text" name="name" placeholder="" text="">
                     </div>
                     <div class="inner-sections">
                         Last Name:<span style="color:red;">*</span>
                         <br>
-                        <input type="text" name="LName" text=text=<?php echo $LName;?>>
+                        <input type="text" name="LName" text="">
                     </div>
                     <div class="inner-sections">
                         Email:<span style="color:red;">*</span>
                         <br>
-                        <input type="text" name="email" text=<?php echo $Email;?>>
+                        <input type="text" name="email" text="">
                     </div>
                     <div class="inner-sections">
                         State Abbreviation (e.g. CA):
                         <br>
-                        <input type="text" name="state" text=<?php echo $State;?>>
+                        <input type="text" name="state" text="">
                     </div>
                     <div class="inner-sections">
                         Password:<span style="color:red;">*</span>
@@ -72,7 +72,7 @@
                     <div class="inner-sections">
                         Birthday (yyyy-mm-dd):<span style="color:red;">*</span>
                         <br>
-                        <input type="text" name="birthday" text=<?php echo $birthday;?>>
+                        <input type="text" name="birthday" text="">
                     </div>
                     <div class="inner-sections">
                         Re-Enter Password:<span style="color:red;">*</span>
@@ -82,7 +82,7 @@
                     <div class="inner-sections">
                         Profile Picture URL:
                         <br>
-                        <input type="text" name="ProfilePicURL" text=<?php echo $ProfilePicURl;?>>
+                        <input type="text" name="ProfilePicURL" text="">
                     </div>
                 </div>
                 <button type="submit" onclick="">Sign-Up</button>
