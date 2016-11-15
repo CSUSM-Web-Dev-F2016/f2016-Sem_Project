@@ -64,6 +64,7 @@
 			$BreweryID = $row['BreweryID'];
 			$BeerType = $row['BeerType'];
 			$OnTap = $row['OnTap'];
+			$BeerDescription = $row['BeerDescription'];
 			break; //Since there is only one case.
 		}
 	}else{
@@ -176,7 +177,7 @@
 								<th>Beer Description:
 								</th>
 								<td>
-									<?php echo $FromTheBrewMaster ?>
+									<?php echo $BeerDescription ?>
 								</td>
 							</tr>
 							<tr>
@@ -193,6 +194,14 @@
 								</th>
 								<td>
 									<?php echo $Awards ?>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									From the Brewmaster:
+								</th>
+								<td>
+									<?php echo $FromTheBrewMaster ?>
 								</td>
 							</tr>
 							<tr>
