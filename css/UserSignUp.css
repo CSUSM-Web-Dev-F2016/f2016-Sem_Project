@@ -26,39 +26,19 @@ body {
     align-items: center;
     /*justify-content: center;*/
     flex-direction: row;
+    flex-flow: wrap;
     width: 75%;
+    height: 70%;
     right: 10%;
-    top: 25%;
+    top: 10%;
     position: absolute;
     background-color: rgba(255, 255, 255, .2);
     padding: 25px;
     border-radius: 15px;
 }
 
-.container {
-    width: 500px;
-    margin: auto;
-    margin-top: 45px;
-    margin-bottom: 45px;
-    border: 1px solid lightgray;
-    border-radius: 2px;
-    color: black;
-    font-weight: 500;
-    justify-content: center;
-    text-align: center;
-    background-color: #FFFFFF;
-    box-shadow: 0px 5px 5px lightgray;
-    overflow: hidden;
-}
-
-.container:hover {
-    box-shadow: 0px 5px 5px gray;
-}
-
-.sign-up-header {
-    font-size: 2em;
-    display: flex;
-    justify-content: center;
+#sign-up-header {
+    font-size: 1.5em;
 }
 
 .box-line {
@@ -67,23 +47,6 @@ body {
     background-color: black;
     margin: 12px;
     margin-top: 48px;
-}
-
-.sign-up-form {}
-
-.outer-section {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-.inner-sections {
-    margin: 0px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    padding-left: 5px;
-    padding-right: 5px;
-    text-align: left;
 }
 
 .grid {
