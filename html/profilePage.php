@@ -1,7 +1,5 @@
 <!DOCTYPE html>
-
 <html lang="en-us">
-
 <head>
 	<!-- Import CSS Files -->
 	<link rel="stylesheet" href="../css/header.css" type="text/css">
@@ -11,28 +9,35 @@
 	<link rel="stylesheet" href="../css/ProfileContainer.css" type="text/css">
 	<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
 	<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
-
 	<!-- Import JS Files -->
 	<script src="../js/contentSwitch.js"></script>
 	<script src="../js/calendarview.js"></script>
-
 	<!-- Analytics Script -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
   m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
   })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
   ga('create', 'UA-83948702-3', 'auto');
   ga('send', 'pageview');
+  <?php
+  	//Start the session 
+	  session_start();
 
+//Get the token to prove the user was logged in 
+	  if(strlen($_SESSION['loginToken']) == 0){
+	//r	edirect to the login page 
+	 header("Location: ../index.php");
+}
+else{
+	//e	cho "<p>You rock";
+}
+?>
 </script>
-
 	<!-- Header Bar -->
 	<div class="header">
 		<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
 	</div>
-
 	<!-- Navigation Bar -->
 	<nav>
 		<table class="menu" title="Menu">
@@ -40,10 +45,9 @@
 				<tr>
 					<!-- Main Profile Page -->
 					<th class="menuItem">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="showSRC('BrewerySignUp.html')" alt="home">
+						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="showSRC('BrewerySignUp.php')" alt="home">
 					</th>
 					<th>|</th>
-
 					<!-- Settings -->
 					<th class="menuItem">
 						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('settings.html')" alt="home">
@@ -52,31 +56,27 @@
 			</tbody>
 		</table>
 	</nav>
-
 	<!-- Meta data -->
 	<title>Profile</title>
-
 	<!-- For the background image -->
 	<div class="is_overlay">
 		<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
 	</div>
 </head>
-
 <?php
-	 //Create a basic connection 
+	 //Create a basic connection
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
-    //Check the connection
+//Check the connection
     if(mysqli_connect_errno()){
-        die("Connection Failed. ERR: " . mysqli_connect_error());
-    }
-    //echo "Connected Successfully";
-    //This code currently works :)
+	die("Connection Failed. ERR: " . mysqli_connect_error());
+}
+//echo "Connected Successfully";
+//This code currently works :)
 
-	//Get the user's information
-	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $_GET["user"] . "'";
+//Get the user's information
+	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $_SESSION["currentUser"] . "'";
 	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
-
 	//Check to see if exists (it should since we already logged in)
 	if($userInfoResults-> num_rows > 0){
 		while($row = mysqli_fetch_assoc($userInfoResults)){
@@ -89,108 +89,95 @@
 		//Error getting info
 	}
 ?>
-
 <body>
-
 	<!-- Profile Container -->
 	<div class="ProfileContainer">
 		<!-- Within the container, we have a rounded profile image -->
-		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage">
+		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage" onclick="showSRC('editProfilePicture.html')">
 		<br>
 		<hr>
 		<p class="profileName"><?php echo $FName . " " . $LName?></p>
 		<a class="editBtn" onclick="showSRC('editName.html')">Edit</a>
 	</div>
-
 	<!-- Left Section -->
 	<aside class="left">
-		<!-- Favorites Section -->
-		<div class="favoritesSection">
-			<div class="stdSection" id="favorites">
+		<div class="subsection">
+			<div class="stdSection" id="About">
 				<div class="stdSectionTitle">
-					Favorites
+				Info
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
+				<div class="smalltableCell">
+						<a onclick="showSRC('FollowingPage.html')">
 							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 1">
+								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
 							</div>
 							<div class="smalltableCell title">
-								Mikal Callahan
+								Follow
 							</div>
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
+						<a onclick="showSRC('message.html')">
+							<!-- message -->
 							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars3.githubusercontent.com/u/22226968?v=3&s=200" alt="Profile 2">
+								<img class="smalltableCell" src="../img/message.png?raw=true" alt="Message">
 							</div>
 							<div class="smalltableCell title">
-								Austin Miller
+								Message
 							</div>
 						</a>
 					</div>
+					</div>
+			</div>
+			<div class="stdSection" id="bestTastes">
+				<div class="stdSectionTitle">
+					Best Tastes
+				</div>
+				<div class="table">
 
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
-									alt="Profile 3">
-							</div>
-							<div class="smalltableCell title">
-								Myles Merrill
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Ballast Image">
-							</div>
-							<div class="smalltableCell title">
-								Ballast Point
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Green Flash Image">
-							</div>
-							<div class="smalltableCell title">
-								Green Flash
-							</div>
-						</a>
-					</div>
+					<!-- Get Favorited beers for this user -->
+					<?php
+						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $_SESSION['currentUser'] . "' AND b.BeerID=u.BeerID LIMIT 3";
+						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Acoustic Ales Image">
-							</div>
-							<div class="smalltableCell title">
-								Acoustic Ales
-							</div>
-						</a>
-					</div>
+						if($favoritedBeersResults-> num_rows > 0){
+							while($row = mysqli_fetch_assoc($favoritedBeersResults)){
+								//There are rows
+								$_Session['currentBeer'] = $row['BeerID'];
+								echo '<div class="smalltableCell">';
+									echo "<a onclick=\"showBeerView(" . $row['BeerID'] . ")\">";
+										echo '<div class="tableCell img">';
+											echo	"<img class=\"smalltableCell\" src=\"" .  $row['PictureURL'] . "\"alt=\"" . $row['BeerName'] . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\">" . $row['BeerName'] . "</div>";
+									echo "</a>";
+								echo "</div>";
+							}
+						}else{
+							//No rows yet; inform user;
+							echo '<div class="smalltableCell">';
+									echo "<a onclick=\"showBeerView(" . "1" . ")\">";
+										echo '<div class="tableCell img">';
+											echo	"<img class=\"smalltableCell\" src=\"" .  "http://beerhopper.me/img/x.png" . "\"alt=\"" . "" . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\">" . "No Beers Yet" . "</div>";
+									echo "</a>";
+								echo "</div>";
+						}
+					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a href="#" onclick="showSRC('BeerInfo.php');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
-		</div>
 		<div class="stdSection" id="eventCalendar">
 			<div class="stdSectionTitle">
 				Calendar
 			</div>
-			<div>
-			</div>
+		</div>
 		</div>
 	</aside>
-
-
-
 	<!-- Right Section -->
 	<aside class="right">
 		<div class="subsection">
@@ -199,133 +186,122 @@
 					Following Me
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 4">
-							</div>
-							<div class="smalltableCell title">
-								Mikal Callahan
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars3.githubusercontent.com/u/22226968?v=3&s=200" alt="Profile 5">
-							</div>
-							<div class="smalltableCell title">
-								Austin Miller
-							</div>
-						</a>
-					</div>
+					<!-- User 'Following me' -->
+					<?php
+					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name' FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $_SESSION['currentUser'] . "' LIMIT 3;";
+					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
 
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
-									alt="Profile 6">
-							</div>
-							<div class="smalltableCell title">
-								Myles Merrill
-							</div>
-						</a>
-					</div>
+					if($usersFollowingMeResult-> num_rows > 0 ){
+						//If there are some rows, loop through them
+						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
+								echo "</button>";
+							echo "</form>";
+						}
+					}else{
+						//Just print a text saying 'no items found';
+						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
+								echo "</button>";
+							echo "</form>";
+					}
 
+					?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
 				</div>
 			</div>
-
 			<div class="stdSection" id="following">
 				<div class="stdSectionTitle">
 					Following
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Ballast 2">
-							</div>
-							<div class="smalltableCell title">
-								Ballast Point
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Profile 7">
-							</div>
-							<div class="smalltableCell title">
-								Mikal Callahan
-							</div>
-						</a>
-					</div>
 
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Profile 9">
-							</div>
-							<div class="smalltableCell title">
-								Acoustic Ales
-							</div>
-						</a>
-					</div>
+				<!-- Using PHP, build the table -->
+				<?php
+					//Session is already started
+					//Get the breweryies the user is following, max 3
+					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $_SESSION['currentUser'] . "' GROUP BY u.BreweryID LIMIT 3";
+					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
+
+					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user. 
+					if($breweriesFollowingResults-> num_rows > 0){
+						//Use a while loop to build the form
+						
+						while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
+								echo "</button>";
+								echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
+							echo "</form>";
+						}
+						
+					}else{
+						//Build custom when no rows are found
+						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
+								echo "</button>";
+								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
+							echo "</form>";
+					}
+					/** Does Not Work Yet **/
+					if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    						if(isset($_POST['brewery'])){
+       						//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>"; 
+							  $_Session['breweryID'] = end(array_keys($_POST));
+
+							  //Navigate to the brewery page iwth the new id 
+							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+
+    						}elseif(isset($_POST['name'])){
+        							echo "<p style=\"color:white;\"> Opening name";
+    						}else{
+							//Print all array elemetns
+							foreach($_POST as $key=>$value){
+							    	//echo "<p style=\"color:white;\"><br>" . $key; //It works! 
+								//$val = $key;
+								//$_Session['breweryID'] = " . $key . ";
+
+								//Redirect in javascript
+								//echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $key . "\";</script>";
+								//break;
+							}
+
+
+						
+						}
+						//Load the brewery page 
+						//header("Location:./breweryPage.php");
+
+					}
+
+				?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>
 			</div>
-
-			<div class="stdSection" id="bestTastes">
-				<div class="stdSectionTitle">
-					Best Tastes
-				</div>
-				<div class="table">
-					<div class="smalltableCell">
-						<a href="#" onclick="showSRC('BeerInfo.html');return false;">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Profile 10">
-							</div>
-							<div class="smalltableCell title">
-								Peach Ale
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="profile 11">
-							</div>
-							<div class="smalltableCell title">
-								Porter
-							</div>
-						</a>
-					</div>
-
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="profile 12">
-							</div>
-							<div class="smalltableCell title">
-								Amber Ale
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="stdSectionFooter">
-					<a href="#" onclick="showSRC('BeerInfo.html');return false;" class="moreClicked">more</a>
-				</div>
-			</div>
-
-
 		</div>
 	</aside>
-
 	<section>
 		<div class="newsFeedHeader">
 			Feed:
@@ -340,26 +316,14 @@
 						<br/>
 					</form>
 				</div>
-
 				<button type="submit" onclick="">Post</button>
 			</div>
-
-		</div>
-		<!-- Black Field to Post -->
-
-		<div class="newsFeed" id="MainArea">
+			<div class="newsFeed" id="MainArea">
 			<!-- For example purposes, add the add brewery panel -->
 			<iframe id="contentFrame" src="../html/NewsFeed.html" title="subcontent" style="min-width:480px;" onload="resizeIframe(this);"></iframe>
-
-			<!--
-			<object>
-				<embed id="contentFrame" src=http://cis444.cs.csusm.edu/goule001/Group_Project/BrewerySignUp.html width="100%" height="850px">
-				</embed>
-			</object>
-			-->
 		</div>
+		</div>
+		<!-- Black Field to Post -->
 	</section>
-
 </body>
-
 </html>

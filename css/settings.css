@@ -2,167 +2,207 @@
   * css for settings page
   */
 
+
 /* import noto sans font */
+
 @import url("http://fonts.googleapis.com/earlyaccess/notosanskannada.css");
 
 /* general overview */
-html, body, head{
-  /*margin: 0px;*/
-  display: flex;
-  padding: 0px;
-  flex-direction: column;
-  font-family: 'Noto Sans Kannada', sans-serif;
-  margin-bottom: 0px;
+
+html,
+body,
+head {
+    /*margin: 0px;*/
+    display: flex;
+    padding: 0px;
+    flex-direction: column;
+    font-family: 'Noto Sans Kannada', sans-serif;
+    margin-bottom: 0px;
 }
 
-h1{
-  padding: 0px;
-  margin: 0px;
-
+h1 {
+    padding: 0px;
+    margin: 0px;
 }
 
-h3, h2{
-	text-shadow:
-  -1px -1px 0 #fff,
-   1px -1px 0 #fff,
-   -1px 1px 0 #fff,
-    1px 1px 0 #fff;
+h3,
+h2 {
+    color: white;
 }
+
 
 /* sets color of items */
-a{
-	background-color: inherit;
-   color: white;
-   text-decoration: none;
+
+a {
+    background-color: inherit;
+    color: white;
+    text-decoration: none;
 }
 
-.accountsettings{
+.accountsettings {}
 
-}
 
 /* center "account settings" */
-#accountsettingstitle{
-	text-align: center;
+
+#accountsettingstitle {
+    text-align: center;
 }
+
 
 /* general settings magic */
-.generalsettings{
-	background-color: inherit;
-	color: white;
-	display: table;
-	margin: 0 auto;
-	vertical-align: middle;
-	width: 95%;
-	border: 2px solid lightgray;
-	border-radius: 5px;
-	padding-left: 2%;
-	padding-right: 2%;
-	padding-top: 1%;
+
+.generalsettings {
+    background-color: white;
+    color: black;
+    display: table;
+    margin: 0 auto;
+    vertical-align: middle;
+    width: 95%;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-top: 1%;
+    padding-bottom: 50px;
 }
 
-div{
-/*	background-color: white;*/
+div {
+    /*	background-color: white;*/
 }
 
 .generalsettings:hover {
     box-shadow: 0px 5px 5px gray;
 }
 
+
 /* manage brewery magic */
-.mybreweries{
-	background-color: inherit;
-	color: white;
-	display: table;
-	margin: 0 auto;
-	vertical-align: middle;
-	width: 95%;
-	border: 2px solid lightgray;
-	border-radius: 5px;
-	padding: 2%;
-	text-align: center;
+
+.mybreweries {
+    background-color: white;
+    color: black;
+    display: table;
+    margin: 0 auto;
+    vertical-align: middle;
+    width: 95%;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding: 2%;
+    text-align: center;
+    padding-bottom: 50px;
 }
 
 .mybreweries:hover {
     box-shadow: 0px 5px 5px gray;
 }
 
+
 /* privacy settings magic */
-.privacysettings{
-	background-color: inherit;
-	color: white;
-	display: table;
-	/*margin: 0 auto;*/
-	vertical-align: middle;
-	width: 95%;
-	border: 2px solid lightgray;
-	border-radius: 5px;
-	padding: 2%;
-	text-align: center;
-  margin-bottom: 50px;
+
+.privacysettings {
+    background-color: white;
+    color: black;
+    display: table;
+    /*margin: 0 auto;*/
+    vertical-align: middle;
+    width: 95%;
+    border: 2px solid lightgray;
+    border-radius: 5px;
+    padding: 2%;
+    text-align: center;
+    padding-bottom: 50px;
 }
 
 .privacysettings:hover {
     box-shadow: 0px 5px 5px gray;
 }
 
-/* alignment of text fields */
-input.leftAlign{
-  text-align: right;
+div.generalsettings button {
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 2px solid lightgray;
 }
 
-div.generalsettings button{
-	border-radius: 10px;
-	color: white;
-	text-shadow: -2px 2px #333333;
-	font-size: 16px;
-	background-color: #191d24;
-	border: 2px solid lightgray;
+div.generalsettings button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
 }
 
-div.generalsettings button:hover{
-	color: white;
-	background-color: rgba(26, 29, 36, .75);
-	text-shadow: -2px 2px #000000;
+div.mybreweries button {
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 2px solid lightgray;
 }
 
-div.mybreweries button{
-	border-radius: 10px;
-	color: white;
-	text-shadow: -2px 2px #333333;
-	font-size: 16px;
-	background-color: #191d24;
-	border: 2px solid lightgray;
+div.mybreweries button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
 }
 
-div.mybreweries button:hover{
-	color: white;
-	background-color: rgba(26, 29, 36, .75);
-	text-shadow: -2px 2px #000000;
+div.privacysettings button {
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 2px solid lightgray;
 }
 
-div.privacysettings button{
-	border-radius: 10px;
-	color: white;
-	text-shadow: -2px 2px #333333;
-	font-size: 16px;
-	background-color: #191d24;
-	border: 2px solid lightgray;
+div.privacysettings button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
 }
 
-div.privacysettings button:hover{
-	color: white;
-	background-color: rgba(26, 29, 36, .75);
-	text-shadow: -2px 2px #000000;
-}
 
 /* input box layout */
-input[type=text], input[type=password], input[type=email] {
-	 width: 100%;
-	 padding: 7px 10px;
-	 margin: 7px 0px;
-	 background-color: #f1f1f1;
-	 color: inherit;
-	 text-align: left;
-	 box-sizing: border-box;
-	 display:table-cell;
+
+input[type=text],
+input[type=password],
+input[type=email] {
+    width: 100%;
+    padding: 7px 10px;
+    margin: 7px 0px;
+    background-color: #f1f1f1;
+    color: inherit;
+    text-align: left;
+    box-sizing: border-box;
+    display: table-cell;
+}
+
+button {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 1px solid gray;
+    justify-content: center;
+    margin: auto;
+    margin: auto;
+    text-align: center;
+    margin-bottom: 25px;
+    /* Postion Stuff */
+    position: absolute;
+    width: 50%;
+    left: 25%;
+}
+
+button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
 }

@@ -9,7 +9,7 @@ h1{
 /** For an empty form. This will just have a header, a line and a content field */
 .emptyForm{
     height: auto;
-     width: 99%;
+     width: 97.5%;
      text-align: center;
      border-radius: 2px;
      position: absolute;
