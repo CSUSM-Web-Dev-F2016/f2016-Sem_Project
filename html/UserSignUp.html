@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <title>Sign Up Page</title>
+        <meta charset="utf-8"/>
+        <link rel="stylesheet" type="text/css" href="../css/UserSignUp.css">
+        <link rel="stylesheet" type="text/css" href="../css/backgroundVideo.css">
+
+        <!-- Analytics Script -->
+        <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                },
+                i[r].l = 1 * new Date();
+                a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-83948702-3', 'auto');
+            ga('send', 'pageview');
+        </script>
+
+        <!-- For the background image -->
+        <div class="is_overlay">
+            <img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
+        </div>
+    </head>
+    <body>
+
+        <div class="centerDiv">
+            <div class="grid">
+                <form id="signUpForm" action="../html">
+                    <label for="First_Name" id="fName" class="hidden">First Name:</label>
+                    <input type="text" name="firstName" id="firstName" placeholder="First Name"/>
+
+                    <label for="Last_Name" id="lName" class="hidden">Last Name:</label>
+                    <input type="text" name="lastName" id="LastName" placeholder="Last Name"/>
+
+                    <label for="email" id="email" class="hidden">Email</label>
+                    <input type="text" name="email" id="email" placeholder="Email"/>
+
+                    <label for="password" id="password" class="hidden">Password:</label>
+                    <input type="text" name="password" id="password" placeholder="Password"/>
+
+                    <label for="re_enter_password" id="re_enter_password" class="hidden">Last Name:</label>
+                    <input type="text" name="re_enter_password" id="re_enter_password" placeholder="Re-Enter Password"/>
+
+                </form>
+            </div>
+        </div>
+
+    </body>
+</html>
