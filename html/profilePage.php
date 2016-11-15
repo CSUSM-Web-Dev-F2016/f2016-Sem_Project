@@ -45,7 +45,7 @@ else{
 				<tr>
 					<!-- Main Profile Page -->
 					<th class="menuItem">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="showSRC('BrewerySignUp.php')" alt="home">
+						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="showSRC('NewsFeed.php')" alt="home">
 					</th>
 					<th>|</th>
 					<!-- Settings -->
