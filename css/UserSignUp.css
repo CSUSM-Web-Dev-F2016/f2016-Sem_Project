@@ -4,6 +4,10 @@ html, body, head {
     font-family: 'Noto Sans Kannada', sans-serif;
 }
 
+body {
+    background-color: black;
+}
+
 .hidden {
     visibility: hidden;
 }
