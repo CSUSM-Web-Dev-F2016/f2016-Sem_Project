@@ -32,7 +32,7 @@
         echo "No results were found";
     }*/
 
-    //Close the connection (For Now)
-    $connection->close();
+    //Return connection variable
+    return $connection;
 
 ?>
