@@ -60,9 +60,9 @@
                         <input type="text" name="email" text="">
                     </div>
                     <div class="inner-sections">
-                        State Abbreviation (e.g. CA):
+                        Alias:
                         <br>
-                        <input type="text" name="state" text="">
+                        <input type="text" name="alias" text="">
                     </div>
                     <div class="inner-sections">
                         Password:<span style="color:red;">*</span>
