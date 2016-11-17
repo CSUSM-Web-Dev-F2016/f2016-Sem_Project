@@ -4,7 +4,7 @@
         <title>Sign Up Page</title>
         <meta charset="utf-8"/>
         <link rel="stylesheet" type="text/css" href="../css/UserSignUp.css">
-
+        <link rel="stylesheet" type="text/css" href="../css/backgroundVideo.css">
 
 	<!-- Analytics Script -->
 	<script>
@@ -30,63 +30,38 @@
     //This code currently works :)
 
 ?>
+<div class="is_overlay">
+    <img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
+</div>
 
     </head>
     <body>
 
-        <div class="container">
-            <div class="sign-up-header">
-                <div class="box-line"></div>
-                <p>
-                    Sign Up!
-                </p>
-                <div class="box-line"></div>
-            </div>
-            <form class="sign-up-form" action="UserSignUp.php" method="POST">
-                <div class="outer-section">
-                    <div class="inner-sections">
-                        First Name: <span style="color:red;">*</span>
-                        <br>
-                        <input type="text" name="name" placeholder="" text="">
-                    </div>
-                    <div class="inner-sections">
-                        Last Name:<span style="color:red;">*</span>
-                        <br>
-                        <input type="text" name="LName" text="">
-                    </div>
-                    <div class="inner-sections">
-                        Email:<span style="color:red;">*</span>
-                        <br>
-                        <input type="text" name="email" text="">
-                    </div>
-                    <div class="inner-sections">
-                        Alias:
-                        <br>
-                        <input type="text" name="alias" text="">
-                    </div>
-                    <div class="inner-sections">
-                        Password:<span style="color:red;">*</span>
-                        <br>
-                        <input type="password" name="password">
-                    </div>
-                    <div class="inner-sections">
-                        Birthday (yyyy-mm-dd):<span style="color:red;">*</span>
-                        <br>
-                        <input type="text" name="birthday" text="">
-                    </div>
-                    <div class="inner-sections">
-                        Re-Enter Password:<span style="color:red;">*</span>
-                        <br>
-                        <input type="password" name="re-enter-password" >
-                    </div>
-                    <div class="inner-sections">
-                        Profile Picture URL:
-                        <br>
-                        <input type="text" name="ProfilePicURL" text="">
-                    </div>
-                </div>
-                <button type="submit" onclick="">Sign-Up</button>
-            </form>
+      <div class="centerDiv">
+          <div class="grid">
+              <p class="centerText" id="sign-up-header">Sign Up</p>
+              <form id="signUpForm" action="../html">
+                  <label for="First_Name" id="fName" class="hidden">First Name:</label>
+                  <input type="text" name="firstName" id="firstName" placeholder="First Name"/>
+
+                  <label for="Last_Name" id="lName" class="hidden">Last Name:</label>
+                  <input type="text" name="lastName" id="LastName" placeholder="Last Name"/>
+
+                  <label for="email" id="email" class="hidden">Email</label>
+                  <input type="text" name="email" id="email" placeholder="Email"/>
+
+                  <label for="password" id="pass" class="hidden">Password:</label>
+                  <input type="text" name="password" id="password" placeholder="Password"/>
+
+                  <label for="re_enter_password" id="re_enter_password" class="hidden">Re-Enter Password:</label>
+                  <input type="text" name="re_enter_password" id="re_enter_password" placeholder="Re-Enter Password"/>
+
+                  <label for="submitButton" id="sButton" class="hidden">Submit:</label>
+                  <input type="submit" id="subButton" value="Submit"/>
+
+              </form>
+          </div>
+
 
             <?php
                 //Define variables and set to empty values
@@ -110,7 +85,7 @@
                 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                     $errorString = "";
-                    //Verify that none are empty. If they are, echo it on the screen using a massive string 
+                    //Verify that none are empty. If they are, echo it on the screen using a massive string
                     //Check the first name
                     if(empty($_POST["name"])){
                         $errorString = $errorString . "First Name is required.<br>";
@@ -147,7 +122,7 @@
                     }else{
                         //$State = test_input($_POST["state"]);
                     }
-                    
+
                     //Verify the password. They must also be equal
                     if(empty($_POST["password"])){
                         $errorString = $errorString . "Password is required.<br>";
@@ -162,8 +137,8 @@
                     if($Password != $Password2){
                         $errorString = $errorString . "Passwords do not match<br>";
                     }
-                    
-                    //Verify the zip code 
+
+                    //Verify the zip code
                     if(empty($_POST["zip-code"])){
                         //Zip code is not gathered
                     }else{
@@ -180,17 +155,17 @@
 
                     //Display the error string
                     echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">" . $errorString . "</p>";
-                
+
                     //If the length of the error string is 0, create user.
                     if(strlen($errorString) == 0){
-                        //Create the user in an SQL Command, tehn, log them in. 
+                        //Create the user in an SQL Command, tehn, log them in.
                         $createUserQuery = "INSERT INTO Users (Email, Password, FName, LName, DOB, ProfilePicURL) VALUES ('" . $Email . "', '" . $Password . "', '" . $FName . "', '" . $LName . "', '" . $birthday . "', '" . $ProfilePicURl . "')";
 
                         if(mysqli_query($connection, $createUserQuery)){
-                        //The item was successfull created, now change the login page. 
+                        //The item was successfull created, now change the login page.
                             echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Successfully inserted data</p>";
 
-                            //Now that user is created, only take them further if they are over 21. 
+                            //Now that user is created, only take them further if they are over 21.
                             //Create a query to see if there are in the view
                             $ageQuery = "SELECT Current_Age FROM valid_Users WHERE Email='" . $Email . "'";
 
