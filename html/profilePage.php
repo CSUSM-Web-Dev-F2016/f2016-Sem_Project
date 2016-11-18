@@ -50,7 +50,7 @@ else{
 					<th>|</th>
 					<!-- Settings -->
 					<th class="menuItem">
-						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('settings.html')" alt="home">
+						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
 					</th>
 				</tr>
 			</tbody>
@@ -74,6 +74,8 @@ else{
 //echo "Connected Successfully";
 //This code currently works :)
 
+$FName = $LName = $PicURL = $CurrentUser = "";
+
 //Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $_SESSION["currentUser"] . "'";
 	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
@@ -85,9 +87,25 @@ else{
 			$PicURL = $row["ProfilePicURL"];
 			break; //Only want the first occurance
 		}
+
+		$CurrentUser = $_SESSION["currentUser"];
+
 	}else{
 		//Error getting info
+		$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $_GET['user'] . "'";
+		$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
+
+		if($userInfoResults-> num_rows > 0){
+			while($row = mysqli_fetch_assoc($userInfoResults)){
+				$FName = $row["FName"];
+				$LName = $row["LName"];
+				$PicURL = $row["ProfilePicURL"];
+				break; //Only want the first occurance
+			}
+			$CurrentUser = $_GET['user'];
+		}
 	}
+	echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $CurrentUser . "\");</script>"; 
 ?>
 <body>
 	<!-- Profile Container -->
@@ -138,7 +156,7 @@ else{
 
 					<!-- Get Favorited beers for this user -->
 					<?php
-						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $_SESSION['currentUser'] . "' AND b.BeerID=u.BeerID LIMIT 3";
+						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $CurrentUser . "' AND b.BeerID=u.BeerID LIMIT 3";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
 						if($favoritedBeersResults-> num_rows > 0){
@@ -188,14 +206,14 @@ else{
 				<div class="table">
 					<!-- User 'Following me' -->
 					<?php
-					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name' FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $_SESSION['currentUser'] . "' LIMIT 3;";
+					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name' FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $CurrentUser . "' LIMIT 3;";
 					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
 
 					if($usersFollowingMeResult-> num_rows > 0 ){
 						//If there are some rows, loop through them
 						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
 							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\" value=\"\">";
 									echo "<div class=\"tableCell img\">";
 										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
 									echo "</div>";
@@ -205,8 +223,8 @@ else{
 						}
 					}else{
 						//Just print a text saying 'no items found';
-						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+						echo "<form action=\"\" class=\"stdForm\" name=\"user\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
 									echo "<div class=\"tableCell img\">";
 										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
 									echo "</div>";
@@ -231,7 +249,7 @@ else{
 				<?php
 					//Session is already started
 					//Get the breweryies the user is following, max 3
-					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $_SESSION['currentUser'] . "' GROUP BY u.BreweryID LIMIT 3";
+					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID LIMIT 3";
 					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
 					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user. 
@@ -266,29 +284,21 @@ else{
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     						if(isset($_POST['brewery'])){
-       						//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>"; 
-							  $_Session['breweryID'] = end(array_keys($_POST));
+       							echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>"; 
+							  $_SESSION['breweryID'] = end(array_keys($_POST));
 
 							  //Navigate to the brewery page iwth the new id 
 							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
-    						}elseif(isset($_POST['name'])){
-        							echo "<p style=\"color:white;\"> Opening name";
-    						}else{
-							//Print all array elemetns
-							foreach($_POST as $key=>$value){
-							    	//echo "<p style=\"color:white;\"><br>" . $key; //It works! 
-								//$val = $key;
-								//$_Session['breweryID'] = " . $key . ";
+    						}
+							else{
+       							//echo "<script type=\"text/javascript\">window.alert(\"User Found!" . end(array_keys($_POST)) . "\");</script>"; 
+        						//echo "<p style=\"color:white;\"> Opening name";
+								$_SESSION['currentUser'] = end(array_keys($_POST));
 
-								//Redirect in javascript
-								//echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $key . "\";</script>";
-								//break;
-							}
-
-
-						
-						}
+							  //Navigate to the brewery page iwth the new id 
+							  echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php?user=" . end(array_keys($_POST)) . "\";</script>";
+    						}
 						//Load the brewery page 
 						//header("Location:./breweryPage.php");
 
