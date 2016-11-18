@@ -74,7 +74,7 @@ input[type=text] {
     border-radius: 4px;
     font-size: 16px;
     padding: .75rem;
-    margin-top: .25rem;
+    margin-top: 0px;
     width: 100%;
 }
 
@@ -84,7 +84,7 @@ input[type=password] {
     border-radius: 4px;
     font-size: 16px;
     padding: .75rem;
-    margin-top: .25rem;
+    margin-top: 0px;
     width: 100%;
 }
 
@@ -99,8 +99,8 @@ input[type=submit] {
     color: white;
     font-size: 16px;
     border-radius: .25rem;
-    padding: .5rem;
-    margin-top: .5rem;
+    padding: .25rem;
+    margin-top: .25rem;
     width: 100%;
 }
 

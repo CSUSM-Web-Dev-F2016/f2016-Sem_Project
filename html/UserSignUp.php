@@ -68,6 +68,11 @@
                   <input type="submit" id="subButton" value="Submit"/>
 
               </form>
+
+              <p class="centerText">
+				Already Have an Account?
+				<a href="../">Sign In</a>
+			</p>
           </div>
         </div>
 
