@@ -8,9 +8,9 @@ html, body, head {
 }
 
 .container {
-  width: 600px;
+  width: 100%;
   margin: auto;
-  margin-top: 45px;
+  margin-top: 0px;
   border: 1px solid lightgray;
   border-radius: 2px;
   color: black;

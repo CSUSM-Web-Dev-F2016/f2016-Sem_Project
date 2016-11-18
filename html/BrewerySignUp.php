@@ -25,11 +25,10 @@
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
     //Check the connection
-    if(mysqli_connect_errno()){
-        die("Connection Failed. ERR: " . mysqli_connect_error());
+    if(!$connection){
+        die("Connection Failed. Error: " . mysqli_connect_error());
     }
-    //echo "Connected Successfully";
-    //This code currently works :)
+
 ?>
 <body>
 
@@ -42,7 +41,7 @@
 				</p>
 				<div class="box-line"></div>
 			</div>
-			<form class="sign-up-form">
+			<form class="sign-up-form" action="BreweySignUp.php" method="POST">
 				<div class="outer-section">
 					<div class="inner-sections">
 						Brewery Name:
@@ -91,8 +90,8 @@
 			<!-- PHP for button action to create account -->
 			<?php
 
-			function createUserAccount(){
-				//Create a user account if all forms are correctly filled out
+			function createBrewery(){
+				//Create a Brewery if all forms are correctly filled out
 
 			}
 			?>
