@@ -38,32 +38,40 @@
     <body>
 
       <div class="centerDiv">
+      <!-- Show banner -->
+      <div class="banner">
+			<img src="../img/Beer_Hopper_Banner.png" alt="Banner">
+		</div>
+
           <div class="grid">
               <p class="centerText" id="sign-up-header">Sign Up</p>
-              <form id="signUpForm" action="../html">
+              <form id="signUpForm" action="UserSignUp.php" method="POST">
                   <label for="First_Name" id="fName" class="hidden">First Name:</label>
-                  <input type="text" name="firstName" id="firstName" placeholder="First Name"/>
+                  <input type="text" name="name" id="firstName" placeholder="First Name"/>
 
                   <label for="Last_Name" id="lName" class="hidden">Last Name:</label>
-                  <input type="text" name="lastName" id="LastName" placeholder="Last Name"/>
+                  <input type="text" name="LName" id="LastName" placeholder="Last Name"/>
 
                   <label for="email" id="email" class="hidden">Email</label>
                   <input type="text" name="email" id="email" placeholder="Email"/>
 
-                  <label for="password" id="pass" class="hidden">Password:</label>
-                  <input type="text" name="password" id="password" placeholder="Password"/>
+                  <label for="birthday" id="birthdayLabel" class="hidden">Birthday</label>
+                  <input type="text" id="birthday" name="birthday" placeholder="DOB: yyyy-mm-dd"/>
 
-                  <label for="re_enter_password" id="re_enter_password" class="hidden">Re-Enter Password:</label>
-                  <input type="text" name="re_enter_password" id="re_enter_password" placeholder="Re-Enter Password"/>
+                  <label for="password" id="pass" class="hidden">Password:</label>
+                  <input type="password" name="password" id="password" placeholder="•••"/>
+
+                  <label for="re-enter-password" id="re-enter-password" class="hidden">Re-Enter Password:</label>
+                  <input type="password" name="re-enter-password" id="re-enter-password" placeholder="•••"/>
 
                   <label for="submitButton" id="sButton" class="hidden">Submit:</label>
                   <input type="submit" id="subButton" value="Submit"/>
 
               </form>
           </div>
+        </div>
 
-
-            <?php
+        <?php
                 //Define variables and set to empty values
                 $FName = $LName = $birthday = $Email = $State = $Password = $Password2 = $ZipCode = $ProfilePicURl = "";
 
@@ -115,14 +123,6 @@
                         $Email = test_input($_POST["email"]);
                     }
 
-                    //Check the state (only two chars allowed)
-                    if(empty($_POST["state"])){
-                        //State is not required
-                        //$errorString = $errorString . "State is required to find breweries near you.<br>";
-                    }else{
-                        //$State = test_input($_POST["state"]);
-                    }
-
                     //Verify the password. They must also be equal
                     if(empty($_POST["password"])){
                         $errorString = $errorString . "Password is required.<br>";
@@ -138,17 +138,10 @@
                         $errorString = $errorString . "Passwords do not match<br>";
                     }
 
-                    //Verify the zip code
-                    if(empty($_POST["zip-code"])){
-                        //Zip code is not gathered
-                    }else{
-                        //$ZipCode = test_input($_POST["zip-code"]);
-                    }
-
                     //Get the profile pic url (optional)
                     if(empty($_POST["ProfilePicURL"])){
                         //$errorString = $errorString . "State is required to find breweries near you.<br>";
-                        $ProfilePicURl = "https://pbs.twimg.com/profile_images/1665394718/image.jpg";
+                        $ProfilePicURl = "https://bucketlist.org/static/images/generic-profile-pic.png";
                     }else{
                         $ProfilePicURl = test_input($_POST["ProfilePicURL"]);
                     }
@@ -190,7 +183,6 @@
 
 
             ?>
-        </div>
 
     </body>
 </html>
