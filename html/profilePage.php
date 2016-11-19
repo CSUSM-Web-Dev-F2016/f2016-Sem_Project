@@ -45,7 +45,7 @@ else{
 				<tr>
 					<!-- Main Profile Page -->
 					<th class="menuItem">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="showSRC('NewsFeed.html')" alt="home">
+						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
 					</th>
 					<th>|</th>
 					<!-- Settings -->
@@ -77,12 +77,12 @@ else{
 $FName = $LName = $PicURL = $CurrentUser = "";
 
 //Get the curent var from the URL
-if(isset($_GET['user'])){
-	$CurrentUser = $_GET['user'];
-}else{
+/*if(isset($_POST['user'])){
+	$CurrentUser = $_POST['user'];
+}else{*/
 	//Use already provided var 
 	$CurrentUser = $_SESSION['currentUser'];
-}
+//}
 
 //Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $CurrentUser . "'";
@@ -100,7 +100,7 @@ if(isset($_GET['user'])){
 	}else{
 		//err
 	}
-	echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $CurrentUser . " FNAME: " . $FName . " LNAME: " . $LName . "\");</script>"; 
+	//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $CurrentUser . " FNAME: " . $FName . " LNAME: " . $LName . "\");</script>"; 
 ?>
 <body>
 	<!-- Profile Container -->
@@ -207,14 +207,19 @@ if(isset($_GET['user'])){
 					if($usersFollowingMeResult-> num_rows > 0 ){
 						//If there are some rows, loop through them
 						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\" onsubmit=\"window.location.href=\"profilePage.php\";\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\" value=\"\">";
+							//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>"; 
+
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
 									echo "<div class=\"tableCell img\">";
 										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
 									echo "</div>";
 									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
 								echo "</button>";
+								echo "<input type=\"hidden\" name=\"" . strtr($row['UserEmail'], array('.' => '#-#')) . "\" value=\"\">";
 							echo "</form>";
+
+							//echo "<p style=\"color:white\">" . $row['UserEmail'];
 						}
 					}else{
 						//Just print a text saying 'no items found';
@@ -285,19 +290,14 @@ if(isset($_GET['user'])){
 							  //Navigate to the brewery page iwth the new id 
 							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
-    						}
-							else{
-       							//echo "<script type=\"text/javascript\">window.alert(\"User Found!" . end(array_keys($_POST)) . "\");</script>"; 
-        						//echo "<p style=\"color:white;\"> Opening name";
-								//$_SESSION['currentUser'] = end(array_keys($_POST));
+    						}else {
+							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 
-							  //Navigate to the brewery page iwth the new id 
-							  echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php?user=\"" . end(array_keys($_POST)) . "\";</script>";
-							 
-    						}
-						//Load the brewery page 
-						//header("Location:./breweryPage.php");
+							    //echo "<p style=\"color:white;\">" . end(array_keys($_POST));
 
+							    //echo "<script type=\"text/javascript\"> window.alert(\"Found a User: " . print_f(array_keys($_POST)) . "\");</script>";
+							    echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+						    }
 					}
 
 				?>

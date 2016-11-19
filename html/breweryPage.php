@@ -107,7 +107,7 @@
 				<tr>
 					<!-- Main Profile Page -->
 					<th class="menuItem">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="goHomeAnd('BrewerySignUp.html')"
+						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'"
 							alt="home">
 					</th>
 					<th>|</th>
@@ -211,38 +211,41 @@
 					Followers
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/14881167?v=3&s=466" alt="Mikal Image">
-							</div>
-							<div class="smalltableCell title">
-								Mikal Callahan
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Justin Image">
-							</div>
-							<div class="smalltableCell title">
-								Justin Goulet
-							</div>
-						</a>
-					</div>
+					<!-- User Following Brewery -->
+					<?php
+						$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 3";
+						$resultSet = mysqli_query($connection, $query);
 
-					<div class="smalltableCell">
-						<a href="../html/profilePage.php">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAASzAAAAJDY4NTJhYjhiLWUzOGQtNDVmZi1hMjFkLTc4MGJjMTUzNjFkYw.jpg"
-									alt="Myles Image">
-							</div>
-							<div class="smalltableCell title">
-								Myles Merrill
-							</div>
-						</a>
-					</div>
+						//If the number of rows is more than 0, build the table, 
+						if($resultSet-> num_rows > 0){
+							//Build the cell for each case 
+							while($row = mysqli_fetch_assoc($resultSet)){
+								echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+									echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"user\">";
+										echo "<div class=\"tableCell img\">";
+											echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
+									echo "</button>";
+									echo "<input type=\"hidden\" name=\"" . $row['Email'] . "\" value=\"\">";
+								echo "</form>";
+							}
+						}
+
+						//else, build an empty one. 
+						else{
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Followers Yet!" . "</div>";
+								echo "</button>";
+								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
+							echo "</form>";
+						}
+					
+					?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
@@ -259,37 +262,41 @@
 					Following
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Ballast Image">
-							</div>
-							<div class="smalltableCell title">
-								Ballast Point
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Green Flash Image">
-							</div>
-							<div class="smalltableCell title">
-								Green Flash
-							</div>
-						</a>
-					</div>
+					<?php
+						//Build the table
+						$GetWhoBreweryIsFollowing = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . " LIMIT 3";
+						$GetWhoBreweryIsFollowingResults = mysqli_query($connection, $GetWhoBreweryIsFollowing);
 
-					<div class="smalltableCell">
-						<a href="../html/breweryPage.html">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Acoustic Ales Image">
-							</div>
-							<div class="smalltableCell title">
-								Acoustic Ales
-							</div>
-						</a>
-					</div>
+						/*if(!$GetWhoBreweryIsFollowingResults) echo "<script type=\"text/javascript\">window.alert(\"Query: " . $GetWhoBreweryIsFollowing . "\");</script>"; 
+						else echo "Good Job<br>";*/
+
+						//Check if any rows are returned
+						if($GetWhoBreweryIsFollowingResults-> num_rows > 0){
+							//Load results
+							while($row = mysqli_fetch_assoc($GetWhoBreweryIsFollowingResults)){
+								echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
+									echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
+										echo "<div class=\"tableCell img\">";
+											echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
+									echo "</button>";
+									echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
+								echo "</form>";
+							}
+						}else{
+							//Print empty table
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" onsubmit=\"return false;\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
+								echo "</button>";
+								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
+							echo "</form>";
+						}
+					?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>

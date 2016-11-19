@@ -45,6 +45,20 @@
 
 </head>
 
+<?php
+	//If the user is logged in, take them to the profile page 
+	//Start the session 
+	  session_start();
+
+	  //Get the token to prove the user was logged in 
+	  if(strlen($_SESSION['loginToken']) != 0){
+		  //redirect to the login page 
+		  $_SESSION['currentUser'] = $_SESSION['signedInUser'];
+		  header("Location: html/profilePage.php");
+	  }else{
+		  //echo "<p style=\"color:white\">You rock: " . $_GET['id'] . "<br></p>";
+	  }
+?>
 
 
 <body>
