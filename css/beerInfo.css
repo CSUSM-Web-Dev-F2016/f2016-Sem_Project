@@ -7,7 +7,7 @@ head {
     top: 10px;
     padding-bottom: 25px;
     font-family: 'Noto Sans Kannada', sans-serif;
-    background-color: transparent;
+    background: inherit;
 }
 
 h1 {
@@ -64,12 +64,17 @@ h1 {
 .MainCell {
     flex: auto;
     display: flex;
+    flex: auto;
     flex-wrap: wrap;
+    width: 100%;
+    position: relative;
+    padding: 0px;
 }
 
 table {
-    width: 75%;
+    width: 100%;
     margin: auto;
+    padding: 0px;
 }
 
 th {
@@ -81,6 +86,8 @@ th {
 
 td {
     text-align: left;
+    padding: 0px;
+    font-size: 1em;
 }
 
 

@@ -234,7 +234,30 @@
 
 						//else, build an empty one. 
 						else{
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
+							//If no breweries are following the brewery.. maybe a user is 
+							$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 3";
+							$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
+
+							if($GetUsersFollowingBreweryResults-> num_rows > 0){
+								//If there are some rows, loop through them
+								while($row = mysqli_fetch_assoc($GetUsersFollowingBreweryResults)){
+									//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>"; 
+
+									echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+										echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['Email'] . "\">";
+											echo "<div class=\"tableCell img\">";
+												echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
+											echo "</div>";
+											echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
+										echo "</button>";
+										echo "<input type=\"hidden\" name=\"" . strtr($row['Email'], array('.' => '#-#')) . "\" value=\"\">";
+									echo "</form>";
+
+									//echo "<p style=\"color:white\">" . $row['UserEmail'];
+								}
+							}else{
+								//Still no followers
+								echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
 								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
 									echo "<div class=\"tableCell img\">";
 										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
@@ -243,6 +266,7 @@
 								echo "</button>";
 								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
 							echo "</form>";
+							}
 						}
 					
 					?>
@@ -306,40 +330,37 @@
 			<!-- Highest Rated -->
 			<div class="stdSection main" id="highestRated">
 				<div class="stdSectionTitle">
-					Highest Rated
+					Beers On Tap
 				</div>
 				<div class="table">
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.php')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png" alt="Red Ale Image">
-							</div>
-							<div class="smalltableCell title">
-								Red Ale
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.php')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png" alt="Peach Ale Image">
-							</div>
-							<div class="smalltableCell title">
-								Peach Ale
-							</div>
-						</a>
-					</div>
+					<?php
+						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 6";
+						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
-					<div class="smalltableCell">
-						<a onclick="showSRC('BeerInfo.php')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png" alt="Hazlenut Porter Image">
-							</div>
-							<div class="smalltableCell title">
-								Hazelnut Porter
-							</div>
-						</a>
-					</div>
+						if($favoritedBeersResults-> num_rows > 0){
+							while($row = mysqli_fetch_assoc($favoritedBeersResults)){
+								//There are rows
+								echo '<div class="smalltableCell">';
+									echo "<a onclick=\"showBeerView(" . $row['BeerID'] . ")\">";
+										echo '<div class="tableCell img">';
+											echo	"<img class=\"smalltableCell\" src=\"" .  $row['PictureURL'] . "\"alt=\"" . $row['BeerName'] . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\">" . $row['BeerName'] . "</div>";
+									echo "</a>";
+								echo "</div>";
+							}
+						}else{
+							//No rows yet; inform user;
+							echo '<div class="smalltableCell">';
+									echo "<a onclick=\"return false;\">";
+										echo '<div class="tableCell img">';
+											echo	"<img class=\"smalltableCell\" src=\"" .  "http://beerhopper.me/img/x.png" . "\"alt=\"" . "" . "\">";
+										echo "</div>";
+										echo "<div class=\"smalltableCell title\">" . "No Beers Yet" . "</div>";
+									echo "</a>";
+								echo "</div>";
+						}
+					?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('BeerList.html')" class="moreClicked">more</a>
@@ -375,6 +396,26 @@
 	</section>
 
 	<!-- Footer information; additional links etc -->
+	<?php
+			if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+    						if(isset($_POST['brewery'])){
+       							//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>"; 
+							  //$_SESSION['breweryID'] = end(array_keys($_POST));
+
+							  //Navigate to the brewery page iwth the new id 
+							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+
+    						}else {
+							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+
+							    //echo "<p style=\"color:white;\">" . end(array_keys($_POST));
+
+							    //echo "<script type=\"text/javascript\"> window.alert(\"Found a User: " . print_f(array_keys($_POST)) . "\");</script>";
+							    echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+						    }
+					}
+		?>
 
 </body>
 
