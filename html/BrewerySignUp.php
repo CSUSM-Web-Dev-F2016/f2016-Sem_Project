@@ -49,14 +49,14 @@
 						<input type="text" name="breweryName">
 					</div>
 					<div class="inner-sections">
-						Address:
+						Profile Pic URL:
 						<br>
-						<input type="text" name="address">
+						<input type="text" name="profilePic">
 					</div>
 					<div class="inner-sections">
 						Brewery Email:
 						<br>
-						<input type="text" name="breweryEmail">
+						<input type="text" name="streetAddress">
 					</div>
 					<div class="inner-sections">
 						State:
@@ -64,9 +64,9 @@
 						<input type="text" name="state">
 					</div>
 					<div class="inner-sections">
-						Password:
+						City:
 						<br>
-						<input type="password" name="password">
+						<input type="text" name="city">
 					</div>
 					<div class="inner-sections">
 						Zip Code:
@@ -74,9 +74,9 @@
 						<input type="text" name="zipCode">
 					</div>
 					<div class="inner-sections">
-						Re-Enter Password:
+						Hours:
 						<br>
-						<input type="password" name="passConfirm">
+						<input type="text" name="hours">
 					</div>
 					<div class="inner-sections">
 						Phone Number:
@@ -91,7 +91,7 @@
 			<?php
 				//Create a Brewery if all forms are correctly filled out
 				//intialize all variables to blank string
-				$breweryName = $address = $breweryEmail = $state = $password = $zipCode = $passConfirm = $phoneNumber = "";
+				$breweryName = $profilePic = $streetAddress = $state = $city = $zipCode = $hours = $phoneNumber = "";
 
 				function test_input($data) {
 						$data = trim($data);            // Remove whitespace from both ends of text
@@ -110,29 +110,29 @@
 							$errorString = $errorString . "A Brewery Name is required.<br>";
 					}else{ $breweryName = test_input($_POST["breweryName"]); }
 
-					if(empty($_POST["address"])){
-							$errorString = $errorString . "An Address is required.<br>";
-					}else{ $address = test_input($_POST["address"]); }
+					if(empty($_POST["profilePic"])){
+							$errorString = $errorString . "A Profile Picture URL is required.<br>";
+					}else{ $profilePic = test_input($_POST["profilePic"]); }
 
-					if(empty($_POST["breweryEmail"])){
-							$errorString = $errorString . "An Email is required.<br>";
-					}else{ $breweryEmail = test_input($_POST["breweryEmail"]); }
+					if(empty($_POST["streetAddress"])){
+							$errorString = $errorString . "A Street Address is required.<br>";
+					}else{ $streetAddress = test_input($_POST["streetAddress"]); }
 
 					if(empty($_POST["state"])){
 							$errorString = $errorString . "The State is required.<br>";
 					}else{ $state = test_input($_POST["state"]); }
 
-					if(empty($_POST["password"])){
-							$errorString = $errorString . "A password is required.<br>";
-					}else{ $password = test_input($_POST["password"]); }
+					if(empty($_POST["city"])){
+							$errorString = $errorString . "A city is required.<br>";
+					}else{ $city = test_input($_POST["city"]); }
 
 					if(empty($_POST["zipCode"])){
 							$errorString = $errorString . "A ZipCode is required.<br>";
 					}else{ $zipCode = test_input($_POST["zipCode"]); }
 
-					if(empty($_POST["passConfirm"])){
-							$errorString = $errorString . "Your password does not match.<br>";
-					}else{ $passConfirm = test_input($_POST["passConfirm"]); }
+					if(empty($_POST["hours"])){
+							$errorString = $errorString . "Please enter the Hours of Operation.<br>";
+					}else{ $hours = test_input($_POST["hours"]); }
 
 					if(empty($_POST["phoneNumber"])){
 							$errorString = $errorString . "A phone number is required.<br>";
@@ -146,16 +146,21 @@
 						//get the local date to store for "date created" in brewery tables
 						$localDate = date(Y-m-d);
 						//the brewery table only has these attributes from the form
-						$insertBreweryTable = "INSERT INTO BreweryTable (BreweryName, PhoneNo, DateAdded) VALUES ('" . $BreweryName . "', '" . $phoneNumber . "', '" . $localDate . "')";
+						$insertBreweryTable = "INSERT INTO BreweryTable (BreweryName, PhoneNo, DateAdded, ProfilePicURL, Hours) VALUES ('" . $BreweryName . "', '" . $phoneNumber . "', '" . $localDate . "', '" . $profilePic . "', '" . $hours . "')";
+						//get query for Brewery Location Table
+						$insertBreweryLocation = "INSERT INTO BreweryLocation (AddrLineOne, City, State, Zip) VALUES ('" . $streetAddress . "', '" . $city . "', '" . $state . "', '" . $zipCode . "')";
 
+						//get results
 						$breweryTable_Result = mysqli_query($connection, $insertBreweryTable);
-						if($breweryTable_Result) {
+						$breweryLocation_Result = mysqli_query($connection, $insertBreweryLocation);
+						if(($breweryTable_Result) && ($breweryLocation_Result)) {
 							echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Brewery Created!</p>";
 						} else {
 							die("Connection failed: " . mysqli_connect_error());
 						}
 						//clear the result since we're done with it
 						mysqli_free_result($breweryTable_Result);
+						mysqli_free_result($breweryLocation_Result);
 					}
 				}
 				//close connection to database
