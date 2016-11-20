@@ -334,7 +334,7 @@
 				</div>
 				<div class="table">
 					<?php
-						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 6";
+						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 3";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
 						if($favoritedBeersResults-> num_rows > 0){
