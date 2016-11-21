@@ -213,7 +213,7 @@
 				<div class="table">
 					<!-- User Following Brewery -->
 					<?php
-						$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 3";
+						$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
 						$resultSet = mysqli_query($connection, $query);
 
 						//If the number of rows is more than 0, build the table, 
@@ -235,7 +235,7 @@
 						//else, build an empty one. 
 						else{
 							//If no breweries are following the brewery.. maybe a user is 
-							$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 3";
+							$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 6";
 							$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
 
 							if($GetUsersFollowingBreweryResults-> num_rows > 0){
@@ -288,7 +288,7 @@
 				<div class="table">
 					<?php
 						//Build the table
-						$GetWhoBreweryIsFollowing = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . " LIMIT 3";
+						$GetWhoBreweryIsFollowing = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . " LIMIT 6";
 						$GetWhoBreweryIsFollowingResults = mysqli_query($connection, $GetWhoBreweryIsFollowing);
 
 						/*if(!$GetWhoBreweryIsFollowingResults) echo "<script type=\"text/javascript\">window.alert(\"Query: " . $GetWhoBreweryIsFollowing . "\");</script>"; 
@@ -334,7 +334,7 @@
 				</div>
 				<div class="table">
 					<?php
-						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 3";
+						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 6";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
 						if($favoritedBeersResults-> num_rows > 0){

@@ -126,8 +126,17 @@
 							//Now, set the autoriazation token value so we know the user is logged in 
 							$_SESSION['loginToken'] = "yes";
 
+							//We need to update the last time the user has logged in. Do that here. 
+							$UpdateUserLoginDate = "UPDATE Users SET LastLogin=NOW() WHERE Email='" . $row['Email'] . "'";
+							$UpdateUserLoginDateResults = mysqli_query($connection, $UpdateUserLoginDate);
+
+							if(!$UpdateUserLoginDateResults){
+								echo "<script type=\"text/javascript\"> window.alert(\"Could not update last login time due to Err:  " . mysqli_error() . "\");</script>";
+							}
+
 							//Open the next page 
 							header("Location: ./html/profilePage.php");
+
 							exit(); //Leave the current Session
 							break;
 
