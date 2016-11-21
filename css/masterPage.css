@@ -134,7 +134,9 @@ div.stdSectionTitle {
 /** Table Cells */
 
 .smalltableCell.title {
-    height: 25px;
+    height: auto;
+    display: flex;
+    flex: auto;
     width: 100%;
     max-width: 75px;
     font-weight: lighter;

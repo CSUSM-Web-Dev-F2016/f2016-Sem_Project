@@ -25,8 +25,8 @@
         box-shadow: 0px 5px 5px lightgray;
         display: block;
         overflow: visible;
-        padding: 0px;
         background-color: white;
+        padding: 0px;
     }
     
     .beerImage {}
@@ -36,7 +36,9 @@
         display: inline-block;
         flex: auto;
         height: 12.5em;
-        object-fit: contain;
+        width: auto;
+        object-fit: scale-down;
+        padding-left: 50px;
     }
     
     .mainContent {
@@ -66,16 +68,15 @@
         display: flex;
         flex: auto;
         flex-wrap: wrap;
-        width: 100%;
+        width: 90%;
         position: relative;
         padding: 0px;
     }
     
     table {
-        width: 90%;
+        width: 85%;
         margin: auto;
         padding: 0px;
-        padding-right: 5%;
     }
     
     th {
@@ -83,12 +84,18 @@
         padding-right: 2.5%;
         min-width: 200px;
         vertical-align: top;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 5px;
+        padding-top: 5px;
     }
     
     td {
         text-align: left;
         padding: 0px;
-        font-size: 1em;
+        font-size: 14px;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 5px;
+        padding-top: 5px;
     }
     /** for the image cells that are not images */
     
@@ -129,16 +136,18 @@
         left: 0px;
         background-color: #191d24;
         position: absolute;
+        z-index: 5;
     }
     
     .favBtnHolderRight {
         width: 50px;
-        height: 99.5%;
+        height: 100%;
         top: 0px;
         border: none;
         right: 0px;
         background-color: #191d24;
         position: absolute;
+        z-index: 5;
     }
     
     .hidden {
@@ -165,7 +174,7 @@
         object-fit: contain;
         vertical-align: middle;
         padding: 0px;
-        z-index: 5;
+        z-index: 6;
         border: none;
         margin: auto;
     }

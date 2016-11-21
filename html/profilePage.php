@@ -52,6 +52,10 @@ else{
 					<th class="menuItem">
 						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
 					</th>
+					<!-- Logout Button -->
+					<th class="menuItem">
+						<input type="image" id="logoutBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
+					</th>
 				</tr>
 			</tbody>
 		</table>
@@ -151,7 +155,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 
 					<!-- Get Favorited beers for this user -->
 					<?php
-						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $CurrentUser . "' AND b.BeerID=u.BeerID LIMIT 3";
+						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $CurrentUser . "' AND b.BeerID=u.BeerID ORDER BY b.BeerName LIMIT 6";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
 						if($favoritedBeersResults-> num_rows > 0){
@@ -201,7 +205,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				<div class="table">
 					<!-- User 'Following me' -->
 					<?php
-					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name' FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $CurrentUser . "' LIMIT 3;";
+					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name', them.LName FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $CurrentUser . "'ORDER BY them.LName LIMIT 3";
 					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
 
 					if($usersFollowingMeResult-> num_rows > 0 ){
@@ -249,7 +253,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				<?php
 					//Session is already started
 					//Get the breweryies the user is following, max 3
-					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID LIMIT 3";
+					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID LIMIT 6";
 					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
 					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user. 
