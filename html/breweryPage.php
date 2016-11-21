@@ -100,25 +100,35 @@
 
 	</header>
 
-	<!-- Navigation Panel; to the right of the logo -->
+	<!-- Navigation Bar -->
 	<nav>
 		<table class="menu" title="Menu">
 			<tbody>
 				<tr>
 					<!-- Main Profile Page -->
-					<th class="menuItem">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'"
-							alt="home">
+					<th class="menuItem" title="Home">
+						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
 					</th>
 					<th>|</th>
-
 					<!-- Settings -->
-					<th class="menuItem">
-						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="goHomeAnd('settings.html')" alt="home">
+					<th class="menuItem" title="Settings">
+						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
+					</th>
+					<th>|</th>
+					<!-- Logout Button -->
+					<th class="menuItem" title="Logout">
+						<input type="image" id="logoutBtn" src="../img/logout.png?raw=true" class="navBtn" onclick="logout()" alt="home">
 					</th>
 				</tr>
 			</tbody>
 		</table>
+		<!-- Add a search bar in the top left -->
+		<form action="return false;" onsubmit="return false;" class="searchForm">
+			<label class="hidden">Enter Search Terms here </label>
+			<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
+			<label class="hidden"> Search Field </label>
+			<input type="image" id="searchBtn" src="../img/location_filled.png?raw=true" class="searchButton" onclick="startSearch()" alt="search">
+		</form>
 	</nav>
 
 	<!--Left side bar; will be profile information -->

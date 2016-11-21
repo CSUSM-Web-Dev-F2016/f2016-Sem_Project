@@ -44,22 +44,34 @@ else{
 			<tbody>
 				<tr>
 					<!-- Main Profile Page -->
-					<th class="menuItem">
+					<th class="menuItem" title="Home">
 						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
 					</th>
 					<th>|</th>
 					<!-- Settings -->
-					<th class="menuItem">
+					<th class="menuItem" title="Settings">
 						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
 					</th>
+					<th>|</th>
 					<!-- Logout Button -->
-					<th class="menuItem">
-						<input type="image" id="logoutBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
+					<th class="menuItem" title="Logout">
+						<input type="image" id="logoutBtn" src="../img/logout.png?raw=true" class="navBtn" onclick="logout()" alt="home">
 					</th>
 				</tr>
 			</tbody>
 		</table>
+
+		<!-- Add a search bar in the top left -->
+		<form action="return false;" onsubmit="return false;" class="searchForm">
+			<label class="hidden">Enter Search Terms here </label>
+			<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
+			<label class="hidden"> Search Field </label>
+			<input type="image" id="searchBtn" src="../img/location_filled.png?raw=true" class="searchButton" onclick="startSearch()" alt="search">
+		</form>
 	</nav>
+
+
+
 	<!-- Meta data -->
 	<title>Profile</title>
 	<!-- For the background image -->
@@ -253,7 +265,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				<?php
 					//Session is already started
 					//Get the breweryies the user is following, max 3
-					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID LIMIT 6";
+					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID ORDER BY BreweryName LIMIT 6";
 					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
 					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user. 
@@ -330,7 +342,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			</div>
 			<div class="newsFeed" id="MainArea">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="../html/NewsFeed.html" title="subcontent" style="min-width:480px;" onload="resizeIframe(this);"></iframe>
+			<iframe id="contentFrame" src="../html/NewsFeed.html" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
 		</div>
 		</div>
 		<!-- Black Field to Post -->

@@ -151,7 +151,7 @@
 									</div>
 									<div class="smalltableCell title">
 										<!-- The amount will be displayed above -->
-										Like Count
+										Favorites
 									</div>
 								</div>
 							</div>
