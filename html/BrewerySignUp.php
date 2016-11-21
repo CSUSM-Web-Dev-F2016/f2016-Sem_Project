@@ -41,7 +41,7 @@
 				</p>
 				<div class="box-line"></div>
 			</div>
-			<form class="sign-up-form" action="BreweySignUp.php" method="POST">
+			<form class="sign-up-form" action="BrewerySignUp.php" method="POST">
 				<div class="outer-section">
 					<div class="inner-sections">
 						Brewery Name:
@@ -84,7 +84,7 @@
 						<input type="text" name="phoneNumber">
 					</div>
 				</div>
-				<button type="submit" onclick="">Sign-Up</button>
+				<button type="Submit" value="Submit">Sign-Up</button>
 			</form>
 
 			<!-- PHP for button action to create account -->
@@ -153,10 +153,13 @@
 						//get results
 						$breweryTable_Result = mysqli_query($connection, $insertBreweryTable);
 						$breweryLocation_Result = mysqli_query($connection, $insertBreweryLocation);
-						if(($breweryTable_Result) && ($breweryLocation_Result)) {
-							echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Brewery Created!</p>";
+
+						if(!$breweryTable_Result) {
+							die("Could not fullfill 1st query Request: " . mysqli_error($connection));
+						} else if (!$breweryLocation_Result) {
+							die("Could not fullfill 2nd query Request" . mysqli_error($connection));
 						} else {
-							die("Connection failed: " . mysqli_connect_error());
+							echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Brewery Created!</p>";
 						}
 						//clear the result since we're done with it
 						mysqli_free_result($breweryTable_Result);
