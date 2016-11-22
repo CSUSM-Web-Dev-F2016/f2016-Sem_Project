@@ -46,13 +46,13 @@
 </head>
 
 <?php
-	//If the user is logged in, take them to the profile page 
-	//Start the session 
+	//If the user is logged in, take them to the profile page
+	//Start the session
 	  session_start();
 
-	  //Get the token to prove the user was logged in 
+	  //Get the token to prove the user was logged in
 	  if(strlen($_SESSION['loginToken']) != 0){
-		  //redirect to the login page 
+		  //redirect to the login page
 		  $_SESSION['currentUser'] = $_SESSION['signedInUser'];
 		  header("Location: html/profilePage.php");
 	  }else{
@@ -99,7 +99,7 @@
        			 die("Connection Failed. ERR: " . mysqli_connect_error());
     		}
    			 //echo "<p class\"centerText\"> Connection Success!</p>";
-				
+
 				$getLoginQuery = "SELECT Users.Email, Users.Password FROM Users WHERE Users.Email='" . $_POST['username'] . "'";
 		//echo "<p class\"centerText\" color=\"white\">" . $getLoginQuery . "</p>";
 
@@ -109,7 +109,7 @@
 				if($loginInfoGathered-> num_rows > 0){
 					//echo "<p class\"centerText\"> Found " . $loginInfoGathered-> num_rows . " rows</p>";
 
-					//If a row was found, check the password 
+					//If a row was found, check the password
 					while($row = mysqli_fetch_assoc($loginInfoGathered)){
 						if($row["Password"] == $_POST["password"]){
 							//echo "<p class\"centerText\"> Correct Password Match </p>";
@@ -117,16 +117,16 @@
 							//Close the SQL connetion
 							$connection->close();
 
-							//Start the session 
+							//Start the session
 	  						session_start();
 
 							//Set the username to search in the session var .. current user is for the page, signed in user is for the rights
 							$_SESSION['currentUser'] = $_SESSION['signedInUser'] = $row["Email"];
 
-							//Now, set the autoriazation token value so we know the user is logged in 
+							//Now, set the autoriazation token value so we know the user is logged in
 							$_SESSION['loginToken'] = "yes";
 
-							//We need to update the last time the user has logged in. Do that here. 
+							//We need to update the last time the user has logged in. Do that here.
 							$UpdateUserLoginDate = "UPDATE Users SET LastLogin=NOW() WHERE Email='" . $row['Email'] . "'";
 							$UpdateUserLoginDateResults = mysqli_query($connection, $UpdateUserLoginDate);
 
@@ -134,7 +134,7 @@
 								echo "<script type=\"text/javascript\"> window.alert(\"Could not update last login time due to Err:  " . mysqli_error() . "\");</script>";
 							}
 
-							//Open the next page 
+							//Open the next page
 							header("Location: ./html/profilePage.php");
 
 							exit(); //Leave the current Session
@@ -147,7 +147,7 @@
 				}else{
 					echo "<p class\"centerText\" style=\"color:red; text-align:center; font-size:20px\">Account Not found</p>";
 				}
-		
+
 				echo '</script>';
 			}
 			/** Adds the action listener to the submit button */
@@ -164,10 +164,10 @@
 				<a href="html/UserSignUp.php">Sign up now</a>
 			</p>
 
-			<!-- Maybe a future addition. For now, a user is required to be signed in 
+			<!-- Maybe a future addition. For now, a user is required to be signed in
 			<p class="centerText">
 				Want to add your brewery?
-				<a href="html/BrewerySignUp.html">Get started here</a> 
+				<a href="html/BrewerySignUp.html">Get started here</a>
 			</p> -->
 		</div>
 
