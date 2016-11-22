@@ -25,11 +25,6 @@
       </div>
 
       <div class="centerDiv">
-      <!-- Show banner -->
-      <div class="banner">
-			<img src="../img/Beer_Hopper_Banner.png" alt="Banner">
-		</div>
-
           <div class="grid">
               <?php
                 include '../php/create_user.php';
@@ -40,18 +35,8 @@
               ?>
 
           </div>
->>>>>>> chris
-
-              <p class="centerText">
-				Already Have an Account?
-				<a href="../">Sign In</a>
-			</p>
-          </div>
-        </div>
-
 
         </div>
->>>>>>> chris
 
     </body>
 </html>

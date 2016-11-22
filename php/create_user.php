@@ -6,8 +6,7 @@
  * Time: 3:00 PM
  */
 
-// get database connection
-$connection = include 'DBConnectionReturn.php';
+
 
                 //Define variables and set to empty values
                 $FName = $LName = $birthday = $Email  = $Password = $Password2 = $ZipCode = $ProfilePicURl = "";
@@ -17,6 +16,9 @@ $connection = include 'DBConnectionReturn.php';
                     echo "Creating User";
                     //Create the user in an SQL Command, tehn, log them in.
                     $createUserQuery = "INSERT INTO Users (Email, Password, FName, LName, DOB, ProfilePicURL) VALUES ('" . $Email . "', '" . $Password . "', '" . $FName . "', '" . $LName . "', '" . $birthday . "', '" . $ProfilePicURl . "')";
+
+                    // get database connection
+                    $connection = include 'DBConnectionReturn.php';
 
                     if(mysqli_query($connection, $createUserQuery)){
                         //The item was successfull created, now change the login page.
