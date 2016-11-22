@@ -114,8 +114,6 @@
 						if($row["Password"] == $_POST["password"]){
 							//echo "<p class\"centerText\"> Correct Password Match </p>";
 
-							//Close the SQL connetion
-							$connection->close();
 
 							//Start the session
 	  						session_start();
@@ -133,6 +131,8 @@
 							if(!$UpdateUserLoginDateResults){
 								echo "<script type=\"text/javascript\"> window.alert(\"Could not update last login time due to Err:  " . mysqli_error() . "\");</script>";
 							}
+							//Close the SQL connetion
+							$connection->close();
 
 							//Open the next page
 							header("Location: ./html/profilePage.php");
