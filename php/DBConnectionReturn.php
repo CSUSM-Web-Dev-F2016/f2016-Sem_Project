@@ -14,24 +14,6 @@
     //Change the db to team3
     mysqli_select_db($connection, "team3");
 
-
-/* Testing Data Query 
-    //Now, Do a sample query
-    $sql_GetUser = "SELECT Email, FName, LName FROM Users";
-    $result_Query1 = mysqli_query($connection ,$sql_GetUser);
-    echo "<br>";
-
-    //If data was retruned, get it 
-    if($result_Query1-> num_rows > 0){
-    //var_dump($connection);
-        //Output data from each row
-        while($row = mysqli_fetch_assoc($result_Query1)){
-            echo "Email: " . $row["Email"] . "Name: " . $row["FName"] . " " . $row["LName"] . "<br>" ;
-        }
-    }else{
-        echo "No results were found";
-    }*/
-
     //Return connection variable
     return $connection;
 

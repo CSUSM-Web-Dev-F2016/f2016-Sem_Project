@@ -18,24 +18,11 @@
 
 </script>
 
-<?php
-	 //Create a basic connection
-    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
-
-    //Check the connection
-    if(mysqli_connect_errno()){
-        die("Connection Failed. ERR: " . mysqli_connect_error());
-    }
-    //echo "Connected Successfully";
-    //This code currently works :)
-
-?>
-<div class="is_overlay">
-    <img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
-</div>
-
     </head>
     <body>
+      <div class="is_overlay">
+          <img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
+      </div>
 
       <div class="centerDiv">
       <!-- Show banner -->
@@ -44,6 +31,7 @@
 		</div>
 
           <div class="grid">
+<<<<<<< HEAD
               <p class="centerText" id="sign-up-header">Sign Up</p>
               <form id="signUpForm" action="UserSignUp.php" method="POST">
                   <label for="First_Name" id="fName" class="hidden">First Name:</label>
@@ -63,11 +51,21 @@
 
                   <label for="re-enter-password" id="re-enter-password" class="hidden">Re-Enter Password:</label>
                   <input type="password" name="re-enter-password" id="re-enter-password" placeholder="•••"/>
+=======
+              <?php
+                include '../php/create_user.php';
 
-                  <label for="submitButton" id="sButton" class="hidden">Submit:</label>
-                  <input type="submit" id="subButton" value="Submit"/>
+              // calls user that creates user in the db
+              createUser();
+>>>>>>> chris
 
+              ?>
+
+<<<<<<< HEAD
               </form>
+=======
+          </div>
+>>>>>>> chris
 
               <p class="centerText">
 				Already Have an Account?
@@ -76,6 +74,7 @@
           </div>
         </div>
 
+<<<<<<< HEAD
         <?php
                 //Define variables and set to empty values
                 $FName = $LName = $birthday = $Email = $State = $Password = $Password2 = $ZipCode = $ProfilePicURl = "";
@@ -188,6 +187,10 @@
 
 
             ?>
+=======
+
+        </div>
+>>>>>>> chris
 
     </body>
 </html>
