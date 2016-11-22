@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="46a92af3-5935-49ef-be1e-7eda3fde0727" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/php/create_user.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/php/DBConnection 2.php" afterPath="$PROJECT_DIR$/php/DBConnectionReturn.php" />
+    <list default="true" id="46a92af3-5935-49ef-be1e-7eda3fde0727" name="Default" comment="-Updated UserSignUp.html and UserSignUp.php&#10;--.html now is just the form and posts to the php page&#10;--all create user functions are now in /php/create_user.php">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/UserSignUp.html" afterPath="$PROJECT_DIR$/html/UserSignUp.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/UserSignUp.php" afterPath="$PROJECT_DIR$/html/UserSignUp.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/DBConnectionReturn.php" afterPath="$PROJECT_DIR$/php/DBConnectionReturn.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/create_user.php" afterPath="$PROJECT_DIR$/php/create_user.php" />
     </list>
     <ignored path="f2016-Sem_Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -23,33 +25,66 @@
     <favorites_list name="f2016-Sem_Project" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.45938864">
+    <splitter split-orientation="horizontal" split-proportion="0.5091027">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="UserSignUp.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="720">
-                  <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
+                <state relative-caret-position="63">
+                  <caret line="26" column="0" selection-start-line="20" selection-start-column="4" selection-end-line="26" selection-end-column="0" />
                   <folding>
-                    <marker date="1479423535000" expanded="true" signature="6766:6823" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="7104:7303" ph="INSERT INTO Users... " />
-                    <marker date="1479423535000" expanded="true" signature="7512:7571" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="7826:7890" ph="SELECT Curre... valid_Users" />
-                    <marker date="1479423535000" expanded="true" signature="8584:8641" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="8818:8875" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="9008:9065" ph="..." />
+                    <marker date="1479426156000" expanded="true" signature="1115:1132" ph="..." />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DBConnection.php" pinned="false" current-in-tab="true">
+          <file leaf-file-name="UserSignUp.html" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/html/UserSignUp.html">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="303">
+                  <caret line="31" column="89" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="89" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="UserSignUp.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/css/UserSignUp.css">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="264">
+                  <caret line="51" column="5" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="5" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DBConnection.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/php/DBConnection.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="0">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="384">
+                  <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="43" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="create_user.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/php/create_user.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="480">
+                  <caret line="20" column="67" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="67" />
+                  <folding>
+                    <element signature="e#6#93#0#PHP" expanded="true" />
+                    <marker date="1479428686000" expanded="true" signature="598:797" ph="INSERT INTO Users... " />
+                    <marker date="1479428686000" expanded="true" signature="998:1057" ph="..." />
+                    <marker date="1479428686000" expanded="true" signature="1300:1364" ph="SELECT Curre... valid_Users" />
+                    <marker date="1479428686000" expanded="true" signature="2022:2079" ph="..." />
+                    <marker date="1479428686000" expanded="true" signature="2244:2301" ph="..." />
+                    <marker date="1479428686000" expanded="true" signature="2422:2479" ph="..." />
+                    <marker date="1479428686000" expanded="true" signature="5864:5921" ph="..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -58,32 +93,12 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="UserSignUp.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="UserSignUp.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-432">
-                  <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
-                  <folding>
-                    <marker date="1479423535000" expanded="true" signature="6766:6823" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="7104:7303" ph="INSERT INTO Users... " />
-                    <marker date="1479423535000" expanded="true" signature="7512:7571" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="7826:7890" ph="SELECT Curre... valid_Users" />
-                    <marker date="1479423535000" expanded="true" signature="8584:8641" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="8818:8875" ph="..." />
-                    <marker date="1479423535000" expanded="true" signature="9008:9065" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="create_user.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/php/create_user.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="216">
-                  <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
-                  <folding>
-                    <element signature="e#6#93#0#PHP" expanded="true" />
-                  </folding>
+                <state relative-caret-position="120">
+                  <caret line="6" column="81" selection-start-line="6" selection-start-column="8" selection-end-line="6" selection-end-column="81" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -91,8 +106,8 @@
           <file leaf-file-name="DBConnectionReturn.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/php/DBConnectionReturn.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="639">
-                  <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+                <state relative-caret-position="360">
+                  <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -103,15 +118,22 @@
     </splitter>
   </component>
   <component name="Git.Settings">
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <list>
+        <option value="chrislarsen &lt;cjl0749@gmail.com&gt;" />
+      </list>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/php/DBConnection_return.php" />
+        <option value="$PROJECT_DIR$/php/DBConnection 2.php" />
+        <option value="$PROJECT_DIR$/php/DBConnectionReturn.php" />
+        <option value="$PROJECT_DIR$/html/UserSignUp.html" />
         <option value="$PROJECT_DIR$/html/UserSignUp.php" />
         <option value="$PROJECT_DIR$/php/create_user.php" />
-        <option value="$PROJECT_DIR$/php/DBConnection 2.php" />
       </list>
     </option>
   </component>
@@ -128,10 +150,8 @@
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="138" />
-    <option name="y" value="25" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
+    <option name="width" value="1680" />
+    <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -187,7 +207,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
+              <option name="myItemId" value="css" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -202,6 +222,7 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="FullScreen" value="true" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -258,22 +279,25 @@
       <workItem from="1479345751946" duration="14000" />
       <workItem from="1479345784607" duration="2236000" />
       <workItem from="1479352630390" duration="170000" />
-      <workItem from="1479352810160" duration="2120000" />
+      <workItem from="1479352810160" duration="8583000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4540000" />
+    <option name="totallyTimeSpent" value="11003000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="138" y="25" width="1400" height="1000" extended-state="0" />
+    <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.125" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -284,7 +308,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
@@ -300,6 +323,10 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="-Updated UserSignUp.html and UserSignUp.php&#10;--.html now is just the form and posts to the php page&#10;--all create user functions are now in /php/create_user.php" />
+    <option name="LAST_COMMIT_MESSAGE" value="-Updated UserSignUp.html and UserSignUp.php&#10;--.html now is just the form and posts to the php page&#10;--all create user functions are now in /php/create_user.php" />
+  </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
@@ -310,13 +337,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1479423535000" expanded="true" signature="6766:6823" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="7104:7303" ph="INSERT INTO Users... " />
-            <marker date="1479423535000" expanded="true" signature="7512:7571" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="7826:7890" ph="SELECT Curre... valid_Users" />
-            <marker date="1479423535000" expanded="true" signature="8584:8641" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="8818:8875" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="9008:9065" ph="..." />
+            <marker date="1479426156000" expanded="true" signature="1115:1132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -326,13 +347,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1479423535000" expanded="true" signature="6766:6823" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="7104:7303" ph="INSERT INTO Users... " />
-            <marker date="1479423535000" expanded="true" signature="7512:7571" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="7826:7890" ph="SELECT Curre... valid_Users" />
-            <marker date="1479423535000" expanded="true" signature="8584:8641" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="8818:8875" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="9008:9065" ph="..." />
+            <marker date="1479426156000" expanded="true" signature="1115:1132" ph="..." />
           </folding>
         </state>
       </provider>
@@ -348,14 +363,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/DBConnection.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/DBConnection_return.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="24">
@@ -364,37 +371,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
+    <entry file="file://$PROJECT_DIR$/php/DBConnectionReturn.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-432">
-          <caret line="32" column="24" selection-start-line="32" selection-start-column="24" selection-end-line="32" selection-end-column="24" />
-          <folding>
-            <marker date="1479423535000" expanded="true" signature="6766:6823" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="7104:7303" ph="INSERT INTO Users... " />
-            <marker date="1479423535000" expanded="true" signature="7512:7571" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="7826:7890" ph="SELECT Curre... valid_Users" />
-            <marker date="1479423535000" expanded="true" signature="8584:8641" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="8818:8875" ph="..." />
-            <marker date="1479423535000" expanded="true" signature="9008:9065" ph="..." />
-          </folding>
+        <state relative-caret-position="360">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/php/DBConnectionReturn.php">
+    <entry file="file://$PROJECT_DIR$/php/DBConnection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="639">
-          <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        <state relative-caret-position="384">
+          <caret line="16" column="4" selection-start-line="16" selection-start-column="4" selection-end-line="16" selection-end-column="43" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/php/create_user.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+        <state relative-caret-position="480">
+          <caret line="20" column="67" selection-start-line="20" selection-start-column="20" selection-end-line="20" selection-end-column="67" />
           <folding>
             <element signature="e#6#93#0#PHP" expanded="true" />
+            <marker date="1479428686000" expanded="true" signature="598:797" ph="INSERT INTO Users... " />
+            <marker date="1479428686000" expanded="true" signature="998:1057" ph="..." />
+            <marker date="1479428686000" expanded="true" signature="1300:1364" ph="SELECT Curre... valid_Users" />
+            <marker date="1479428686000" expanded="true" signature="2022:2079" ph="..." />
+            <marker date="1479428686000" expanded="true" signature="2244:2301" ph="..." />
+            <marker date="1479428686000" expanded="true" signature="2422:2479" ph="..." />
+            <marker date="1479428686000" expanded="true" signature="5864:5921" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="26" column="0" selection-start-line="20" selection-start-column="4" selection-end-line="26" selection-end-column="0" />
+          <folding>
+            <marker date="1479426156000" expanded="true" signature="1115:1132" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/html/UserSignUp.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="303">
+          <caret line="31" column="89" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/UserSignUp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="51" column="5" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
