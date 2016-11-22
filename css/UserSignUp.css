@@ -20,17 +20,15 @@ body {
     -moz-box-align: center;
     -moz-box-direction: normal;
     -moz-box-orient: horizontal;
-    height: 50%;
+    height: 75%;
     display: -webkit-flex;
     display: flex;
     align-items: center;
     /*justify-content: center;*/
     flex-direction: row;
-    flex-flow: wrap;
-    width: 35%;
-    height: 70%;
-    right: 30%;
-    top: 12%;
+    width: 75%;
+    right: 10%;
+    top: 12.5%;
     position: absolute;
     background-color: rgba(255, 255, 255, .2);
     padding: 25px;
@@ -52,7 +50,7 @@ body {
 .grid {
     margin: 0 auto;
     max-width: 20rem;
-    width: 90%;
+    width: 100%;
     padding: 25px;
     background-color: rgba(25, 29, 36, .75);
     border-radius: 5px;
@@ -76,7 +74,7 @@ input[type=text] {
     border-radius: 4px;
     font-size: 16px;
     padding: .75rem;
-    margin-top: .25rem;
+    margin-top: 0px;
     width: 100%;
 }
 
@@ -86,7 +84,7 @@ input[type=password] {
     border-radius: 4px;
     font-size: 16px;
     padding: .75rem;
-    margin-top: .25rem;
+    margin-top: 0px;
     width: 100%;
 }
 
@@ -101,8 +99,8 @@ input[type=submit] {
     color: white;
     font-size: 16px;
     border-radius: .25rem;
-    padding: .5rem;
-    margin-top: .5rem;
+    padding: .25rem;
+    margin-top: .25rem;
     width: 100%;
 }
 
@@ -125,4 +123,9 @@ button:hover {
     color: white;
     background-color: rgba(26, 29, 36, .75);
     text-shadow: -2px 2px #000000;
+}
+
+.banner img {
+    position: relative;
+    width: 100%;
 }

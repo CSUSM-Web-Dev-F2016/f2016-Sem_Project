@@ -55,74 +55,34 @@
 	<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
 	<link rel="stylesheet" href="../css/breweryPage.css" type="text/css">
 
-	<script src="../js/NewsFeedBuilder.js"></script>
-	<script src="../js/contentSwitch.js"></script>
+		<script src="../js/NewsFeedBuilder.js"></script>
+		<script src="../js/contentSwitch.js"></script>
 
-	<!-- Set title of page -->
-	<title>Brewery Page</title>
+		<!-- Set title of page -->
+		<title>Brewery Page</title>
 
+		<!-- Analytics Script -->
+		<script>
+			(function (i, s, o, g, r, a, m) {
+				i['GoogleAnalyticsObject'] = r;
+				i[r] = i[r] || function () {
+					(i[r].q = i[r].q || []).push(arguments)
+				},
+				i[r].l = 1 * new Date();
+				a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0];
+				a.async = 1;
+				a.src = g;
+				m.parentNode.insertBefore(a, m)
+			})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
-	<!-- Analytics Script -->
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-83948702-3', 'auto');
+			ga('send', 'pageview');
+		</script>
 
-  ga('create', 'UA-83948702-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
-
-
-	<!-- For the background image -->
-	<div class="is_overlay">
-		<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
-	</div>
-
-</head>
-
-<body>
-	<!-- onload="buildFeed();" -->
-	<!-- Header for Logo -->
-	<header class="header">
-		<a href="../html/profilePage.php">
-			<img class="logo" id="logo" alt="Beer Hopper Logo" src="../img/Beer_Hopper_Banner.png?raw=true">
-		</a>
-
-	</header>
-
-	<!-- Navigation Panel; to the right of the logo -->
-	<nav>
-		<table class="menu" title="Menu">
-			<tbody>
-				<tr>
-					<!-- Main Profile Page -->
-					<th class="menuItem">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="goHomeAnd('BrewerySignUp.html')"
-							alt="home">
-					</th>
-					<th>|</th>
-
-					<!-- Settings -->
-					<th class="menuItem">
-						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="goHomeAnd('settings.html')" alt="home">
-					</th>
-				</tr>
-			</tbody>
-		</table>
-	</nav>
-
-	<!--Left side bar; will be profile information -->
-	<aside class="left">
-
-		<div id="profileContainer">
-			<!-- Three items will appear here... Pic, Name and Edit Button -->
-			<img class="profileImg" id="profileImg" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/logo1.png" alt="JGoulet Rox">
-			<p class="profileName">Indian Joe's Brewery<br></p>
-			<p class="breweryLocation">Vista, CA
-				<br></p>
->>>>>>> master
+		<!-- For the background image -->
+		<div class="is_overlay">
+			<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
 		</div>
 
 	</head>
@@ -148,14 +108,13 @@
 						</th>
 						<th>|</th>
 
-						<!-- Settings -->
-						<th class="menuItem">
-							<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="goHomeAnd('settings.html')" alt="home">
-						</th>
-					</tr>
-				</tbody>
-			</table>
-		</nav>
+<body>
+	<!-- onload="buildFeed();" -->
+	<!-- Header for Logo -->
+	<header class="header">
+		<a href="../html/profilePage.php">
+			<img class="logo" id="logo" alt="Beer Hopper Logo" src="../img/Beer_Hopper_Banner.png?raw=true">
+		</a>
 
 		<!--Left side bar; will be profile information -->
 		<aside class="left">
@@ -241,7 +200,6 @@
 					</div>
 				</div>
 
-<<<<<<< HEAD
 				<!-- Followers Section -->
 				<div class="stdSection FollowingBrewery" id="followersOfBreweries">
 					<div class="stdSectionTitle">
@@ -282,7 +240,11 @@
 					</div>
 					<div class="stdSectionFooter">
 						<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
-=======
+					</div>
+				</div>
+			</div>
+		</aside>
+
 			<!-- Followers Section -->
 			<div class="stdSection FollowingBrewery" id="followersOfBreweries">
 				<div class="stdSectionTitle">
@@ -321,50 +283,6 @@
 							</div>
 						</a>
 >>>>>>> master
-					</div>
-				</div>
-			</div>
-		</aside>
-
-		<!-- Right Side bar; will be used for side navigation panels -->
-		<aside class="right">
-			<div class="subsection">
-				<div class="stdSection FollowingBreweries" id="followingBreweries">
-					<div class="stdSectionTitle">
-						Following
-					</div>
-					<div class="table">
-						<div class="smalltableCell">
-							<a href="../html/breweryPage.html">
-								<div class="tableCell img">
-									<img class="smalltableCell" src="http://brewbound-images.s3.amazonaws.com/wp-content/uploads/2013/03/ballast-point.jpg" alt="Ballast Image">
-								</div>
-								<div class="smalltableCell title">
-									Ballast Point
-								</div>
-							</a>
-						</div>
-						<div class="smalltableCell">
-							<a href="../html/breweryPage.html">
-								<div class="tableCell img">
-									<img class="smalltableCell" src="http://www.benekeith.com/images/beverage/Green_Flash_2014_Logo_400x400.png" alt="Green Flash Image">
-								</div>
-								<div class="smalltableCell title">
-									Green Flash
-								</div>
-							</a>
-						</div>
-
-						<div class="smalltableCell">
-							<a href="../html/breweryPage.html">
-								<div class="tableCell img">
-									<img class="smalltableCell" src="http://tapthatkegnow.com/wp-content/uploads/acousticlogo2.jpg" alt="Acoustic Ales Image">
-								</div>
-								<div class="smalltableCell title">
-									Acoustic Ales
-								</div>
-							</a>
-						</div>
 					</div>
 					<div class="stdSectionFooter">
 						<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>

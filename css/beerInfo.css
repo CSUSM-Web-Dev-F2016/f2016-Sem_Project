@@ -1,103 +1,180 @@
-@import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
-html,
-body,
-head {
-    padding: 0px;
-    margin: 0px;
-    top: 10px;
-    padding-bottom: 25px;
-    font-family: 'Noto Sans Kannada', sans-serif;
-    background-color: transparent;
-}
-
-h1 {
-    font-size: 0px;
-}
-
-.LargeTable {
-    height: auto;
-    width: 99.5%;
-    position: absolute;
-    margin: auto;
-    text-align: center;
-    border: 2px solid lightgray;
-    border-radius: 2px;
-    box-shadow: 0px 5px 5px lightgray;
-    display: block;
-    overflow: visible;
-    padding: 0px;
-    background-color: white;
-}
-
-.beerImage {}
-
-.cellImage {
-    position: relative;
-    display: inline-block;
-    flex: auto;
-    height: 12.5em;
-    object-fit: contain;
-}
-
-.mainContent {
-    display: flex;
-    flex: auto;
-    flex-direction: row;
-    justify-content: center;
-    vertical-align: middle;
-    padding-top: 0px;
-    margin-top: 0px;
-}
-
-.LargeTable:hover {
-    box-shadow: 0px 5px 5px gray;
-}
-
-.LargeTableTitle {
-    font-size: 24px;
-    text-align: center;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin: auto;
-}
-
-.MainCell {
-    flex: auto;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-table {
-    width: 75%;
-    margin: auto;
-}
-
-th {
-    text-align: right;
-    padding-right: 2.5%;
-    min-width: 200px;
-    vertical-align: top;
-}
-
-td {
-    text-align: left;
-}
-
-
-/** for the image cells that are not images */
-
-p.imageCell {
-    width: 75%;
-    height: 75%;
-    margin: auto;
-    color: black;
-    object-fit: scale-down;
-    padding: 0px;
-    border-radius: 50%;
-    ;
-    border: 2px solid lightgray;
-}
-
-div.smalltableCell.title {
-    color: black;
-}
+    @import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
+    html,
+    body,
+    head {
+        padding: 0px;
+        margin: 0px;
+        top: 10px;
+        padding-bottom: 25px;
+        background-color: white;
+        font-family: 'Noto Sans Kannada', sans-serif;
+    }
+    
+    h1 {
+        font-size: 0px;
+    }
+    
+    .LargeTable {
+        height: auto;
+        width: 99.5%;
+        position: absolute;
+        margin: auto;
+        text-align: center;
+        border: 2px solid lightgray;
+        border-radius: 2px;
+        box-shadow: 0px 5px 5px lightgray;
+        display: block;
+        overflow: visible;
+        background-color: white;
+        padding: 0px;
+    }
+    
+    .beerImage {}
+    
+    .cellImage {
+        position: relative;
+        display: inline-block;
+        flex: auto;
+        height: 12.5em;
+        width: auto;
+        object-fit: scale-down;
+        padding-left: 50px;
+    }
+    
+    .mainContent {
+        display: flex;
+        flex: auto;
+        flex-direction: row;
+        justify-content: center;
+        vertical-align: middle;
+        padding-top: 0px;
+        margin-top: 0px;
+    }
+    
+    .LargeTable:hover {
+        box-shadow: 0px 5px 5px gray;
+    }
+    
+    .LargeTableTitle {
+        font-size: 24px;
+        text-align: center;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        margin: auto;
+    }
+    
+    .MainCell {
+        flex: auto;
+        display: flex;
+        flex: auto;
+        flex-wrap: wrap;
+        width: 90%;
+        position: relative;
+        padding: 0px;
+    }
+    
+    table {
+        width: 85%;
+        margin: auto;
+        padding: 0px;
+    }
+    
+    th {
+        text-align: right;
+        padding-right: 2.5%;
+        min-width: 200px;
+        vertical-align: top;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    
+    td {
+        text-align: left;
+        padding: 0px;
+        font-size: 14px;
+        border-bottom: 1px solid lightgray;
+        padding-bottom: 5px;
+        padding-top: 5px;
+    }
+    /** for the image cells that are not images */
+    
+    p.imageCell {
+        width: 75%;
+        height: 75%;
+        margin: auto;
+        color: black;
+        object-fit: scale-down;
+        padding: 0px;
+        border-radius: 50%;
+        ;
+        border: 2px solid lightgray;
+    }
+    
+    div.smalltableCell.title {
+        color: black;
+    }
+    /*For the favorite btn */
+    
+    .favBtn {
+        position: absolute;
+        width: 50px;
+        height: 99.5%;
+        margin-top: 0px;
+        left: 0px;
+        object-fit: contain;
+        box-shadow: 0px 5px 5px lightgray;
+        padding: 0px;
+        z-index: 5;
+        border: none;
+    }
+    
+    .favBtnHolder {
+        width: 50px;
+        height: 100%;
+        border: none;
+        left: 0px;
+        background-color: #191d24;
+        position: absolute;
+        z-index: 5;
+    }
+    
+    .favBtnHolderRight {
+        width: 50px;
+        height: 100%;
+        top: 0px;
+        border: none;
+        right: 0px;
+        background-color: #191d24;
+        position: absolute;
+        z-index: 5;
+    }
+    
+    .hidden {
+        visibility: hidden;
+    }
+    
+    .states {
+        background-image: url(../img/Follow_Color.png);
+    }
+    
+    form {
+        padding: 0px;
+        margin: 0p;
+        height: 50%;
+        justify-content: center;
+    }
+    
+    input[type=image] {
+        position: absolute;
+        width: 50px;
+        top: 0px;
+        height: 100%;
+        left: 0px;
+        object-fit: contain;
+        vertical-align: middle;
+        padding: 0px;
+        z-index: 6;
+        border: none;
+        margin: auto;
+    }
