@@ -1,0 +1,92 @@
+@import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
+
+html, body, head {
+     padding: 0px;
+     margin: 0px;
+     padding-bottom: 25px;
+     overflow: hidden;
+     font-family: 'Noto Sans Kannada', sans-serif;
+}
+
+h1{
+    font-size: 0px;
+}
+
+
+.LargeTable{
+     height: auto;
+     width: 99%;
+     text-align: center;
+     border: 2px solid lightgray;
+     border-radius: 2px;
+     box-shadow: 0px 5px 5px lightgray;
+     position: absolute;
+     display: block;;
+}
+
+.beerImage{
+     
+}
+
+.cellImage{
+     position: relative;
+     display: inline-block;
+     flex: auto;
+     height: 12.5em;
+     object-fit: contain;
+}
+
+.mainContent{
+     display: flex;
+     flex: auto;
+     flex-direction: row;
+     justify-content: center;
+     vertical-align: middle;
+     padding-top: 0px;
+     margin-top: 0px;
+}
+
+
+.LargeTable:hover {
+    box-shadow: 0px 5px 5px gray;
+}
+
+.LargeTableTitle{
+     font-size: 24px;
+     text-align: center;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     margin: auto;
+}
+
+.MainCell{
+     flex: auto;
+     display: flex;
+     flex-wrap: wrap; 
+}
+
+table{
+     width: 75%;
+     margin: auto;
+}
+
+th{
+     text-align: right;
+     padding-right: 2.5%;
+}
+
+td{
+     text-align: left;
+}
+
+/** for the image cells that are not images */
+p.imageCell{
+    width: 75%;
+     height: 75%;
+     margin: auto;
+     color: black;
+     object-fit: scale-down;
+     padding: 0px;
+     border-radius: 50%;;
+     border: 2px solid lightgray;
+}
