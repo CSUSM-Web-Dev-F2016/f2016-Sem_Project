@@ -55,6 +55,12 @@
             <input type="submit" id="subButton" value="Submit"/>
 
         </form>
+
+
+  			<p class="centerText">
+  				Already a member?
+  				<a href="html/UserSignUp.php">Sign in now</a>
+  			</p>
     </div>
 </div>
 
