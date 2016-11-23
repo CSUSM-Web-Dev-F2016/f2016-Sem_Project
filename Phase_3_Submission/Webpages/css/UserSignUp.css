@@ -1,0 +1,128 @@
+@import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
+html, body, head {
+    margin: 0px;
+    font-family: 'Noto Sans Kannada', sans-serif;
+}
+
+body {
+    background-color: black;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+#signUpForm {
+    order: 0;
+}
+
+.centerDiv {
+    -moz-box-align: center;
+    -moz-box-direction: normal;
+    -moz-box-orient: horizontal;
+    height: 50%;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    /*justify-content: center;*/
+    flex-direction: row;
+    flex-flow: wrap;
+    width: 35%;
+    height: 70%;
+    right: 30%;
+    top: 12%;
+    position: absolute;
+    background-color: rgba(255, 255, 255, .2);
+    padding: 25px;
+    border-radius: 15px;
+}
+
+#sign-up-header {
+    font-size: 1.5em;
+}
+
+.box-line {
+    width: 55px;
+    height: 4px;
+    background-color: black;
+    margin: 12px;
+    margin-top: 48px;
+}
+
+.grid {
+    margin: 0 auto;
+    max-width: 20rem;
+    width: 90%;
+    padding: 25px;
+    background-color: rgba(25, 29, 36, .75);
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, .9);
+}
+
+.centerText {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: -.5rem;
+    color: white;
+}
+
+.centerText a {
+    color: white;
+}
+
+input[type=text] {
+    box-sizing: border-box;
+    border: .5px solid #93969b;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: .75rem;
+    margin-top: .25rem;
+    width: 100%;
+}
+
+input[type=password] {
+    box-sizing: border-box;
+    border: .5px solid #93969b;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: .75rem;
+    margin-top: .25rem;
+    width: 100%;
+}
+
+input[type=text]:focus {
+    border: 2px solid #507590;
+}
+
+input[type=submit] {
+    background-color: #191d24;
+    opacity: 1;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: .25rem;
+    padding: .5rem;
+    margin-top: .5rem;
+    width: 100%;
+}
+
+button {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 1px solid gray;
+}
+
+button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
+}
