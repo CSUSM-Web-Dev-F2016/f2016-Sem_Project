@@ -192,7 +192,7 @@ img.smalltableCell {
     width: 75%;
     height: 75%;
     margin: auto;
-    object-fit: cover;
+    object-fit: scale-down;
     padding: 0px;
     border-radius: 50%;
     border: 2px solid lightgray;

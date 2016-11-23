@@ -21,12 +21,12 @@
   ga('create', 'UA-83948702-3', 'auto');
   ga('send', 'pageview');
   <?php
-  	//Start the session 
+  	//Start the session
 	  session_start();
 
-//Get the token to prove the user was logged in 
+//Get the token to prove the user was logged in
 	  if(strlen($_SESSION['loginToken']) == 0){
-	//r	edirect to the login page 
+	//r	edirect to the login page
 	 header("Location: ../index.php");
 }
 else{
@@ -62,7 +62,7 @@ else{
 		</table>
 
 		<!-- Add a search bar in the top left -->
-		<form action="return false;" onsubmit="return false;" class="searchForm">
+		<form action="return false;" onsubmit="return false;" method="POST" class="searchForm">
 			<label class="hidden">Enter Search Terms here </label>
 			<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
 			<label class="hidden"> Search Field </label>
@@ -96,14 +96,14 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 /*if(isset($_POST['user'])){
 	$CurrentUser = $_POST['user'];
 }else{*/
-	//Use already provided var 
+	//Use already provided var
 	$CurrentUser = $_SESSION['currentUser'];
 //}
 
 //Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $CurrentUser . "'";
 	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
-	
+
 	//Check to see if exists (it should since we already logged in)
 	if($userInfoResults-> num_rows > 0){
 		while($row = mysqli_fetch_assoc($userInfoResults)){
@@ -116,7 +116,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 	}else{
 		//err
 	}
-	//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $CurrentUser . " FNAME: " . $FName . " LNAME: " . $LName . "\");</script>"; 
+	//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $CurrentUser . " FNAME: " . $FName . " LNAME: " . $LName . "\");</script>";
 ?>
 <body>
 	<!-- Profile Container -->
@@ -223,7 +223,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					if($usersFollowingMeResult-> num_rows > 0 ){
 						//If there are some rows, loop through them
 						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
-							//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>"; 
+							//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
 
 							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
 								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
@@ -268,10 +268,10 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID ORDER BY BreweryName LIMIT 6";
 					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
-					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user. 
+					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
 					if($breweriesFollowingResults-> num_rows > 0){
 						//Use a while loop to build the form
-						
+
 						while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
 							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
 								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
@@ -283,7 +283,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 								echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
 							echo "</form>";
 						}
-						
+
 					}else{
 						//Build custom when no rows are found
 						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
@@ -296,14 +296,14 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
 							echo "</form>";
 					}
-					/** Does Not Work Yet **/
+					/** Should work **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     						if(isset($_POST['brewery'])){
-       							//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>"; 
+       							//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>";
 							  //$_SESSION['breweryID'] = end(array_keys($_POST));
 
-							  //Navigate to the brewery page iwth the new id 
+							  //Navigate to the brewery page iwth the new id
 							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
     						}else {

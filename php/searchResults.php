@@ -48,13 +48,13 @@
 						 //echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
 
 						 echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-							 echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
+							 echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['Email'] . "\">";
 								 echo "<div class=\"tableCell img\">";
 									 echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
 								 echo "</div>";
 								 echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
 							 echo "</button>";
-							 echo "<input type=\"hidden\" name=\"" . strtr($row['UserEmail'], array('.' => '#-#')) . "\" value=\"\">";
+							 echo "<input type=\"hidden\" name=\"" . strtr($row['Email'], array('.' => '#-#')) . "\" value=\"\">";
 						 echo "</form>";
 
 						 //echo "<p style=\"color:white\">" . $row['UserEmail'];
@@ -86,33 +86,33 @@
  				$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
  				//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
- 				if($breweriesFollowingResults-> num_rows > 0){
- 					//Use a while loop to build the form
+				if($breweriesFollowingResults-> num_rows > 0){
+					//Use a while loop to build the form
 
- 					while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
- 						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
- 							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
- 								echo "<div class=\"tableCell img\">";
- 									echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
- 								echo "</div>";
- 								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
- 							echo "</button>";
- 							echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
- 						echo "</form>";
- 					}
+					while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
+						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
+							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
+								echo "<div class=\"tableCell img\">";
+									echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
+								echo "</div>";
+								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
+							echo "</button>";
+							echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
+						echo "</form>";
+					}
 
- 				}else{
- 					//Build custom when no rows are found
- 					echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
- 							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
- 								echo "<div class=\"tableCell img\">";
- 									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
- 								echo "</div>";
- 								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Breweries Found!" . "</div>";
- 							echo "</button>";
- 							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
- 						echo "</form>";
- 				}
+				}else{
+					//Build custom when no rows are found
+					echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
+							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+								echo "<div class=\"tableCell img\">";
+									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+								echo "</div>";
+								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
+							echo "</button>";
+							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
+						echo "</form>";
+				}
 				 ?>
 			 </div>
 		 </div>
@@ -123,9 +123,9 @@
 			 </div>
 			 <div class="table">
 				 <?php
-				 $getBeers = "SELECT PictureURL, BeerID, BeerName FROM Beers WHERE BeerName Like '% " . $_GET['text'] . "' LIMIT " . $MaxReturning;
+				 $getBeers = "SELECT PictureURL, BeerID, BeerName FROM Beers WHERE BeerName Like '%" . $_GET['text'] . "' OR BeerDescription Like '%" . $_GET['text'] . "' LIMIT " . $MaxReturning;
 				 $getBeersResults = mysqli_query($connection, $getBeers);
-				 echo "<script type=\"text/javascript\">window.alert(\"Result Count: " . $getBeersResults-> num_rows . " Query: " . $getBeers . "\");</script>";
+				 //echo "<script type=\"text/javascript\">window.alert(\"Result Count: " . $getBeersResults-> num_rows . " Query: " . $getBeers . "\");</script>";
 
 				 if($getBeersResults-> num_rows > 0){
   					//Use a while loop to build the form
@@ -138,13 +138,13 @@
   								echo "</div>";
   								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BeerName'] . "</div>";
   							echo "</button>";
-  							echo "<input type=\"hidden\" name=\"" . $row['BeerID'] . "\" value=\"\">";
+  							echo "<input type=\"hidden\" name=\"beerID\" value=\"" . $row['BeerID'] . "\">";
   						echo "</form>";
   					}
 
   				}else{
   					//Build custom when no rows are found
-  					echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"beer\" onsubmit=\"return false;\">";
+  					echo "<form action=\"\" class=\"stdForm\" name=\"beer\" onsubmit=\"return false;\">";
   							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
   								echo "<div class=\"tableCell img\">";
   									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
@@ -157,6 +157,38 @@
 				 ?>
 			 </div>
 		 </div>
+		 <?php
+		 		//For the Post Request.
+				//If a brewery, set the breweryID then go to the brewery page.
+				//If a user, set the current user and go to the profile page
+				//If a brewery, show the beer in teh current iframe
+				if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+							if(isset($_POST['brewery'])){
+								//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>";
+							//$_SESSION['breweryID'] = end(array_keys($_POST));
+
+							//Navigate to the brewery page iwth the new id
+							echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+
+						}
+						else if(isset($_POST['beerID'])) {
+								//echo "<script type=\"text/javascript\"> window.alert(\"Found a Beer: " . $_POST['BeerID'] . "\");</script>";
+								echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?beerID=" . $_POST['beerID'] . "\";</script>";
+						}
+
+						else  {
+								$_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+
+								//echo "<p style=\"color:white;\">" . end(array_keys($_POST));
+
+								//echo "<script type=\"text/javascript\"> window.alert(\"Found a User: " . $_SESSION['currentUser'] . "\");</script>";
+								echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+							}
+				}
+
+
+		  ?>
 
 </body>
 
