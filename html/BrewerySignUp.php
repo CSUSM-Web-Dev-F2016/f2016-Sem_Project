@@ -144,26 +144,30 @@
 					//if there were no errors with the user inputs, get query
 					if(strlen($errorString) == 0) {
 						//get the local date to store for "date created" in brewery tables
-						$localDate = date(Y-m-d);
+						$localDate = date('Y-m-d H:i:s');
 						//the brewery table only has these attributes from the form
-						$insertBreweryTable = "INSERT INTO BreweryTable (BreweryName, PhoneNo, DateAdded, ProfilePicURL, Hours) VALUES ('" . $BreweryName . "', '" . $phoneNumber . "', '" . $localDate . "', '" . $profilePic . "', '" . $hours . "')";
-						//get query for Brewery Location Table
-						$insertBreweryLocation = "INSERT INTO BreweryLocation (AddrLineOne, City, State, Zip) VALUES ('" . $streetAddress . "', '" . $city . "', '" . $state . "', '" . $zipCode . "')";
-
-						//get results
+						$insertBreweryTable = "INSERT INTO BreweryTable (BreweryName, PhoneNo, DateAdded, ProfilePicURL, Hours) VALUES ('" . $breweryName . "', '" . $phoneNumber . "', '" . $localDate . "', '" . $profilePic . "', '" . $hours . "')";
 						$breweryTable_Result = mysqli_query($connection, $insertBreweryTable);
-						$breweryLocation_Result = mysqli_query($connection, $insertBreweryLocation);
-
 						if(!$breweryTable_Result) {
-							die("Could not fullfill 1st query Request: " . mysqli_error($connection));
-						} else if (!$breweryLocation_Result) {
-							die("Could not fullfill 2nd query Request" . mysqli_error($connection));
+							die("Could not fullfill BreweryTable Request: " . mysqli_error($connection));
+						}
+						//get Foreign key for Location table
+						$getForeignKey = "SELECT BreweryID FROM BreweryTable WHERE BreweryName = 'TEST1'";
+						$foreignKey_Result = mysqli_query($connection, $getForeignKey);
+						if (!$foreignKey_Result) {
+							die("Could not fullfill foreign Key Request: " . mysqli_error($connection));
+						}
+						//fetch the row of the array, use assoc index to get BreweryID
+						$foreignKey = mysqli_fetch_assoc($foreignKey_Result);
+						//get query for Brewery Location Table
+						$insertBreweryLocation = "INSERT INTO BreweryLocation (BreweryID, AddrLineOne, City, State, Zip) VALUES ('" . $foreignKey["BreweryID"] . "','" . $streetAddress . "', '" . $city . "', '" . $state . "', '" . $zipCode . "')";
+						$breweryLocation_Result = mysqli_query($connection, $insertBreweryLocation);
+						if (!$breweryLocation_Result) {
+							die("Could not fullfill BreweryLocation Request: " . mysqli_error($connection));
 						} else {
 							echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Brewery Created!</p>";
 						}
-						//clear the result since we're done with it
-						mysqli_free_result($breweryTable_Result);
-						mysqli_free_result($breweryLocation_Result);
+
 					}
 				}
 				//close connection to database
