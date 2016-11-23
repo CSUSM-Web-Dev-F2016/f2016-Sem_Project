@@ -82,7 +82,7 @@
 			 </div>
 			 <div class="table">
 				 <?php
-				 $getBreweriesFollowing = "SELECT DISTINCT b.BreweryName, b.ProfilePicURL, b.BreweryID FROM BreweryTable b, BreweryLocation bl WHERE b.BreweryID=bl.BreweryID AND bl.City LIKE '%" . $_GET['text'] . "%' OR bl.City='" . $_GET['text'] . "' OR bl.Zip='" . $_GET['text'] . "' ORDER BY b.BreweryName LIMIT " . $MaxReturning;
+				 $getBreweriesFollowing = "SELECT DISTINCT b.BreweryName, b.ProfilePicURL, b.BreweryID FROM BreweryTable b, BreweryLocation bl WHERE b.BreweryID=bl.BreweryID AND bl.City LIKE '%" . $_GET['text'] . "%' OR b.BreweryName LIKE '%" . $_GET['text'] . "%' OR bl.City='%" . $_GET['text'] . "%' OR bl.Zip='%" . $_GET['text'] . "%' ORDER BY b.BreweryName LIMIT " . $MaxReturning;
  				$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
  				//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
