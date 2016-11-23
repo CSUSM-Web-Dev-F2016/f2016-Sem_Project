@@ -67,7 +67,7 @@
 								 echo "<div class=\"tableCell img\">";
 									 echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
 								 echo "</div>";
-								 echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
+								 echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Users Found!" . "</div>";
 							 echo "</button>";
 						 echo "</form>";
 				 }
@@ -82,7 +82,7 @@
 			 </div>
 			 <div class="table">
 				 <?php
-				 $getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, BreweryID FROM BreweryTable WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID ORDER BY BreweryName LIMIT 6";
+				 $getBreweriesFollowing = "SELECT DISTINCT b.BreweryName, b.ProfilePicURL, b.BreweryID FROM BreweryTable b, BreweryLocation bl WHERE b.BreweryID=bl.BreweryID AND bl.City LIKE '%" . $_GET['text'] . "%' OR bl.City='" . $_GET['text'] . "' OR bl.Zip='" . $_GET['text'] . "' ORDER BY b.BreweryName LIMIT " . $MaxReturning;
  				$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
  				//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
@@ -108,7 +108,7 @@
  								echo "<div class=\"tableCell img\">";
  									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
  								echo "</div>";
- 								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
+ 								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Breweries Found!" . "</div>";
  							echo "</button>";
  							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
  						echo "</form>";
@@ -123,38 +123,37 @@
 			 </div>
 			 <div class="table">
 				 <?php
-				 $getUsersFollowingMeQuery = "SELECT DISTINCT Email, ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name', LName FROM Users, Users them WHERE Email LIKE'%" . $_GET['text'] . "%' ORDER BY LName LIMIT " . $MaxReturning;
-				 $usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
+				 $getBeers = "SELECT PictureURL, BeerID, BeerName FROM Beers WHERE BeerName Like '% " . $_GET['text'] . "' LIMIT " . $MaxReturning;
+				 $getBeersResults = mysqli_query($connection, $getBeers);
+				 echo "<script type=\"text/javascript\">window.alert(\"Result Count: " . $getBeersResults-> num_rows . " Query: " . $getBeers . "\");</script>";
 
-				 if($usersFollowingMeResult-> num_rows > 0 ){
-					 //If there are some rows, loop through them
-					 while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
-						 //echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
+				 if($getBeersResults-> num_rows > 0){
+  					//Use a while loop to build the form
 
-						 echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-							 echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
-								 echo "<div class=\"tableCell img\">";
-									 echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
-								 echo "</div>";
-								 echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
-							 echo "</button>";
-							 echo "<input type=\"hidden\" name=\"" . strtr($row['UserEmail'], array('.' => '#-#')) . "\" value=\"\">";
-						 echo "</form>";
+  					while($row = mysqli_fetch_assoc($getBeersResults)){
+  						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"beer\">";
+  							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"beer\">";
+  								echo "<div class=\"tableCell img\">";
+  									echo "<img class=\"smalltableCell\" src=\"" . $row['PictureURL'] . "\" alt=\"" . $row['BeerName'] . "\">";
+  								echo "</div>";
+  								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BeerName'] . "</div>";
+  							echo "</button>";
+  							echo "<input type=\"hidden\" name=\"" . $row['BeerID'] . "\" value=\"\">";
+  						echo "</form>";
+  					}
 
-						 //echo "<p style=\"color:white\">" . $row['UserEmail'];
-					 }
-				 }
-				 else{
-					 //Just print a text saying 'no items found';
-					 echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
-							 echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
-								 echo "<div class=\"tableCell img\">";
-									 echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-								 echo "</div>";
-								 echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Beers Found" . "</div>";
-							 echo "</button>";
-						 echo "</form>";
-				 }
+  				}else{
+  					//Build custom when no rows are found
+  					echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"beer\" onsubmit=\"return false;\">";
+  							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
+  								echo "<div class=\"tableCell img\">";
+  									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+  								echo "</div>";
+  								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Beers Found!" . "</div>";
+  							echo "</button>";
+  							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
+  						echo "</form>";
+  				}
 				 ?>
 			 </div>
 		 </div>

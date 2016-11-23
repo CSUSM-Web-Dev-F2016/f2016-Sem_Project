@@ -49,7 +49,7 @@ img.smalltableCell {
     height: 7.5em;
     margin: auto;
     margin-top: 0px;
-    object-fit: contain;
+    object-fit: cover;
     padding: 0px;
     border-radius: 50%;
     border: 2px solid lightgray;
