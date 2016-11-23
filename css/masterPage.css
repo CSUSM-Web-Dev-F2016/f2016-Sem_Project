@@ -95,7 +95,7 @@ div.stdSectionFooter {
     text-align: center;
     color: white;
     font-size: 16px;
-    padding-top: 5px;
+    padding-top: -10px;
     padding-bottom: 10px;
     position: relative;
 }
@@ -134,7 +134,9 @@ div.stdSectionTitle {
 /** Table Cells */
 
 .smalltableCell.title {
-    height: 25px;
+    height: auto;
+    display: flex;
+    flex: auto;
     width: 100%;
     max-width: 75px;
     font-weight: lighter;
@@ -226,6 +228,9 @@ iframe {
     width: 100%;
     position: relative;
     top: 0px;
+    padding-bottom: 50px;
+    padding: 0px;
+    margin: 0px;
     padding-bottom: 50px;
 }
 

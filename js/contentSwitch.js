@@ -16,18 +16,39 @@ function showSRC(address) {
 
 }
 
+function logout() {
+    //This wil direct the user to a temp page, whiich will reset all session vars and bring the user to the login
+    //Screen again so that they need to login to continue.
+
+    window.location.href = "../php/resetUser.php";
+}
+
 function showBeerView(beerID) {
     //Get the section's DOM element
     var sectionDOM = document.getElementById("contentFrame");
-
-    //Set the session id to the beer id
-
-    //window.alert(beerID);
 
     //Set the new page
     sectionDOM.src = "../html/" + "BeerInfo.php?beerID=" + beerID;
 
     sectionDOM.style.width = "100%";
+}
+
+function startSearch() {
+    //Get the section's DOM element
+    var sectionDOM = document.getElementById("contentFrame");
+
+    var inputText = document.getElementsByTagName("form")[0].getElementsByTagName("input")[0].value;
+
+    if (inputText.length > 0) {
+        //Set the new page
+        sectionDOM.src = "../php/searchResults.php?text=" + inputText;
+        sectionDOM.style.width = "100%";
+    } else {
+        //Show the news feed
+        sectionDOM.src = "../html/NewsFeed.html";
+        sectionDOM.style.width = "100%";
+    }
+
 }
 
 /**

@@ -24,17 +24,8 @@
 </head>
 
 <?php
-  	//Start the session to share data 
+  	//Start the session to share data
 	  session_start();
-
-	  //check status
-	   if(strlen($_SESSION['loginToken']) == 0){
-		//r	edirect to the login page 
-	 	header("Location: ../index.php");
-		}
-		else{
-		//e	cho "<p>You rock";
-		}
 
 	 //Create a basic connection
     	$connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
@@ -44,12 +35,30 @@
 		die("Connection Failed. ERR: " . mysqli_connect_error());
 	}
 
+	//Determine if the user is following the beer
+	//See if there is an entry in the table
+	$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['beerID'];
+	$getFollowsResult = mysqli_query($connection, $getIfFollows);
+	$_SESSION['Follows'] = "FALSE";
+	$FollowImage = "";
+
+
+	if($getFollowsResult-> num_rows > 0){
+		//Set the Bool Success
+		$_SESSION['Follows'] = "TRUE";
+		$FollowImage = "../img/Unfollow_Follow_Color.png";
+	}else{
+		$FollowImage = "../img/Follow_Color.png";
+	}
+
+	//echo "<script type=\"text/javascript\">window.alert(\"Follows?: " . $getIfFollows . "\");</script>";
+
 	//Get the current beer information
 	$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
 	$ResultsForBeer = mysqli_query($connection, $BeerQuery);
 
 	if($ResultsForBeer-> num_rows > 0){
-		//Should be one instance 
+		//Should be one instance
 		while($row = mysqli_fetch_assoc($ResultsForBeer)){
 			$BeerID = $row['BeerID'];
 			$BeerName = $row['BeerName'];
@@ -69,15 +78,25 @@
 		}
 	}else{
 		//Beer does not exist
-		echo "<p style=\"color:white;\">DNE";
+		//echo "<p style=\"color:white;\">DNE";
+		header("Location: ../html/PageNotFound.html");
 	}
 
 
   ?>
 	<body>
+
+
 		<div class="parentClass">
 			<h1>&nbsp;</h1>
+
+
 			<div class="LargeTable">
+				<form action="" onsubmit="" method="POST" class="favBtnHolder">
+				<!-- We need to descide if the user is already following the beer or not first -->
+					<label class="hidden">submit</label>
+					<input value="<?php echo $_GET['beerID']; ?>" type="image" src="<?php echo $FollowImage ?>" name="beerID" alt="follow" id="FollowPic">
+				</form>
 				<div class="LargeTableTitle">
 					<?php echo $BeerName ?>
 				</div>
@@ -92,7 +111,7 @@
 							<div class="smalltableCell">
 								<div>
 									<div class="tableCell img">
-										<p class="imageCell"><?php echo $ABV . "%" ?></p>
+										<p class="imageCell"><?php if(isset($ABV)) echo $ABV . "%"; else echo "N/A"; ?></p>
 									</div>
 									<div class="smalltableCell title">
 										<!-- The amount will be displayed above -->
@@ -103,7 +122,7 @@
 							<div class="smalltableCell">
 								<div>
 									<div class="tableCell img">
-										<p class="imageCell"><?php echo $IBU ?></p>
+										<p class="imageCell"><?php if(isset($IBU)) echo $IBU . ""; else echo "N/A"; ?></p>
 									</div>
 									<div class="smalltableCell title">
 										<!-- The amount will be displayed above -->
@@ -114,11 +133,26 @@
 							<div class="smalltableCell">
 								<div>
 									<div class="tableCell img">
-										<p class="imageCell">N/A</p> 
+										<p class="imageCell">
+										<?php
+											//Run a query to get the count of all that favorited this beer
+											$qu = "SELECT COUNT(*) AS Count FROM UserFavoritesBeer WHERE BeerID=" . $_GET['beerID'];
+											$re = mysqli_query($connection, $qu);
+
+											if($re-> num_rows > 0){
+												while($row = mysqli_fetch_assoc($re)){
+													echo "" . $row['Count'];
+													break;
+												}
+											}else{
+												echo "N/A";
+											}
+										?>
+										</p>
 									</div>
 									<div class="smalltableCell title">
 										<!-- The amount will be displayed above -->
-										Like Count
+										Favorites
 									</div>
 								</div>
 							</div>
@@ -127,10 +161,10 @@
 								<div>
 									<div class="tableCell img">
 										<img class="smalltableCell" src=
-										<?php if($OnTap == 'T'){ 
-												echo "../img/check.png?raw=true"; 
+										<?php if($OnTap == 'T'){
+												echo "../img/check.png?raw=true";
 											}
-											else{ 
+											else{
 												echo "../img/x.png?raw=true";
 											} ?> alt="OnTap?">
 									</div>
@@ -163,16 +197,19 @@
 								</div>
 							</div>
 						</div>
+
 					</div>
 					<!-- Edn of small header table -->
 				</div>
 				<!-- End of main Content -->
+				<div class="favBtnHolderRight"></div>
 
 				<div class="MainCell">
 					<!-- Add a table for remaining brew details -->
 					<table class="beerInfo">
 						<caption>&nbsp;</caption>
 						<tbody>
+						<?php if(!empty($BeerDescription)){ ?>
 							<tr>
 								<th>Beer Description:
 								</th>
@@ -180,6 +217,10 @@
 									<?php echo $BeerDescription ?>
 								</td>
 							</tr>
+							<?php
+						}
+						if(!empty($PairingsDescription)){
+							?>
 							<tr>
 								<th>
 									Foord Pairings:
@@ -188,6 +229,10 @@
 									<?php echo $PairingsDescription ?>
 								</td>
 							</tr>
+							<?php
+						}
+						if(!empty($Awards)){
+							?>
 							<tr>
 								<th>
 									Awards Won:
@@ -196,6 +241,10 @@
 									<?php echo $Awards ?>
 								</td>
 							</tr>
+							<?php
+						}
+						if(!empty($FromTheBrewMaster)){
+							?>
 							<tr>
 								<th>
 									From the Brewmaster:
@@ -204,11 +253,18 @@
 									<?php echo $FromTheBrewMaster ?>
 								</td>
 							</tr>
+							<?php
+						}
+						if(!empty($OnTap)){
+							?>
 							<tr>
 								<th>When Available:</th>
 								<td><span style="color:green;">Coming Soon...</span>
 								</td>
 							</tr>
+							<?php
+						}
+							?>
 						</tbody>
 					</table>
 
@@ -218,4 +274,59 @@
 
 		</div>
 
+		<?php
+			//Check for submit
+			if($_SERVER['REQUEST_METHOD'] == 'POST'){
+				if(isset($_POST['beerID'])){
+					//echo "<script type=\"text/javascript\">window.alert(\"Beer Found!: " . $_GET['beerID'] . "\");</script>";
+
+					//Check the connetion status:
+					//if(!$connection)echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Failed\");</script>";
+					//else echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Succeeded\");</script>";
+
+					//echo "<script type=\"text/javascript\">window.alert(\"Follows:: " . $_SESSION['Follows'] . "\");</script>";
+
+					if($_SESSION['Follows'] == "FALSE"){
+						//Start the MySQL query to favorite the beer
+						$AddBeerToFavorites = "INSERT INTO UserFavoritesBeer VALUES ('" . $_SESSION['signedInUser'] . "', " . $_POST['beerID'] . ")";
+						//echo "<script type=\"text/javascript\">window.alert(\"request: " . $AddBeerToFavorites ."\");</script>";
+						$AddedBeerResults = mysqli_query($connection, $AddBeerToFavorites);
+
+						if($AddedBeerResults){
+							//echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['beerID'] . " favorited!\");</script>";
+							$FollowImage = "../img/Unfollow_Follow_Color.png";
+							$_SESSION['Follows'] = "TRUE";
+							echo "<script type=\"text/javascript\">window.location.reload();</script>";
+						}else{
+							echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['beerID'] . " could not be foavorited!<br>" . $AddBeerToFavorites . "\");</script>";
+						}
+					}else{
+						//Unfolow
+						$RemoveBeerFromFavorites = "DELETE FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_POST['beerID'];
+						//echo "<script type=\"text/javascript\">window.alert(\"request: " . $RemoveBeerFromFavorites ."\");</script>";
+						$RemoveBeerResults = mysqli_query($connection, $RemoveBeerFromFavorites);
+
+						//Complete the request
+						if($RemoveBeerResults){
+							//Removed
+							//echo "<script type=\"text/javascript\">window.alert(\"Unfollowed Beer: " . $_POST['beerID'] . " successfully!\");</script>";
+							$FollowImage = "../img/Follow_Color.png";
+							$_SESSION['Follows'] = "FALSE";
+							echo "<script type=\"text/javascript\">window.location.reload();</script>";
+						}else{
+							//Did not remove
+							echo "<script type=\"text/javascript\">window.alert(\"Error Unfollowing Beer\n" . $RemoveBeerFromFavorites . "\");</script>";
+						}
+
+
+					}
+				}
+				else{
+					echo "<script type=\"text/javascript\">window.alert(\"Invalid Request\");</script>";
+				}
+			}
+		?>
+
+
 	</body>
+</html>
