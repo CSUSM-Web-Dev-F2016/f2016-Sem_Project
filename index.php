@@ -69,7 +69,7 @@
 
 		<!-- Ad the beer hopper banner to the left -->
 		<div class="banner">
-			<img src="../img/Beer_Hopper_Banner.png" alt="Banner">
+			<img src="img/Beer_Hopper_Banner.png" alt="Banner">
 		</div>
 
 		<div class="grid">
