@@ -18,7 +18,8 @@
 function createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl){
     echo "Creating User";
     //Create the user in an SQL Command, tehn, log them in.
-    $createUserQuery = "INSERT INTO Users (Email, Password, FName, LName, DOB, ProfilePicURL) VALUES ('" . $Email . "', '" . $Password . "', '" . $FName . "', '" . $LName . "', '" . $birthday . "', '" . $ProfilePicURl . "')";
+    $createUserQuery = "INSERT INTO Users (Email, Password, FName, LName, DOB, ProfilePicURL) 
+        VALUES ('" . $Email . "', '" . $Password . "', '" . $FName . "', '" . $LName . "', '" . $birthday . "', '" . $ProfilePicURl . "')";
 
     // get database connection
     $connection = include 'DBConnectionReturn.php';
