@@ -25,6 +25,11 @@
 </div>
 
 <div class="centerDiv">
+  <!-- Ad the beer hopper banner to the left -->
+  <div class="banner">
+    <img src="../img/Beer_Hopper_Banner.png" alt="Banner">
+  </div>
+
     <div class="grid">
         <p class="centerText" id="sign-up-header">Sign Up</p>
         <form id="signUpForm" action="../html/UserSignUp.php" method="POST">
@@ -149,7 +154,3 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 ?>
 </body>
 </html>
-
-
-
-
