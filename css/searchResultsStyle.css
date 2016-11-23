@@ -54,13 +54,12 @@ img.smalltableCell {
     border-radius: 50%;
     border: 2px solid lightgray;
     margin-bottom: 0px;
-    padding-bottom: 0px;
     background-color: white;
     position: relative;
 }
 
 div.stdSectionTitle {
-    padding-top: 10px;
+    padding-top: 15px;
     padding-bottom: 10px;
     font-size: 18px;
     font-weight: bold;

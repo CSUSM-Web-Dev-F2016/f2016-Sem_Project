@@ -24,7 +24,7 @@
 </head>
 
 <?php
-  	//Start the session to share data 
+  	//Start the session to share data
 	  session_start();
 
 	 //Create a basic connection
@@ -36,7 +36,7 @@
 	}
 
 	//Determine if the user is following the beer
-	//See if there is an entry in the table 
+	//See if there is an entry in the table
 	$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['beerID'];
 	$getFollowsResult = mysqli_query($connection, $getIfFollows);
 	$_SESSION['Follows'] = "FALSE";
@@ -58,7 +58,7 @@
 	$ResultsForBeer = mysqli_query($connection, $BeerQuery);
 
 	if($ResultsForBeer-> num_rows > 0){
-		//Should be one instance 
+		//Should be one instance
 		while($row = mysqli_fetch_assoc($ResultsForBeer)){
 			$BeerID = $row['BeerID'];
 			$BeerName = $row['BeerName'];
@@ -78,18 +78,19 @@
 		}
 	}else{
 		//Beer does not exist
-		echo "<p style=\"color:white;\">DNE";
+		//echo "<p style=\"color:white;\">DNE";
+		header("Location: ../html/PageNotFound.html");
 	}
 
 
   ?>
 	<body>
-					
+
 
 		<div class="parentClass">
 			<h1>&nbsp;</h1>
 
-			
+
 			<div class="LargeTable">
 				<form action="" onsubmit="" method="POST" class="favBtnHolder">
 				<!-- We need to descide if the user is already following the beer or not first -->
@@ -147,7 +148,7 @@
 												echo "N/A";
 											}
 										?>
-										</p> 
+										</p>
 									</div>
 									<div class="smalltableCell title">
 										<!-- The amount will be displayed above -->
@@ -160,10 +161,10 @@
 								<div>
 									<div class="tableCell img">
 										<img class="smalltableCell" src=
-										<?php if($OnTap == 'T'){ 
-												echo "../img/check.png?raw=true"; 
+										<?php if($OnTap == 'T'){
+												echo "../img/check.png?raw=true";
 											}
-											else{ 
+											else{
 												echo "../img/x.png?raw=true";
 											} ?> alt="OnTap?">
 									</div>
@@ -196,7 +197,7 @@
 								</div>
 							</div>
 						</div>
-							
+
 					</div>
 					<!-- Edn of small header table -->
 				</div>
@@ -278,7 +279,7 @@
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				if(isset($_POST['beerID'])){
 					//echo "<script type=\"text/javascript\">window.alert(\"Beer Found!: " . $_GET['beerID'] . "\");</script>";
-					
+
 					//Check the connetion status:
 					//if(!$connection)echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Failed\");</script>";
 					//else echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Succeeded\");</script>";

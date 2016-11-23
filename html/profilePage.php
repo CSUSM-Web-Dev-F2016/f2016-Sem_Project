@@ -131,6 +131,9 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 	<!-- Left Section -->
 	<aside class="left">
 		<div class="subsection">
+			<?php
+			if($_SESSION['signedInUser'] != $CurrentUser){
+				?>
 			<div class="stdSection" id="About">
 				<div class="stdSectionTitle">
 				Info
@@ -159,6 +162,9 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					</div>
 					</div>
 			</div>
+		<?php
+			}
+			?>
 			<div class="stdSection" id="bestTastes">
 				<div class="stdSectionTitle">
 					Best Tastes

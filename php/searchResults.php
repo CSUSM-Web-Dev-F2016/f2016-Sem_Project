@@ -108,7 +108,7 @@
 								echo "<div class=\"tableCell img\">";
 									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
 								echo "</div>";
-								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
+								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Breweries Found!" . "</div>";
 							echo "</button>";
 							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
 						echo "</form>";

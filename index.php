@@ -114,10 +114,6 @@
 						if($row["Password"] == $_POST["password"]){
 							//echo "<p class\"centerText\"> Correct Password Match </p>";
 
-
-							//Start the session
-	  						session_start();
-
 							//Set the username to search in the session var .. current user is for the page, signed in user is for the rights
 							$_SESSION['currentUser'] = $_SESSION['signedInUser'] = $row["Email"];
 
@@ -128,9 +124,14 @@
 							$UpdateUserLoginDate = "UPDATE Users SET LastLogin=NOW() WHERE Email='" . $row['Email'] . "'";
 							$UpdateUserLoginDateResults = mysqli_query($connection, $UpdateUserLoginDate);
 
+
 							if(!$UpdateUserLoginDateResults){
-								echo "<script type=\"text/javascript\"> window.alert(\"Could not update last login time due to Err:  " . mysqli_error() . "\");</script>";
+								echo "<script type=\"text/javascript\"> window.alert(\"Could not update last login time due to Err:  " . mysqli_error($connection) . "\");</script>";
+							}else{
+								//echo "<script type=\"text/javascript\">window.alert(\"User Updated: " . $row['Email'] . "\");</script>";
 							}
+
+
 							//Close the SQL connetion
 							$connection->close();
 
