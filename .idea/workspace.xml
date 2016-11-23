@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46a92af3-5935-49ef-be1e-7eda3fde0727" name="Default" comment="-Updated UserSignUp.html and UserSignUp.php&#10;--.html now is just the form and posts to the php page&#10;--all create user functions are now in /php/create_user.php">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/UserSignUp.html" afterPath="$PROJECT_DIR$/html/UserSignUp.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/UserSignUp.php" afterPath="$PROJECT_DIR$/html/UserSignUp.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/php/create_user.php" afterPath="$PROJECT_DIR$/php/create_user.php" />
     </list>
     <ignored path="f2016-Sem_Project.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -28,56 +25,13 @@
     <splitter split-orientation="horizontal" split-proportion="0.46974847">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="UserSignUp.php" pinned="false" current-in-tab="false">
+          <file leaf-file-name="UserSignUp.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2304">
-                  <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+                <state relative-caret-position="2832">
+                  <caret line="135" column="6" selection-start-line="135" selection-start-column="6" selection-end-line="135" selection-end-column="6" />
                   <folding>
-                    <marker date="1479861492000" expanded="true" signature="4933:4990" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="UserSignUp.html" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/html/UserSignUp.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="879">
-                  <caret line="53" column="6" selection-start-line="26" selection-start-column="0" selection-end-line="53" selection-end-column="6" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="UserSignUp.css" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/css/UserSignUp.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1392">
-                  <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="searchResults.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/php/searchResults.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.php">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1833">
-                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-                  <folding>
-                    <marker date="1479855911000" expanded="true" signature="2965:3057" ph="SELECT Users... Users" />
-                    <marker date="1479855911000" expanded="true" signature="4122:4190" ph="UPDATE Users... " />
+                    <marker date="1479863463000" expanded="true" signature="4933:4990" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -90,8 +44,8 @@
           <file leaf-file-name="create_user.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/php/create_user.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="168">
-                  <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+                <state relative-caret-position="519">
+                  <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
                   <folding>
                     <element signature="e#6#93#0#PHP" expanded="true" />
                     <marker date="1479861666000" expanded="true" signature="427:626" ph="INSERT INTO Users... " />
@@ -125,8 +79,8 @@
         <option value="$PROJECT_DIR$/php/DBConnectionReturn.php" />
         <option value="$PROJECT_DIR$/css/UserSignUp.css" />
         <option value="$PROJECT_DIR$/html/UserSignUp.html" />
-        <option value="$PROJECT_DIR$/html/UserSignUp.php" />
         <option value="$PROJECT_DIR$/php/create_user.php" />
+        <option value="$PROJECT_DIR$/html/UserSignUp.php" />
       </list>
     </option>
   </component>
@@ -187,20 +141,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="php" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -293,12 +233,12 @@
       <workItem from="1479345784607" duration="2236000" />
       <workItem from="1479352630390" duration="170000" />
       <workItem from="1479352810160" duration="8586000" />
-      <workItem from="1479855971751" duration="4189000" />
+      <workItem from="1479855971751" duration="4530000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="15195000" />
+    <option name="totallyTimeSpent" value="15536000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -391,7 +331,7 @@
         <state relative-caret-position="4272">
           <caret line="178" column="0" selection-start-line="20" selection-start-column="4" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <marker date="1479861492000" expanded="true" signature="4933:4990" ph="..." />
+            <marker date="1479863463000" expanded="true" signature="4933:4990" ph="..." />
           </folding>
         </state>
       </provider>
@@ -409,7 +349,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1479861492000" expanded="true" signature="4933:4990" ph="..." />
+            <marker date="1479863463000" expanded="true" signature="4933:4990" ph="..." />
           </folding>
         </state>
       </provider>
@@ -419,7 +359,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1479861492000" expanded="true" signature="4933:4990" ph="..." />
+            <marker date="1479863463000" expanded="true" signature="4933:4990" ph="..." />
           </folding>
         </state>
       </provider>
@@ -451,11 +391,51 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/php/testInput.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/searchResults.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/css/UserSignUp.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1656">
+          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/UserSignUp.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="879">
-          <caret line="53" column="6" selection-start-line="26" selection-start-column="0" selection-end-line="53" selection-end-column="6" />
+        <state relative-caret-position="768">
+          <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/php/create_user.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="38" column="49" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+          <folding>
+            <element signature="e#6#93#0#PHP" expanded="true" />
+            <marker date="1479861666000" expanded="true" signature="427:626" ph="INSERT INTO Users... " />
+            <marker date="1479861666000" expanded="true" signature="862:921" ph="..." />
+            <marker date="1479861666000" expanded="true" signature="1116:1180" ph="SELECT Curre... valid_Users" />
+            <marker date="1479861666000" expanded="true" signature="1694:1751" ph="..." />
+            <marker date="1479861666000" expanded="true" signature="1868:1925" ph="..." />
+            <marker date="1479861666000" expanded="true" signature="1998:2055" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -472,51 +452,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2304">
-          <caret line="136" column="0" selection-start-line="136" selection-start-column="0" selection-end-line="137" selection-end-column="0" />
+        <state relative-caret-position="2832">
+          <caret line="135" column="6" selection-start-line="135" selection-start-column="6" selection-end-line="135" selection-end-column="6" />
           <folding>
-            <marker date="1479861492000" expanded="true" signature="4933:4990" ph="..." />
+            <marker date="1479863463000" expanded="true" signature="4933:4990" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/create_user.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#6#93#0#PHP" expanded="true" />
-            <marker date="1479861666000" expanded="true" signature="427:626" ph="INSERT INTO Users... " />
-            <marker date="1479861666000" expanded="true" signature="862:921" ph="..." />
-            <marker date="1479861666000" expanded="true" signature="1116:1180" ph="SELECT Curre... valid_Users" />
-            <marker date="1479861666000" expanded="true" signature="1694:1751" ph="..." />
-            <marker date="1479861666000" expanded="true" signature="1868:1925" ph="..." />
-            <marker date="1479861666000" expanded="true" signature="1998:2055" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/testInput.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/css/UserSignUp.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1392">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/php/searchResults.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>

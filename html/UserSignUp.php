@@ -133,13 +133,7 @@
           // calls user that creates user in the db
           createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl);
       }
-
-
-
-
-
-
-
+      
       ?>
     </body>
 </html>
