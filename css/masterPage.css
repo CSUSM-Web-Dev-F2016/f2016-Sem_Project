@@ -229,6 +229,9 @@ iframe {
     position: relative;
     top: 0px;
     padding-bottom: 50px;
+    padding: 0px;
+    margin: 0px;
+    padding-bottom: 50px;
 }
 
 button.defaultSetBtn {
