@@ -59,7 +59,7 @@
 
   			<p class="centerText">
   				Already a member?
-  				<a href="html/UserSignUp.php">Sign in now</a>
+  				<a href="../index.php">Sign in now</a>
   			</p>
     </div>
 </div>
