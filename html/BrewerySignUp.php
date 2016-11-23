@@ -149,6 +149,10 @@
 						$insertBreweryTable = "INSERT INTO BreweryTable (BreweryName, PhoneNo, DateAdded, ProfilePicURL, Hours) VALUES ('" . $breweryName . "', '" . $phoneNumber . "', '" . $localDate . "', '" . $profilePic . "', '" . $hours . "')";
 						$breweryTable_Result = mysqli_query($connection, $insertBreweryTable);
 						if(!$breweryTable_Result) {
+							if (mysqli_errno($connection) == 1062) {
+								echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">The Name you entered is already taken.</p>";
+								die();
+							}
 							die("Could not fullfill BreweryTable Request: " . mysqli_error($connection));
 						}
 						//get Foreign key for Location table
