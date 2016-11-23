@@ -70,3 +70,32 @@ div.sendmessage button:hover{
 	height: 10em;
 	width: 40em;
 }
+
+<<<<<<< HEAD
+button {
+    margin-top: 15px;
+    margin-bottom: 20px;
+    padding-left: 55px;
+    padding-right: 55px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 16px;
+    background-color: #191d24;
+    border: 1px solid gray;
+}
+
+button:hover {
+    color: white;
+    background-color: rgba(26, 29, 36, .75);
+    text-shadow: -2px 2px #000000;
+}
+=======
+#textbox:focus {
+    outline: none !important;
+    border:1px solid black;
+    box-shadow: 0 0 10px #719ECE;
+}
+>>>>>>> mikal

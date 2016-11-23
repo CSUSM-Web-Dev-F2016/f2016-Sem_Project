@@ -14,32 +14,41 @@ function showSRC(address) {
 
     sectionDOM.style.width = "100%";
 
+}
 
-    //document.getElementById("MainArea").innerHTML = "";
+function logout() {
+    //This wil direct the user to a temp page, whiich will reset all session vars and bring the user to the login
+    //Screen again so that they need to login to continue.
 
-    //Instead, remove the current contents of the frame
-    //document.getElementById("MainArea").innerHTML = address + "<p> This page will soon appear here";
+    window.location.href = "../php/resetUser.php";
+}
 
-    //var newElement = document.createElement("img");
-    //newElement.src = "http://cis444.cs.csusm.edu/goule001/Group_Project/FollowingPage.html";
+function showBeerView(beerID) {
+    //Get the section's DOM element
+    var sectionDOM = document.getElementById("contentFrame");
 
-    /** This section works, but messes with CSS. come back to. */
-    /*
-      //document.getElementById("MainArea").appendChild(newElement);
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-          document.getElementById("MainArea").innerHTML = this.responseText;
-          //document.getElementById("MainArea").innerHTML = "";
+    //Set the new page
+    sectionDOM.src = "../html/" + "BeerInfo.php?beerID=" + beerID;
 
-        }
-        else {
-          buildPNF();
-        }
-      };
-      xhttp.open("GET", "http://cis444.cs.csusm.edu/goule001/Group_Project/" + address, true);
-      xhttp.send();
-      */
+    sectionDOM.style.width = "100%";
+}
+
+function startSearch() {
+    //Get the section's DOM element
+    var sectionDOM = document.getElementById("contentFrame");
+
+    var inputText = document.getElementsByTagName("form")[0].getElementsByTagName("input")[0].value;
+
+    if (inputText.length > 0) {
+        //Set the new page
+        sectionDOM.src = "../php/searchResults.php?text=" + inputText;
+        sectionDOM.style.width = "100%";
+    } else {
+        //Show the news feed
+        sectionDOM.src = "../html/NewsFeed.html";
+        sectionDOM.style.width = "100%";
+    }
+
 }
 
 /**
@@ -50,7 +59,7 @@ function goHomeAnd(address) {
     // window.alert("Hello World 2");
 
     //Navigate to the home page
-    window.location.href = "../html/profilePage.html";
+    window.location.href = "../html/profilePage.php";
 
     //Show the requested source after the page loaded
     //showSRC(address);
@@ -65,7 +74,7 @@ function resizeIframe(obj) {
     obj.style.height = 0;
 
     //Set the new height of the frame
-    obj.style.height = (obj.contentWindow.document.body.scrollHeight + 75) + 'px';
+    obj.style.height = (obj.contentWindow.document.body.scrollHeight) + 'px';
 
 
 }
@@ -110,4 +119,14 @@ function buildPNF(address) {
     document.getElementById("MainArea").appendChild(mainElement);
     return;
 
+}
+
+function changeToBrewery(breweryID) {
+    //Set the current brewery ID
+    sessionStorage['breweryID'] = breweryID;
+
+    window.alert("Got it: " + breweryID);
+
+    //Change the current page location
+    window.location.assign("www.google.com");
 }
