@@ -54,7 +54,7 @@
 						<input type="text" name="profilePic">
 					</div>
 					<div class="inner-sections">
-						Brewery Email:
+						Street Address:
 						<br>
 						<input type="text" name="streetAddress">
 					</div>
