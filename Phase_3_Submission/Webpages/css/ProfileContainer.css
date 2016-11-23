@@ -1,0 +1,75 @@
+.ProfileContainer {
+    background-color: rgba(25, 29, 36, .5);
+    width: 100%;
+    height: auto;
+    position: absolute;
+    justify-content: center;
+    margin-top: 3em;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: auto;
+}
+
+#profileImg {
+    object-fit: cover;
+    text-align: center;
+    width: 150px;
+    height: 150px;
+    display: inline-block;
+    border: 5px solid white;
+    border-radius: 50%;
+    box-shadow: 0px 5px 5px lightgray;
+    margin: auto;
+}
+
+.profileImage:hover {
+    opacity: .75;
+}
+
+p.profileName {
+    font-size: 32px;
+    padding-top: 10px;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    padding-bottom: 5px;
+    color: white;
+    text-align: center;
+    width: 100%;
+    /*text-shadow:
+  -1px -1px 0 #fff,
+   1px -1px 0 #fff,
+   -1px 1px 0 #fff,
+    1px 1px 0 #fff;*/
+}
+
+a.editBtn {
+    color: white;
+    font-style: italic;
+    font-weight: lighter;
+    margin: auto;
+    padding: 0px;
+    padding-bottom: 10px;
+    text-align: center;
+    width: 10%;
+}
+
+hr {
+    width: 50%;
+}
+
+a.editBtn:hover {
+    color: red;
+}
+
+.newsFeed {
+    width: 100%;
+    position: absolute;
+}
+
+#contentFrame {
+    width: 95.5%;
+    position: absolute;
+    border: none;
+}

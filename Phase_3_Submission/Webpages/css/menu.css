@@ -1,0 +1,33 @@
+
+
+table.menu {
+    color: white;
+    height: 3em;
+    right: 3em;
+    position: fixed;
+    z-index: 6;
+}
+
+th.menuItem {
+     margin: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 2px;
+    margin-top: -10px;
+    padding-top: 0px;
+}
+
+
+th.menuItem:hover {
+    background-color: #4f6a77;
+}
+
+.navBtn {
+    width: 1.5em;
+    height: 1.5em;
+    padding: 5px;
+    object-fit: contain;
+    display: block;
+}
