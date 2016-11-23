@@ -152,7 +152,7 @@
 							die("Could not fullfill BreweryTable Request: " . mysqli_error($connection));
 						}
 						//get Foreign key for Location table
-						$getForeignKey = "SELECT BreweryID FROM BreweryTable WHERE BreweryName = 'TEST1'";
+						$getForeignKey = "SELECT BreweryID FROM BreweryTable WHERE BreweryName = '" . $breweryName . "'";
 						$foreignKey_Result = mysqli_query($connection, $getForeignKey);
 						if (!$foreignKey_Result) {
 							die("Could not fullfill foreign Key Request: " . mysqli_error($connection));
