@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46a92af3-5935-49ef-be1e-7eda3fde0727" name="Default" comment="-Updated UserSignUp.html and UserSignUp.php&#10;--.html now is just the form and posts to the php page&#10;--all create user functions are now in /php/create_user.php">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/UserSignUp.php" afterPath="$PROJECT_DIR$/html/UserSignUp.php" />
     </list>
     <ignored path="f2016-Sem_Project.iws" />
@@ -27,10 +26,23 @@
       <file leaf-file-name="UserSignUp.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="744">
-              <caret line="51" column="77" selection-start-line="51" selection-start-column="77" selection-end-line="51" selection-end-column="77" />
+            <state relative-caret-position="495">
+              <caret line="116" column="72" selection-start-line="116" selection-start-column="72" selection-end-line="116" selection-end-column="72" />
               <folding>
-                <marker date="1479953999000" expanded="true" signature="5196:5253" ph="..." />
+                <marker date="1479955806000" expanded="true" signature="5700:5757" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/index.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2376">
+              <caret line="152" column="13" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="13" />
+              <folding>
+                <marker date="1479927983000" expanded="true" signature="2957:3049" ph="SELECT Users... Users" />
+                <marker date="1479927983000" expanded="true" signature="3993:4061" ph="UPDATE Users... " />
               </folding>
             </state>
           </provider>
@@ -121,7 +133,38 @@
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
-        <subPane />
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="f2016-Sem_Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="f2016-Sem_Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="f2016-Sem_Project" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="f2016-Sem_Project" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="f2016-Sem_Project" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="php" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
       </pane>
     </panes>
   </component>
@@ -196,18 +239,18 @@
       <workItem from="1479352630390" duration="170000" />
       <workItem from="1479352810160" duration="8586000" />
       <workItem from="1479855971751" duration="8772000" />
-      <workItem from="1479951650888" duration="1259000" />
+      <workItem from="1479951650888" duration="2471000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21037000" />
+    <option name="totallyTimeSpent" value="22249000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12440476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.12440476" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32975295" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -254,7 +297,7 @@
         <state relative-caret-position="192">
           <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
           <folding>
-            <marker date="1479953999000" expanded="true" signature="5196:5253" ph="..." />
+            <marker date="1479955806000" expanded="true" signature="5700:5757" ph="..." />
           </folding>
         </state>
       </provider>
@@ -318,7 +361,7 @@
         <state relative-caret-position="4272">
           <caret line="178" column="0" selection-start-line="20" selection-start-column="4" selection-end-line="26" selection-end-column="0" />
           <folding>
-            <marker date="1479953999000" expanded="true" signature="5196:5253" ph="..." />
+            <marker date="1479955806000" expanded="true" signature="5700:5757" ph="..." />
           </folding>
         </state>
       </provider>
@@ -336,7 +379,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1479953999000" expanded="true" signature="5196:5253" ph="..." />
+            <marker date="1479955806000" expanded="true" signature="5700:5757" ph="..." />
           </folding>
         </state>
       </provider>
@@ -346,7 +389,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1479953999000" expanded="true" signature="5196:5253" ph="..." />
+            <marker date="1479955806000" expanded="true" signature="5700:5757" ph="..." />
           </folding>
         </state>
       </provider>
@@ -401,14 +444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3648">
-          <caret line="152" column="64" selection-start-line="152" selection-start-column="64" selection-end-line="152" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/php/create_user.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="231">
@@ -425,12 +460,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2376">
+          <caret line="152" column="13" selection-start-line="152" selection-start-column="13" selection-end-line="152" selection-end-column="13" />
+          <folding>
+            <marker date="1479927983000" expanded="true" signature="2957:3049" ph="SELECT Users... Users" />
+            <marker date="1479927983000" expanded="true" signature="3993:4061" ph="UPDATE Users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/html/UserSignUp.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="744">
-          <caret line="51" column="77" selection-start-line="51" selection-start-column="77" selection-end-line="51" selection-end-column="77" />
+        <state relative-caret-position="495">
+          <caret line="116" column="72" selection-start-line="116" selection-start-column="72" selection-end-line="116" selection-end-column="72" />
           <folding>
-            <marker date="1479953999000" expanded="true" signature="5196:5253" ph="..." />
+            <marker date="1479955806000" expanded="true" signature="5700:5757" ph="..." />
           </folding>
         </state>
       </provider>

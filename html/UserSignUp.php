@@ -55,6 +55,12 @@
             <input type="submit" id="subButton" value="Submit"/>
 
         </form>
+
+        <!-- because people can't press back -->
+        <p class="centerText">
+            Already a member?
+            <a href="../index.php">Sign in now</a>
+        </p>
     </div>
 </div>
 
@@ -101,10 +107,17 @@ function checkUserSignUp() {
     }else{
         //Do the parsing here for dob
         $birthday = test_input($_POST["DOB"]);
+        $age = 21;
+        //Checks to make sure date is inputted in mm-dd-yyyy
         if (!preg_match("/^\d{2}\-\d{2}\-\d{4}/", $birthday)){
             $errorString = $errorString . "Expected date format is: 01-01-1950<br>";
         }
+        $birthdayTime = strtotime($birthday);
+        if(time() - $birthdayTime < $age * 31536000)  {
+            $errorString = $errorString . "You must be 21+ to sign up<br>";
+        }
 
+        $birthdayFinal = date('Y-m-d H:i:s', $birthdayTime);
     }
 
     //Check the email.. This is imperative
@@ -146,7 +159,7 @@ function checkUserSignUp() {
     //If the length of the error string is 0, create user.
     if(strlen($errorString) == 0){
         // calls user that creates user in the db
-        createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl);
+        createUser($FName, $LName, $birthdayFinal, $Email, $Password, $ProfilePicURl);
     }
 
 }
