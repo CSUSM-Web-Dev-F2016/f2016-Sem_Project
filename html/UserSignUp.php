@@ -109,6 +109,9 @@ function checkUserSignUp() {
         $errorString = $errorString . "Email is required. We will not SPAM.<br>";
     }else{
         $Email = test_input($_POST["email"]);
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+            $errorString = $errorString . "Invalid email format<br>";
+        }
     }
 
     //Verify the password. They must also be equal
