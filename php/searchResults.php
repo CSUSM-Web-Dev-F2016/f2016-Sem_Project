@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 
 <html lang="en-us">
+<!--
+*	@Author:							Justin Goulet
+* @Date-Last-Modified:	November 23, 2016
+* @Date-Created:				September 1, 2016
+*	@Purpose:							To show search results based on text recieved
+*	@Method:							We first take the text from the search ox on either the
+*												Profile Page or the Brewery Page. Using that text,
+*												We can query several fields to get a precise result
+*												For our users.
+*												Then, once we have the results, we build tables following
+*												The same layout as the sidebars, so that the design is similar.
+-->
 
 <head>
      <!-- This page will display 3 stdSections.
@@ -21,15 +33,10 @@
           //Read the get variable (Should be text)
           //echo "<script type=\"text/javascript\">window.alert(\"Beer Found!: " . $_GET['text'] . "\");</script>";
 
-					$connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
+					$connection = include '../php/DBConnectionReturn.php';
 
-		   		 	//Check the connection
-		    		if(mysqli_connect_errno()){
-		       			 die("Connection Failed. ERR: " . mysqli_connect_error());
-		    		}
-
-						//Now that the connection is built, let's do teh queries (BUsers, Breweries, BEers, max of 20);
-						$MaxReturning = 20;
+					//Now that the connection is built, let's do teh queries (BUsers, Breweries, BEers, max of 20);
+					$MaxReturning = 20;
      ?>
 
 		 <!--Build the User Table -->
@@ -59,6 +66,10 @@
 
 						 //echo "<p style=\"color:white\">" . $row['UserEmail'];
 					 }
+
+					 //Clear the results
+					 mysqli_free_result($usersFollowingMeResult);
+
 				 }
 				 else{
 					 //Just print a text saying 'no items found';
@@ -101,6 +112,9 @@
 						echo "</form>";
 					}
 
+					//Free the result
+					mysqli_free_result($breweriesFollowingResults);
+
 				}else{
 					//Build custom when no rows are found
 					echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
@@ -142,6 +156,9 @@
   						echo "</form>";
   					}
 
+						//Free the memory
+						mysqli_free_result($getBeersResults);
+
   				}else{
   					//Build custom when no rows are found
   					echo "<form action=\"\" class=\"stdForm\" name=\"beer\" onsubmit=\"return false;\">";
@@ -154,6 +171,9 @@
   							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
   						echo "</form>";
   				}
+
+					//Close the mysql connection
+					$connection-> close();
 				 ?>
 			 </div>
 		 </div>
@@ -164,9 +184,7 @@
 				//If a brewery, show the beer in teh current iframe
 				if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-							if(isset($_POST['brewery'])){
-								//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>";
-							//$_SESSION['breweryID'] = end(array_keys($_POST));
+						if(isset($_POST['brewery'])){
 
 							//Navigate to the brewery page iwth the new id
 							echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
@@ -177,16 +195,16 @@
 								echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?beerID=" . $_POST['beerID'] . "\";</script>";
 						}
 
-						else  {
+						else {
 								$_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
-
-								//echo "<p style=\"color:white;\">" . end(array_keys($_POST));
 
 								//echo "<script type=\"text/javascript\"> window.alert(\"Found a User: " . $_SESSION['currentUser'] . "\");</script>";
 								echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
-							}
+						}
 				}
 
+				//Close the current session
+				session_write_close();
 
 		  ?>
 
