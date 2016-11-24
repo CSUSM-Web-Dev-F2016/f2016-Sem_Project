@@ -37,65 +37,68 @@
   	//Start the session to share data
 	  session_start();
 
-	 	//Create a basic connection
-    $connection = $connection = include '../php/DBConnectionReturn.php';
+	 //Create a basic connection
+    	$connection = $connection = include '../php/DBConnectionReturn.php';
 
-		//Determine if the user is following the beer
-		//See if there is an entry in the table
-		$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['beerID'];
-		$getFollowsResult = mysqli_query($connection, $getIfFollows);
-		$_SESSION['Follows'] = "FALSE";
-		$FollowImage = "";
+	//Determine if the user is following the beer
+	//See if there is an entry in the table
+	$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['beerID'];
+	$getFollowsResult = mysqli_query($connection, $getIfFollows);
+	$_SESSION['Follows'] = "FALSE";
+	$FollowImage = "";
 
 
-		if($getFollowsResult-> num_rows > 0){
-			//Set the Bool Success
-			$_SESSION['Follows'] = "TRUE";
-			$FollowImage = "../img/Unfollow_Follow_Color.png";
-		}else{
-			$FollowImage = "../img/Follow_Color.png";
+	if($getFollowsResult-> num_rows > 0){
+		//Set the Bool Success
+		$_SESSION['Follows'] = "TRUE";
+		$FollowImage = "../img/Unfollow_Follow_Color.png";
+	}else{
+		$FollowImage = "../img/Follow_Color.png";
+	}
+
+	//Free the follow result
+	mysqli_free_result($getFollowsResult);
+
+	//echo "<script type=\"text/javascript\">window.alert(\"Follows?: " . $getIfFollows . "\");</script>";
+
+	//Get the current beer information
+	$BeerQuery = "SELECT b.BeerID,b.FromTheBrewMaster, b.PairingsDescription, b.PictureURL, b.RecommendedServingGlass, b.Awards, b.ServingStyle, b.IBU, b.ABV, b.BeerType, b.BeerDescription, bt.BreweryName FROM Beers b, BreweryTable bt WHERE b.BreweryID=bt.BreweryID AND b.BeerID=" . $_GET['beerID'] . " LIMIT 1";
+	//$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
+	$ResultsForBeer = mysqli_query($connection, $BeerQuery);
+
+	if($ResultsForBeer-> num_rows > 0){
+		//Should be one instance
+		while($row = mysqli_fetch_assoc($ResultsForBeer)){
+			$BeerID = $row['BeerID'];
+			$BeerName = $row['BeerName'];
+			$FromTheBrewMaster = $row['FromTheBrewmaster'];
+			$PairingsDescription = $row['PairingsDescription'];
+			$PictureURL = $row['PictureURL'];
+			$RecommendedServingGlass = $row['RecommendedServingGlass'];
+			$Awards = $row['Awards'];
+			$ServingStyle = $row['ServingStyle'];
+			$IBU = $row['IBU'];
+			$ABV = $row['ABV'];
+			$BreweryID = $row['BreweryID'];
+			$BeerType = $row['BeerType'];
+			$OnTap = $row['OnTap'];
+			$BeerDescription = $row['BeerDescription'];
+			$BreweryName = $row['BreweryName'];
+			break; //Since there is only one case.
 		}
 
-		//Free the follow result
-		mysqli_free_result($getFollowsResult);
+		//Free the results
+		mysqli_free_result($ResultsForBeer);
 
-		//echo "<script type=\"text/javascript\">window.alert(\"Follows?: " . $getIfFollows . "\");</script>";
+		//Close the connection
+		$connection-> close();
 
-		//Get the current beer information
-		$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
-		$ResultsForBeer = mysqli_query($connection, $BeerQuery);
+	}else{
+		//Beer does not exist
+		//echo "<p style=\"color:white;\">DNE";
+		header("Location: ../html/PageNotFound.html");
+	}
 
-		if($ResultsForBeer-> num_rows > 0){
-			//Should be one instance
-			while($row = mysqli_fetch_assoc($ResultsForBeer)){
-				$BeerID = $row['BeerID'];
-				$BeerName = $row['BeerName'];
-				$FromTheBrewMaster = $row['FromTheBrewmaster'];
-				$PairingsDescription = $row['PairingsDescription'];
-				$PictureURL = $row['PictureURL'];
-				$RecommendedServingGlass = $row['RecommendedServingGlass'];
-				$Awards = $row['Awards'];
-				$ServingStyle = $row['ServingStyle'];
-				$IBU = $row['IBU'];
-				$ABV = $row['ABV'];
-				$BreweryID = $row['BreweryID'];
-				$BeerType = $row['BeerType'];
-				$OnTap = $row['OnTap'];
-				$BeerDescription = $row['BeerDescription'];
-				break; //Since there is only one case.
-			}
-
-			//Free the results
-			mysqli_free_result($ResultsForBeer);
-
-			//Close the connection
-			$connection-> close();
-
-		}else{
-			//Beer does not exist
-			//echo "<p style=\"color:white;\">DNE";
-			header("Location: ../html/PageNotFound.html");
-		}
 
   ?>
 	<body>
@@ -166,6 +169,7 @@
 									</div>
 								</div>
 							</div>
+
 							<div class="smalltableCell">
 								<div>
 									<div class="tableCell img">
@@ -217,7 +221,17 @@
 					<table class="beerInfo">
 						<caption>&nbsp;</caption>
 						<tbody>
-						<?php if(!empty($BeerDescription)){ ?>
+							<?php if(!empty($BreweryName)){ ?>
+								<tr>
+									<th>Brewery Name:
+									</th>
+									<td>
+										<?php echo $BreweryName ?>
+									</td>
+								</tr>
+								<?php
+							}
+						if(!empty($BeerDescription)){ ?>
 							<tr>
 								<th>Beer Description:
 								</th>
