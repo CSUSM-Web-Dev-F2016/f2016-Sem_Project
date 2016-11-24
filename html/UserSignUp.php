@@ -62,7 +62,6 @@
 <?php
 include '../php/create_user.php';
 
-
 //Checks form input
 function test_input($data) {
     $data = trim($data);            // Remove whitespace from both ends of text
@@ -98,10 +97,14 @@ function checkUserSignUp() {
 
     //Check the birthday
     if(empty($_POST["DOB"])){
-        $errorString = $errorString . "A Birthday is required (21+ Only)<br>";
+        $errorString = $errorString . "A birthday is required (21+ Only)<br>";
     }else{
         //Do the parsing here for dob
         $birthday = test_input($_POST["DOB"]);
+        if (!preg_match("/^\d{2}\-\d{2}\-\d{4}/", $birthday)){
+            $errorString = $errorString . "Expected date format is: 01-01-1950<br>";
+        }
+
     }
 
     //Check the email.. This is imperative
