@@ -92,6 +92,9 @@ function checkUserSignUp() {
         $errorString = $errorString . "First Name is required.<br>";
     }else{
         $FName = test_input($_POST["firstName"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $FName)){
+            $errorString = $errorString . "Invalid format: letters only<br>";
+        }
     }
 
     //Check the last name
@@ -99,6 +102,9 @@ function checkUserSignUp() {
         $errorString = $errorString . "Last Name is required.<br>";
     }else{
         $LName = test_input($_POST["lastName"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $LName)){
+            $errorString = $errorString . "Invalid format: letters only<br>";
+        }
     }
 
     //Check the birthday
@@ -109,14 +115,17 @@ function checkUserSignUp() {
         $birthday = test_input($_POST["DOB"]);
         $age = 21;
         //Checks to make sure date is inputted in mm-dd-yyyy
-        if (!preg_match("/^\d{2}\-\d{2}\-\d{4}/", $birthday)){
+        if (!preg_match("/^\d{1,2}\-\d{1,2}\-\d{4}/", $birthday)){
             $errorString = $errorString . "Expected date format is: 01-01-1950<br>";
         }
+
+        //Converts the birthday to UNIX timestamp
         $birthdayTime = strtotime($birthday);
+
+        //Verifies that birthday is 21+ years ago
         if(time() - $birthdayTime < $age * 31536000)  {
             $errorString = $errorString . "You must be 21+ to sign up<br>";
         }
-
         $birthdayFinal = date('Y-m-d H:i:s', $birthdayTime);
     }
 

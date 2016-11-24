@@ -1,4 +1,5 @@
 <?php
+session_start();
 /**
  * Created by PhpStorm.
  * User: chrislarsen
@@ -26,27 +27,14 @@ function createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl
 
     if(mysqli_query($connection, $createUserQuery)){
         //The item was successful created, now change the login page.
-        echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Successfully inserted data</p>";
+        //echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Successfully inserted data</p>";
 
-        //Now that user is created, only take them further if they are over 21.
-        //Create a query to see if there are in the view
-        $ageQuery = "SELECT Current_Age FROM valid_Users WHERE Email='" . $Email . "'";
-
-        //Run the query. If no rows are returned, they must be too young (since we just created it);
-        if($result = mysqli_query($connection, $ageQuery)){
-            //Success, tak them to the main profile page., if there are more than 1 row
-            if($result-> num_rows > 0){
-                session_start();
-                $_SESSION['currentUser'] = $_SESSION['signedInUser'] = $Email;
-                header("Location:  ./profilePage.php");
-            }else {
-                echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">User is not yet 21. Please come back when you are.<b>";
-            }
-        }else{
-            echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error Checking age<b>";
-        }
+        $connection->close();
+        $_SESSION['currentUser'] = $_SESSION['signedInUser'] = $Email;
+        header("Location: ./html/profilePage.php");
+        exit();
     }else{
         echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error with creating account: <br>" . $connection->error . "</p>";
     }
-    $connection ->close();
+
 }
