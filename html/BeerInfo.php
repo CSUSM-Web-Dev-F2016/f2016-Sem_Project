@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 
+<!--
+*	@Author:							Justin Goulet
+* @Date-Last-Modified:	November 23, 2016
+* @Date-Created:				September 1, 2016
+*	@Purpose:							To show a simple view of a single beer
+*	@Method:							Using a provided beerid, query to get the beer requested.
+*												We then allow the current signed in user to favorite the
+*												beer so that thy can view it at a later point in time.
+-->
+
 <html lang="en-us">
 
 	<head>
@@ -28,12 +38,7 @@
 	  session_start();
 
 	 //Create a basic connection
-    	$connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
-
-	//Check the connection
-    	if(mysqli_connect_errno()){
-		die("Connection Failed. ERR: " . mysqli_connect_error());
-	}
+    	$connection = $connection = include '../php/DBConnectionReturn.php';
 
 	//Determine if the user is following the beer
 	//See if there is an entry in the table
@@ -51,10 +56,14 @@
 		$FollowImage = "../img/Follow_Color.png";
 	}
 
+	//Free the follow result
+	mysqli_free_result($getFollowsResult);
+
 	//echo "<script type=\"text/javascript\">window.alert(\"Follows?: " . $getIfFollows . "\");</script>";
 
 	//Get the current beer information
-	$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
+	$BeerQuery = "SELECT b.BeerID,b.FromTheBrewMaster, b.PairingsDescription, b.PictureURL, b.RecommendedServingGlass, b.Awards, b.ServingStyle, b.IBU, b.ABV, b.BeerType, b.BeerDescription, bt.BreweryName FROM Beers b, BreweryTable bt WHERE b.BreweryID=bt.BreweryID AND b.BeerID=" . $_GET['beerID'] . " LIMIT 1";
+	//$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
 	$ResultsForBeer = mysqli_query($connection, $BeerQuery);
 
 	if($ResultsForBeer-> num_rows > 0){
@@ -74,8 +83,16 @@
 			$BeerType = $row['BeerType'];
 			$OnTap = $row['OnTap'];
 			$BeerDescription = $row['BeerDescription'];
+			$BreweryName = $row['BreweryName'];
 			break; //Since there is only one case.
 		}
+
+		//Free the results
+		mysqli_free_result($ResultsForBeer);
+
+		//Close the connection
+		$connection-> close();
+
 	}else{
 		//Beer does not exist
 		//echo "<p style=\"color:white;\">DNE";
@@ -85,12 +102,8 @@
 
   ?>
 	<body>
-
-
 		<div class="parentClass">
 			<h1>&nbsp;</h1>
-
-
 			<div class="LargeTable">
 				<form action="" onsubmit="" method="POST" class="favBtnHolder">
 				<!-- We need to descide if the user is already following the beer or not first -->
@@ -197,7 +210,6 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 					<!-- Edn of small header table -->
 				</div>
@@ -209,7 +221,17 @@
 					<table class="beerInfo">
 						<caption>&nbsp;</caption>
 						<tbody>
-						<?php if(!empty($BeerDescription)){ ?>
+							<?php if(!empty($BreweryName)){ ?>
+								<tr>
+									<th>Brewery Name:
+									</th>
+									<td>
+										<?php echo $BreweryName ?>
+									</td>
+								</tr>
+								<?php
+							}
+						if(!empty($BeerDescription)){ ?>
 							<tr>
 								<th>Beer Description:
 								</th>
@@ -267,24 +289,14 @@
 							?>
 						</tbody>
 					</table>
-
 				</div>
-
 			</div>
-
 		</div>
 
 		<?php
 			//Check for submit
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				if(isset($_POST['beerID'])){
-					//echo "<script type=\"text/javascript\">window.alert(\"Beer Found!: " . $_GET['beerID'] . "\");</script>";
-
-					//Check the connetion status:
-					//if(!$connection)echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Failed\");</script>";
-					//else echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Succeeded\");</script>";
-
-					//echo "<script type=\"text/javascript\">window.alert(\"Follows:: " . $_SESSION['Follows'] . "\");</script>";
 
 					if($_SESSION['Follows'] == "FALSE"){
 						//Start the MySQL query to favorite the beer
@@ -318,12 +330,19 @@
 							echo "<script type=\"text/javascript\">window.alert(\"Error Unfollowing Beer\n" . $RemoveBeerFromFavorites . "\");</script>";
 						}
 
-
+						//Free the results
+						mysqli_free_result($RemoveBeerResults);
 					}
 				}
 				else{
 					echo "<script type=\"text/javascript\">window.alert(\"Invalid Request\");</script>";
 				}
+
+				//Close the connection to mysqli
+				$conection-> close();
+
+				//Closes the current session
+				session_write_close();
 			}
 		?>
 

@@ -18,7 +18,7 @@
 function createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl){
     echo "Creating User";
     //Create the user in an SQL Command, tehn, log them in.
-    $createUserQuery = "INSERT INTO Users (Email, Password, FName, LName, DOB, ProfilePicURL) 
+    $createUserQuery = "INSERT INTO Users (Email, Password, FName, LName, DOB, ProfilePicURL)
         VALUES ('" . $Email . "', '" . $Password . "', '" . $FName . "', '" . $LName . "', '" . $birthday . "', '" . $ProfilePicURl . "')";
 
     // get database connection
@@ -42,11 +42,16 @@ function createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl
             }else {
                 echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">User is not yet 21. Please come back when you are.<b>";
             }
+
+            //Free the result
+            mysqli_free_result($result);
         }else{
             echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error Checking age<b>";
         }
     }else{
         echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error with creating account: <br>" . $connection->error . "</p>";
     }
+
+    //Close the conection
     $connection ->close();
 }

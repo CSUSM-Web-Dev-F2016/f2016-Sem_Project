@@ -1,104 +1,109 @@
 <!DOCTYPE html>
+
+<!--
+*	@Author:							Justin Goulet
+* @Date-Last-Modified:	November 23, 2016
+* @Date-Created:				September 1, 2016
+*	@Purpose:							To show a particular person's main profile page
+*	@Method:							Using the user's login credentials, this page is first loaded
+*												with their content. This includes their profile picture,
+*												name, and other identifying information, a table of a user's
+*												favorite beers, a table of all who is following the current
+*												user, and who the user is currently following.
+*												When the user views another's profile, they are shown their profile picture,
+*												their name, their favorite beers, who is following them, and
+*												who they are following. No privacy settings are set yet.
+*												Differnt from a signed in users page, the current user have the option to
+*												follow the user or sent them a message.
+*
+-->
 <html lang="en-us">
 <head>
-	<!-- Import CSS Files -->
-	<link rel="stylesheet" href="../css/header.css" type="text/css">
-	<link rel="stylesheet" href="../css/masterPage.css" type="text/css">
-	<link rel="stylesheet" href="../css/menu.css" type="text/css">
-	<link rel="stylesheet" href="../css/backgroundVideo.css" type="text/css">
-	<link rel="stylesheet" href="../css/ProfileContainer.css" type="text/css">
-	<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
-	<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
-	<!-- Import JS Files -->
-	<script src="../js/contentSwitch.js"></script>
-	<script src="../js/calendarview.js"></script>
-	<!-- Analytics Script -->
+		<!-- Import CSS Files -->
+		<link rel="stylesheet" href="../css/header.css" type="text/css">
+		<link rel="stylesheet" href="../css/masterPage.css" type="text/css">
+		<link rel="stylesheet" href="../css/menu.css" type="text/css">
+		<link rel="stylesheet" href="../css/backgroundVideo.css" type="text/css">
+		<link rel="stylesheet" href="../css/ProfileContainer.css" type="text/css">
+		<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
+		<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
+		<!-- Import JS Files -->
+		<script src="../js/contentSwitch.js"></script>
+		<script src="../js/calendarview.js"></script>
+
+		<!-- Analytics Script -->
 	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-83948702-3', 'auto');
-  ga('send', 'pageview');
-  <?php
-  	//Start the session
-	  session_start();
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-83948702-3', 'auto');
+	  ga('send', 'pageview');
+		<?php
+	  	//Start the session
+		  session_start();
 
-//Get the token to prove the user was logged in
-	  if(strlen($_SESSION['loginToken']) == 0){
-	//r	edirect to the login page
-	 header("Location: ../index.php");
-}
-else{
-	//e	cho "<p>You rock";
-}
-?>
-</script>
-	<!-- Header Bar -->
-	<div class="header">
-		<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
-	</div>
-	<!-- Navigation Bar -->
-	<nav>
-		<table class="menu" title="Menu">
-			<tbody>
-				<tr>
-					<!-- Main Profile Page -->
-					<th class="menuItem" title="Home">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
-					</th>
-					<th>|</th>
-					<!-- Settings -->
-					<th class="menuItem" title="Settings">
-						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
-					</th>
-					<th>|</th>
-					<!-- Logout Button -->
-					<th class="menuItem" title="Logout">
-						<input type="image" id="logoutBtn" src="../img/logout.png?raw=true" class="navBtn" onclick="logout()" alt="home">
-					</th>
-				</tr>
-			</tbody>
-		</table>
+			//Get the token to prove the user was logged in
+		  if(strlen($_SESSION['loginToken']) == 0){
+				//redirect to the login page
+		 	header("Location: ../index.php");
+			}
+			else{
+				//e	cho "<p>You rock";
+			}
+			?>
+	</script>
+		<!-- Header Bar -->
+		<div class="header">
+			<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
+		</div>
+		<!-- Navigation Bar -->
+		<nav>
+			<table class="menu" title="Menu">
+				<tbody>
+					<tr>
+						<!-- Main Profile Page -->
+						<th class="menuItem" title="Home">
+							<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
+						</th>
+						<th>|</th>
+						<!-- Settings -->
+						<th class="menuItem" title="Settings">
+							<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
+						</th>
+						<th>|</th>
+						<!-- Logout Button -->
+						<th class="menuItem" title="Logout">
+							<input type="image" id="logoutBtn" src="../img/logout.png?raw=true" class="navBtn" onclick="logout()" alt="home">
+						</th>
+					</tr>
+				</tbody>
+			</table>
 
-		<!-- Add a search bar in the top left -->
-		<form action="return false;" onsubmit="return false;" method="POST" class="searchForm">
-			<label class="hidden">Enter Search Terms here </label>
-			<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
-			<label class="hidden"> Search Field </label>
-			<input type="image" id="searchBtn" src="../img/location_filled.png?raw=true" class="searchButton" onclick="startSearch()" alt="search">
-		</form>
-	</nav>
+			<!-- Add a search bar in the top left -->
+			<form action="return false;" onsubmit="return false;" method="POST" class="searchForm">
+				<label class="hidden">Enter Search Terms here </label>
+				<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
+				<label class="hidden"> Search Field </label>
+				<input type="image" id="searchBtn" src="../img/location_filled.png?raw=true" class="searchButton" onclick="startSearch()" alt="search">
+			</form>
+		</nav>
 
-
-
-	<!-- Meta data -->
-	<title>Profile</title>
-	<!-- For the background image -->
-	<div class="is_overlay">
-		<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
-	</div>
+		<!-- Meta data -->
+		<title>Profile</title>
+		<!-- For the background image -->
+		<div class="is_overlay">
+			<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
+		</div>
 </head>
 <?php
 	 //Create a basic connection
-    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
-
-//Check the connection
-    if(mysqli_connect_errno()){
-	die("Connection Failed. ERR: " . mysqli_connect_error());
-}
-//echo "Connected Successfully";
-//This code currently works :)
+    $connection = include '../php/DBConnectionReturn.php';
 
 $FName = $LName = $PicURL = $CurrentUser = "";
 
-//Get the curent var from the URL
-/*if(isset($_POST['user'])){
-	$CurrentUser = $_POST['user'];
-}else{*/
 	//Use already provided var
 	$CurrentUser = $_SESSION['currentUser'];
-//}
 
 //Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $CurrentUser . "'";
@@ -112,6 +117,8 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			$PicURL = $row["ProfilePicURL"];
 			break; //Only want the first occurance
 		}
+		//Unset the results
+		mysqli_free_result($userInfoResults);
 
 	}else{
 		//err
@@ -243,6 +250,10 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 
 							//echo "<p style=\"color:white\">" . $row['UserEmail'];
 						}
+
+						//Free the results
+						mysqli_free_result($usersFollowingMeResult);
+
 					}else{
 						//Just print a text saying 'no items found';
 						echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
@@ -289,6 +300,8 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 								echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
 							echo "</form>";
 						}
+						//Free the result
+						mysqli_free_result($breweriesFollowingResults);
 
 					}else{
 						//Build custom when no rows are found
@@ -304,22 +317,21 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					}
 					/** Should work **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
+								//Close the sql session
+							$connection->close();
 
     						if(isset($_POST['brewery'])){
-       							//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>";
-							  //$_SESSION['breweryID'] = end(array_keys($_POST));
 
 							  //Navigate to the brewery page iwth the new id
 							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
     						}else {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
-
-							    //echo "<p style=\"color:white;\">" . end(array_keys($_POST));
-
-							    //echo "<script type=\"text/javascript\"> window.alert(\"Found a User: " . print_f(array_keys($_POST)) . "\");</script>";
-							    echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+
+								//Ends the current session
+								session_write_close();
 					}
 
 				?>
