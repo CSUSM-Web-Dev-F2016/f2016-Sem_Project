@@ -229,9 +229,7 @@
 										<?php echo $BreweryName ?>
 									</td>
 								</tr>
-								<?php
-							}
-						if(!empty($BeerDescription)){ ?>
+								<?php	} if(!empty($BeerDescription)){ ?>
 							<tr>
 								<th>Beer Description:
 								</th>
@@ -239,10 +237,7 @@
 									<?php echo $BeerDescription ?>
 								</td>
 							</tr>
-							<?php
-						}
-						if(!empty($PairingsDescription)){
-							?>
+							<?php } if(!empty($PairingsDescription)){ ?>
 							<tr>
 								<th>
 									Foord Pairings:
@@ -251,10 +246,7 @@
 									<?php echo $PairingsDescription ?>
 								</td>
 							</tr>
-							<?php
-						}
-						if(!empty($Awards)){
-							?>
+							<?php }	if(!empty($Awards)){	?>
 							<tr>
 								<th>
 									Awards Won:
@@ -263,10 +255,7 @@
 									<?php echo $Awards ?>
 								</td>
 							</tr>
-							<?php
-						}
-						if(!empty($FromTheBrewMaster)){
-							?>
+							<?php	} if(!empty($FromTheBrewMaster)){ ?>
 							<tr>
 								<th>
 									From the Brewmaster:
@@ -275,18 +264,16 @@
 									<?php echo $FromTheBrewMaster ?>
 								</td>
 							</tr>
-							<?php
-						}
-						if(!empty($OnTap)){
-							?>
+							<?php	} if(!empty($OnTap)){	?>
 							<tr>
-								<th>When Available:</th>
-								<td><span style="color:green;">Coming Soon...</span>
+								<th>
+									When Available:
+								</th>
+								<td>
+										<span style="color:green;">Coming Soon...</span>
 								</td>
 							</tr>
-							<?php
-						}
-							?>
+							<?php } ?>
 						</tbody>
 					</table>
 				</div>

@@ -121,7 +121,7 @@
 							$_SESSION['loginToken'] = "yes";
 
 							//We need to update the last time the user has logged in. Do that here.
-							$UpdateUserLoginDate = "UPDATE Users SET LastLogin=NOW() WHERE Email='" . $row['Email'] . "'";
+							$UpdateUserLoginDate = "UPDATE Users SET LastLogin=UTC_TIMESTAMP() WHERE Email='" . $row['Email'] . "'";
 							$UpdateUserLoginDateResults = mysqli_query($connection, $UpdateUserLoginDate);
 
 

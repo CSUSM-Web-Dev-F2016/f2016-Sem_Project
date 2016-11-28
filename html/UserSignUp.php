@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -56,18 +59,17 @@
 
         </form>
 
-
-  			<p class="centerText">
-  				Already a member?
-  				<a href="../index.php">Sign in now</a>
-  			</p>
+        <!-- because people can't press back -->
+        <p class="centerText">
+            Already a member?
+            <a href="../index.php">Sign in now</a>
+        </p>
     </div>
 </div>
 
 
 <?php
 include '../php/create_user.php';
-
 
 //Checks form input
 function test_input($data) {
@@ -93,6 +95,9 @@ function checkUserSignUp() {
         $errorString = $errorString . "First Name is required.<br>";
     }else{
         $FName = test_input($_POST["firstName"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $FName)){
+            $errorString = $errorString . "Invalid format: letters only<br>";
+        }
     }
 
     //Check the last name
@@ -100,14 +105,33 @@ function checkUserSignUp() {
         $errorString = $errorString . "Last Name is required.<br>";
     }else{
         $LName = test_input($_POST["lastName"]);
+        if (!preg_match("/^[a-zA-Z ]*$/", $LName)){
+            $errorString = $errorString . "Invalid format: letters only<br>";
+        }
     }
 
     //Check the birthday
     if(empty($_POST["DOB"])){
-        $errorString = $errorString . "A Birthday is required (21+ Only)<br>";
+        $errorString = $errorString . "A birthday is required (21+ Only)<br>";
     }else{
         //Do the parsing here for dob
         $birthday = test_input($_POST["DOB"]);
+        $age = 21;
+        //Checks to make sure date is inputted in mm-dd-yyyy
+        if (!preg_match("/^\d{1,2}\-\d{1,2}\-\d{4}/", $birthday)){
+            $errorString = $errorString . "Expected date format is: 01-01-1950<br>";
+        }
+
+        //Converts the birthday to UNIX timestamp
+        $birthdayTime = strtotime($birthday);
+
+        //Verifies that birthday is 21+ years ago
+        if(time() - $birthdayTime < $age * 31536000)  {
+            $errorString = $errorString . "You must be 21+ to sign up<br>";
+        }
+
+        //Converts birthday if valid from UNIX timestamp to MySQL compatible format
+        $birthdayFinal = date("Y-m-d H:i:s", $birthdayTime);
     }
 
     //Check the email.. This is imperative
@@ -115,6 +139,9 @@ function checkUserSignUp() {
         $errorString = $errorString . "Email is required. We will not SPAM.<br>";
     }else{
         $Email = test_input($_POST["email"]);
+        if (!filter_var($Email, FILTER_VALIDATE_EMAIL)) {
+            $errorString = $errorString . "Invalid email format<br>";
+        }
     }
 
     //Verify the password. They must also be equal
@@ -146,13 +173,17 @@ function checkUserSignUp() {
     //If the length of the error string is 0, create user.
     if(strlen($errorString) == 0){
         // calls user that creates user in the db
-        createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl);
+        createUser($FName, $LName, $birthdayFinal, $Email, $Password, $ProfilePicURl);
+        echo $Email;
     }
 
 }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+/**
+ * Check form before submission then redirect on success to user's profile page
+ */
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     checkUserSignUp();
 }
 
