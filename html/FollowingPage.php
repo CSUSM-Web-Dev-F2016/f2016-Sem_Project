@@ -67,7 +67,7 @@
     <?php
     mysqli_free_result($follow_result);
     $getFollowUser = "SELECT Fname, Lname, ProfilePicURL FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
-    $followUser_result = mysqli_query($connection, $getFollowUser)
+    $followUser_result = mysqli_query($connection, $getFollowUser);
     if (!$followUser_result) {
       die("Error with Get-User-Request: " . mysqli_error($connection));
     }
@@ -89,6 +89,14 @@
         <?php } ?>
       </div>
     </div>
+
+    <?php
+    //free query results
+    mysqli_free_result($follow_result);
+    mysqli_free_result($followUser_result);
+    //close database connection
+    mysqli_close($connection);
+    ?>
 
   </body>
 </html>
