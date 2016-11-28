@@ -70,6 +70,16 @@
 else {
   echo "<p class\"postText\"> Error: " . $GetNewsFeedElements . "<br>" . $NewsFeedResults->num_rows;
 }
+
+//Free the results and close the connection
+mysqli_free_result($NewsFeedResults);
+
+//Close the session
+session_write_close();
+
+//Close teh connection
+$conection->close();
+
 /**
 * @Date-Created:        November 27, 2016
 * @Date-Last-Modified:  November 27, 2016

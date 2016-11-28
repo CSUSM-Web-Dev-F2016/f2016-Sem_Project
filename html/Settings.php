@@ -65,7 +65,7 @@
                         echo "<input class='leftAlign' id='email' type='text' name='email' value='$Email'><br>";
                         echo '<div> Password: </div>';
                         echo "<input class='leftAlign' id='password' type='password' name='password' value='$Password'><br>";
-                        echo '<button type="submit" name="generalsettings">Comfirm</button>';
+                        echo '<button type="submit" name="generalsettings">Confirm</button>';
                         echo '</form>';
                     } else {
                         //Error getting info
