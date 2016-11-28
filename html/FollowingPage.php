@@ -49,7 +49,7 @@
       die("<p>You're not following any breweries.</p>");
     }
     while($brewRow = mysqli_fetch_assoc($follow_result)){
-      echo $brewRow["BreweryID"] . " Name: " . $brewRow["BreweryName"] . "URL: " . $brewRow["BreweryName"] . "<br>";
+      echo $brewRow["BreweryID"] . " Name: " . $brewRow["BreweryName"] . " URL: " . $brewRow["ProfilePicURL"] . "<br>";
     }
     ?>
     <h1>&nbsp;</h1>
