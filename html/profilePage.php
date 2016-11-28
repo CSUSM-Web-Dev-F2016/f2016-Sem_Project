@@ -396,6 +396,22 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 		</div>
 	</aside>
 	<section>
+
+		<?php
+			//Get the current signed in users profile PictureURL
+			$proPicQ = "SELECT ProfilePicURL FROM Users WHERE Email='" . $_SESSION['signedInUser'] . "'";
+			$res = mysqli_query($connection, $proPicQ);
+
+			if($res->num_rows > 0){
+				while($row = mysqli_fetch_assoc($res)){
+					$PicURL = $row['ProfilePicURL'];
+					break;
+				}
+			}else{
+				//Leave the profile pic the same
+			}
+
+		 ?>
 		<div class="newsFeedHeader">
 			Feed:
 			<!-- Black Field to Post -->
