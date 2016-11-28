@@ -52,7 +52,7 @@
 					<input type="text" name="lName" id="lName"/>
 				</div>
 			</div>
-			<button type="submit" onclick="">Submit</button>
+			<button type="submit" name='submit' onclick="">Submit</button>
 		</form>
 <?php
 
@@ -64,16 +64,23 @@ $lNameinput = $_POST['lName'];
 if(isset($_POST['submit'])){
   //check if user is on own page
   if($currentUser == $signedInUser){
-    $changeNameQuery = "UPDATE Users SET FName='$fNameinput', LName='$lNameinput' WHERE Email='$signedInUser'";
-    if(mysqli_query($connection, $changeNameQuery)){
-      echo "Updated name successfully.";
-    }
-      else {
-        echo "Error updaring reccord.";
-      }
-  }
+		//making sure names are not empty
+		if((!empty($fNameinput)) && (!empty($lNameinput))){
+			$changeNameQuery = "UPDATE Users SET FName='" . $fNameinput . "', LName='" . $lNameinput . "' WHERE Email='" . $_SESSION['signedInUser'] . "'";
+    		if(mysqli_query($connection, $changeNameQuery)){
+      		echo "Updated name successfully.";
+    		}
+      	else {
+        	echo "Error updating record.";
+      	}
+			}
+		else {
+			echo "ERROR: First and Last name cannot be empty.";
+		}
+
+}
   else {
-    echo "Cannot edit someone else's name.";
+    echo "ERROR: Cannot edit someone else's name.";
   }
 }
 mysqli_close($connection);
