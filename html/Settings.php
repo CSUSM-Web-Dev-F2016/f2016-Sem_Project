@@ -29,12 +29,7 @@
              header('Location: ../index.php'); // redirect to index.php
               }
              // Create a basic connection
-            $connection = mysqli_connect('localhost', 'calla033', 'CAss1007', 'team3');
-
-            // Check the connection
-            if (mysqli_connect_errno()) {
-                die('Connection Failed. ERR: '.mysqli_connect_error());
-            }
+            $connection = include '../php/DBConnectionReturn.php';
 
             $GetUserInformationQuery = "SELECT * FROM Users WHERE Email='".$_SESSION['currentUser']."'";
             $userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
@@ -84,7 +79,9 @@
                         $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
                         if (mysqli_query($connection, $updateUserInfo)) {
                             echo 'Records updated<br>';
-                            echo "<br>$updateUserInfo";
+                            //echo "<br>$updateUserInfo";
+														//Now, refresh parent page
+														echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
                         } else {
                             echo '<br><br><br>';
                             echo "$updateUserInfo";

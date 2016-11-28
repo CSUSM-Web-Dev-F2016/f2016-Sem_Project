@@ -38,7 +38,7 @@
 	  session_start();
 
 	 //Create a basic connection
-    	$connection = $connection = include '../php/DBConnectionReturn.php';
+    	$connection = include '../php/DBConnectionReturn.php';
 
 	//Determine if the user is following the beer
 	//See if there is an entry in the table
