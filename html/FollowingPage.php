@@ -40,7 +40,7 @@
       die();
     }
     //get what breweries they are following
-    $getFollowBrew = "SELECT BreweryID FROM UserFollowsBrewery WHERE UserEmail = '" . $CurrentUser . "'";
+    $getFollowBrew = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM UserFollowsBrewery, BreweryTable WHERE UserFollowsBrewery.BreweryID = BreweryTable.BreweryID AND UserEmail = '" . $CurrentUser . "'";
     $follow_result = mysqli_query($connection, $getFollowBrew);
     if (!$follow_result) {
       die("Error with Get-Follow-Request: " . mysqli_error($connection));
@@ -49,12 +49,12 @@
       die("<p>You're not following any breweries.</p>");
     }
     while($brewRow = mysqli_fetch_assoc($follow_result)){
-      echo $brewRow["BreweryID"] . "<br>";
+      echo $brewRow["BreweryID"] . " Name: " . ["BreweryName"] . "<br>";
     }
     ?>
     <h1>&nbsp;</h1>
     <div class="container">
-      <p class="following-header">Following</p>
+      <p class="following-header">Breweries You're Following</p>
       <div class="link-container">
         <div class="icon">
           <p class="icon-title">Ballast Point</p>
