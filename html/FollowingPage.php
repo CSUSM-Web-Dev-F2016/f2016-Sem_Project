@@ -48,30 +48,19 @@
     if(mysqli_num_rows($follow_result) == 0) {
       die("<p>You're not following any breweries.</p>");
     }
-    while($brewRow = mysqli_fetch_assoc($follow_result)){
-      echo $brewRow["BreweryID"] . " Name: " . $brewRow["BreweryName"] . " URL: " . $brewRow["ProfilePicURL"] . "<br>";
-    }
     ?>
     <h1>&nbsp;</h1>
     <div class="container">
       <p class="following-header">Breweries You're Following</p>
       <div class="link-container">
+        <?php
+        while($brewRow = mysqli_fetch_assoc($follow_result)){
+        ?>
         <div class="icon">
-          <p class="icon-title">Ballast Point</p>
-          <img src="../img/Beer.png?raw=true" alt="Image 1" height="100" width="100">
+          <p class="icon-title"><?php echo $brewRow["BreweryName"]?></p>
+          <img src="<?php echo $brewRow["ProfilePicURL"]?>" alt="Brewery Profile Pic" height="100" width="100">
         </div>
-        <div class="icon">
-          <p class="icon-title">Green Flash</p>
-          <img src="../img/Beer.png?raw=true" alt="Image 2" height="100" width="100">
-        </div>
-        <div class="icon">
-          <p class="icon-title">Acoustic Ales</p>
-          <img src="../img/Beer.png?raw=true" alt="Image 3" height="100" width="100">
-        </div>
-        <div class="icon">
-          <p class="icon-title">Iron Fist</p>
-          <img src="../img/Beer.png?raw=true" alt="Image 4" height="100" width="100">
-        </div>
+        <?php } ?>
       </div>
     </div>
 
