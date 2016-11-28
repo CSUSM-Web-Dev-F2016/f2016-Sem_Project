@@ -28,11 +28,13 @@
 
      <!-- The rest is php. Build the tables on the fly -->
      <?php
+		 			//Import needed PHP files
+		 			include "create_table.php";
+
+					//Start the sessin
           session_start();
 
-          //Read the get variable (Should be text)
-          //echo "<script type=\"text/javascript\">window.alert(\"Beer Found!: " . $_GET['text'] . "\");</script>";
-
+					//Gather the new connection
 					$connection = include '../php/DBConnectionReturn.php';
 
 					//Now that the connection is built, let's do teh queries (BUsers, Breweries, BEers, max of 20);
@@ -49,39 +51,12 @@
 				 $getUsersFollowingMeQuery = "SELECT DISTINCT Email, ProfilePicURL, CONCAT(FName, '<br>', LName) AS Name, LName FROM Users WHERE Email LIKE'%" . $_GET['text'] . "%' OR FName LIKE'%" . $_GET['text'] . "%' OR LName LIKE'%" . $_GET['text'] . "%' ORDER BY LName LIMIT " . $MaxReturning;
 				 $usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
 
-				 if($usersFollowingMeResult-> num_rows > 0 ){
-					 //If there are some rows, loop through them
-					 while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
-						 //echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
+				 //Create the table
+				 searchResultsTable($usersFollowingMeResult, 'Email', 'ProfilePicURL', 'Name', 'user');
 
-						 echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-							 echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['Email'] . "\">";
-								 echo "<div class=\"tableCell img\">";
-									 echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
-								 echo "</div>";
-								 echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
-							 echo "</button>";
-							 echo "<input type=\"hidden\" name=\"" . strtr($row['Email'], array('.' => '#-#')) . "\" value=\"\">";
-						 echo "</form>";
+				 //Free the results
+				 if($usersFollowingMeResult) mysqli_free_result($usersFollowingMeResult);
 
-						 //echo "<p style=\"color:white\">" . $row['UserEmail'];
-					 }
-
-					 //Clear the results
-					 mysqli_free_result($usersFollowingMeResult);
-
-				 }
-				 else{
-					 //Just print a text saying 'no items found';
-					 echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
-							 echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
-								 echo "<div class=\"tableCell img\">";
-									 echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-								 echo "</div>";
-								 echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Users Found!" . "</div>";
-							 echo "</button>";
-						 echo "</form>";
-				 }
 				 ?>
 			 </div>
 		 </div>
@@ -96,37 +71,11 @@
 				 $getBreweriesFollowing = "SELECT DISTINCT b.BreweryName, b.ProfilePicURL, b.BreweryID FROM BreweryTable b, BreweryLocation bl WHERE b.BreweryID=bl.BreweryID AND bl.City LIKE '%" . $_GET['text'] . "%' OR b.BreweryName LIKE '%" . $_GET['text'] . "%' OR bl.City='%" . $_GET['text'] . "%' OR bl.Zip='%" . $_GET['text'] . "%' ORDER BY b.BreweryName LIMIT " . $MaxReturning;
  				$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
- 				//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
-				if($breweriesFollowingResults-> num_rows > 0){
-					//Use a while loop to build the form
+				//Build the table
+				searchResultsTable($breweriesFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
-					while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
-						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
-							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
-								echo "<div class=\"tableCell img\">";
-									echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
-								echo "</div>";
-								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
-							echo "</button>";
-							echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
-						echo "</form>";
-					}
-
-					//Free the result
-					mysqli_free_result($breweriesFollowingResults);
-
-				}else{
-					//Build custom when no rows are found
-					echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
-							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
-								echo "<div class=\"tableCell img\">";
-									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-								echo "</div>";
-								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Breweries Found!" . "</div>";
-							echo "</button>";
-							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
-						echo "</form>";
-				}
+				//Free the results
+				if($breweriesFollowingResults) mysqli_free_result($breweriesFollowingResults);
 				 ?>
 			 </div>
 		 </div>
@@ -141,36 +90,10 @@
 				 $getBeersResults = mysqli_query($connection, $getBeers);
 				 //echo "<script type=\"text/javascript\">window.alert(\"Result Count: " . $getBeersResults-> num_rows . " Query: " . $getBeers . "\");</script>";
 
-				 if($getBeersResults-> num_rows > 0){
-  					//Use a while loop to build the form
+				 beersSearchTable($getBeersResults);
 
-  					while($row = mysqli_fetch_assoc($getBeersResults)){
-  						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"beer\">";
-  							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"beer\">";
-  								echo "<div class=\"tableCell img\">";
-  									echo "<img class=\"smalltableCell\" src=\"" . $row['PictureURL'] . "\" alt=\"" . $row['BeerName'] . "\">";
-  								echo "</div>";
-  								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BeerName'] . "</div>";
-  							echo "</button>";
-  							echo "<input type=\"hidden\" name=\"beerID\" value=\"" . $row['BeerID'] . "\">";
-  						echo "</form>";
-  					}
-
-						//Free the memory
-						mysqli_free_result($getBeersResults);
-
-  				}else{
-  					//Build custom when no rows are found
-  					echo "<form action=\"\" class=\"stdForm\" name=\"beer\" onsubmit=\"return false;\">";
-  							echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
-  								echo "<div class=\"tableCell img\">";
-  									echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-  								echo "</div>";
-  								echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Beers Found!" . "</div>";
-  							echo "</button>";
-  							//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
-  						echo "</form>";
-  				}
+				 //Free results
+				 if($getBeersResults) mysqli_free_result($getBeersResults);
 
 					//Close the mysql connection
 					$connection-> close();
@@ -192,7 +115,7 @@
 						}
 						else if(isset($_POST['beerID'])) {
 								//echo "<script type=\"text/javascript\"> window.alert(\"Found a Beer: " . $_POST['BeerID'] . "\");</script>";
-								echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?beerID=" . $_POST['beerID'] . "\";</script>";
+								echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?BeerID=" . $_POST['beerID'] . "\";</script>";
 						}
 
 						else {
