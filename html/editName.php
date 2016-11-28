@@ -69,6 +69,9 @@ if(isset($_POST['submit'])){
 			$changeNameQuery = "UPDATE Users SET FName='" . $fNameinput . "', LName='" . $lNameinput . "' WHERE Email='" . $_SESSION['signedInUser'] . "'";
     		if(mysqli_query($connection, $changeNameQuery)){
       		echo "Updated name successfully.";
+					
+					//Now, refresh parent page
+					echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
     		}
       	else {
         	echo "Error updating record.";

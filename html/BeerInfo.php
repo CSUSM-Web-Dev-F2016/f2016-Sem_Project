@@ -62,7 +62,17 @@
 	//echo "<script type=\"text/javascript\">window.alert(\"Follows?: " . $getIfFollows . "\");</script>";
 
 	//Get the current beer information
-	$BeerQuery = "SELECT b.BeerID,b.FromTheBrewMaster, b.PairingsDescription, b.PictureURL, b.RecommendedServingGlass, b.Awards, b.ServingStyle, b.IBU, b.ABV, b.BeerType, b.BeerDescription, bt.BreweryName FROM Beers b, BreweryTable bt WHERE b.BreweryID=bt.BreweryID AND b.BeerID=" . $_GET['beerID'] . " LIMIT 1";
+	$BeerQuery = "SELECT
+												b.BeerID,b.FromTheBrewMaster, b.PairingsDescription,
+												b.PictureURL, b.BeerName, b.RecommendedServingGlass, b.Awards,
+												b.FromTheBrewmaster, b.OnTap, b.Awards, b.ServingStyle, b.IBU,
+												b.ABV, b.BeerType, b.BeerDescription,
+												bt.BreweryName
+								FROM
+												Beers b, BreweryTable bt
+								WHERE
+												b.BreweryID=bt.BreweryID AND b.BeerID=" . $_GET['beerID'] . " LIMIT 1";
+
 	//$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
 	$ResultsForBeer = mysqli_query($connection, $BeerQuery);
 
@@ -90,8 +100,6 @@
 		//Free the results
 		mysqli_free_result($ResultsForBeer);
 
-		//Close the connection
-		$connection-> close();
 
 	}else{
 		//Beer does not exist
@@ -160,6 +168,9 @@
 											}else{
 												echo "N/A";
 											}
+
+											//Close the connection
+											$connection-> close();
 										?>
 										</p>
 									</div>
@@ -276,17 +287,7 @@
 								</td>
 							</tr>
 							<?php
-						}
-						if(!empty($OnTap)){
-							?>
-							<tr>
-								<th>When Available:</th>
-								<td><span style="color:green;">Coming Soon...</span>
-								</td>
-							</tr>
-							<?php
-						}
-							?>
+						}?>
 						</tbody>
 					</table>
 				</div>

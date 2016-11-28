@@ -53,10 +53,6 @@
 			}
 			?>
 	</script>
-		<!-- Header Bar -->
-		<div class="header">
-			<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
-		</div>
 		<!-- Navigation Bar -->
 		<nav>
 			<table class="menu" title="Menu">
@@ -126,6 +122,12 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 	//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $CurrentUser . " FNAME: " . $FName . " LNAME: " . $LName . "\");</script>";
 ?>
 <body>
+
+		<!-- Header Bar -->
+		<div class="header">
+			<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
+		</div>
+
 	<!-- Profile Container -->
 	<div class="ProfileContainer">
 		<!-- Within the container, we have a rounded profile image -->
@@ -269,7 +271,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 			<div class="stdSection" id="following">
