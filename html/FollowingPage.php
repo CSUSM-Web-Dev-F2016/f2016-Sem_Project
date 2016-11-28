@@ -36,7 +36,7 @@
     <?php
     //if the login has timed out, notify user
     if ($CurrentUser == "") {
-      echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">You must be logged in to create a brewery</p>";
+      echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">You must be logged in to view your followers.</p>";
       die();
     }
     //get what breweries they are following
