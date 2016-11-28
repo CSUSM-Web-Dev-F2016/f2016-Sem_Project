@@ -43,10 +43,10 @@
             <input type="text" name="email" id="userEmail" placeholder="Email"/>
 
             <label for="password" id="pass" class="hidden">Password:</label>
-            <input type="text" name="password" id="Password" placeholder="Password"/>
+            <input type="password" name="password" id="Password" placeholder="Password"/>
 
             <label for="re_enter_password" id="reEnter_password" class="hidden">Re-Enter Password:</label>
-            <input type="text" name="re_enter_password" id="Re_enter_password" placeholder="Re-Enter Password"/>
+            <input type="password" name="re_enter_password" id="Re_enter_password" placeholder="Re-Enter Password"/>
 
             <label for="dob" id="dateBirth" class="hidden">DOB:</label>
             <input type="text" name="DOB" id="dob" placeholder="Date of Birth"/>
@@ -55,6 +55,12 @@
             <input type="submit" id="subButton" value="Submit"/>
 
         </form>
+
+
+  			<p class="centerText">
+  				Already a member?
+  				<a href="../index.php">Sign in now</a>
+  			</p>
     </div>
 </div>
 

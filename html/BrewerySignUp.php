@@ -21,6 +21,8 @@
 </script>
 </head>
 <?php
+		//Start the session
+		session_start();
 	 //Create a basic connection
     $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
@@ -28,6 +30,8 @@
     if(!$connection){
         die("Connection Failed. Error: " . mysqli_connect_error());
     }
+
+		$CurrentUser = $_SESSION['signedInUser'];
 
 ?>
 <body>
@@ -103,6 +107,11 @@
 				//Before the info is sent, we want to check all the vars
 				if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+					if ($CurrentUser == "") {
+						echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">You must be logged in to create a brewery</p>";
+						die();
+					}
+
 					$errorString = "";
 					//Verify that none are empty. If they are, echo it on the screen
 					//Check the brewery name
@@ -168,10 +177,14 @@
 						$breweryLocation_Result = mysqli_query($connection, $insertBreweryLocation);
 						if (!$breweryLocation_Result) {
 							die("Could not fullfill BreweryLocation Request: " . mysqli_error($connection));
+						}
+						$insertBreweryOwner = "INSERT INTO BreweryOwner (UserEmail, BreweryID) VALUES ('" . $CurrentUser . "', '" . $foreignKey["BreweryID"] . "')";
+						mysqli_query($connection, $insertBreweryOwner);
+						if (!$insertBreweryOwner) {
+							die("Could not fullfill Owner Request: " . mysqli_error($connection));
 						} else {
 							echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Brewery Created!</p>";
 						}
-
 					}
 				}
 				//close connection to database
