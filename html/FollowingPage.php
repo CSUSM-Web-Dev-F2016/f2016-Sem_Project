@@ -46,12 +46,12 @@
       die("Error with Get-Follow-Request: " . mysqli_error($connection));
     }
     if(mysqli_num_rows($follow_result) == 0) {
-      die("<p>You're not following any breweries.</p>");
+      echo "<p>You're not following any breweries.</p>";
     }
     ?>
     <h1>&nbsp;</h1>
     <div class="container">
-      <p class="following-header">Breweries You're Following</p>
+      <p class="following-header">Breweries you're following:</p>
       <div class="link-container">
         <?php
         while($brewRow = mysqli_fetch_assoc($follow_result)){
@@ -64,19 +64,39 @@
       </div>
     </div>
 
-    <div class="container" id="suggested-followers">
-      <p class="following-header" id="suggested-header">Suggested Profiles to Follow</p>
-      <div class="link-container" id="suggested-container">
+    <?php
+    mysqli_free_result($follow_result);
+    $getFollowUser = "SELECT Fname, Lname, ProfilePicURL FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
+    $followUser_result = mysqli_query($connection, $getFollowUser);
+    if (!$followUser_result) {
+      die("Error with Get-User-Request: " . mysqli_error($connection));
+    }
+    if(mysqli_num_rows($followUser_result) == 0) {
+      echo "<p>You're not following any users.</p>" ;
+    }
+    ?>
+
+    <div class="container">
+      <p class="following-header">Users you're following:</p>
+      <div class="link-container">
+        <?php
+        while($userRow = mysqli_fetch_assoc($followUser_result)){
+        ?>
         <div class="icon">
-          <p class="icon-title">Iron Fist</p>
-          <img src="../img/Beer.png?raw=true" alt="Image 5" height="100" width="100">
+          <p class="icon-title"><?php echo $userRow["Fname"] . " " . $userRow["Lname"]?></p>
+          <img src="<?php echo $userRow["ProfilePicURL"]?>" alt="User Profile Pic" height="100" width="100">
         </div>
-        <div class="icon">
-          <p class="icon-title">Brewey</p>
-          <img src="../img/Beer.png?raw=true" alt="Image 6" height="100" width="100">
-        </div>
+        <?php } ?>
       </div>
     </div>
+
+    <?php
+    //free query results
+    mysqli_free_result($follow_result);
+    mysqli_free_result($followUser_result);
+    //close database connection
+    mysqli_close($connection);
+    ?>
 
   </body>
 </html>
