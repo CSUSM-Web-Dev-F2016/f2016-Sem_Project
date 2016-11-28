@@ -1,4 +1,8 @@
-
+body{
+  padding: 0px;
+  margin: 0px;
+  padding-top: 5px;
+}
 
 /**Feed */
 div.newsFeedBox{
@@ -33,7 +37,7 @@ div.newsFeedBox button{
     font-size: 16px;
     background-color: #191d24;
     border: 2px solid lightgray;
-    
+
 }
 div.newsFeedBox button:hover {
   color: white;
@@ -53,6 +57,24 @@ div.newsFeedBox button:active {
     padding-top: 0px;
     margin-top: 0px;
     resize: none;
+}
+
+.statusHeader{
+  display: flex;
+  flex: auto;;
+  flex-direction: row;;
+  height: auto;;
+  top: 0px;
+  position: relative;
+  margin: 0px;
+}
+
+.userName{
+  line-height: 30px;
+  position: absolute;
+  width: auto;
+  top: -10px;
+  padding-left: 10px;
 }
 
 #postBox{
@@ -79,3 +101,17 @@ div.newsFeedBox:hover{
     height: 30px;
 }
 /** End Feed */
+
+/** Now for a standard post **/
+.postText{
+  font-style: normal; font-size: 1.25em;
+  color: black;
+  padding-left: 25px; padding-right: 25px;
+}
+
+.postDate{
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  padding-right: 25px;
+}
