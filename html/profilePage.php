@@ -133,7 +133,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 		<br>
 		<hr>
 		<p class="profileName"><?php echo $FName . " " . $LName?></p>
-		<a class="editBtn" onclick="showSRC('editName.html')">Edit</a>
+		<a class="editBtn" onclick="showSRC('editName.php')">Edit</a>
 	</div>
 	<!-- Left Section -->
 	<aside class="left">
