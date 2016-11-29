@@ -274,9 +274,9 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
-			<div class="stdSection" id="following">
+			<div class="stdSection" id="followingBreweries">
 				<div class="stdSectionTitle">
-					Following
+					Following Breweries
 				</div>
 				<div class="table">
 
@@ -284,7 +284,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				<?php
 					//Session is already started
 					//Get the breweryies the user is following, max 3
-					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID ORDER BY BreweryName LIMIT 6";
+					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID ORDER BY BreweryName LIMIT 3";
 					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
 					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
@@ -342,6 +342,57 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>
 			</div>
+			<div class="stdSection" id="followingUsers">
+				<div class="stdSectionTitle">
+					Following Users
+				</div>
+				<div class="table">
+					<!-- User 'Following me' -->
+					<?php
+					$getUsersFollowingMeQuery = "	SELECT DISTINCT ufu.OtherUserEmail, u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.LName
+					 															FROM UserFollowsUser ufu, Users u
+																				WHERE u.Email=ufu.OtherUserEmail AND ufu.UserEmail='" . $_SESSION['currentUser'] . "' ORDER BY u.LName LIMIT 3";
+					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
+
+					if($usersFollowingMeResult-> num_rows > 0 ){
+						//If there are some rows, loop through them
+						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
+							//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
+
+							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
+								echo "</button>";
+								echo "<input type=\"hidden\" name=\"" . strtr($row['OtherUserEmail'], array('.' => '#-#')) . "\" value=\"\">";
+							echo "</form>";
+
+							//echo "<p style=\"color:white\">" . $row['UserEmail'];
+						}
+
+						//Free the results
+						mysqli_free_result($usersFollowingMeResult);
+
+					}else{
+						//Just print a text saying 'no items found';
+						echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
+								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
+									echo "<div class=\"tableCell img\">";
+										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+									echo "</div>";
+									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
+								echo "</button>";
+							echo "</form>";
+					}
+
+					?>
+				</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
+				</div>
+			</div>
 		</div>
 	</aside>
 	<section>
@@ -362,7 +413,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			</div>
 			<div class="newsFeed" id="MainArea">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="../html/NewsFeed.html" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
+			<iframe id="contentFrame" src="../html/NewsFeed.php" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
 		</div>
 		</div>
 		<!-- Black Field to Post -->

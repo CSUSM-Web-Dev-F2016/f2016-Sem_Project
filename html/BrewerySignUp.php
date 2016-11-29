@@ -179,7 +179,7 @@
 							die("Could not fullfill BreweryLocation Request: " . mysqli_error($connection));
 						}
 						$insertBreweryOwner = "INSERT INTO BreweryOwner (UserEmail, BreweryID) VALUES ('" . $CurrentUser . "', '" . $foreignKey["BreweryID"] . "')";
-						mysqli_query($connection, $insertBreweryOwner);
+						$insertOwner_Result = mysqli_query($connection, $insertBreweryOwner);
 						if (!$insertBreweryOwner) {
 							die("Could not fullfill Owner Request: " . mysqli_error($connection));
 						} else {
@@ -187,6 +187,10 @@
 						}
 					}
 				}
+				//free query results
+				mysqli_free_result($breweryTable_Result);
+				mysqli_free_result($foreignKey_Result);
+				mysqli_free_result($insertOwner_Result);
 				//close connection to database
 				mysqli_close($connection);
 			?>
