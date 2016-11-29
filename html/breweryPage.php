@@ -271,7 +271,7 @@
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 		</div>
