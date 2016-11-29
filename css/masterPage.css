@@ -244,6 +244,6 @@ form.stdForm {
     font-size: 0px;
 }
 
-iframe::-webkit-scrollbar{
+::-webkit-scrollbar{
   display: none;
 }
