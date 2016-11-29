@@ -93,6 +93,10 @@
 		</div>
 </head>
 <?php
+
+		//Import needed PHP files
+		include "../php/create_table.php";
+
 	 //Create a basic connection
     $connection = include '../php/DBConnectionReturn.php';
 
@@ -185,30 +189,11 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $CurrentUser . "' AND b.BeerID=u.BeerID ORDER BY b.BeerName LIMIT 6";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
-						if($favoritedBeersResults-> num_rows > 0){
-							while($row = mysqli_fetch_assoc($favoritedBeersResults)){
-								//There are rows
-								$_Session['currentBeer'] = $row['BeerID'];
-								echo '<div class="smalltableCell">';
-									echo "<a onclick=\"showBeerView(" . $row['BeerID'] . ")\">";
-										echo '<div class="tableCell img">';
-											echo	"<img class=\"smalltableCell\" src=\"" .  $row['PictureURL'] . "\"alt=\"" . $row['BeerName'] . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\">" . $row['BeerName'] . "</div>";
-									echo "</a>";
-								echo "</div>";
-							}
-						}else{
-							//No rows yet; inform user;
-							echo '<div class="smalltableCell">';
-									echo "<a onclick=\"return false;\">";
-										echo '<div class="tableCell img">';
-											echo	"<img class=\"smalltableCell\" src=\"" .  "http://beerhopper.me/img/x.png" . "\"alt=\"" . "" . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\">" . "No Beers Yet" . "</div>";
-									echo "</a>";
-								echo "</div>";
-						}
+						//Create a basic clickable table
+						if($favoritedBeersResults) createClickableTable($favoritedBeersResults, 'BeerID', 'PictureURL', 'BeerName');
+
+						//Free the results
+						if($favoritedBeersResults) mysqli_free_result($favoritedBeersResults);
 					?>
 				</div>
 				<div class="stdSectionFooter">
@@ -235,38 +220,11 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name', them.LName FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $CurrentUser . "'ORDER BY them.LName LIMIT 3";
 					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
 
-					if($usersFollowingMeResult-> num_rows > 0 ){
-						//If there are some rows, loop through them
-						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
-							//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
+					//Create a form to change the current page when clicked
+					createBasicForm($usersFollowingMeResult, 'UserEmail', 'ProfilePicURL', 'Name', 'user');
 
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
-								echo "</button>";
-								echo "<input type=\"hidden\" name=\"" . strtr($row['UserEmail'], array('.' => '#-#')) . "\" value=\"\">";
-							echo "</form>";
-
-							//echo "<p style=\"color:white\">" . $row['UserEmail'];
-						}
-
-						//Free the results
-						mysqli_free_result($usersFollowingMeResult);
-
-					}else{
-						//Just print a text saying 'no items found';
-						echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
-								echo "</button>";
-							echo "</form>";
-					}
+					//Free the results
+					if($usersFollowingMeResult) mysqli_free_result($usersFollowingMeResult);
 
 					?>
 				</div>
@@ -288,35 +246,11 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
 					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
-					if($breweriesFollowingResults-> num_rows > 0){
-						//Use a while loop to build the form
+					if($breweriesFollowingResults) createBasicForm($breweriesFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
-						while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
-								echo "</button>";
-								echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
-							echo "</form>";
-						}
-						//Free the result
-						mysqli_free_result($breweriesFollowingResults);
+					//Free the results
+					if($breweriesFollowingResults) mysqli_free_result($breweriesFollowingResults);
 
-					}else{
-						//Build custom when no rows are found
-						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
-								echo "</button>";
-								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
-							echo "</form>";
-					}
 					/** Should work **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								//Close the sql session
@@ -327,7 +261,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 							  //Navigate to the brewery page iwth the new id
 							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
-    						}else {
+							}else if(isset($_POST['user'])) {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
@@ -354,38 +288,11 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 																				WHERE u.Email=ufu.OtherUserEmail AND ufu.UserEmail='" . $_SESSION['currentUser'] . "' ORDER BY u.LName LIMIT 3";
 					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
 
-					if($usersFollowingMeResult-> num_rows > 0 ){
-						//If there are some rows, loop through them
-						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
-							//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
+					//Create the table using the data
+					if($usersFollowingMeResult) createBasicForm($usersFollowingMeResult, 'OtherUserEmail', 'ProfilePicURL', 'Name', 'user');
 
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
-								echo "</button>";
-								echo "<input type=\"hidden\" name=\"" . strtr($row['OtherUserEmail'], array('.' => '#-#')) . "\" value=\"\">";
-							echo "</form>";
-
-							//echo "<p style=\"color:white\">" . $row['UserEmail'];
-						}
-
-						//Free the results
-						mysqli_free_result($usersFollowingMeResult);
-
-					}else{
-						//Just print a text saying 'no items found';
-						echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
-								echo "</button>";
-							echo "</form>";
-					}
+					//Free the results
+					if($usersFollowingMeResult) mysqli_free_result($usersFollowingMeResult);
 
 					?>
 				</div>
@@ -396,6 +303,22 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 		</div>
 	</aside>
 	<section>
+
+		<?php
+			//Get the current signed in users profile PictureURL
+			$proPicQ = "SELECT ProfilePicURL FROM Users WHERE Email='" . $_SESSION['signedInUser'] . "'";
+			$res = mysqli_query($connection, $proPicQ);
+
+			if($res->num_rows > 0){
+				while($row = mysqli_fetch_assoc($res)){
+					$PicURL = $row['ProfilePicURL'];
+					break;
+				}
+			}else{
+				//Leave the profile pic the same
+			}
+
+		 ?>
 		<div class="newsFeedHeader">
 			Feed:
 			<!-- Black Field to Post -->

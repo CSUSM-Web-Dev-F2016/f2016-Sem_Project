@@ -42,7 +42,7 @@
 
 	//Determine if the user is following the beer
 	//See if there is an entry in the table
-	$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['beerID'];
+	$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['BeerID'];
 	$getFollowsResult = mysqli_query($connection, $getIfFollows);
 	$_SESSION['Follows'] = "FALSE";
 	$FollowImage = "";
@@ -71,9 +71,9 @@
 								FROM
 												Beers b, BreweryTable bt
 								WHERE
-												b.BreweryID=bt.BreweryID AND b.BeerID=" . $_GET['beerID'] . " LIMIT 1";
+												b.BreweryID=bt.BreweryID AND b.BeerID=" . $_GET['BeerID'] . " LIMIT 1";
 
-	//$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
+	//$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['BeerID'] . " LIMIT 1";
 	$ResultsForBeer = mysqli_query($connection, $BeerQuery);
 
 	if($ResultsForBeer-> num_rows > 0){
@@ -116,7 +116,7 @@
 				<form action="" onsubmit="" method="POST" class="favBtnHolder">
 				<!-- We need to descide if the user is already following the beer or not first -->
 					<label class="hidden">submit</label>
-					<input value="<?php echo $_GET['beerID']; ?>" type="image" src="<?php echo $FollowImage ?>" name="beerID" alt="follow" id="FollowPic">
+					<input value="<?php echo $_GET['BeerID']; ?>" type="image" src="<?php echo $FollowImage ?>" name="BeerID" alt="follow" id="FollowPic">
 				</form>
 				<div class="LargeTableTitle">
 					<?php echo $BeerName ?>
@@ -157,7 +157,7 @@
 										<p class="imageCell">
 										<?php
 											//Run a query to get the count of all that favorited this beer
-											$qu = "SELECT COUNT(*) AS Count FROM UserFavoritesBeer WHERE BeerID=" . $_GET['beerID'];
+											$qu = "SELECT COUNT(*) AS Count FROM UserFavoritesBeer WHERE BeerID=" . $_GET['BeerID'];
 											$re = mysqli_query($connection, $qu);
 
 											if($re-> num_rows > 0){
@@ -297,32 +297,32 @@
 		<?php
 			//Check for submit
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
-				if(isset($_POST['beerID'])){
+				if(isset($_POST['BeerID'])){
 
 					if($_SESSION['Follows'] == "FALSE"){
 						//Start the MySQL query to favorite the beer
-						$AddBeerToFavorites = "INSERT INTO UserFavoritesBeer VALUES ('" . $_SESSION['signedInUser'] . "', " . $_POST['beerID'] . ")";
+						$AddBeerToFavorites = "INSERT INTO UserFavoritesBeer VALUES ('" . $_SESSION['signedInUser'] . "', " . $_POST['BeerID'] . ")";
 						//echo "<script type=\"text/javascript\">window.alert(\"request: " . $AddBeerToFavorites ."\");</script>";
 						$AddedBeerResults = mysqli_query($connection, $AddBeerToFavorites);
 
 						if($AddedBeerResults){
-							//echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['beerID'] . " favorited!\");</script>";
+							//echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['BeerID'] . " favorited!\");</script>";
 							$FollowImage = "../img/Unfollow_Follow_Color.png";
 							$_SESSION['Follows'] = "TRUE";
 							echo "<script type=\"text/javascript\">window.location.reload();</script>";
 						}else{
-							echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['beerID'] . " could not be foavorited!<br>" . $AddBeerToFavorites . "\");</script>";
+							echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['BeerID'] . " could not be foavorited!<br>" . $AddBeerToFavorites . "\");</script>";
 						}
 					}else{
 						//Unfolow
-						$RemoveBeerFromFavorites = "DELETE FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_POST['beerID'];
+						$RemoveBeerFromFavorites = "DELETE FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_POST['BeerID'];
 						//echo "<script type=\"text/javascript\">window.alert(\"request: " . $RemoveBeerFromFavorites ."\");</script>";
 						$RemoveBeerResults = mysqli_query($connection, $RemoveBeerFromFavorites);
 
 						//Complete the request
 						if($RemoveBeerResults){
 							//Removed
-							//echo "<script type=\"text/javascript\">window.alert(\"Unfollowed Beer: " . $_POST['beerID'] . " successfully!\");</script>";
+							//echo "<script type=\"text/javascript\">window.alert(\"Unfollowed Beer: " . $_POST['BeerID'] . " successfully!\");</script>";
 							$FollowImage = "../img/Follow_Color.png";
 							$_SESSION['Follows'] = "FALSE";
 							echo "<script type=\"text/javascript\">window.location.reload();</script>";
