@@ -115,6 +115,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			$FName = $row["FName"];
 			$LName = $row["LName"];
 			$PicURL = $row["ProfilePicURL"];
+			$visits = $row['visits'] + 1;
 			break; //Only want the first occurance
 		}
 		//Unset the results
@@ -176,8 +177,24 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					</div>
 			</div>
 		<?php
-			}
-			?>
+		//Now, update the visit count of this user
+		$updateUserCount = "UPDATE Users SET visits=visits+1 WHERE Email='" . $_SESSION['currentUser'] . "'";
+		if(mysqli_query($connection, $updateUserCount)){
+			//Update was handled
+		}else{
+			echo "Not updated: " . mysqli_error($connection);
+		}
+
+	}?>
+
+	<!-- Total visit count. Increments on each page visit/refresh -->
+	<div class="stdSection" id="calendar">
+		<div class="stdSectionTitle">
+			Total Visits
+				<div class="numberOfVisits"><?php echo number_format($visits); ?></div>
+		</div>
+	</div>
+	
 			<div class="stdSection" id="bestTastes">
 				<div class="stdSectionTitle">
 					Best Tastes
@@ -202,7 +219,9 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			</div>
 		<div class="stdSection" id="eventCalendar">
 			<div class="stdSectionTitle">
-				Calendar
+				Today's Date is:
+					<div class="numberOfVisits"><?php echo date("d"); ?></div>
+					<div class="stdSectionFooter"><?php  echo date("l\,<br> F Y");?> </div>
 			</div>
 		</div>
 		</div>
