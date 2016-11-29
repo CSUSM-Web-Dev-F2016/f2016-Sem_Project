@@ -135,7 +135,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 	<!-- Profile Container -->
 	<div class="ProfileContainer">
 		<!-- Within the container, we have a rounded profile image -->
-		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage" onclick="showSRC('editProfilePicture.html')">
+		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage" onclick="showSRC('editProfilePicture.php')">
 		<br>
 		<hr>
 		<p class="profileName"><?php echo $FName . " " . $LName?></p>
