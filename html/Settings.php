@@ -93,7 +93,7 @@
 		</div>
 		<!-- end general settings -->
 
-		<h3> My Breweries: </h3>n<!-- header for my breweries -->
+		<h3> My Breweries: </h3><!-- header for my breweries -->
 		<div class="mybreweries"><br> <!-- my breweries class -->
 			<?php
                 $GetUserInformationQuery = "SELECT * FROM BreweryOwner WHERE UserEmail='".$_SESSION['currentUser']."'"; // get user info query

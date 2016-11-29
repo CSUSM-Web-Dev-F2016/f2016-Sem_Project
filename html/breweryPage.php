@@ -57,6 +57,9 @@
 </head>
 
 <?php
+		//Import needed PHP files
+		include "../php/create_table.php";
+
   	//Start the session
 	  session_start();
 
@@ -226,80 +229,49 @@
 			</div>
 
 			<!-- Followers Section -->
+			<!--
 			<div class="stdSection FollowingBrewery" id="followersOfBreweries">
 				<div class="stdSectionTitle">
-					Followers
+					Brewery Followers
+				</div>
+				<div class="table"> -->
+					<!-- Brewery Following Brewery -->
+					<?php
+						//$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
+						//$resultSet = mysqli_query($connection, $query);
+
+						//Create a basic form
+						//createBasicForm($resultSet, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
+
+						//Free results
+						i//f($resultSet) mysqli_free_result($resultSet);
+
+					?>
+				<!--</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+				</div>
+			</div>-->
+			<!-- Followers Section -->
+			<div class="stdSection FollowingBrewery" id="followersOfBreweries">
+				<div class="stdSectionTitle">
+					User Followers
 				</div>
 				<div class="table">
 					<!-- User Following Brewery -->
 					<?php
-						$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
-						$resultSet = mysqli_query($connection, $query);
+						$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 6";
+						$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
 
-						//If the number of rows is more than 0, build the table,
-						if($resultSet-> num_rows > 0){
-							//Build the cell for each case
-							while($row = mysqli_fetch_assoc($resultSet)){
-								echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-									echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"user\">";
-										echo "<div class=\"tableCell img\">";
-											echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
-									echo "</button>";
-									echo "<input type=\"hidden\" name=\"" . $row['Email'] . "\" value=\"\">";
-								echo "</form>";
-							}
-							//Free the result
-							mysqli_free_result($resultSet);
+						//Create a basic form
+						if($GetUsersFollowingBreweryResults) createBasicForm($GetUsersFollowingBreweryResults, 'Email', 'ProfilePicURL', 'Name', 'user');
 
-						}
-
-						//else, build an empty one.
-						else{
-							//If no breweries are following the brewery.. maybe a user is
-							$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 6";
-							$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
-
-							if($GetUsersFollowingBreweryResults-> num_rows > 0){
-								//If there are some rows, loop through them
-								while($row = mysqli_fetch_assoc($GetUsersFollowingBreweryResults)){
-									//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
-
-									echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-										echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['Email'] . "\">";
-											echo "<div class=\"tableCell img\">";
-												echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
-											echo "</div>";
-											echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
-										echo "</button>";
-										echo "<input type=\"hidden\" name=\"" . strtr($row['Email'], array('.' => '#-#')) . "\" value=\"\">";
-									echo "</form>";
-
-									//echo "<p style=\"color:white\">" . $row['UserEmail'];
-								}
-
-								//Free the result set
-								mysqli_free_result($getUsersFollowingMeQuery);
-
-							}else{
-								//Still no followers
-								echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Followers Yet!" . "</div>";
-								echo "</button>";
-								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
-							echo "</form>";
-							}
-						}
-
+						//Clear the results
+						if($GetUsersFollowingBreweryResults) mysqli_free_result($GetUsersFollowingBreweryResults);
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 		</div>
@@ -308,6 +280,7 @@
 	<!-- Right Side bar; will be used for side navigation panels -->
 	<aside class="right">
 		<div class="subsection">
+
 			<div class="stdSection FollowingBreweries" id="followingBreweries">
 				<div class="stdSectionTitle">
 					Following
@@ -321,36 +294,10 @@
 						/*if(!$GetWhoBreweryIsFollowingResults) echo "<script type=\"text/javascript\">window.alert(\"Query: " . $GetWhoBreweryIsFollowing . "\");</script>";
 						else echo "Good Job<br>";*/
 
-						//Check if any rows are returned
-						if($GetWhoBreweryIsFollowingResults-> num_rows > 0){
-							//Load results
-							while($row = mysqli_fetch_assoc($GetWhoBreweryIsFollowingResults)){
-								echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
-									echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
-										echo "<div class=\"tableCell img\">";
-											echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
-									echo "</button>";
-									echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
-								echo "</form>";
-							}
+						createBasicForm($GetWhoBreweryIsFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
-							//Free the result
-							mysqli_free_result($GetWhoBreweryIsFollowingResults);
-
-						}else{
-							//Print empty table
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" onsubmit=\"return false;\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
-								echo "</button>";
-								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
-							echo "</form>";
-						}
+						//Free the results
+						if($GetWhoBreweryIsFollowingResults) mysqli_free_result($GetWhoBreweryIsFollowingResults);
 					?>
 				</div>
 				<div class="stdSectionFooter">
@@ -358,7 +305,7 @@
 				</div>
 			</div>
 
-			<!-- Highest Rated -->
+			<!-- Beers on tap -->
 			<div class="stdSection main" id="highestRated">
 				<div class="stdSectionTitle">
 					Beers On Tap
@@ -368,33 +315,11 @@
 						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 6";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
-						if($favoritedBeersResults-> num_rows > 0){
-							while($row = mysqli_fetch_assoc($favoritedBeersResults)){
-								//There are rows
-								echo '<div class="smalltableCell">';
-									echo "<a onclick=\"showBeerView(" . $row['BeerID'] . ")\">";
-										echo '<div class="tableCell img">';
-											echo	"<img class=\"smalltableCell\" src=\"" .  $row['PictureURL'] . "\"alt=\"" . $row['BeerName'] . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\">" . $row['BeerName'] . "</div>";
-									echo "</a>";
-								echo "</div>";
-							}
+						createClickableTable($favoritedBeersResults, 'BeerID', 'PictureURL', 'BeerName');
 
-							//Free the results
-							mysqli_free_result($favoritedBeersResults);
+						//Free results
+						mysqli_free_result($favoritedBeersResults);
 
-						}else{
-							//No rows yet; inform user;
-							echo '<div class="smalltableCell">';
-									echo "<a onclick=\"return false;\">";
-										echo '<div class="tableCell img">';
-											echo	"<img class=\"smalltableCell\" src=\"" .  "http://beerhopper.me/img/x.png" . "\"alt=\"" . "" . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\">" . "No Beers Yet" . "</div>";
-									echo "</a>";
-								echo "</div>";
-						}
 						//Close the sql connection
 						$connection-> close();
 
