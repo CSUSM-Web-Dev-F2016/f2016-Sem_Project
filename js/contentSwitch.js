@@ -46,7 +46,7 @@ function showBeerView(beerID) {
     var sectionDOM = document.getElementById("contentFrame");
 
     //Set the new page
-    sectionDOM.src = "../html/" + "BeerInfo.php?beerID=" + beerID;
+    sectionDOM.src = "../html/" + "BeerInfo.php?BeerID=" + beerID;
 
     //Set the frame width to 100% (in case it isnt);
     sectionDOM.style.width = "100%";
