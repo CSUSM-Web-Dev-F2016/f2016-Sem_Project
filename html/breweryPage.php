@@ -216,7 +216,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('FollowingPage.html')">
+						<a onclick="showSRC('FollowingPage.php')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
 							</div>
