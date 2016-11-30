@@ -86,13 +86,10 @@ if(isset($_POST['submit'])){
 			echo "ERROR: First and Last name cannot be empty.";
 		}
 }
+echo "</div>";
+endif;
 mysqli_close($connection);
 ?>
-</div>
-<?php
-endif;
- ?>
-
 </body>
 
 </html>
