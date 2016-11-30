@@ -18,12 +18,18 @@ session_start();
  */
 function createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl){
     echo "Creating User";
+
+    // get database connection
+    $connection = include 'DBConnectionReturn.php';
+
+    // Escapes apostrophes and other characters for insertion into the database
+    $FName = mysqli_real_escape_string($connection, $FName);
+    $LName = mysqli_real_escape_string($connection, $LName);
+
     //Create the user in an SQL Command, tehn, log them in.
     $createUserQuery = "INSERT INTO Users (Email, Password, FName, LName, DOB, ProfilePicURL) 
         VALUES ('" . $Email . "', '" . $Password . "', '" . $FName . "', '" . $LName . "', '" . $birthday . "', '" . $ProfilePicURl . "')";
 
-    // get database connection
-    $connection = include 'DBConnectionReturn.php';
 
     if(mysqli_query($connection, $createUserQuery)){
         //The item was successful created, now change the login page.
