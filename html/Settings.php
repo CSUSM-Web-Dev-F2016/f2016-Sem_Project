@@ -78,10 +78,9 @@
                         $pw = $_POST['password']; // pw = new password
                         $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
                         if (mysqli_query($connection, $updateUserInfo)) {
-                            echo 'Records updated<br>';
-                            //echo "<br>$updateUserInfo";
-														//Now, refresh parent page
-														echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+                            echo '<br><br>Records updated<br>';
+                            /* refresh parent page */
+                            //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
                             echo '<br><br><br>';
                             echo "$updateUserInfo";
@@ -113,22 +112,35 @@
 		</div>
 		<!-- end my breweries -->
 
+		<?php
+        $GetUserPrivacySettingsQuery = "SELECT * FROM PrivacySettings WHERE UserEmail='".$_SESSION['currentUser']."'";
+        $userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
+        if ($userInfoResults->num_rows > 0) { // if there are results
+            while ($row = mysqli_fetch_assoc($userInfoResults)) {
+                $AllowEmails = $row['AllowEmails']; // $AllowEmails = AllowEmails
+                $AllowSearch = $row['AllowSearch']; // $AllowSearch = AllowSearch
+				$ShowLocation = $row['ShowLocation']; // $ShowLocation = ShowLocation
+                $PersonalizedAds = $row['PersonalizedAds']; // $PersonalizedAds = PersonalizedAds
+                break;
+            }
+        }
+         ?>
+
 		<h3> Privacy Settings: </h3>
 		<!-- header for ps -->
-		<div class="privacysettings"><br>
+		<div class="privacysettings">
 			<!-- privacy settings class -->
-			<form>
-				Allow Beerhopper to send you occasional emails?
-				<select name="emailopt"> <!-- option to opt out of emails -->
+			<form action ="" class="stdForm" method="POST" name="privacysettings">
+				<br>Allow Beerhopper to send you occasional emails?
+				<select name="emailopt">
 					<option value="yes">Yes</option>
 					<option value="no">No</option>
-					</select>
+				</select>
 				<br><br> Allow other users to search you via email?
-				<!-- allow others to search you via email -->
 				<select name="searchopt">
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-					</select>
+					<option value="yes">Yes</option>
+					<option value="no">No</option>
+				</select>
 				<br><br> Show location on profile
 				<select name="showlocation">
 						<option value="yes">Yes</option>
@@ -141,9 +153,53 @@
 						<option value="no">No</option>
 						<option value="etc">Sell my soul for all the loot</option>
 					</select>
-				<br><br>
+				<br><button type="submit" name="privacysettings">Comfirm</button>
 			</form>
-			<button onclick="" class="input button">Confirm</button>
+			<?php
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
+                    if (isset($_POST['privacysettings'])) { // and it was from general settings
+                        $EmailOpt = $_POST['emailopt']; // $EmailOpt gets emailopt
+						$SearchOpt = $_POST['searchopt']; // $SearchOpt gets searchopt
+						$ShowLocation = $_POST['showlocation'];
+						$PersonalizedAds = $_POST['personalizedads'];
+						/* convert result to tiny int */
+                        if ($EmailOpt == 'yes') {
+                            $EmailOpt = 1;
+                        } else {
+                            $EmailOpt = 0;
+                        }
+						/* convert result to tiny int */
+                        if ($SearchOpt == 'yes') {
+                            $SearchOpt = 1;
+                        } else {
+                            $SearchOpt = 0;
+                        }
+						/* convert result to tiny int */
+                        if ($ShowLocation == 'yes') {
+                            $ShowLocation = 1;
+                        } else {
+                            $ShowLocation = 0;
+                        }
+						/* convert result to tiny int */
+                        if ($PersonalizedAds == 'yes') {
+                            $PersonalizedAds = 1;
+                        } else {
+                            $PersonalizedAds = 0;
+                        }
+                        $updatePrivacySettings = "UPDATE PrivacySettings Set AllowEmails = '".$EmailOpt."', AllowSearch = '".$SearchOpt."', ShowLocation = '".$ShowLocation."', PersonalizedAds = '".$PersonalizedAds."' WHERE UserEmail = '".$_SESSION['currentUser']."'"; // get update statement
+                        if (mysqli_query($connection, $updatePrivacySettings)) {
+                            echo '<br><br>Records updated<br>';
+
+                            /* refresh parent page */
+                            /*echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>'; */
+                        } else {
+                            echo '<br><br><br>';
+                            echo "$updatePrivacySettings";
+                            echo 'ERORRRR';
+                        }
+                    }
+                }
+            ?>
 		</div>
 	</div>
 </body>
