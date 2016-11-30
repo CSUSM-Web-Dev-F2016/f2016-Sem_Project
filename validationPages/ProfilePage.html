@@ -1,0 +1,172 @@
+
+<!DOCTYPE html>
+
+<!--
+*	@Author:							Justin Goulet
+* @Date-Last-Modified:	November 23, 2016
+* @Date-Created:				September 1, 2016
+*	@Purpose:							To show a particular person's main profile page
+*	@Method:							Using the user's login credentials, this page is first loaded
+*												with their content. This includes their profile picture,
+*												name, and other identifying information, a table of a user's
+*												favorite beers, a table of all who is following the current
+*												user, and who the user is currently following.
+*												When the user views another's profile, they are shown their profile picture,
+*												their name, their favorite beers, who is following them, and
+*												who they are following. No privacy settings are set yet.
+*												Differnt from a signed in users page, the current user have the option to
+*												follow the user or sent them a message.
+*
+-->
+<html lang="en-us">
+<head>
+		<!-- Import CSS Files -->
+		<link rel="stylesheet" href="../css/header.css" type="text/css">
+		<link rel="stylesheet" href="../css/masterPage.css" type="text/css">
+		<link rel="stylesheet" href="../css/menu.css" type="text/css">
+		<link rel="stylesheet" href="../css/backgroundVideo.css" type="text/css">
+		<link rel="stylesheet" href="../css/ProfileContainer.css" type="text/css">
+		<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
+		<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
+		<!-- Import JS Files -->
+		<script src="../js/contentSwitch.js"></script>
+		<script src="../js/calendarview.js"></script>
+
+		<!-- Analytics Script -->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-83948702-3', 'auto');
+	  ga('send', 'pageview');
+			</script>
+		<!-- Header Bar -->
+		<div class="header">
+			<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
+		</div>
+		<!-- Navigation Bar -->
+		<nav>
+			<table class="menu" title="Menu">
+				<tbody>
+					<tr>
+						<!-- Main Profile Page -->
+						<th class="menuItem" title="Home">
+							<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
+						</th>
+						<th>|</th>
+						<!-- Settings -->
+						<th class="menuItem" title="Settings">
+							<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
+						</th>
+						<th>|</th>
+						<!-- Logout Button -->
+						<th class="menuItem" title="Logout">
+							<input type="image" id="logoutBtn" src="../img/logout.png?raw=true" class="navBtn" onclick="logout()" alt="home">
+						</th>
+					</tr>
+				</tbody>
+			</table>
+
+			<!-- Add a search bar in the top left -->
+			<form action="return false;" onsubmit="return false;" method="POST" class="searchForm">
+				<label class="hidden">Enter Search Terms here </label>
+				<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
+				<label class="hidden"> Search Field </label>
+				<input type="image" id="searchBtn" src="../img/location_filled.png?raw=true" class="searchButton" onclick="startSearch()" alt="search">
+			</form>
+		</nav>
+
+		<!-- Meta data -->
+		<title>Profile</title>
+		<!-- For the background image -->
+		<div class="is_overlay">
+			<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
+		</div>
+</head>
+<!-- Create PHP Login -->
+<body>
+	<!-- Profile Container -->
+	<div class="ProfileContainer">
+		<!-- Within the container, we have a rounded profile image -->
+		<img src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Profile Picture" id="profileImg" class="profileImage" onclick="showSRC('editProfilePicture.html')">
+		<br>
+		<hr>
+		<p class="profileName">Justin Goulet</p>
+		<a class="editBtn" onclick="showSRC('editName.html')">Edit</a>
+	</div>
+	<!-- Left Section -->
+	<aside class="left">
+		<div class="subsection">
+						<div class="stdSection" id="bestTastes">
+				<div class="stdSectionTitle">
+					Best Tastes
+				</div>
+				<div class="table">
+
+					<!-- Get Favorited beers for this user -->
+					<div class="smalltableCell"><a onclick="showBeerView(212)"><div class="tableCell img"><img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/081.png"alt="American Indian Red Ale"></div><div class="smalltableCell title">American Indian Red Ale</div></a></div><div class="smalltableCell"><a onclick="showBeerView(211)"><div class="tableCell img"><img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/06.png"alt="Apricot Peach Hefeweizen"></div><div class="smalltableCell title">Apricot Peach Hefeweizen</div></a></div><div class="smalltableCell"><a onclick="showBeerView(33)"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/hQoFuK25RGW6gH95PK0K_Alesmith-BA-Grand-Cru.png"alt="Barrel-Aged Grand Cru"></div><div class="smalltableCell title">Barrel-Aged Grand Cru</div></a></div><div class="smalltableCell"><a onclick="showBeerView(109)"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/9S91K7mXQGumX3PnFIei_beers-reef-rye-primary-image1.png"alt="Bourbon Barrel Aged Reef Rye"></div><div class="smalltableCell title">Bourbon Barrel Aged Reef Rye</div></a></div><div class="smalltableCell"><a onclick="showBeerView(209)"><div class="tableCell img"><img class="smalltableCell" src="http://indianjoebrewing.com/wp-content/uploads/2013/08/083-162x300.png"alt="Chocolate Hazelnut Porter"></div><div class="smalltableCell title">Chocolate Hazelnut Porter</div></a></div><div class="smalltableCell"><a onclick="showBeerView(56)"><div class="tableCell img"><img class="smalltableCell" src="http://beerhopper.me/img/DefaultGlass.png"alt="Hoppy Hour"></div><div class="smalltableCell title">Hoppy Hour</div></a></div>				</div>
+				<div class="stdSectionFooter">
+					<a href="#" onclick="showSRC('BeerInfo.php');return false;" class="moreClicked">more</a>
+				</div>
+			</div>
+		<div class="stdSection" id="eventCalendar">
+			<div class="stdSectionTitle">
+				Calendar
+			</div>
+		</div>
+		</div>
+	</aside>
+	<!-- Right Section -->
+	<aside class="right">
+		<div class="subsection">
+			<div class="stdSection" id="followers">
+				<div class="stdSectionTitle">
+					Following Me
+				</div>
+				<div class="table">
+					<!-- User 'Following me' -->
+					<form action="" class="stdForm" method="POST" name="user"><button type="submit" class="defaultSetBtn" name="GoinFast@NASCAR.com"><div class="tableCell img"><img class="smalltableCell" src="http://1.bp.blogspot.com/_kbujzs12lYY/TIAty3YXJzI/AAAAAAAAA28/zb3sohR1vtU/s320/Ricky_Bobby_closeup.jpg" alt="Ricky<br>Bobby"></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">Ricky<br>Bobby</div></button><input type="hidden" name="GoinFast@NASCAR#-#com" value=""></form><form action="" class="stdForm" method="POST" name="user"><button type="submit" class="defaultSetBtn" name="mikal.callahan@icloud.com"><div class="tableCell img"><img class="smalltableCell" src="https://pbs.twimg.com/profile_images/793546069074333696/8NOjZdoO.jpg" alt="Mikal<br>Callahan"></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">Mikal<br>Callahan</div></button><input type="hidden" name="mikal#-#callahan@icloud#-#com" value=""></form><form action="" class="stdForm" method="POST" name="user"><button type="submit" class="defaultSetBtn" name="cl@cl.com"><div class="tableCell img"><img class="smalltableCell" src="http://image.flaticon.com/icons/svg/236/236804.svg" alt="Chris<br>Larsen"></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">Chris<br>Larsen</div></button><input type="hidden" name="cl@cl#-#com" value=""></form>				</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+				</div>
+			</div>
+			<div class="stdSection" id="following">
+				<div class="stdSectionTitle">
+					Following
+				</div>
+				<div class="table">
+
+				<!-- Using PHP, build the table -->
+				<form action="" class="stdForm" method="POST" name="brewery"><button type="submit" class="defaultSetBtn" name="brewery"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/9GZQFfMGRUGmrcJrKnek_Alesmith.jpg" alt="AleSmith Brewing Company"></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">AleSmith Brewing Company</div></button><input type="hidden" name="2" value=""></form><form action="" class="stdForm" method="POST" name="brewery"><button type="submit" class="defaultSetBtn" name="brewery"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/qd2yE4U7QWipmZIDEmrT_arcana-150x150.jpg" alt="Arcana Brewing"></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">Arcana Brewing</div></button><input type="hidden" name="4" value=""></form><form action="" class="stdForm" method="POST" name="brewery"><button type="submit" class="defaultSetBtn" name="brewery"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/985TNUT1OxdSZlAyHHWg_Automatic%2BBrewing.jpg" alt="Automatic Brewing Co."></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">Automatic Brewing Co.</div></button><input type="hidden" name="5" value=""></form><form action="" class="stdForm" method="POST" name="brewery"><button type="submit" class="defaultSetBtn" name="brewery"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/UxemEJRIeKNPU2dTJ9uw_th%3F%26id%3DOIP.M97cabadaa041d56cd215590b8406a555o0%26w%3D254%26h%3D254%26c%3D0%26pid%3D1.9%26rs%3D0%26p%3D0" alt="BackStreet Brewery"></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">BackStreet Brewery</div></button><input type="hidden" name="7" value=""></form><form action="" class="stdForm" method="POST" name="brewery"><button type="submit" class="defaultSetBtn" name="brewery"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/ZNkxrKlRXugFtSonqlLo_brew_15479.jpg" alt="Indian Joe's Brewing"></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">Indian Joe's Brewing</div></button><input type="hidden" name="29" value=""></form><form action="" class="stdForm" method="POST" name="brewery"><button type="submit" class="defaultSetBtn" name="brewery"><div class="tableCell img"><img class="smalltableCell" src="https://dl.airtable.com/FHPrdWG4Tsyfp9AWsmXT_MotherEarthLogo.png" alt="Mother Earth Brewing Co."></div><div class="smalltableCell title" style="padding-bottom:15px; max-height:50px;">Mother Earth Brewing Co.</div></button><input type="hidden" name="43" value=""></form>				</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+				</div>
+			</div>
+		</div>
+	</aside>
+	<section>
+		<div class="newsFeedHeader">
+			Feed:
+			<!-- Black Field to Post -->
+			<div class="newsFeedBox">
+				<img class="feedImg" id="feedImg" src="https://avatars1.githubusercontent.com/u/13024523?v=3&s=466" alt="Image in Feed">
+				You:
+				<hr/>
+				<div class="feedTxt">
+					<form>
+						<textarea id="postBox" wrap="soft" rows="5"></textarea>
+						<br/>
+					</form>
+				</div>
+				<button type="submit" onclick="">Post</button>
+			</div>
+			<div class="newsFeed" id="MainArea">
+			<!-- For example purposes, add the add brewery panel -->
+			<iframe id="contentFrame" src="../html/NewsFeed.html" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
+		</div>
+		</div>
+		<!-- Black Field to Post -->
+	</section>
+</body>
+</html>

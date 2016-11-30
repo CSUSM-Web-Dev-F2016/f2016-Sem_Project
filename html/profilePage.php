@@ -1,104 +1,109 @@
 <!DOCTYPE html>
+
+<!--
+*	@Author:							Justin Goulet
+* @Date-Last-Modified:	November 23, 2016
+* @Date-Created:				September 1, 2016
+*	@Purpose:							To show a particular person's main profile page
+*	@Method:							Using the user's login credentials, this page is first loaded
+*												with their content. This includes their profile picture,
+*												name, and other identifying information, a table of a user's
+*												favorite beers, a table of all who is following the current
+*												user, and who the user is currently following.
+*												When the user views another's profile, they are shown their profile picture,
+*												their name, their favorite beers, who is following them, and
+*												who they are following. No privacy settings are set yet.
+*												Differnt from a signed in users page, the current user have the option to
+*												follow the user or sent them a message.
+*
+-->
 <html lang="en-us">
 <head>
-	<!-- Import CSS Files -->
-	<link rel="stylesheet" href="../css/header.css" type="text/css">
-	<link rel="stylesheet" href="../css/masterPage.css" type="text/css">
-	<link rel="stylesheet" href="../css/menu.css" type="text/css">
-	<link rel="stylesheet" href="../css/backgroundVideo.css" type="text/css">
-	<link rel="stylesheet" href="../css/ProfileContainer.css" type="text/css">
-	<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
-	<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
-	<!-- Import JS Files -->
-	<script src="../js/contentSwitch.js"></script>
-	<script src="../js/calendarview.js"></script>
-	<!-- Analytics Script -->
+		<!-- Import CSS Files -->
+		<link rel="stylesheet" href="../css/header.css" type="text/css">
+		<link rel="stylesheet" href="../css/masterPage.css" type="text/css">
+		<link rel="stylesheet" href="../css/menu.css" type="text/css">
+		<link rel="stylesheet" href="../css/backgroundVideo.css" type="text/css">
+		<link rel="stylesheet" href="../css/ProfileContainer.css" type="text/css">
+		<link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
+		<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
+		<!-- Import JS Files -->
+		<script src="../js/contentSwitch.js"></script>
+		<script src="../js/calendarview.js"></script>
+
+		<!-- Analytics Script -->
 	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-83948702-3', 'auto');
-  ga('send', 'pageview');
-  <?php
-  	//Start the session
-	  session_start();
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	  ga('create', 'UA-83948702-3', 'auto');
+	  ga('send', 'pageview');
+		<?php
+	  	//Start the session
+		  session_start();
 
-//Get the token to prove the user was logged in
-	  if(strlen($_SESSION['loginToken']) == 0){
-	//r	edirect to the login page
-	 header("Location: ../index.php");
-}
-else{
-	//e	cho "<p>You rock";
-}
-?>
-</script>
-	<!-- Header Bar -->
-	<div class="header">
-		<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
-	</div>
-	<!-- Navigation Bar -->
-	<nav>
-		<table class="menu" title="Menu">
-			<tbody>
-				<tr>
-					<!-- Main Profile Page -->
-					<th class="menuItem" title="Home">
-						<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
-					</th>
-					<th>|</th>
-					<!-- Settings -->
-					<th class="menuItem" title="Settings">
-						<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
-					</th>
-					<th>|</th>
-					<!-- Logout Button -->
-					<th class="menuItem" title="Logout">
-						<input type="image" id="logoutBtn" src="../img/logout.png?raw=true" class="navBtn" onclick="logout()" alt="home">
-					</th>
-				</tr>
-			</tbody>
-		</table>
+			//Get the token to prove the user was logged in
+		  if(strlen($_SESSION['loginToken']) == 0){
+				//redirect to the login page
+		 	header("Location: ../index.php");
+			}
+			else{
+				//e	cho "<p>You rock";
+			}
+			?>
+	</script>
+		<!-- Navigation Bar -->
+		<nav>
+			<table class="menu" title="Menu">
+				<tbody>
+					<tr>
+						<!-- Main Profile Page -->
+						<th class="menuItem" title="Home">
+							<input type="image" id="homeBtn" src="../img/House.png?raw=true" class="navBtn" onclick="javascript:location.href='../index.php'" alt="home">
+						</th>
+						<th>|</th>
+						<!-- Settings -->
+						<th class="menuItem" title="Settings">
+							<input type="image" id="settingsBtn" src="../img/gear.png?raw=true" class="navBtn" onclick="showSRC('Settings.php')" alt="home">
+						</th>
+						<th>|</th>
+						<!-- Logout Button -->
+						<th class="menuItem" title="Logout">
+							<input type="image" id="logoutBtn" src="../img/logout.png?raw=true" class="navBtn" onclick="logout()" alt="home">
+						</th>
+					</tr>
+				</tbody>
+			</table>
 
-		<!-- Add a search bar in the top left -->
-		<form action="return false;" onsubmit="return false;" method="POST" class="searchForm">
-			<label class="hidden">Enter Search Terms here </label>
-			<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
-			<label class="hidden"> Search Field </label>
-			<input type="image" id="searchBtn" src="../img/location_filled.png?raw=true" class="searchButton" onclick="startSearch()" alt="search">
-		</form>
-	</nav>
+			<!-- Add a search bar in the top left -->
+			<form action="return false;" onsubmit="return false;" method="POST" class="searchForm">
+				<label class="hidden">Enter Search Terms here </label>
+				<input type="text" placeholder="Search" id="searchText" name="query" class="textSearch">
+				<label class="hidden"> Search Field </label>
+				<input type="image" id="searchBtn" src="../img/location_filled.png?raw=true" class="searchButton" onclick="startSearch()" alt="search">
+			</form>
+		</nav>
 
-
-
-	<!-- Meta data -->
-	<title>Profile</title>
-	<!-- For the background image -->
-	<div class="is_overlay">
-		<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
-	</div>
+		<!-- Meta data -->
+		<title>Profile</title>
+		<!-- For the background image -->
+		<div class="is_overlay">
+			<img src="http://beerhopper.me/img/bckImg.jpg" alt="Background img">
+		</div>
 </head>
 <?php
-	 //Create a basic connection
-    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
 
-//Check the connection
-    if(mysqli_connect_errno()){
-	die("Connection Failed. ERR: " . mysqli_connect_error());
-}
-//echo "Connected Successfully";
-//This code currently works :)
+		//Import needed PHP files
+		include "../php/create_table.php";
+
+	 //Create a basic connection
+    $connection = include '../php/DBConnectionReturn.php';
 
 $FName = $LName = $PicURL = $CurrentUser = "";
 
-//Get the curent var from the URL
-/*if(isset($_POST['user'])){
-	$CurrentUser = $_POST['user'];
-}else{*/
 	//Use already provided var
 	$CurrentUser = $_SESSION['currentUser'];
-//}
 
 //Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $CurrentUser . "'";
@@ -110,8 +115,11 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			$FName = $row["FName"];
 			$LName = $row["LName"];
 			$PicURL = $row["ProfilePicURL"];
+			$visits = $row['visits'] + 1;
 			break; //Only want the first occurance
 		}
+		//Unset the results
+		mysqli_free_result($userInfoResults);
 
 	}else{
 		//err
@@ -119,14 +127,20 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 	//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $CurrentUser . " FNAME: " . $FName . " LNAME: " . $LName . "\");</script>";
 ?>
 <body>
+
+		<!-- Header Bar -->
+		<div class="header">
+			<img class="logo" src="../img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
+		</div>
+
 	<!-- Profile Container -->
 	<div class="ProfileContainer">
 		<!-- Within the container, we have a rounded profile image -->
-		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage" onclick="showSRC('editProfilePicture.html')">
+		<img src="<?php echo $PicURL ?>" alt="Profile Picture" id="profileImg" class="profileImage" onclick="showSRC('editProfilePicture.php')">
 		<br>
 		<hr>
 		<p class="profileName"><?php echo $FName . " " . $LName?></p>
-		<a class="editBtn" onclick="showSRC('editName.html')">Edit</a>
+		<a class="editBtn" onclick="showSRC('editName.php')">Edit</a>
 	</div>
 	<!-- Left Section -->
 	<aside class="left">
@@ -163,8 +177,24 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					</div>
 			</div>
 		<?php
-			}
-			?>
+		//Now, update the visit count of this user
+		$updateUserCount = "UPDATE Users SET visits=visits+1 WHERE Email='" . $_SESSION['currentUser'] . "'";
+		if(mysqli_query($connection, $updateUserCount)){
+			//Update was handled
+		}else{
+			echo "Not updated: " . mysqli_error($connection);
+		}
+
+	}?>
+
+	<!-- Total visit count. Increments on each page visit/refresh -->
+	<div class="stdSection" id="calendar">
+		<div class="stdSectionTitle">
+			Total Visits
+				<div class="numberOfVisits"><?php echo number_format($visits); ?></div>
+		</div>
+	</div>
+	
 			<div class="stdSection" id="bestTastes">
 				<div class="stdSectionTitle">
 					Best Tastes
@@ -176,30 +206,11 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 						$getFavoritedBeersQuery = "SELECT DISTINCT u.BeerID, b.PictureURL, b.BeerName FROM UserFavoritesBeer u, Beers b WHERE u.UserEmail='" . $CurrentUser . "' AND b.BeerID=u.BeerID ORDER BY b.BeerName LIMIT 6";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
-						if($favoritedBeersResults-> num_rows > 0){
-							while($row = mysqli_fetch_assoc($favoritedBeersResults)){
-								//There are rows
-								$_Session['currentBeer'] = $row['BeerID'];
-								echo '<div class="smalltableCell">';
-									echo "<a onclick=\"showBeerView(" . $row['BeerID'] . ")\">";
-										echo '<div class="tableCell img">';
-											echo	"<img class=\"smalltableCell\" src=\"" .  $row['PictureURL'] . "\"alt=\"" . $row['BeerName'] . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\">" . $row['BeerName'] . "</div>";
-									echo "</a>";
-								echo "</div>";
-							}
-						}else{
-							//No rows yet; inform user;
-							echo '<div class="smalltableCell">';
-									echo "<a onclick=\"return false;\">";
-										echo '<div class="tableCell img">';
-											echo	"<img class=\"smalltableCell\" src=\"" .  "http://beerhopper.me/img/x.png" . "\"alt=\"" . "" . "\">";
-										echo "</div>";
-										echo "<div class=\"smalltableCell title\">" . "No Beers Yet" . "</div>";
-									echo "</a>";
-								echo "</div>";
-						}
+						//Create a basic clickable table
+						if($favoritedBeersResults) createClickableTable($favoritedBeersResults, 'BeerID', 'PictureURL', 'BeerName');
+
+						//Free the results
+						if($favoritedBeersResults) mysqli_free_result($favoritedBeersResults);
 					?>
 				</div>
 				<div class="stdSectionFooter">
@@ -208,7 +219,9 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			</div>
 		<div class="stdSection" id="eventCalendar">
 			<div class="stdSectionTitle">
-				Calendar
+				Today's Date is:
+					<div class="numberOfVisits"><?php echo date("d"); ?></div>
+					<div class="stdSectionFooter"><?php  echo date("l\,<br> F Y");?> </div>
 			</div>
 		</div>
 		</div>
@@ -226,44 +239,21 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					$getUsersFollowingMeQuery = "SELECT DISTINCT u.UserEmail, u.OtherUserEmail, them.ProfilePicURL, CONCAT(them.`FName`, '<br>', them.`LName`) AS 'Name', them.LName FROM UserFollowsUser u, Users p, Users them WHERE u.OtherUserEmail=p.Email AND them.Email=u.UserEmail AND u.OtherUserEmail='" . $CurrentUser . "'ORDER BY them.LName LIMIT 3";
 					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
 
-					if($usersFollowingMeResult-> num_rows > 0 ){
-						//If there are some rows, loop through them
-						while($row = mysqli_fetch_assoc($usersFollowingMeResult)){
-							//echo "<script type=\"text/javascript\">window.alert(\"User Found: " . $row['UserEmail'] . "\");</script>";
+					//Create a form to change the current page when clicked
+					createBasicForm($usersFollowingMeResult, 'UserEmail', 'ProfilePicURL', 'Name', 'user');
 
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"user\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . $row['UserEmail'] . "\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['Name'] . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['Name'] . "</div>";
-								echo "</button>";
-								echo "<input type=\"hidden\" name=\"" . strtr($row['UserEmail'], array('.' => '#-#')) . "\" value=\"\">";
-							echo "</form>";
-
-							//echo "<p style=\"color:white\">" . $row['UserEmail'];
-						}
-					}else{
-						//Just print a text saying 'no items found';
-						echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
-								echo "</button>";
-							echo "</form>";
-					}
+					//Free the results
+					if($usersFollowingMeResult) mysqli_free_result($usersFollowingMeResult);
 
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
-			<div class="stdSection" id="following">
+			<div class="stdSection" id="followingBreweries">
 				<div class="stdSectionTitle">
-					Following
+					Following Breweries
 				</div>
 				<div class="table">
 
@@ -271,55 +261,32 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				<?php
 					//Session is already started
 					//Get the breweryies the user is following, max 3
-					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID ORDER BY BreweryName LIMIT 6";
+					$getBreweriesFollowing = "SELECT DISTINCT BreweryName, ProfilePicURL, b.BreweryID, u.UserEmail FROM BreweryTable b, UserFollowsBrewery u WHERE u.BreweryID = b.BreweryID AND u.UserEmail ='" . $CurrentUser . "' GROUP BY u.BreweryID ORDER BY BreweryName LIMIT 3";
 					$breweriesFollowingResults = mysqli_query($connection, $getBreweriesFollowing);
 
 					//If the rows are greater than 1, we can use them to build our table. If not, we need to put a notice to the user.
-					if($breweriesFollowingResults-> num_rows > 0){
-						//Use a while loop to build the form
+					if($breweriesFollowingResults) createBasicForm($breweriesFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
-						while($row = mysqli_fetch_assoc($breweriesFollowingResults)){
-							echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"brewery\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . $row['ProfilePicURL'] . "\" alt=\"" . $row['BreweryName'] . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BreweryName'] . "</div>";
-								echo "</button>";
-								echo "<input type=\"hidden\" name=\"" . $row['BreweryID'] . "\" value=\"\">";
-							echo "</form>";
-						}
+					//Free the results
+					if($breweriesFollowingResults) mysqli_free_result($breweriesFollowingResults);
 
-					}else{
-						//Build custom when no rows are found
-						echo "<form action=\"\" class=\"stdForm\" method=\"POST\" name=\"brewery\" onsubmit=\"return false;\">";
-								echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"" . "" . "\">";
-									echo "<div class=\"tableCell img\">";
-										echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
-									echo "</div>";
-									echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Following Anyone!" . "</div>";
-								echo "</button>";
-								//echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
-							echo "</form>";
-					}
 					/** Should work **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
+								//Close the sql session
+							$connection->close();
 
     						if(isset($_POST['brewery'])){
-       							//echo "<script type=\"text/javascript\">window.alert(\"Brewery Found!\");</script>";
-							  //$_SESSION['breweryID'] = end(array_keys($_POST));
 
 							  //Navigate to the brewery page iwth the new id
 							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
-    						}else {
+							}else if(isset($_POST['user'])) {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
-
-							    //echo "<p style=\"color:white;\">" . end(array_keys($_POST));
-
-							    //echo "<script type=\"text/javascript\"> window.alert(\"Found a User: " . print_f(array_keys($_POST)) . "\");</script>";
-							    echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+
+								//Ends the current session
+								session_write_close();
 					}
 
 				?>
@@ -328,9 +295,49 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
 				</div>
 			</div>
+			<div class="stdSection" id="followingUsers">
+				<div class="stdSectionTitle">
+					Following Users
+				</div>
+				<div class="table">
+					<!-- User 'Following me' -->
+					<?php
+					$getUsersFollowingMeQuery = "	SELECT DISTINCT ufu.OtherUserEmail, u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.LName
+					 															FROM UserFollowsUser ufu, Users u
+																				WHERE u.Email=ufu.OtherUserEmail AND ufu.UserEmail='" . $_SESSION['currentUser'] . "' ORDER BY u.LName LIMIT 3";
+					$usersFollowingMeResult = mysqli_query($connection, $getUsersFollowingMeQuery);
+
+					//Create the table using the data
+					if($usersFollowingMeResult) createBasicForm($usersFollowingMeResult, 'OtherUserEmail', 'ProfilePicURL', 'Name', 'user');
+
+					//Free the results
+					if($usersFollowingMeResult) mysqli_free_result($usersFollowingMeResult);
+
+					?>
+				</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
+				</div>
+			</div>
 		</div>
 	</aside>
 	<section>
+
+		<?php
+			//Get the current signed in users profile PictureURL
+			$proPicQ = "SELECT ProfilePicURL FROM Users WHERE Email='" . $_SESSION['signedInUser'] . "'";
+			$res = mysqli_query($connection, $proPicQ);
+
+			if($res->num_rows > 0){
+				while($row = mysqli_fetch_assoc($res)){
+					$PicURL = $row['ProfilePicURL'];
+					break;
+				}
+			}else{
+				//Leave the profile pic the same
+			}
+
+		 ?>
 		<div class="newsFeedHeader">
 			Feed:
 			<!-- Black Field to Post -->
@@ -348,7 +355,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			</div>
 			<div class="newsFeed" id="MainArea">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="../html/NewsFeed.html" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
+			<iframe id="contentFrame" src="../html/NewsFeed.php" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
 		</div>
 		</div>
 		<!-- Black Field to Post -->

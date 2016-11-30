@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 
+<!--
+*	@Author:							Justin Goulet
+* @Date-Last-Modified:	November 23, 2016
+* @Date-Created:				September 1, 2016
+*	@Purpose:							To show a simple view of a single beer
+*	@Method:							Using a provided beerid, query to get the beer requested.
+*												We then allow the current signed in user to favorite the
+*												beer so that thy can view it at a later point in time.
+-->
+
 <html lang="en-us">
 
 	<head>
@@ -28,16 +38,11 @@
 	  session_start();
 
 	 //Create a basic connection
-    	$connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
-
-	//Check the connection
-    	if(mysqli_connect_errno()){
-		die("Connection Failed. ERR: " . mysqli_connect_error());
-	}
+    	$connection = include '../php/DBConnectionReturn.php';
 
 	//Determine if the user is following the beer
 	//See if there is an entry in the table
-	$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['beerID'];
+	$getIfFollows = "SELECT * FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_GET['BeerID'];
 	$getFollowsResult = mysqli_query($connection, $getIfFollows);
 	$_SESSION['Follows'] = "FALSE";
 	$FollowImage = "";
@@ -51,10 +56,24 @@
 		$FollowImage = "../img/Follow_Color.png";
 	}
 
+	//Free the follow result
+	mysqli_free_result($getFollowsResult);
+
 	//echo "<script type=\"text/javascript\">window.alert(\"Follows?: " . $getIfFollows . "\");</script>";
 
 	//Get the current beer information
-	$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['beerID'] . " LIMIT 1";
+	$BeerQuery = "SELECT
+												b.BeerID,b.FromTheBrewMaster, b.PairingsDescription,
+												b.PictureURL, b.BeerName, b.RecommendedServingGlass, b.Awards,
+												b.FromTheBrewmaster, b.OnTap, b.Awards, b.ServingStyle, b.IBU,
+												b.ABV, b.BeerType, b.BeerDescription,
+												bt.BreweryName
+								FROM
+												Beers b, BreweryTable bt
+								WHERE
+												b.BreweryID=bt.BreweryID AND b.BeerID=" . $_GET['BeerID'] . " LIMIT 1";
+
+	//$BeerQuery = "SELECT * FROM Beers WHERE BeerID=" . $_GET['BeerID'] . " LIMIT 1";
 	$ResultsForBeer = mysqli_query($connection, $BeerQuery);
 
 	if($ResultsForBeer-> num_rows > 0){
@@ -74,8 +93,14 @@
 			$BeerType = $row['BeerType'];
 			$OnTap = $row['OnTap'];
 			$BeerDescription = $row['BeerDescription'];
+			$BreweryName = $row['BreweryName'];
 			break; //Since there is only one case.
 		}
+
+		//Free the results
+		mysqli_free_result($ResultsForBeer);
+
+
 	}else{
 		//Beer does not exist
 		//echo "<p style=\"color:white;\">DNE";
@@ -85,17 +110,13 @@
 
   ?>
 	<body>
-
-
 		<div class="parentClass">
 			<h1>&nbsp;</h1>
-
-
 			<div class="LargeTable">
 				<form action="" onsubmit="" method="POST" class="favBtnHolder">
 				<!-- We need to descide if the user is already following the beer or not first -->
 					<label class="hidden">submit</label>
-					<input value="<?php echo $_GET['beerID']; ?>" type="image" src="<?php echo $FollowImage ?>" name="beerID" alt="follow" id="FollowPic">
+					<input value="<?php echo $_GET['BeerID']; ?>" type="image" src="<?php echo $FollowImage ?>" name="BeerID" alt="follow" id="FollowPic">
 				</form>
 				<div class="LargeTableTitle">
 					<?php echo $BeerName ?>
@@ -136,7 +157,7 @@
 										<p class="imageCell">
 										<?php
 											//Run a query to get the count of all that favorited this beer
-											$qu = "SELECT COUNT(*) AS Count FROM UserFavoritesBeer WHERE BeerID=" . $_GET['beerID'];
+											$qu = "SELECT COUNT(*) AS Count FROM UserFavoritesBeer WHERE BeerID=" . $_GET['BeerID'];
 											$re = mysqli_query($connection, $qu);
 
 											if($re-> num_rows > 0){
@@ -147,6 +168,9 @@
 											}else{
 												echo "N/A";
 											}
+
+											//Close the connection
+											$connection-> close();
 										?>
 										</p>
 									</div>
@@ -197,7 +221,6 @@
 								</div>
 							</div>
 						</div>
-
 					</div>
 					<!-- Edn of small header table -->
 				</div>
@@ -209,7 +232,17 @@
 					<table class="beerInfo">
 						<caption>&nbsp;</caption>
 						<tbody>
-						<?php if(!empty($BeerDescription)){ ?>
+							<?php if(!empty($BreweryName)){ ?>
+								<tr>
+									<th>Brewery Name:
+									</th>
+									<td>
+										<?php echo $BreweryName ?>
+									</td>
+								</tr>
+								<?php
+							}
+						if(!empty($BeerDescription)){ ?>
 							<tr>
 								<th>Beer Description:
 								</th>
@@ -254,62 +287,42 @@
 								</td>
 							</tr>
 							<?php
-						}
-						if(!empty($OnTap)){
-							?>
-							<tr>
-								<th>When Available:</th>
-								<td><span style="color:green;">Coming Soon...</span>
-								</td>
-							</tr>
-							<?php
-						}
-							?>
+						}?>
 						</tbody>
 					</table>
-
 				</div>
-
 			</div>
-
 		</div>
 
 		<?php
 			//Check for submit
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
-				if(isset($_POST['beerID'])){
-					//echo "<script type=\"text/javascript\">window.alert(\"Beer Found!: " . $_GET['beerID'] . "\");</script>";
-
-					//Check the connetion status:
-					//if(!$connection)echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Failed\");</script>";
-					//else echo "<script type=\"text/javascript\">window.alert(\"Connecton Status: Succeeded\");</script>";
-
-					//echo "<script type=\"text/javascript\">window.alert(\"Follows:: " . $_SESSION['Follows'] . "\");</script>";
+				if(isset($_POST['BeerID'])){
 
 					if($_SESSION['Follows'] == "FALSE"){
 						//Start the MySQL query to favorite the beer
-						$AddBeerToFavorites = "INSERT INTO UserFavoritesBeer VALUES ('" . $_SESSION['signedInUser'] . "', " . $_POST['beerID'] . ")";
+						$AddBeerToFavorites = "INSERT INTO UserFavoritesBeer VALUES ('" . $_SESSION['signedInUser'] . "', " . $_POST['BeerID'] . ")";
 						//echo "<script type=\"text/javascript\">window.alert(\"request: " . $AddBeerToFavorites ."\");</script>";
 						$AddedBeerResults = mysqli_query($connection, $AddBeerToFavorites);
 
 						if($AddedBeerResults){
-							//echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['beerID'] . " favorited!\");</script>";
+							//echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['BeerID'] . " favorited!\");</script>";
 							$FollowImage = "../img/Unfollow_Follow_Color.png";
 							$_SESSION['Follows'] = "TRUE";
 							echo "<script type=\"text/javascript\">window.location.reload();</script>";
 						}else{
-							echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['beerID'] . " could not be foavorited!<br>" . $AddBeerToFavorites . "\");</script>";
+							echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['BeerID'] . " could not be foavorited!<br>" . $AddBeerToFavorites . "\");</script>";
 						}
 					}else{
 						//Unfolow
-						$RemoveBeerFromFavorites = "DELETE FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_POST['beerID'];
+						$RemoveBeerFromFavorites = "DELETE FROM UserFavoritesBeer WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BeerID=" . $_POST['BeerID'];
 						//echo "<script type=\"text/javascript\">window.alert(\"request: " . $RemoveBeerFromFavorites ."\");</script>";
 						$RemoveBeerResults = mysqli_query($connection, $RemoveBeerFromFavorites);
 
 						//Complete the request
 						if($RemoveBeerResults){
 							//Removed
-							//echo "<script type=\"text/javascript\">window.alert(\"Unfollowed Beer: " . $_POST['beerID'] . " successfully!\");</script>";
+							//echo "<script type=\"text/javascript\">window.alert(\"Unfollowed Beer: " . $_POST['BeerID'] . " successfully!\");</script>";
 							$FollowImage = "../img/Follow_Color.png";
 							$_SESSION['Follows'] = "FALSE";
 							echo "<script type=\"text/javascript\">window.location.reload();</script>";
@@ -318,12 +331,19 @@
 							echo "<script type=\"text/javascript\">window.alert(\"Error Unfollowing Beer\n" . $RemoveBeerFromFavorites . "\");</script>";
 						}
 
-
+						//Free the results
+						mysqli_free_result($RemoveBeerResults);
 					}
 				}
 				else{
 					echo "<script type=\"text/javascript\">window.alert(\"Invalid Request\");</script>";
 				}
+
+				//Close the connection to mysqli
+				$conection-> close();
+
+				//Closes the current session
+				session_write_close();
 			}
 		?>
 

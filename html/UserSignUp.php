@@ -95,7 +95,11 @@ function checkUserSignUp() {
         $errorString = $errorString . "First Name is required.<br>";
     }else{
         $FName = test_input($_POST["firstName"]);
+<<<<<<< HEAD
         if (!preg_match("/^[a-zA-Z'- ]*$/", $FName)){
+=======
+        if (!preg_match("/^[a-zA-Z ]*$/", $FName)){
+>>>>>>> master
             $errorString = $errorString . "Invalid format: letters only<br>";
         }
     }
@@ -105,7 +109,11 @@ function checkUserSignUp() {
         $errorString = $errorString . "Last Name is required.<br>";
     }else{
         $LName = test_input($_POST["lastName"]);
+<<<<<<< HEAD
         if (!preg_match("/^[a-zA-Z'- ]*$/", $LName)){
+=======
+        if (!preg_match("/^[a-zA-Z ]*$/", $LName)){
+>>>>>>> master
             $errorString = $errorString . "Invalid format: letters only<br>";
         }
     }
