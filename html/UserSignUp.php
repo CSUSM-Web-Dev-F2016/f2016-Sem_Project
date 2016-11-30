@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -92,7 +95,7 @@ function checkUserSignUp() {
         $errorString = $errorString . "First Name is required.<br>";
     }else{
         $FName = test_input($_POST["firstName"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $FName)){
+        if (!preg_match("/^[a-zA-Z'- ]*$/", $FName)){
             $errorString = $errorString . "Invalid format: letters only<br>";
         }
     }
@@ -102,7 +105,7 @@ function checkUserSignUp() {
         $errorString = $errorString . "Last Name is required.<br>";
     }else{
         $LName = test_input($_POST["lastName"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $LName)){
+        if (!preg_match("/^[a-zA-Z'- ]*$/", $LName)){
             $errorString = $errorString . "Invalid format: letters only<br>";
         }
     }
@@ -126,7 +129,9 @@ function checkUserSignUp() {
         if(time() - $birthdayTime < $age * 31536000)  {
             $errorString = $errorString . "You must be 21+ to sign up<br>";
         }
-        $birthdayFinal = date('Y-m-d H:i:s', $birthdayTime);
+
+        //Converts birthday if valid from UNIX timestamp to MySQL compatible format
+        $birthdayFinal = date("Y-m-d H:i:s", $birthdayTime);
     }
 
     //Check the email.. This is imperative
@@ -169,12 +174,16 @@ function checkUserSignUp() {
     if(strlen($errorString) == 0){
         // calls user that creates user in the db
         createUser($FName, $LName, $birthdayFinal, $Email, $Password, $ProfilePicURl);
+        echo $Email;
     }
 
 }
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
+/**
+ * Check form before submission then redirect on success to user's profile page
+ */
+if($_SERVER['REQUEST_METHOD'] == 'POST'){
     checkUserSignUp();
 }
 

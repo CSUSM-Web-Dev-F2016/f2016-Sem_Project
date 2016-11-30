@@ -27,14 +27,18 @@ function createUser($FName, $LName, $birthday, $Email, $Password, $ProfilePicURl
 
     if(mysqli_query($connection, $createUserQuery)){
         //The item was successful created, now change the login page.
-        //echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Successfully inserted data</p>";
-
-        $connection->close();
+        echo "<p style=\"text-align:center; color:green; width:100%; font-size:18px;\">Successfully inserted data: $Email</p>";
         $_SESSION['currentUser'] = $_SESSION['signedInUser'] = $Email;
-        header("Location: ./html/profilePage.php");
+
+        //Now, set the authorization token value so we know the user is logged in
+        $_SESSION['loginToken'] = "yes";
+
+        //Redirect to the main profile page
+        header('Location: ../html/profilePage.php');
         exit();
+
     }else{
         echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Error with creating account: <br>" . $connection->error . "</p>";
     }
-
+    $connection->close();
 }
