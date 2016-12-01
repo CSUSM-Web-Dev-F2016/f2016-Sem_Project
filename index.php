@@ -164,12 +164,6 @@
 				Not a member?
 				<a href="html/UserSignUp.php">Sign up now</a>
 			</p>
-
-			<!-- Maybe a future addition. For now, a user is required to be signed in
-			<p class="centerText">
-				Want to add your brewery?
-				<a href="html/BrewerySignUp.html">Get started here</a>
-			</p> -->
 		</div>
 
 	</div>

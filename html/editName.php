@@ -30,9 +30,15 @@
     if(!$connection){
         die("Connection Failed. Error: " . mysqli_connect_error());
     }
+
+		$currentUser = $_SESSION['currentUser'];
+		$signedInUser = $_SESSION['signedInUser'];
 ?>
 
 <body>
+	<?php
+	if($currentUser == $signedInUser) :
+		?>
 	<div class="container">
 		<div class="edit-header">
 			<div class="box-line"></div>
@@ -56,40 +62,34 @@
 		</form>
 <?php
 
-$currentUser = $_SESSION['currentUser'];
-$signedInUser = $_SESSION['signedInUser'];
 $fNameinput = $_POST['fName'];
 $lNameinput = $_POST['lName'];
 //if Submit is clicked
 if(isset($_POST['submit'])){
-  //check if user is on own page
-  if($currentUser == $signedInUser){
 		//making sure names are not empty
 		if((!empty($fNameinput)) && (!empty($lNameinput))){
-			$changeNameQuery = "UPDATE Users SET FName='" . $fNameinput . "', LName='" . $lNameinput . "' WHERE Email='" . $_SESSION['signedInUser'] . "'";
+			if((preg_match("/^[a-zA-Z'-]+$/",$fNameinput)) && (preg_match("/^[a-zA-Z'-]+$/",$lNameinput))){
+				$changeNameQuery = "UPDATE Users SET FName='" . $fNameinput . "', LName='" . $lNameinput . "' WHERE Email='" . $_SESSION['signedInUser'] . "'";
     		if(mysqli_query($connection, $changeNameQuery)){
-      		echo "Updated name successfully.";
-					
-					//Now, refresh parent page
+					//Success. Now, refresh parent page
 					echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
     		}
       	else {
         	echo "Error updating record.";
       	}
 			}
+			else {
+				echo "ERROR: Invalid name entered.";
+			}
+			}
 		else {
 			echo "ERROR: First and Last name cannot be empty.";
 		}
-
 }
-  else {
-    echo "ERROR: Cannot edit someone else's name.";
-  }
-}
+echo "</div>";
+endif;
 mysqli_close($connection);
-
 ?>
-	</div>
 </body>
 
 </html>

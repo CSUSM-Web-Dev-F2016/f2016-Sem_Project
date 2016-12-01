@@ -216,7 +216,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('FollowingPage.html')">
+						<a onclick="showSRC('FollowingPage.php')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
 							</div>
@@ -260,7 +260,7 @@
 					?>
 				<!--</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>-->
 
@@ -295,7 +295,7 @@
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -353,7 +353,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="showSRC('editCoverPicture.html')">
+			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="showSRC('editCoverPicture.php')">
 		</div>
 
 		<div class="breweryPage newsFeed">

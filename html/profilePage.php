@@ -115,11 +115,40 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			$FName = $row["FName"];
 			$LName = $row["LName"];
 			$PicURL = $row["ProfilePicURL"];
-			$visits = $row['visits'] + 1;
+			$visits = $row['visits'];
 			break; //Only want the first occurance
 		}
 		//Unset the results
 		mysqli_free_result($userInfoResults);
+
+		//Now, we need to see, if the user is different, if the user is following the current user
+		if($_SESSION['signedInUser'] != $_SESSION['currentUser']){
+			//If the user is not the same as the signed in user, see if the user is following the current user
+			$getIsFollowing = "SELECT COUNT(*) AS Count FROM UserFollowsUser WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND OtherUserEmail='" . $_SESSION['currentUser'] . "'";
+			$resultsIfFollowing = mysqli_query($connection, $getIsFollowing);
+
+			if($resultsIfFollowing->num_rows > 0){
+				//is following
+				while($row = mysqli_fetch_assoc($resultsIfFollowing)){
+					if($row['Count'] >= 1){
+						$following = 'y';
+						$followText = "UnFollow";
+						$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+					}else{
+						//Is not following
+						$following = 'n';
+						$followText = "Follow";
+						$followingImage = "../img/Follow.png?raw=true";
+					}
+					break;
+				}
+			}else{
+				die("Error: " . mysqli_error($connection));
+			}
+
+			//Free the results
+			mysqli_free_result($resultsIfFollowing);
+		}
 
 	}else{
 		//err
@@ -153,6 +182,18 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				Info
 				</div>
 				<div class="table">
+					<!-- Create a basic form to handle the follow button -->
+					<form action="" class="stdForm" method="POST" name="follow">
+            <button type="submit" class="defaultSetBtn" name="follow" style="padding-top:-10px;">
+              <div class="tableCell img">";
+                <img class="smalltableCell" src="<?php echo $followingImage ?>" alt="<?php echo $followText ?>">
+              </div>
+              <div class="smalltableCell title" style="padding-top:20px; padding-bottom:15px; max-height:50px"> <?php echo $followText ?> </div>
+            </button>
+            <input type="hidden" value="" name="<?php echo strtr($_SESSION['currentUser'], array('.' => '#-#')); ?>">
+          </form>
+
+					<!--
 				<div class="smalltableCell">
 						<a onclick="showSRC('FollowingPage.html')">
 							<div class="tableCell img">
@@ -164,8 +205,9 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('message.html')">
+						<a onclick="showSRC('message.html')">-->
 							<!-- message -->
+							<!--
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/message.png?raw=true" alt="Message">
 							</div>
@@ -173,7 +215,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 								Message
 							</div>
 						</a>
-					</div>
+					</div>-->
 					</div>
 			</div>
 		<?php
@@ -194,7 +236,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				<div class="numberOfVisits"><?php echo number_format($visits); ?></div>
 		</div>
 	</div>
-	
+
 			<div class="stdSection" id="bestTastes">
 				<div class="stdSectionTitle">
 					Best Tastes
@@ -272,21 +314,53 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 
 					/** Should work **/
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
-								//Close the sql session
-							$connection->close();
 
     						if(isset($_POST['brewery'])){
 
 							  //Navigate to the brewery page iwth the new id
 							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
-							}else if(isset($_POST['user'])) {
+							}
+							if(isset($_POST['follow'])){
+							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+
+								//User is going to Follow the user$
+								if($following == 'y'){
+									//If the user is currently following the user, unfollow it and change the image
+									$DeleteQuery = "DELETE FROM UserFollowsUser WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND OtherUserEmail='" . $_SESSION['currentUser'] . "'";
+									if(mysqli_query($connection, $DeleteQuery)){
+										//Success
+										$followText = "Follow";
+										$followingImage = "../img/Follow.png?raw=true";
+									}else{
+										die("Error: " . mysqli_error($connection));
+									}
+								}else{
+									//If the user is not following the user, follow it and change the image.
+									$addQuery = "INSERT INTO UserFollowsUser (UserEmail, OtherUserEmail) VALUES ('" . $_SESSION['signedInUser'] . "', '" . $_SESSION['currentUser'] . "')";
+									if(mysqli_query($connection, $addQuery)){
+										$followText = "UnFollow";
+										$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+									}
+								}
+								//Take the user back to their page by directing them to their page
+								$_SESSION['currentUser'] = $_SESSION['signedInUser'];
+
+								echo "<script type=\"text/javascript\"> document.location.href = \"../index.php\";</script>";
+
+							}
+							else if(isset($_POST['user'])) {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
 
 								//Ends the current session
 								session_write_close();
+
+								//Close the sql session
+							 	$connection->close();
+
+								exit();
 					}
 
 				?>
