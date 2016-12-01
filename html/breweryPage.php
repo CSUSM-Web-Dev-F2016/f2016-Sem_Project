@@ -353,7 +353,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="<?php echo "showSRC('editCoverPicture.php?id=29')"; ?>">
+			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick=showSRC<?php echo "('editCoverPicture.php?id=29)"; ?>">
 		</div>
 
 		<div class="breweryPage newsFeed">
