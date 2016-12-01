@@ -25,14 +25,15 @@
   $connection = include '../php/DBConnectionReturn.php';
 
 
-  $getOwnerQuery = "SELECT UserEmail FROM BreweryOwner WHERE BreweryID=" . $_GET['BreweryID'];
+  $getOwnerQuery = "SELECT UserEmail FROM BreweryOwner WHERE BreweryID='29'";
   $resultOwner = mysqli_query($connection,$getOwnerQuery);
-  $row=mysqli_fetch_assoc($resltOwner);
+  $row=mysqli_fetch_assoc($resultOwner);
   $owneremail = $row["UserEmail"];
+
+  $id = $_GET['id'];
 
   $currentUser = $_SESSION['currentUser'];
   $signedInUser = $_SESSION['signedInUser'];
-
 ?>
 <body>
     <div class="container">
