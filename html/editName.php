@@ -24,15 +24,9 @@
 <?php
     session_start();
 	 //Create a basic connection
-    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
-
-    //Check the connection
-    if(!$connection){
-        die("Connection Failed. Error: " . mysqli_connect_error());
-    }
-
-		$currentUser = $_SESSION['currentUser'];
-		$signedInUser = $_SESSION['signedInUser'];
+$connection = include '../php/DBConnectionReturn.php';
+$currentUser = $_SESSION['currentUser'];
+$signedInUser = $_SESSION['signedInUser'];
 ?>
 
 <body>

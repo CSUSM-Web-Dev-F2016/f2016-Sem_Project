@@ -22,12 +22,17 @@
 <?php
     session_start();
 	 //Create a basic connection
-    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
+  $connection = include '../php/DBConnectionReturn.php';
 
-    //Check the connection
-    if(!$connection){
-        die("Connection Failed. Error: " . mysqli_connect_error());
-    }
+
+  $getOwnerQuery = "SELECT UserEmail FROM BreweryOwner WHERE BreweryID=" . $_GET['BreweryID'];
+  $resultOwner = mysqli_query($connection,$getOwnerQuery);
+  $row=mysqli_fetch_assoc($resltOwner);
+  $owneremail = $row["UserEmail"];
+
+  $currentUser = $_SESSION['currentUser'];
+  $signedInUser = $_SESSION['signedInUser'];
+
 ?>
 <body>
     <div class="container">
@@ -50,11 +55,13 @@
             </form>
 <?php
 
-  $currentUser = $_SESSION['currentUser'];
-  $signedInUser = $_SESSION['signedInUser'];
+
   $coverURL = $_POST['coverURL'];
-echo "current: $currentUser ";
-echo "signed in: $signedInUser";
+echo "current: $currentUser <br>";
+echo "signed in: $signedInUser <br>";
+echo "owner: $owneremail <br>";
+echo "ID: $id";
+mysqli_close($connection);
  /*
   //if Submit is clicked
   if(isset($_POST['submit'])){
