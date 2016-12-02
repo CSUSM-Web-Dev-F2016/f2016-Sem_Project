@@ -31,9 +31,11 @@
   $ownerEmail = $row["UserEmail"];
 
   $signedInUser = $_SESSION['signedInUser'];
-  if(($ownerEmail == $signedInUser)):
 ?>
 <body>
+  <?php
+  if(($ownerEmail == $signedInUser)):
+    ?>
     <div class="container">
         <div class="edit-header">
             <div class="box-line"></div>
