@@ -22,7 +22,7 @@
              // Create a basic connection
             $connection = include '../php/DBConnectionReturn.php';
 
-            $GetUserInformationQuery = "SELECT * FROM Users WHERE Email='".$_SESSION['currentUser']."'";
+            $GetUserInformationQuery = "SELECT * FROM Users WHERE Email='".$_SESSION['signedInUser']."'";
             $userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
 
             if ($userInfoResults->num_rows > 0) {
@@ -67,7 +67,7 @@
                         $ln = $_POST['lname']; // ln = new last name
                         $em = $_POST['email']; // em = new email
                         $pw = $_POST['password']; // pw = new password
-                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
+                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['signedInUser']."'"; // get update statement
                         if (mysqli_query($connection, $updateUserInfo)) {
                             echo '<br><br>Records updated<br>';
                             /* refresh parent page */
@@ -88,7 +88,7 @@
 
 			<!-- get current privacy settings -->
 			<?php
-            $GetUserPrivacySettingsQuery = "SELECT * FROM PrivacySettings WHERE UserEmail='".$_SESSION['currentUser']."'"; // privacy settings query
+            $GetUserPrivacySettingsQuery = "SELECT * FROM PrivacySettings WHERE UserEmail='".$_SESSION['signedInUser']."'"; // privacy settings query
             $userInfoResults = mysqli_query($connection, $GetUserInformationQuery); // user privacy settings results
             if ($userInfoResults->num_rows > 0) { // if there are results
                 while ($row = mysqli_fetch_assoc($userInfoResults)) {
@@ -160,7 +160,7 @@
                         }
 
                         /* actually update the privacy settings */
-                        $updatePrivacySettings = "UPDATE PrivacySettings Set AllowEmails = '".$EmailOpt."', AllowSearch = '".$SearchOpt."', ShowLocation = '".$ShowLocation."', PersonalizedAds = '".$PersonalizedAds."' WHERE UserEmail = '".$_SESSION['currentUser']."'"; // get update statement
+                        $updatePrivacySettings = "UPDATE PrivacySettings Set AllowEmails = '".$EmailOpt."', AllowSearch = '".$SearchOpt."', ShowLocation = '".$ShowLocation."', PersonalizedAds = '".$PersonalizedAds."' WHERE UserEmail = '".$_SESSION['signedInUser']."'"; // get update statement
                         if (mysqli_query($connection, $updatePrivacySettings)) {
                             echo '<br><br>Records updated<br>';
                             /* refresh parent page */
@@ -179,7 +179,7 @@
 		<div class="mybreweries"><br> <!-- my breweries class -->
 			<?php
             /*Get brewery owner info */
-                $GetBreweryOwnerQuery = "SELECT * FROM BreweryOwner WHERE UserEmail='".$_SESSION['currentUser']."'"; // get brewery owner info query
+                $GetBreweryOwnerQuery = "SELECT * FROM BreweryOwner WHERE UserEmail='".$_SESSION['signedInUser']."'"; // get brewery owner info query
                 $BreweryOwner = mysqli_query($connection, $GetBreweryOwnerQuery); // get brewery owner info
                 if ($BreweryOwner->num_rows > 0) { // if there are results
                     while ($row = mysqli_fetch_assoc($BreweryOwner)) {
