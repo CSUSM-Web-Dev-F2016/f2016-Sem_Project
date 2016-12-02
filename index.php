@@ -18,7 +18,7 @@
 
 	<!-- Navigation Bar -->
 	<nav>
-		<!-- This is a tabe with two rows -->
+		<!-- This is a table with two rows -->
 	</nav>
 
 	<!-- Put a background video that covers the entire page -->
@@ -78,7 +78,7 @@
 				<label for="username" id="uLabel" class="hidden">Username:</label>
 				<input type="text" name="username" id="username" placeholder="Username" />
 
-				<label for="password" id="pLabel" class="hidden">Pasword:</label>
+				<label for="password" id="pLabel" class="hidden">Password:</label>
 				<input type="password" id="password" placeholder="Password" name="password"/>
 
 				<label for="loginButton" id="lButton" class="hidden">Submit:</label>
@@ -117,7 +117,7 @@
 							//Set the username to search in the session var .. current user is for the page, signed in user is for the rights
 							$_SESSION['currentUser'] = $_SESSION['signedInUser'] = $row["Email"];
 
-							//Now, set the autoriazation token value so we know the user is logged in
+							//Now, set the authorization token value so we know the user is logged in
 							$_SESSION['loginToken'] = "yes";
 
 							//We need to update the last time the user has logged in. Do that here.
@@ -132,7 +132,7 @@
 							}
 
 
-							//Close the SQL connetion
+							//Close the SQL connection
 							$connection->close();
 
 							//Open the next page

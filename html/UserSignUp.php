@@ -52,7 +52,7 @@ session_start();
             <input type="password" name="re_enter_password" id="Re_enter_password" placeholder="Re-Enter Password"/>
 
             <label for="dob" id="dateBirth" class="hidden">DOB:</label>
-            <input type="text" name="DOB" id="dob" placeholder="Date of Birth"/>
+            <input type="text" name="DOB" id="dob" placeholder="Date of Birth ex: 1-1-1995"/>
 
             <label for="subButton" id="sButton" class="hidden">Submit:</label>
             <input type="submit" id="subButton" value="Submit"/>
@@ -95,8 +95,8 @@ function checkUserSignUp() {
         $errorString = $errorString . "First Name is required.<br>";
     }else{
         $FName = test_input($_POST["firstName"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $FName)){
-            $errorString = $errorString . "Invalid format: letters only<br>";
+        if (!preg_match("/^[a-zA-Z'-]+$/", $FName)){
+            $errorString = $errorString . "Invalid first name format: letters only<br>";
         }
     }
 
@@ -105,8 +105,8 @@ function checkUserSignUp() {
         $errorString = $errorString . "Last Name is required.<br>";
     }else{
         $LName = test_input($_POST["lastName"]);
-        if (!preg_match("/^[a-zA-Z ]*$/", $LName)){
-            $errorString = $errorString . "Invalid format: letters only<br>";
+        if (!preg_match("/^[a-zA-Z'-]+$/", $LName)){
+            $errorString = $errorString . "Invalid last name format: letters only<br>";
         }
     }
 

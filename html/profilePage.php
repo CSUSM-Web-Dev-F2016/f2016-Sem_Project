@@ -316,12 +316,14 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     						if(isset($_POST['brewery'])){
+								  //redirect to the login page
+								  $_SESSION['currentUser'] = $_SESSION['signedInUser'];
 
 							  //Navigate to the brewery page iwth the new id
-							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
 							}
-							if(isset($_POST['follow'])){
+							else if(isset($_POST['follow'])){
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 
 								//User is going to Follow the user$
@@ -353,6 +355,25 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+						 	else {
+
+									//Get the text field value
+									//$postText = "<script type=\"text/javascript\">document.getElementByID(\"postBox\").value;</script>";
+									$postText = $_POST['postBox'];
+
+									//Post to the DB then refresh the page
+									$addPost = "INSERT INTO Post VALUES (NULL, '" . $_SESSION['signedInUser'] . "', UTC_TIMESTAMP(), '" . $postText . "', 1)";
+									if(isset($postText) && strlen($postText) > 0){
+										if( mysqli_query($connection, $addPost)){
+										//Success
+
+										}else{
+											echo "<script type=\"text/javascript\">window.alert(\"Error: " . mysqli_error($connection) . "\");</script>";
+										}
+									}
+									//Reload the page
+									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+								}
 
 								//Ends the current session
 								session_write_close();
@@ -420,14 +441,16 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				You:
 				<hr/>
 				<div class="feedTxt">
-					<form>
-						<textarea id="postBox" wrap="soft" rows="5"></textarea>
-						<br/>
+					<form action="" method="POST">
+						<textarea id="postBox" wrap="soft" name="postBox" rows="5" value=""></textarea>
+					  <button type="submit" value="Submit">Post</button>
 					</form>
 				</div>
-				<button type="submit" onclick="">Post</button>
-			</div>
+				</div>
 			<div class="newsFeed" id="MainArea">
+
+
+
 			<!-- For example purposes, add the add brewery panel -->
 			<iframe id="contentFrame" src="../html/NewsFeed.php" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
 		</div>
