@@ -45,7 +45,8 @@
       <?php if($_SESSION['signedInUser'] == $row['UserEmail']){ ?>
         <form action="" method="POST" name="removeForm" class="remove">
           <input type="image" src="../img/x.png" value="submit" style="height:25px; vertical-align:middle;">
-          <input type="hidden" name="remove" value="<?php echo $row['auto_ID'] ?>">
+          <p class="hidden"><input type="hidden" name="remove" value="<?php echo $row['auto_ID'] ?>">
+          </p>
         </form>
       <?php } ?>
     </div>

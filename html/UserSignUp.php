@@ -153,7 +153,8 @@ function checkUserSignUp() {
 
     //Get the profile pic url (optional)
     if(empty($_POST["ProfilePicURL"])){
-        $ProfilePicURl = "https://pbs.twimg.com/profile_images/1665394718/image.jpg";
+        //$ProfilePicURl = "https://pbs.twimg.com/profile_images/1665394718/image.jpg";
+        $ProfilePicURl = "http://gagnons.com/media/wysiwyg/blank-profile-_bowtie.png";
     }else{
         $ProfilePicURl = test_input($_POST["ProfilePicURL"]);
     }

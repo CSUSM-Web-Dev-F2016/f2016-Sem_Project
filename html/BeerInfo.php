@@ -168,9 +168,6 @@
 											}else{
 												echo "N/A";
 											}
-
-											//Close the connection
-											$connection-> close();
 										?>
 										</p>
 									</div>
