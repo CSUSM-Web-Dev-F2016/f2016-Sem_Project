@@ -59,10 +59,9 @@
 <?php
 		//Import needed PHP files
 		include "../php/create_table.php";
-
   	//Start the session
 	  session_start();
-
+		 $id= $_GET['id'];
 	  //Get the token to prove the user was logged in
 	  if(strlen($_SESSION['loginToken']) == 0){
 		  //redirect to the login page
@@ -353,7 +352,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick=showSRC<?php echo "('editCoverPicture.php?id=29)"; ?>">
+			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL;?>" onclick="showSRC<?php echo "('editCoverPicture.php?id=$id')"; ?>">
 		</div>
 
 		<div class="breweryPage newsFeed">

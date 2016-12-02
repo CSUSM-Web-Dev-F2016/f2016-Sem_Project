@@ -74,6 +74,5 @@
   endif;
   mysqli_close($connection);
   ?>
-    </div>
 </body>
 </html>
