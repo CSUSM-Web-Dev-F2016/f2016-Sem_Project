@@ -362,7 +362,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 									$postText = $_POST['postBox'];
 
 									//Post to the DB then refresh the page
-									$addPost = "INSERT INTO Post VALUES (NULL, '" . $_SESSION['signedInUser'] . "', UTC_TIMESTAMP(), '" . $postText . "')";
+									$addPost = "INSERT INTO Post VALUES (NULL, '" . $_SESSION['signedInUser'] . "', UTC_TIMESTAMP(), '" . $postText . "', 1)";
 									if(isset($postText) && strlen($postText) > 0){
 										if( mysqli_query($connection, $addPost)){
 										//Success
