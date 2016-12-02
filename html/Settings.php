@@ -30,7 +30,7 @@
                     $FName = $row['FName'];
                     $LName = $row['LName'];
                     $Email = $row['Email'];
-                    $Password = $row['Password'];
+                    $Password = password_verify($row["Password"], password_hash($row["Password"], PASSWORD_DEFAULT));
                     break;
                 }
             }
@@ -66,7 +66,7 @@
                         $fn = $_POST['fname']; // fn = new first name
                         $ln = $_POST['lname']; // ln = new last name
                         $em = $_POST['email']; // em = new email
-                        $pw = $_POST['password']; // pw = new password
+                        $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new password
                         $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
                         if (mysqli_query($connection, $updateUserInfo)) {
                             echo '<br><br>Records updated<br>';
