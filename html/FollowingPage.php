@@ -46,7 +46,7 @@
        searchResultsTable($follow_result, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
        //Free the results
-       if($breweriesFollowingResults) mysqli_free_result($breweriesFollowingResults);
+       if($follow_result) mysqli_free_result($follow_result);
         ?>
       </div>
     </div>
@@ -64,15 +64,12 @@
        searchResultsTable($followUser_result, 'Email', 'ProfilePicURL', 'Fname', 'user');
 
        //Free the results
-       if($breweriesFollowingResults) mysqli_free_result($breweriesFollowingResults);
+       if($followUser_result) mysqli_free_result($followUser_result);
         ?>
       </div>
     </div>
 
     <?php
-    //free query results
-    mysqli_free_result($follow_result);
-    mysqli_free_result($followUser_result);
     //close database connection
     mysqli_close($connection);
     ?>
