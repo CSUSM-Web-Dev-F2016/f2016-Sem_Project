@@ -22,14 +22,20 @@
 <?php
     session_start();
 	 //Create a basic connection
-    $connection = mysqli_connect("localhost", "goule001", "goule001", "team3");
+  $connection = include '../php/DBConnectionReturn.php';
+  $id = $_GET['id'];
 
-    //Check the connection
-    if(!$connection){
-        die("Connection Failed. Error: " . mysqli_connect_error());
-    }
+  $getOwnerQuery = "SELECT UserEmail FROM BreweryOwner WHERE BreweryID=$id";
+  $resultOwner = mysqli_query($connection,$getOwnerQuery);
+  $row=mysqli_fetch_assoc($resultOwner);
+  $ownerEmail = $row["UserEmail"];
+
+  $signedInUser = $_SESSION['signedInUser'];
 ?>
 <body>
+  <?php
+  if(($ownerEmail == $signedInUser)):
+    ?>
     <div class="container">
         <div class="edit-header">
             <div class="box-line"></div>
@@ -49,25 +55,16 @@
                 <button type="submit" name="submit" onclick="">Submit</button>
             </form>
 <?php
+$coverURL = $_POST['coverURL'];
 
-  $currentUser = $_SESSION['currentUser'];
-  $signedInUser = $_SESSION['signedInUser'];
-  $coverURL = $_POST['coverURL'];
-echo "current: $currentUser ";
-echo "signed in: $signedInUser";
- /*
   //if Submit is clicked
   if(isset($_POST['submit'])){
-  //check if user is on own page
-    if(($currentUser == $signedInUser)){
 	     //making sure names are not empty
-       if((strpos($picURL, '.png') !== false) || (strpos($picURL, '.jpg') !== false)){
-	        $changeNameQuery = "UPDATE Users SET FName='" . $fNameinput . "', LName='" . $lNameinput . "' WHERE Email='" . $_SESSION['signedInUser'] . "'";
-            if(mysqli_query($connection, $changeNameQuery)){
-              echo "Updated cover photo successfully.";
-
+       if((strpos($coverURL, '.png') !== false) || (strpos($coverURL, '.jpg') !== false)){
+	        $changeCoverQuery = "UPDATE BreweryTable SET CoverPicURL='" . $coverURL . "' WHERE BreweryID=$id";
+            if(mysqli_query($connection, $changeCoverQuery)){
               //Now, refresh parent page
-              //echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php\";</script>";
+              echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
               }
               else {
                 echo "Error updating cover photo.";
@@ -76,15 +73,13 @@ echo "signed in: $signedInUser";
             else {
               echo "ERROR: Picture extension must be .png or .jpg.";
             }
-
-          }
-          else {
-            echo "ERROR: You are not the owner of this page.";
-          }
         }
-        mysqli_close($connection);
-*/
+
+
+echo "</div>";
+endif;
+mysqli_close($connection);
 ?>
-    </div>
+
 </body>
 </html>

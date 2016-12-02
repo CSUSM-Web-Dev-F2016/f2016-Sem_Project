@@ -2,7 +2,7 @@
 
 <html lang="en">
 <head>
-    <title>Edit Profile Picture</title>
+    <title>Edit Brewery Profile Picture</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../css/EditForm.css" type="text/css">
 
@@ -24,27 +24,31 @@
     session_start();
 	 //Create a basic connection
     $connection = include '../php/DBConnectionReturn.php';
+    $id = $_GET['id'];
 
-    $currentUser = $_SESSION['currentUser'];
+    $getOwnerQuery = "SELECT UserEmail FROM BreweryOwner WHERE BreweryID=$id";
+    $resultOwner = mysqli_query($connection,$getOwnerQuery);
+    $row=mysqli_fetch_assoc($resultOwner);
+    $ownerEmail = $row["UserEmail"];
+
     $signedInUser = $_SESSION['signedInUser'];
 ?>
 
 <body>
   <?php
-  if($currentUser == $signedInUser) :
-  ?>
+  if(($ownerEmail == $signedInUser)):
+    ?>
     <div class="container">
         <div class="edit-header">
             <div class="box-line"></div>
 
-            <h1>Edit Profile Picture</h1>
+            <h1>Edit Brewery Profile Picture</h1>
             <div class="box-line"></div>
         </div>
-
             <form class="edit-form" id="form" method="POST">
                 <div class="outer-section">
                     <div class="inner-sections">
-                        Enter link to profile picture (.jpg or .png)
+                        Enter link to brewery profile picture (.jpg or .png)
                         <br />
                         <input type="text" name="picURL" title="Profile Link"/>
                     </div>
@@ -54,15 +58,15 @@
 <?php
   $picURL = $_POST['picURL'];
   if(isset($_POST['submit'])){
-            		//making sure URL are not empty
+            		//making sure URL has .png or .jpg extension
 	        if((strpos($picURL, '.png') !== false) || (strpos($picURL, '.jpg') !== false)){
-            	$changePicQuery = "UPDATE Users SET ProfilePicURL='" . $picURL . "'  WHERE Email='" . $_SESSION['signedInUser'] . "'";
+            	$changePicQuery = "UPDATE BreweryTable SET ProfilePicURL='" . $picURL . "' WHERE BreweryID=$id";
               if(mysqli_query($connection, $changePicQuery)){
             					//Updated. Now, refresh parent page
-        				echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+        				echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
         		    }
               else {
-                echo "Error updating picture.";
+                echo "Error updating brewery picture.";
             	}
           }
     		else {
