@@ -29,9 +29,15 @@
     if(!$connection){
         die("Connection Failed. Error: " . mysqli_connect_error());
     }
+
+    $currentUser = $_SESSION['currentUser'];
+    $signedInUser = $_SESSION['signedInUser'];
 ?>
 
 <body>
+  <?php
+  if($currentUser == $signedInUser) :
+  ?>
     <div class="container">
         <div class="edit-header">
             <div class="box-line"></div>
@@ -51,38 +57,28 @@
                 <button type="submit" name="submit" onclick="">Submit</button>
             </form>
 <?php
-
-  $currentUser = $_SESSION['currentUser'];
-  $signedInUser = $_SESSION['signedInUser'];
   $picURL = $_POST['picURL'];
   if(isset($_POST['submit'])){
-              //check if user is on own page
-      if($currentUser == $signedInUser){
             		//making sure URL are not empty
-	               if((strpos($picURL, '.png') !== false) || (strpos($picURL, '.jpg') !== false)){
-            			$changePicQuery = "UPDATE Users SET ProfilePicURL='" . $picURL . "'  WHERE Email='" . $_SESSION['signedInUser'] . "'";
-                		if(mysqli_query($connection, $changePicQuery)){
-                  		echo "Updated picture successfully.";
-
-            					//Now, refresh parent page
-            					echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
-                		}
-                  	else {
-                    	echo "Error updating picture.";
-                  	}
-            			}
-            		else {
-            			echo "ERROR: Picture extension must be .png or .jpg.";
-            		}
-
-            }
+	        if((strpos($picURL, '.png') !== false) || (strpos($picURL, '.jpg') !== false)){
+            	$changePicQuery = "UPDATE Users SET ProfilePicURL='" . $picURL . "'  WHERE Email='" . $_SESSION['signedInUser'] . "'";
+              if(mysqli_query($connection, $changePicQuery)){
+            					//Updated. Now, refresh parent page
+        				echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+        		    }
               else {
-                echo "ERROR: Cannot edit someone else's picture.";
-              }
-            }
-            mysqli_close($connection);
+                echo "Error updating picture.";
+            	}
+          }
+    		else {
+          echo "ERROR: Picture extension must be .png or .jpg.";
+    		}
 
-            ?>
+  }
+  echo "</div>";
+  endif;
+  mysqli_close($connection);
+  ?>
     </div>
 </body>
 </html>

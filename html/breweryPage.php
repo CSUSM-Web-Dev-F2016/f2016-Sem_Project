@@ -75,7 +75,7 @@
 	 	$connection = include '../php/DBConnectionReturn.php';
 
 	  //Start the SQL Query to get the brewery information
-	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
+	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
 	  $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
 
 	  //Check to see if the brewery exists, should only be one result
@@ -89,8 +89,12 @@
 			  $ProfilePicURL = $row['ProfilePicURL'];
 			  $CoverPicURL = $row['CoverPicURL'];
 			  $City = $row['City'];
+				$Visits = $row['visits'] + 1;
 
-			  //If the cover pic does not exist, set it to the
+			  //If the cover pic does not exist, set it to the default
+				if(empty($CoverPicURL)){
+					$CoverPicURL = "../img/DefaultCoverImage.png";
+				}
 		  }
 
 			//Free the results
@@ -100,6 +104,13 @@
 		  header("Location: ./PageNotFound.html?breweryID=" . $_GET['id']);
 	  }
 
+		//Now, increment the visit count of said brewery
+		$UpdateVisits = "UPDATE BreweryTable SET visits=visits+1 WHERE breweryID=" . $_GET['id'];
+		if(mysqli_query($connection, $UpdateVisits)){
+			//Success
+		}else{
+			echo "Error With Query: " . mysqli_error($connection);
+		}
 
   ?>
 
@@ -205,7 +216,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('FollowingPage.html')">
+						<a onclick="showSRC('FollowingPage.php')">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
 							</div>
@@ -236,7 +247,7 @@
 				</div>
 				<div class="table"> -->
 					<!-- Brewery Following Brewery -->
-					<?php
+					<!--<?php
 						//$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
 						//$resultSet = mysqli_query($connection, $query);
 
@@ -246,34 +257,20 @@
 						//Free results
 						i//f($resultSet) mysqli_free_result($resultSet);
 
-					?>
+					?>-->
 				<!--</div>
-				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
-				</div>
-			</div>-->
-			<!-- Followers Section -->
-			<div class="stdSection FollowingBrewery" id="followersOfBreweries">
-				<div class="stdSectionTitle">
-					User Followers
-				</div>
-				<div class="table">
-					<!-- User Following Brewery -->
-					<?php
-						$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 6";
-						$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
-
-						//Create a basic form
-						if($GetUsersFollowingBreweryResults) createBasicForm($GetUsersFollowingBreweryResults, 'Email', 'ProfilePicURL', 'Name', 'user');
-
-						//Clear the results
-						if($GetUsersFollowingBreweryResults) mysqli_free_result($GetUsersFollowingBreweryResults);
-					?>
-				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
-			</div>
+			</div>-->
+
+						<!-- Total visit count. Increments on each page visit/refresh -->
+						<div class="stdSection Calendar" id="calendar">
+							<div class="stdSectionTitle">
+								Total Visits
+									<div class="numberOfVisits"><?php echo number_format($Visits); ?></div>
+							</div>
+						</div>
 		</div>
 	</aside>
 
@@ -291,9 +288,6 @@
 						$GetWhoBreweryIsFollowing = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . " LIMIT 6";
 						$GetWhoBreweryIsFollowingResults = mysqli_query($connection, $GetWhoBreweryIsFollowing);
 
-						/*if(!$GetWhoBreweryIsFollowingResults) echo "<script type=\"text/javascript\">window.alert(\"Query: " . $GetWhoBreweryIsFollowing . "\");</script>";
-						else echo "Good Job<br>";*/
-
 						createBasicForm($GetWhoBreweryIsFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
 						//Free the results
@@ -301,7 +295,7 @@
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -320,22 +314,38 @@
 						//Free results
 						mysqli_free_result($favoritedBeersResults);
 
-						//Close the sql connection
-						$connection-> close();
-
 					?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('BeerList.html')" class="moreClicked">more</a>
 				</div>
 			</div>
-
-			<!-- Not yet implemented - Calendar -->
-			<div class="stdSection Calendar" id="calendar">
+			<!-- Followers Section -->
+			<div class="stdSection FollowingBrewery" id="followersOfBreweries">
 				<div class="stdSectionTitle">
-					Calendar
+					User Followers
+				</div>
+				<div class="table">
+					<!-- User Following Brewery -->
+					<?php
+						$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 6";
+						$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
+
+						//Create a basic form
+						if($GetUsersFollowingBreweryResults) createBasicForm($GetUsersFollowingBreweryResults, 'Email', 'ProfilePicURL', 'Name', 'user');
+
+						//Clear the results
+						if($GetUsersFollowingBreweryResults) mysqli_free_result($GetUsersFollowingBreweryResults);
+
+						//Close the sql connection
+						$connection-> close();
+					?>
+				</div>
+				<div class="stdSectionFooter">
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
+
 		</div>
 	</aside>
 
@@ -343,7 +353,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="showSRC('editCoverPicture.html')">
+			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="showSRC('editCoverPicture.php')">
 		</div>
 
 		<div class="breweryPage newsFeed">
