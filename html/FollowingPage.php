@@ -57,11 +57,11 @@
       </div>
       <div class="table">
         <?php
-        $getFollowUser = "SELECT Fname, Lname, ProfilePicURL FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
+        $getFollowUser = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
         $followUser_result = mysqli_query($connection, $getFollowUser);
 
        //Build the table
-       searchResultsTable($followUser_result, 'Email', 'ProfilePicURL', 'Fname', 'user');
+       searchResultsTable($followUser_result, 'Email', 'ProfilePicURL', 'Name', 'user');
 
        //Free the results
        if($followUser_result) mysqli_free_result($followUser_result);
