@@ -52,7 +52,7 @@ session_start();
             <input type="password" name="re_enter_password" id="Re_enter_password" placeholder="Re-Enter Password"/>
 
             <label for="dob" id="dateBirth" class="hidden">DOB:</label>
-            <input type="text" name="DOB" id="dob" placeholder="Date of Birth ex: 1-1-1995"/>
+            <input type="text" name="DOB" id="dob" placeholder="Date of Birth ex: 01-30-1995"/>
 
             <label for="subButton" id="sButton" class="hidden">Submit:</label>
             <input type="submit" id="subButton" value="Submit"/>

@@ -80,9 +80,31 @@
 
 		//Get current user info
 		$signedInUser = $_SESSION['signedInUser'];
+		//Get breweryID
+		$brewID = $_GET['id'];
 		//Get breweries that user is following
-		$signedInUserBreweriesQuery = "SELECT BreweryID FROM UserFollowsBrewery WHERE UserEmail=" . $signedInUser;
+		$signedInUserBreweriesQuery = "SELECT * FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=" . $brewID;
 		$signedInUserBreweriesResults = mysqli_query($connection, $signedInUserBreweriesQuery);
+
+		//Check to see if user has favorited brewery
+		if ($signedInUserBreweriesResults-> num_rows > 0){
+			//User has favorited brewery set icon to be unfollow
+			while($row = mysqli_fetch_assoc($signedInUserBreweriesResults)){
+				//is following
+				if($row['Count'] >= 1){
+					$following = 'y';
+					$followText = "UnFollow";
+					$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+				}
+				else {
+					//Is not following
+					$following = 'n';
+					$followText = "Follow";
+					$followingImage = "../img/Follow.png?raw=true";
+				}
+				break;
+			}
+		}
 	  //Check to see if the brewery exists, should only be one result
 	  if($getBreweryInnfoResults-> num_rows > 0){
 		  //If the brewery exists, get the info
@@ -220,6 +242,8 @@
 							</div>
 						</a>
 					</div>
+
+					<!-- following button -->
 					<div class="smalltableCell">
 						<a onclick="showSRC('FollowingPage.php')">
 							<div class="tableCell img">
