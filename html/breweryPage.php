@@ -242,7 +242,7 @@
 						</a>
 					</div>
 
-					<!-- following button -->
+					<!-- following button old
 					<div class="smalltableCell">
 						<a onclick="showSRC('FollowingPage.php')">
 							<div class="tableCell img">
@@ -253,6 +253,18 @@
 							</div>
 						</a>
 					</div>
+					end following button old-->
+
+					<form action="" class="stdForm" method="POST" name="follow">
+						<button type="submit" class="defaultSetBtn" name="follow" style="padding-top:-10px;">
+							<div class="tableCell img">";
+								<img class="smalltableCell" src="<?php echo $followingImage ?>" alt="<?php echo $followText ?>">
+							</div>
+							<div class="smalltableCell title" style="padding-top:20px; padding-bottom:15px; max-height:50px"> <?php echo $followText ?> </div>
+						</button>
+						<input type="hidden" value="" name="<?php echo strtr($_SESSION['currentUser'], array('.' => '#-#')); ?>">
+					</form>
+
 					<div class="smalltableCell">
 						<a onclick="showSRC('message.html')">
 							<!-- message -->
