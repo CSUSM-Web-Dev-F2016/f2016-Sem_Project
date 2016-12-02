@@ -78,6 +78,11 @@
 	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
 	  $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
 
+		//Get current user info
+		$signedInUser = $_SESSION['signedInUser'];
+		//Get breweries that user is following
+		$signedInUserBreweriesQuery = "SELECT BreweryID FROM UserFollowsBrewery WHERE UserEmail=" . $signedInUser;
+		$signedInUserBreweriesResults = mysqli_query($connection, $signedInUserBreweriesQuery);
 	  //Check to see if the brewery exists, should only be one result
 	  if($getBreweryInnfoResults-> num_rows > 0){
 		  //If the brewery exists, get the info
@@ -255,7 +260,7 @@
 						//createBasicForm($resultSet, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
 						//Free results
-						i//f($resultSet) mysqli_free_result($resultSet);
+						//if($resultSet) mysqli_free_result($resultSet);
 
 					?>
 				<!--</div>
@@ -372,7 +377,11 @@
     						if(isset($_POST['brewery'])){
 							  	//Navigate to the brewery page iwth the new id
 							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
-    						}else {
+    						}
+    						elseif(isset($_POST['follow'])){
+
+							}
+    						else {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
