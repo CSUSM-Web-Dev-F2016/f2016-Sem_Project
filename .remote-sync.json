@@ -4,13 +4,13 @@
   "deleteLocal": false,
   "hostname": "beerhopper.me",
   "port": "22",
-  "target": "/usr/share/nginx/html/tizzle",
+  "target": "/usr/share/nginx/html/mikal",
   "ignore": [
     ".remote-sync.json",
     ".git/**"
   ],
-  "username": "tizzle",
+  "username": "mikalcallahan",
   "watch": [],
   "transport": "scp",
-  "password": "jagoulet"
+  "password": "mikalcallahan"
 }
