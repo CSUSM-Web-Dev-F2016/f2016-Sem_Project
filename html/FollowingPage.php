@@ -53,7 +53,7 @@
 
     <div class="stdSection" id="followers">
       <div class="stdSectionTitle">
-        People You're Following
+        People You Are Following
       </div>
       <div class="table">
         <?php
@@ -65,6 +65,24 @@
 
        //Free the results
        if($followUser_result) mysqli_free_result($followUser_result);
+        ?>
+      </div>
+    </div>
+
+    <div class="stdSection" id="followers">
+      <div class="stdSectionTitle">
+        People Following You
+      </div>
+      <div class="table">
+        <?php
+        $getPeopleFollowMe = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL FROM Users, UserFollowsUser WHERE OtherUserEmail = '" . $CurrentUser . "' AND UserEmail = Email";
+        $peopleFollowMe_result = mysqli_query($connection, $getPeopleFollowMe);
+
+       //Build the table
+       searchResultsTable($peopleFollowMe_result, 'Email', 'ProfilePicURL', 'Name', 'user');
+
+       //Free the results
+       if($peopleFollowMe_result) mysqli_free_result($peopleFollowMe_result);
         ?>
       </div>
     </div>
