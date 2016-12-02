@@ -247,7 +247,7 @@
 				</div>
 				<div class="table"> -->
 					<!-- Brewery Following Brewery -->
-					<?php
+					<!--<?php
 						//$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
 						//$resultSet = mysqli_query($connection, $query);
 
@@ -257,7 +257,7 @@
 						//Free results
 						i//f($resultSet) mysqli_free_result($resultSet);
 
-					?>
+					?>-->
 				<!--</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
