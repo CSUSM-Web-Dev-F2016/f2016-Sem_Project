@@ -22,7 +22,7 @@
              // Create a basic connection
             $connection = include '../php/DBConnectionReturn.php';
 
-            $GetUserInformationQuery = "SELECT * FROM Users WHERE Email='".$_SESSION['currentUser']."'";
+            $GetUserInformationQuery = "SELECT * FROM Users WHERE Email='".$_SESSION['signedInUser']."'";
             $userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
 
             if ($userInfoResults->num_rows > 0) {
