@@ -59,10 +59,9 @@
 <?php
 		//Import needed PHP files
 		include "../php/create_table.php";
-
   	//Start the session
 	  session_start();
-
+		 $id= $_GET['id'];
 	  //Get the token to prove the user was logged in
 	  if(strlen($_SESSION['loginToken']) == 0){
 		  //redirect to the login page
@@ -187,8 +186,8 @@
 
 		<div id="profileContainer">
 			<!-- Three items will appear here... Pic, Name and Edit Button -->
-			<img class="profileImg" id="profileImg" src="<?php echo $ProfilePicURL; ?>" alt="<?php echo $BreweryName; ?>" onclick="showSRC('editProfilePicture.html')">
-			<p class="profileName" onclick="showSRC('editBreweryName.html')"><?php echo $BreweryName; ?><br></p>
+			<img class="profileImg" id="profileImg" src="<?php echo $ProfilePicURL; ?>" alt="<?php echo $BreweryName; ?>" onclick="showSRC<?php echo "('editBrewProfPic.php?id=$id')";?>">
+			<p class="profileName" onclick="showSRC<?php echo "('editBreweryName.php?id=$id')"; ?>"><?php echo $BreweryName; ?><br></p>
 			<p class="breweryLocation"><?php echo $City;?>
 				<br></p>
 		</div>
@@ -276,7 +275,7 @@
 				</div>
 				<div class="table"> -->
 					<!-- Brewery Following Brewery -->
-					<?php
+					<!--<?php
 						//$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
 						//$resultSet = mysqli_query($connection, $query);
 
@@ -286,7 +285,7 @@
 						//Free results
 						//if($resultSet) mysqli_free_result($resultSet);
 
-					?>
+					?>-->
 				<!--</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
@@ -382,7 +381,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="showSRC('editCoverPicture.php')">
+			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL;?>" onclick="showSRC<?php echo "('editCoverPicture.php?id=$id')"; ?>">
 		</div>
 
 		<div class="breweryPage newsFeed">
