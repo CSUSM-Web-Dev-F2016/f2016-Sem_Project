@@ -12,22 +12,7 @@
 	<!-- ready up script magic -->
 
 	<!-- Analytics Script -->
-	<script>
-		(function(i, s, o, g, r, a, m) {
-			i['GoogleAnalyticsObject'] = r;
-			i[r] = i[r] || function() {
-				(i[r].q = i[r].q || []).push(arguments)
-			}, i[r].l = 1 * new Date();
-			a = s.createElement(o),
-				m = s.getElementsByTagName(o)[0];
-			a.async = 1;
-			a.src = g;
-			m.parentNode.insertBefore(a, m)
-		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-		ga('create', 'UA-83948702-3', 'auto');
-		ga('send', 'pageview');
-	</script>
+	<script src="../js/analytics.js"></script>
 
 	<?php
 
@@ -39,8 +24,8 @@
           }
          // Create a basic connection
         $connection = include '../php/DBConnectionReturn.php';
-        $BeerLocationQuery = "SELECT * FROM BreweryLocation WHERE BreweryID='".$_GET['id']."'";
-        $BreweryInfoResults = mysqli_query($connection, $BeerLocationQuery);
+        $BreweryLocationQuery = "SELECT * FROM BreweryLocation WHERE BreweryID='".$_GET['id']."'";
+        $BreweryInfoResults = mysqli_query($connection, $BreweryLocationQuery);
         //echo "$BreweryLocationQuery";
 
         $BreweryID = $_GET['id'];

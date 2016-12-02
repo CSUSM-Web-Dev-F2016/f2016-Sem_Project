@@ -48,18 +48,18 @@
 </head>
 
 <?php
-		//Import needed PHP files
-		include "../php/create_table.php";
-  	//Start the session
-	  session_start();
-		 $id= $_GET['id'];
-	  //Get the token to prove the user was logged in
-	  if(strlen($_SESSION['loginToken']) == 0){
-		  //redirect to the login page
-		  header("Location: ../index.php");
-	  }else{
-		  //echo "<p style=\"color:white\">You rock: " . $_GET['id'] . "<br></p>";
-	  }
+        //Import needed PHP files
+        include '../php/create_table.php';
+    //Start the session
+      session_start();
+         $id = $_GET['id'];
+      //Get the token to prove the user was logged in
+      if (strlen($_SESSION['loginToken']) == 0) {
+          //redirect to the login page
+          header('Location: ../index.php');
+      } else {
+          //echo "<p style=\"color:white\">You rock: " . $_GET['id'] . "<br></p>";
+      }
 
         //Connect to the DB
         $connection = include '../php/DBConnectionReturn.php';
@@ -177,9 +177,9 @@
 
 		<div id="profileContainer">
 			<!-- Three items will appear here... Pic, Name and Edit Button -->
-			<img class="profileImg" id="profileImg" src="<?php echo $ProfilePicURL; ?>" alt="<?php echo $BreweryName; ?>" onclick="showSRC<?php echo "('editBrewProfPic.php?id=$id')";?>">
+			<img class="profileImg" id="profileImg" src="<?php echo $ProfilePicURL; ?>" alt="<?php echo $BreweryName; ?>" onclick="showSRC<?php echo "('editBrewProfPic.php?id=$id')"; ?>">
 			<p class="profileName" onclick="showSRC<?php echo "('editBreweryName.php?id=$id')"; ?>"><?php echo $BreweryName; ?><br></p>
-			<p class="breweryLocation"><?php echo $City;?>
+			<p class="breweryLocation"><?php echo $City; ?>
 				<br></p>
 		</div>
 
@@ -190,8 +190,9 @@
 					About
 				</div>
 				<div class="table">
+					<?php $BreweryID = $_GET['id']; ?>
 					<div class="smalltableCell">
-						<a onclick="showSRC('hours.html')">
+						<a onclick="showSRC<?php echo "('Hours.php?id=$BreweryID')" ?>">
 							<!-- hours -->
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/time.png?raw=true" alt="Hours Icon">
@@ -212,7 +213,6 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<?php $BreweryID = $_GET['id']; ?>
 						<a onclick="showSRC<?php echo "('Address.php?id=$BreweryID')" ?>">
 							<!-- address -->
 							<div class="tableCell img">
@@ -391,7 +391,7 @@
 	<section class="breweryPage">
 		<!-- Display the brewery's cover image -->
 		<div>
-			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL;?>" onclick="showSRC<?php echo "('editCoverPicture.php?id=$id')"; ?>">
+			<img alt="Brewery Cover Image" id="coverImage" src="<?php echo $CoverPicURL; ?>" onclick="showSRC<?php echo "('editCoverPicture.php?id=$id')"; ?>">
 		</div>
 
 		<div class="breweryPage newsFeed">
