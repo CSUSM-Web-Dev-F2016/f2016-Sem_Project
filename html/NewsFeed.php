@@ -5,7 +5,7 @@
 <head>
      <!-- CSS Files -->
      <link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
-	<script src="../NewsFeedBuilder.js"></script>
+	    <script src="../NewsFeedBuilder.js" type="text/javascript"></script>
      <title> News Feed </title>
      <meta charset="utf-8">
 
@@ -46,10 +46,13 @@
 
  ?>
     <div class="newsFeedBox" style="width:100%; padding: 0px; padding-bottom:25px;">
-      <div class="statusHeader">
-        <img class="feedImg" id="feedImg" src=<?php echo $row['ProfilePicURL'] ?> alt="Image in Feed">
-        <p class="userName"><?php echo $row['Name']; ?><p>
-      </div>
+      <form action="" class="statusHeader" method="POST" name="user">
+        <button class="newsFeedUserButton">
+          <img class="feedImg" id="feedImg" src=<?php echo $row['ProfilePicURL'] ?> alt="Image in Feed">
+          <p class="userName"><?php echo $row['Name']; ?><p>
+          <input type="hidden" name="user" value="<?php echo strtr($row['UserEmail'], array('.' => '#-#')) ?>">
+        </button>
+      </form>
       <hr/>
       <div class="feedTxt">
         <p class="postText">
@@ -70,6 +73,17 @@
 else {
   echo "<p class\"postText\"> Error: " . $GetNewsFeedElements . "<br>" . $NewsFeedResults->num_rows;
 }
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+      if(isset($_POST['user'])){
+        //Set the current page to the new user
+        $_SESSION['currentUser'] = strtr($_POST['user'], array('#-#' => '.'));
+
+        //refresh the page
+        echo "<script type=\"text/javascript\"> top.window.location.href = \"profilePage.php\";</script>";
+      }
+    }
 
 //Free the results and close the connection
 mysqli_free_result($NewsFeedResults);
