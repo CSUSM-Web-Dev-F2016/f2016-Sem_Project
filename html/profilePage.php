@@ -442,7 +442,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				<hr/>
 				<div class="feedTxt">
 					<form action="" method="POST">
-						<textarea id="postBox" wrap="soft" name="postBox" rows="5" value=""></textarea>
+						<textarea id="postBox" wrap="soft" name="postBox" rows="3" value=""></textarea>
 					  <button type="submit" value="Submit">Post</button>
 					</form>
 				</div>

@@ -54,7 +54,7 @@
           <input type="hidden" name="user" value="<?php echo strtr($row['UserEmail'], array('.' => '#-#')) ?>">
         </button>
       </form>
-      <?php if($_SESSION['currentUser'] == $row['UserEmail']){ ?>
+      <?php if($_SESSION['signedInUser'] == $row['UserEmail']){ ?>
         <form action="" method="POST" name="removeForm" class="remove">
           <input type="image" src="../img/x.png" value="submit" style="height:25px; vertical-align:middle;">
           <input type="hidden" name="remove" value="<?php echo $row['auto_ID'] ?>">
