@@ -68,11 +68,38 @@
       $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=".$_GET['id'];
       $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
 
-      //Check to see if the brewery exists, should only be one result
-      if ($getBreweryInnfoResults->num_rows > 0) {
-          //If the brewery exists, get the info
-          while ($row = mysqli_fetch_assoc($getBreweryInnfoResults)) {
-              //echo "<p style=\"color:white;\">Hello World</p>";
+		//Get current user info
+		$signedInUser = $_SESSION['signedInUser'];
+		//Get breweryID
+		$brewID = $_GET['id'];
+		//Get breweries that user is following
+		$signedInUserBreweriesQuery = "SELECT * FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=" . $brewID;
+		$signedInUserBreweriesResults = mysqli_query($connection, $signedInUserBreweriesQuery);
+
+		//Check to see if user has favorited brewery
+		if ($signedInUserBreweriesResults-> num_rows > 0){
+			//User has favorited brewery set icon to be unfollow
+			while($row = mysqli_fetch_assoc($signedInUserBreweriesResults)){
+				//is following
+				if($row['Count'] >= 1){
+					$following = 'y';
+					$followText = "UnFollow";
+					$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+				}
+				else {
+					//Is not following
+					$following = 'n';
+					$followText = "Follow";
+					$followingImage = "../img/Follow.png?raw=true";
+				}
+				break;
+			}
+		}
+	  //Check to see if the brewery exists, should only be one result
+	  if($getBreweryInnfoResults-> num_rows > 0){
+		  //If the brewery exists, get the info
+		  while($row = mysqli_fetch_assoc($getBreweryInnfoResults)){
+			//echo "<p style=\"color:white;\">Hello World</p>";
 
               //Save the values
               $BreweryName = $row['BreweryName'];
@@ -206,6 +233,8 @@
 							</div>
 						</a>
 					</div>
+
+					<!-- following button old
 					<div class="smalltableCell">
 						<a onclick="showSRC('FollowingPage.php')">
 							<div class="tableCell img">
@@ -216,6 +245,18 @@
 							</div>
 						</a>
 					</div>
+					end following button old-->
+
+					<form action="" class="stdForm" method="POST" name="follow">
+						<button type="submit" class="defaultSetBtn" name="follow" style="padding-top:-10px;">
+							<div class="tableCell img">";
+								<img class="smalltableCell" src="<?php echo $followingImage ?>" alt="<?php echo $followText ?>">
+							</div>
+							<div class="smalltableCell title" style="padding-top:20px; padding-bottom:15px; max-height:50px"> <?php echo $followText ?> </div>
+						</button>
+						<input type="hidden" value="" name="<?php echo strtr($_SESSION['currentUser'], array('.' => '#-#')); ?>">
+					</form>
+
 					<div class="smalltableCell">
 						<a onclick="showSRC('message.html')">
 							<!-- message -->
@@ -245,8 +286,8 @@
                         //Create a basic form
                         //createBasicForm($resultSet, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
-                        //Free results
-                        i//f($resultSet) mysqli_free_result($resultSet);
+						//Free results
+						//if($resultSet) mysqli_free_result($resultSet);
 
                     ?>-->
 				<!--</div>
@@ -364,15 +405,19 @@
 
 	<!-- Footer information; additional links etc -->
 	<?php
-            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                //Check which form was ssent then get the appropriate id.
-                            if (isset($_POST['brewery'])) {
-                                //Navigate to the brewery page iwth the new id
-                                echo '<script type="text/javascript"> document.location.href = "breweryPage.php?id='.end(array_keys($_POST)).'";</script>';
-                            } else {
-                                $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
-                                echo '<script type="text/javascript"> document.location.href = "profilePage.php";</script>';
-                            }
+			if($_SERVER['REQUEST_METHOD'] == 'POST'){
+								//Check which form was ssent then get the appropriate id.
+    						if(isset($_POST['brewery'])){
+							  	//Navigate to the brewery page iwth the new id
+							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+    						}
+    						elseif(isset($_POST['follow'])){
+
+							}
+    						else {
+							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+						    }
 
                                 //Ends the current session
                                 session_write_close();

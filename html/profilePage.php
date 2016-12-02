@@ -85,18 +85,18 @@
 </head>
 <?php
 
-		//Import needed PHP files
-		include "../php/create_table.php";
+	//Import needed PHP files
+	include "../php/create_table.php";
 
-	 //Create a basic connection
-    $connection = include '../php/DBConnectionReturn.php';
+	//Create a basic connection
+	$connection = include '../php/DBConnectionReturn.php';
 
-$FName = $LName = $PicURL = $CurrentUser = "";
+	$FName = $LName = $PicURL = $CurrentUser = "";
 
 	//Use already provided var
 	$CurrentUser = $_SESSION['currentUser'];
 
-//Get the user's information
+	//Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $CurrentUser . "'";
 	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
 
