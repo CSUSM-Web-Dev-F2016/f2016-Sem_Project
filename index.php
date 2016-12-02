@@ -111,7 +111,7 @@
 
 					//If a row was found, check the password
 					while($row = mysqli_fetch_assoc($loginInfoGathered)){
-						if($row["Password"] == $_POST["password"]){
+						if(password_verify($row["Password"], password_hash($row["Password"], PASSWORD_DEFAULT)) == $_POST["password"]){
 							//echo "<p class\"centerText\"> Correct Password Match </p>";
 
 							//Set the username to search in the session var .. current user is for the page, signed in user is for the rights

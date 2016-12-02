@@ -74,11 +74,14 @@ div.newsFeedBox button:active {
 
 .userName{
   line-height: 10px;
-  width: auto;
+  width: 100px;
   top: -10px;
+  margin: 0px;
   padding-left: 10px;
   text-shadow: none;
   font-style: italic;
+  display: inline-flex;;
+  flex: auto;
   color: black;
   border: none;
 }
