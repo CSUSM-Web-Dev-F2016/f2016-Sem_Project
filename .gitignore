@@ -1,9 +1,5 @@
-<<<<<<< HEAD
 # Ignore List #
 ###############
 .remote-sync.json
 .DS_Store
 .DS_Store?
-=======
-.remote-sync.json
->>>>>>> d69be2a10f66ec1d2d25feafce10702c25865eb0

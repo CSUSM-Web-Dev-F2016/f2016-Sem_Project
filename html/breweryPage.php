@@ -57,60 +57,60 @@
 </head>
 
 <?php
-		//Import needed PHP files
-		include "../php/create_table.php";
+        //Import needed PHP files
+        include '../php/create_table.php';
 
-  	//Start the session
-	  session_start();
+    //Start the session
+      session_start();
 
-	  //Get the token to prove the user was logged in
-	  if(strlen($_SESSION['loginToken']) == 0){
-		  //redirect to the login page
-		  header("Location: ../index.php");
-	  }else{
-		  //echo "<p style=\"color:white\">You rock: " . $_GET['id'] . "<br></p>";
-	  }
+      //Get the token to prove the user was logged in
+      if (strlen($_SESSION['loginToken']) == 0) {
+          //redirect to the login page
+          header('Location: ../index.php');
+      } else {
+          //echo "<p style=\"color:white\">You rock: " . $_GET['id'] . "<br></p>";
+      }
 
-	  	//Connect to the DB
-	 	$connection = include '../php/DBConnectionReturn.php';
+        //Connect to the DB
+        $connection = include '../php/DBConnectionReturn.php';
 
-	  //Start the SQL Query to get the brewery information
-	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
-	  $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
+      //Start the SQL Query to get the brewery information
+      $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=".$_GET['id'];
+      $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
 
-	  //Check to see if the brewery exists, should only be one result
-	  if($getBreweryInnfoResults-> num_rows > 0){
-		  //If the brewery exists, get the info
-		  while($row = mysqli_fetch_assoc($getBreweryInnfoResults)){
-			//echo "<p style=\"color:white;\">Hello World</p>";
+      //Check to see if the brewery exists, should only be one result
+      if ($getBreweryInnfoResults->num_rows > 0) {
+          //If the brewery exists, get the info
+          while ($row = mysqli_fetch_assoc($getBreweryInnfoResults)) {
+              //echo "<p style=\"color:white;\">Hello World</p>";
 
-			  //Save the values
-			  $BreweryName = $row['BreweryName'];
-			  $ProfilePicURL = $row['ProfilePicURL'];
-			  $CoverPicURL = $row['CoverPicURL'];
-			  $City = $row['City'];
-				$Visits = $row['visits'] + 1;
+              //Save the values
+              $BreweryName = $row['BreweryName'];
+              $ProfilePicURL = $row['ProfilePicURL'];
+              $CoverPicURL = $row['CoverPicURL'];
+              $City = $row['City'];
+              $Visits = $row['visits'] + 1;
 
-			  //If the cover pic does not exist, set it to the default
-				if(empty($CoverPicURL)){
-					$CoverPicURL = "../img/DefaultCoverImage.png";
-				}
-		  }
+              //If the cover pic does not exist, set it to the default
+                if (empty($CoverPicURL)) {
+                    $CoverPicURL = '../img/DefaultCoverImage.png';
+                }
+          }
 
-			//Free the results
-			mysqli_free_result($getBreweryInnfoResults);
-	  }else{
-		  //DNE Exist (Show page not found)
-		  header("Location: ./PageNotFound.html?breweryID=" . $_GET['id']);
-	  }
+            //Free the results
+            mysqli_free_result($getBreweryInnfoResults);
+      } else {
+          //DNE Exist (Show page not found)
+          header('Location: ./PageNotFound.html?breweryID='.$_GET['id']);
+      }
 
-		//Now, increment the visit count of said brewery
-		$UpdateVisits = "UPDATE BreweryTable SET visits=visits+1 WHERE breweryID=" . $_GET['id'];
-		if(mysqli_query($connection, $UpdateVisits)){
-			//Success
-		}else{
-			echo "Error With Query: " . mysqli_error($connection);
-		}
+        //Now, increment the visit count of said brewery
+        $UpdateVisits = 'UPDATE BreweryTable SET visits=visits+1 WHERE breweryID='.$_GET['id'];
+        if (mysqli_query($connection, $UpdateVisits)) {
+            //Success
+        } else {
+            echo 'Error With Query: '.mysqli_error($connection);
+        }
 
   ?>
 
@@ -162,7 +162,7 @@
 			<!-- Three items will appear here... Pic, Name and Edit Button -->
 			<img class="profileImg" id="profileImg" src="<?php echo $ProfilePicURL; ?>" alt="<?php echo $BreweryName; ?>" onclick="showSRC('editProfilePicture.html')">
 			<p class="profileName" onclick="showSRC('editBreweryName.html')"><?php echo $BreweryName; ?><br></p>
-			<p class="breweryLocation"><?php echo $City;?>
+			<p class="breweryLocation"><?php echo $City; ?>
 				<br></p>
 		</div>
 
@@ -195,7 +195,8 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('address.html')">
+						<?php $BreweryID = $_GET['id']; ?>
+						<a onclick="showSRC<?php echo "('Address.php?id=$BreweryID')" ?>">
 							<!-- address -->
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/location.png?raw=true" alt="Address Icon">
@@ -248,16 +249,16 @@
 				<div class="table"> -->
 					<!-- Brewery Following Brewery -->
 					<!--<?php
-						//$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
-						//$resultSet = mysqli_query($connection, $query);
+                        //$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
+                        //$resultSet = mysqli_query($connection, $query);
 
-						//Create a basic form
-						//createBasicForm($resultSet, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
+                        //Create a basic form
+                        //createBasicForm($resultSet, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
-						//Free results
-						i//f($resultSet) mysqli_free_result($resultSet);
+                        //Free results
+                        i//f($resultSet) mysqli_free_result($resultSet);
 
-					?>-->
+                    ?>-->
 				<!--</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
@@ -284,15 +285,17 @@
 				</div>
 				<div class="table">
 					<?php
-						//Build the table
-						$GetWhoBreweryIsFollowing = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . " LIMIT 6";
-						$GetWhoBreweryIsFollowingResults = mysqli_query($connection, $GetWhoBreweryIsFollowing);
+                        //Build the table
+                        $GetWhoBreweryIsFollowing = 'SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID='.$_GET['id'].' LIMIT 6';
+                        $GetWhoBreweryIsFollowingResults = mysqli_query($connection, $GetWhoBreweryIsFollowing);
 
-						createBasicForm($GetWhoBreweryIsFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
+                        createBasicForm($GetWhoBreweryIsFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
-						//Free the results
-						if($GetWhoBreweryIsFollowingResults) mysqli_free_result($GetWhoBreweryIsFollowingResults);
-					?>
+                        //Free the results
+                        if ($GetWhoBreweryIsFollowingResults) {
+                            mysqli_free_result($GetWhoBreweryIsFollowingResults);
+                        }
+                    ?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
@@ -306,15 +309,15 @@
 				</div>
 				<div class="table">
 					<?php
-						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 6";
-						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
+                        $getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = ".$_GET['id'].' LIMIT 6';
+                        $favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
 
-						createClickableTable($favoritedBeersResults, 'BeerID', 'PictureURL', 'BeerName');
+                        createClickableTable($favoritedBeersResults, 'BeerID', 'PictureURL', 'BeerName');
 
-						//Free results
-						mysqli_free_result($favoritedBeersResults);
+                        //Free results
+                        mysqli_free_result($favoritedBeersResults);
 
-					?>
+                    ?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('BeerList.html')" class="moreClicked">more</a>
@@ -328,18 +331,22 @@
 				<div class="table">
 					<!-- User Following Brewery -->
 					<?php
-						$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 6";
-						$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
+                        $GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=".$_GET['id'].' LIMIT 6';
+                        $GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
 
-						//Create a basic form
-						if($GetUsersFollowingBreweryResults) createBasicForm($GetUsersFollowingBreweryResults, 'Email', 'ProfilePicURL', 'Name', 'user');
+                        //Create a basic form
+                        if ($GetUsersFollowingBreweryResults) {
+                            createBasicForm($GetUsersFollowingBreweryResults, 'Email', 'ProfilePicURL', 'Name', 'user');
+                        }
 
-						//Clear the results
-						if($GetUsersFollowingBreweryResults) mysqli_free_result($GetUsersFollowingBreweryResults);
+                        //Clear the results
+                        if ($GetUsersFollowingBreweryResults) {
+                            mysqli_free_result($GetUsersFollowingBreweryResults);
+                        }
 
-						//Close the sql connection
-						$connection-> close();
-					?>
+                        //Close the sql connection
+                        $connection->close();
+                    ?>
 				</div>
 				<div class="stdSectionFooter">
 					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
@@ -367,20 +374,20 @@
 
 	<!-- Footer information; additional links etc -->
 	<?php
-			if($_SERVER['REQUEST_METHOD'] == 'POST'){
-								//Check which form was ssent then get the appropriate id.
-    						if(isset($_POST['brewery'])){
-							  	//Navigate to the brewery page iwth the new id
-							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
-    						}else {
-							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
-									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
-						    }
+            if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                //Check which form was ssent then get the appropriate id.
+                            if (isset($_POST['brewery'])) {
+                                //Navigate to the brewery page iwth the new id
+                                echo '<script type="text/javascript"> document.location.href = "breweryPage.php?id='.end(array_keys($_POST)).'";</script>';
+                            } else {
+                                $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+                                echo '<script type="text/javascript"> document.location.href = "profilePage.php";</script>';
+                            }
 
-								//Ends the current session
-								session_write_close();
-					}
-		?>
+                                //Ends the current session
+                                session_write_close();
+            }
+        ?>
 
 </body>
 
