@@ -29,16 +29,8 @@
 		<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
 		<!-- Import JS Files -->
 		<script src="../js/contentSwitch.js"></script>
-		<script src="../js/calendarview.js"></script>
+		<script src="../js/analytics.js"></script>
 
-		<!-- Analytics Script -->
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	  ga('create', 'UA-83948702-3', 'auto');
-	  ga('send', 'pageview');
 		<?php
 	  	//Start the session
 		  session_start();
@@ -52,7 +44,6 @@
 				//e	cho "<p>You rock";
 			}
 			?>
-	</script>
 		<!-- Navigation Bar -->
 		<nav>
 			<table class="menu" title="Menu">
@@ -448,8 +439,6 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				</div>
 				</div>
 			<div class="newsFeed" id="MainArea">
-
-
 
 			<!-- For example purposes, add the add brewery panel -->
 			<iframe id="contentFrame" src="../html/NewsFeed.php" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
