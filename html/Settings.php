@@ -200,6 +200,11 @@
                             $BreweryPhoneNum = $row['PhoneNo']; // $BreweryPhoneNum = PhoneNo
                             break;
                         }
+
+                        /* removes visible <br> tag from brewery hours display in settings */
+                        if (strstr($BreweryHours, '<br>')) { // if $brewryhours has <br>
+                            $BreweryHours = str_ireplace('<br>', '', $BreweryHours); // get rid of <br> tag
+                        }
                     }
                     /* WILL WE USE IT?????
                     BERERY LOCATION
@@ -258,10 +263,12 @@
 			<?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
                     if (isset($_POST['brewerysettings'])) { // and it was from general settings
-                        $BreweryHours = $_POST['breweryhours']; // fn = new first name
-                        $BreweryPhoneNum = $_POST['phonenumber']; // ln = new last name
-                        $BreweryStory = $_POST['brewerystory']; // em = new email
+                        $BreweryHours = $_POST['breweryhours']; // $BreweryHours = new breweryhours
+                        $BreweryPhoneNum = $_POST['phonenumber']; // $BreweryPhoneNum = new phonenumber
+                        $BreweryStory = $_POST['brewerystory']; // $BreweryStory = new brewerystory
                         //$pw = $_POST['password']; // pw = new password
+                            $BreweryHours = nl2br($BreweryHours, false); // newlines become <br>
+
                         $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".$BreweryStory."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
                         if (mysqli_query($connection, $updateBreweryInfo)) {
                             echo '<br><br>Records updated<br>';
