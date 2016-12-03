@@ -71,6 +71,24 @@
 
     <div class="stdSection" id="followers">
       <div class="stdSectionTitle">
+        Breweries Following You
+      </div>
+      <div class="table">
+        <?php
+        $getBrewFollowMe = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM BreweryFollowsUser, BreweryTable WHERE BreweryFollowsUser.BreweryID = BreweryTable.BreweryID AND UserEmail = '" . $CurrentUser . "'";
+        $brewFollowMe_result = mysqli_query($connection, $getBrewFollowMe);
+
+       //Build the table
+       searchResultsTable($brewFollowMe_result, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
+
+       //Free the results
+       if($brewFollowMe_result) mysqli_free_result($brewFollowMe_result);
+        ?>
+      </div>
+    </div>
+
+    <div class="stdSection" id="followers">
+      <div class="stdSectionTitle">
         People Following You
       </div>
       <div class="table">
