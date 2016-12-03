@@ -247,7 +247,7 @@
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a href="#" onclick="showSRC('BeerInfo.php');return false;" class="moreClicked">more</a>
+					<a href="#" onclick="showSRC('BestTastes.php');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
 		<div class="stdSection" id="eventCalendar">
@@ -378,7 +378,7 @@
 				?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 			<div class="stdSection" id="followingUsers">
