@@ -41,7 +41,7 @@
                     $FName = $row['FName'];
                     $LName = $row['LName'];
                     $Email = $row['Email'];
-                    $Password = $row['Password'];
+                    $Password = password_verify($row['Password'], password_hash($row['Password'], PASSWORD_DEFAULT));
                     break;
                 }
             }
@@ -76,7 +76,7 @@
                         $ln = $_POST['lname']; // ln = new last name
                         $em = $_POST['email']; // em = new email
 
-                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['signedInUser']."'"; // get update statement
+                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
                         if (mysqli_query($connection, $updateUserInfo)) {
                             echo 'Records updated';
                             /* refresh parent page */
@@ -109,8 +109,7 @@
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (isset($_POST['passwordsettings'])) {
                         if ($_POST['password'] == $_POST['reenterPassword']) {
-                            $pw = $_POST['password']; // pw = new password
-
+                            $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new (hashed) passowrd
                             $updateUserInfo = "UPDATE Users Set Password = '".$pw."' WHERE Email = '".$_SESSION['signedInUser']."'"; // get update statement
                             if (mysqli_query($connection, $updateUserInfo)) {
                                 echo 'Records updated';

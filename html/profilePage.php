@@ -85,18 +85,18 @@
 </head>
 <?php
 
-		//Import needed PHP files
-		include "../php/create_table.php";
+	//Import needed PHP files
+	include "../php/create_table.php";
 
-	 //Create a basic connection
-    $connection = include '../php/DBConnectionReturn.php';
+	//Create a basic connection
+	$connection = include '../php/DBConnectionReturn.php';
 
-$FName = $LName = $PicURL = $CurrentUser = "";
+	$FName = $LName = $PicURL = $CurrentUser = "";
 
 	//Use already provided var
 	$CurrentUser = $_SESSION['currentUser'];
 
-//Get the user's information
+	//Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $CurrentUser . "'";
 	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
 
@@ -247,7 +247,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a href="#" onclick="showSRC('BeerInfo.php');return false;" class="moreClicked">more</a>
+					<a href="#" onclick="showSRC('BestTastes.php');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
 		<div class="stdSection" id="eventCalendar">
@@ -378,7 +378,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 			<div class="stdSection" id="followingUsers">
