@@ -41,7 +41,7 @@
                     $FName = $row['FName'];
                     $LName = $row['LName'];
                     $Email = $row['Email'];
-                    $Password = password_verify($row["Password"], password_hash($row["Password"], PASSWORD_DEFAULT));
+                    $Password = password_verify($row['Password'], password_hash($row['Password'], PASSWORD_DEFAULT));
                     break;
                 }
             }
@@ -58,29 +58,27 @@
                     /* If the user has info */
                     if ($userInfoResults->num_rows > 0) {
                         /* echo the form data for them */
-                        echo "<form action='' class='stdForm' method='POST'' name='generalsettingsform'>";
+                        echo "<form action='' class='stdForm' method='POST' name='generalsettingsform'>";
                         echo '<div>First Name: </div>';
                         echo "<input class='leftAlign' id='fname' type='text' name='fname' value='$FName'><br>";
                         echo '<div> Last Name: </div>';
                         echo "<input class='leftAlign' id='lname' type='text' name='lname' value='$LName'><br>";
                         echo '<div> Email: </div>';
                         echo "<input class='leftAlign' id='email' type='text' name='email' value='$Email'><br>";
-                        echo '<div> Password: </div>';
-                        echo "<input class='leftAlign' id='password' type='text' name='password' value='$Password'>";
-                        echo '<br><br><button type="submit" name="generalsettings">Confirm</button>';
+                        echo '<br><button type="submit" name="generalsettings">Confirm</button>';
                         echo '</form>';
                     } else {
-                        //Error getting info
+                        echo 'err: there is no data to be displayed'; //Error getting info
                     }
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
                     if (isset($_POST['generalsettings'])) { // and it was from general settings
                         $fn = $_POST['fname']; // fn = new first name
                         $ln = $_POST['lname']; // ln = new last name
                         $em = $_POST['email']; // em = new email
-                        $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new password
-                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
+
+                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
                         if (mysqli_query($connection, $updateUserInfo)) {
-                            echo '<br><br>Records updated<br>';
+                            echo 'Records updated';
                             /* refresh parent page */
                             //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
@@ -93,6 +91,43 @@
                 ?>
 		</div>
 		<!-- end general settings -->
+		<h3> Password Settings: </h3> <!-- header for gs -->
+		<div class="generalsettings"><br>
+			<?php
+                /* If there are results then display password form */
+                if ($userInfoResults->num_rows > 0) {
+                    echo "<form action='' class='stdForm' method='POST' name='passwordsettingsform'>";
+                    echo '<div> Password: </div>';
+                    echo "<input class='leftAlign' id='password' type='password' name='password' value='$Password'>";
+                    echo '<div> Re-Enter Password: </div>';
+                    echo "<input class='leftAlign' id='reenterPassword' type='password' name='reenterPassword' value='$Password'>";
+                    echo '<br><br><button type="submit" name="passwordsettings">Confirm</button>';
+                    echo '</form>';
+                } else {
+                    echo 'err: There is no password to be displayed'; // there is no password
+                }
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    if (isset($_POST['passwordsettings'])) {
+                        if ($_POST['password'] == $_POST['reenterPassword']) {
+                            $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new (hashed) passowrd
+                            $updateUserInfo = "UPDATE Users Set Password = '".$pw."' WHERE Email = '".$_SESSION['signedInUser']."'"; // get update statement
+                            if (mysqli_query($connection, $updateUserInfo)) {
+                                echo 'Records updated';
+                                /* refresh parent page */
+                                //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
+                            } else {
+                                echo '<br><br><br>';
+                                echo "$updateUserInfo";
+                                echo 'ERORRRR';
+                            }
+                        } else {
+                            echo '<p><br><br></p><span style="color: red;">Error Updating</span>'; // red error msg if passwords do not match
+                            echo '<br><span style="color: red;">Passwords did not match</span></p>';
+                        }
+                    }
+                }
+            ?>
+		</div>
 
 		<h3> Privacy Settings: </h3> <!-- header for ps -->
 		<div class="privacysettings"> <!-- privacy settings class -->
@@ -173,7 +208,7 @@
                         /* actually update the privacy settings */
                         $updatePrivacySettings = "UPDATE PrivacySettings Set AllowEmails = '".$EmailOpt."', AllowSearch = '".$SearchOpt."', ShowLocation = '".$ShowLocation."', PersonalizedAds = '".$PersonalizedAds."' WHERE UserEmail = '".$_SESSION['signedInUser']."'"; // get update statement
                         if (mysqli_query($connection, $updatePrivacySettings)) {
-                            echo '<br><br>Records updated<br>';
+                            echo 'Records updated';
                             /* refresh parent page */
                             /*echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>'; */
                         } else {
@@ -281,7 +316,6 @@
 
                         $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".$BreweryStory."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
                         if (mysqli_query($connection, $updateBreweryInfo)) {
-                            echo '<br><br>Records updated<br>';
                             echo '<br><br>Records updated<br>';
                             /* refresh parent page */
                             //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
