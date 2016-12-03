@@ -53,7 +53,7 @@
 
     <div class="stdSection" id="followers">
       <div class="stdSectionTitle">
-        People You Are Following
+        People You're Following
       </div>
       <div class="table">
         <?php

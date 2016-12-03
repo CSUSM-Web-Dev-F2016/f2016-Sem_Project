@@ -378,7 +378,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 			<div class="stdSection" id="followingUsers">
