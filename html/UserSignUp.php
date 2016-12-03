@@ -10,16 +10,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="../css/backgroundVideo.css">
 
     <!-- Analytics Script -->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-83948702-3', 'auto');
-        ga('send', 'pageview');
-
-    </script>
+		<script src="../js/analytics.js"></script>
 
 </head>
 <body>
@@ -162,7 +153,8 @@ function checkUserSignUp() {
 
     //Get the profile pic url (optional)
     if(empty($_POST["ProfilePicURL"])){
-        $ProfilePicURl = "https://pbs.twimg.com/profile_images/1665394718/image.jpg";
+        //$ProfilePicURl = "https://pbs.twimg.com/profile_images/1665394718/image.jpg";
+        $ProfilePicURl = "http://gagnons.com/media/wysiwyg/blank-profile-_bowtie.png";
     }else{
         $ProfilePicURl = test_input($_POST["ProfilePicURL"]);
     }

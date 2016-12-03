@@ -55,8 +55,11 @@ div.newsFeedBox button:active {
     width: 100%;
     box-sizing:border-box;
     padding-top: 0px;
-    margin-top: 0px;
+    margin-top: 10px;
     resize: none;
+    font-size: 1em;
+    padding:10px;
+
 }
 
 .statusHeader{
@@ -71,14 +74,28 @@ div.newsFeedBox button:active {
 
 .userName{
   line-height: 30px;
-  position: absolute;
+  padding-top: 5px; padding-right: 5px;
   width: auto;
-  top: -10px;
+  top: 0px;
+  margin: 0px;
   padding-left: 10px;
+  left: 50px;
   text-shadow: none;
   font-style: italic;
+  display: inline-flex;;
+  position: absolute;
+  flex: auto;
   color: black;
   border: none;
+}
+
+.hidden{
+  visibility: hidden;;
+  margin: 0px;
+}
+
+.userName:hover{
+  color: darkblue;
 }
 
 #postBox{
@@ -95,7 +112,7 @@ div.newsFeedBox:hover{
   box-shadow: 0px 5px 5px gray;
 }
 .feedImg{
-    object-fit: scale-down;
+    object-fit: cover;
     text-align: center;
     border-radius: 50%;
     vertical-align: middle;
@@ -125,12 +142,28 @@ div.newsFeedBox button.newsFeedUserButton{
   margin: 0px;
   background-color:  white;
   border: none;
-  display: flex;
+  display: inline-flex;
   flex: auto;
   flex-direction: row;
   padding-left: 5px;
-  width: 50%;
   position: relative;
+}
+
+div.newsFeedBox button.newsFeedUserButton:hover{
+
+}
+
+ul{
+  text-decoration-line: underline;
+  font-style: normal;;
+  color: black;
+  font-size: 1.1em;
+  font-weight: bolder;
+}
+
+li{
+  font-style: normal;
+  color: black;
 }
 
 .inline{
