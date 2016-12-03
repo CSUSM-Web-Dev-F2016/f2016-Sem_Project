@@ -38,7 +38,7 @@
 					$connection = include '../php/DBConnectionReturn.php';
 
 					//Now that the connection is built, let's do teh queries (BUsers, Breweries, BEers, max of 20);
-					$MaxReturning = 20;
+					$MaxReturning = 50;
      ?>
 
 		 <!--Build the User Table -->

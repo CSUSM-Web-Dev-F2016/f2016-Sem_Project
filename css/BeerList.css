@@ -6,6 +6,7 @@ html, body, head {
     overflow: hidden;
     font-family: 'Noto Sans Kannada', sans-serif;
     width: 100%;
+    background-color: transparent;
 }
 
 .beers {

@@ -70,6 +70,7 @@ img.profileImg {
     top: -7em;
     left: 25%;
     position: absolute;
+    object-fit: contain;
 }
 
 #profileContainer {
