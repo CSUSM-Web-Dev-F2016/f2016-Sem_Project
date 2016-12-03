@@ -88,7 +88,7 @@ function goHomeAnd(address) {
     window.location.href = "../html/profilePage.php";
 
     //Show the requested source after the page loaded
-    //showSRC(address);
+    if(window.loaded) showSRC(address);
 }
 
 
@@ -102,7 +102,7 @@ function resizeIframe(obj) {
     obj.style.height = 0;
 
     //Set the new height of the frame
-    obj.style.height = (obj.contentWindow.document.body.scrollHeight) + 'px';
+    obj.style.height = (obj.contentWindow.document.body.scrollHeight + 15) + 'px';
 }
 
 /**

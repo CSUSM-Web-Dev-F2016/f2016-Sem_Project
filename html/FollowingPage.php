@@ -20,7 +20,7 @@
        //Create a basic connection
        $connection = include '../php/DBConnectionReturn.php';
 
-    	 $CurrentUser = $_SESSION['signedInUser'];
+    	 $CurrentUser = $_SESSION['currentUser'];
     ?>
   </head>
   <body>
@@ -57,7 +57,7 @@
       </div>
       <div class="table">
         <?php
-        $getFollowUser = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
+        $getFollowUser = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
         $followUser_result = mysqli_query($connection, $getFollowUser);
 
        //Build the table
@@ -93,7 +93,7 @@
       </div>
       <div class="table">
         <?php
-        $getPeopleFollowMe = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL FROM Users, UserFollowsUser WHERE OtherUserEmail = '" . $CurrentUser . "' AND UserEmail = Email";
+        $getPeopleFollowMe = "SELECT DISTINCT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, UserFollowsUser WHERE OtherUserEmail = '" . $CurrentUser . "' AND UserEmail = Email";
         $peopleFollowMe_result = mysqli_query($connection, $getPeopleFollowMe);
 
        //Build the table
@@ -106,6 +106,36 @@
     </div>
 
     <?php
+
+    //Run the 'If' Statement to determine what should happen on click
+    //For the Post Request.
+    //If a brewery, set the breweryID then go to the brewery page.
+    //If a user, set the current user and go to the profile page
+    //If a brewery, show the beer in teh current iframe
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        if(isset($_POST['brewery'])){
+
+          //Navigate to the brewery page iwth the new id
+          echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+
+        }
+        else if(isset($_POST['beerID'])) {
+            //echo "<script type=\"text/javascript\"> window.alert(\"Found a Beer: " . $_POST['BeerID'] . "\");</script>";
+            echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?BeerID=" . $_POST['beerID'] . "\";</script>";
+        }
+
+        else {
+            $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+
+            //echo "<script type=\"text/javascript\"> window.alert(\"Found a User: " . $_POST['user'] . "\");</script>";
+            echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+        }
+    }
+
+    //Close the current session
+    session_write_close();
+
     //close database connection
     mysqli_close($connection);
     ?>

@@ -176,3 +176,10 @@ form{
   padding: 0px;
   margin: 0px;
 }
+
+/** For all anchors in a  post **/
+a{
+  text-decoration: none;
+  color: darkblue;
+  font-style: normal;;
+}

@@ -239,6 +239,16 @@
 								</tr>
 								<?php
 							}
+						if(!empty($BeerType)){ ?>
+							<tr>
+								<th>Beer Type:
+								</th>
+								<td>
+									<?php echo $BeerType ?>
+								</td>
+							</tr>
+							<?php
+						}
 						if(!empty($BeerDescription)){ ?>
 							<tr>
 								<th>Beer Description:

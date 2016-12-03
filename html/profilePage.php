@@ -30,6 +30,7 @@
 		<!-- Import JS Files -->
 		<script src="../js/contentSwitch.js"></script>
 		<script src="../js/analytics.js"></script>
+		<link rel="shortcut icon" href="../img/Empty_Glass.png"/>
 
 		<?php
 	  	//Start the session
