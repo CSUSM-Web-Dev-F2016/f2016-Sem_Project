@@ -64,10 +64,6 @@
         //Connect to the DB
         $connection = include '../php/DBConnectionReturn.php';
 
-      //Start the SQL Query to get the brewery information
-      $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=".$_GET['id'];
-      $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
-
 		//Get current user info
 		$signedInUser = $_SESSION['signedInUser'];
 		//Get breweryID
@@ -95,6 +91,11 @@
 				break;
 			}
 		}
+
+	//Start the SQL Query to get the brewery information
+	$getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=".$_GET['id'];
+	$getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
+
 	  //Check to see if the brewery exists, should only be one result
 	  if($getBreweryInnfoResults-> num_rows > 0){
 		  //If the brewery exists, get the info
@@ -117,8 +118,9 @@
             //Free the results
             mysqli_free_result($getBreweryInnfoResults);
       } else {
+					echo "<script type=\"text/javascript\">window.alert(\"Brewery Not Found: " . $getBreweryInfoQuery . "!\");</script>";
           //DNE Exist (Show page not found)
-          header('Location: ./PageNotFound.html?breweryID='.$_GET['id']);
+          //header('Location: ./PageNotFound.html?breweryID='.$_GET['id']);
       }
 
         //Now, increment the visit count of said brewery
