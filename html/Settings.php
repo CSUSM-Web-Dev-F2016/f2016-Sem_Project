@@ -13,6 +13,17 @@
 	<script src="../js/analytics.js"></script>
 
 		<?php
+
+            function removeBR($variable)
+            {
+                /* removes visible <br> tag from brewery hours display in settings */
+                if (strstr($variable, '<br>')) { // if $brewryhours has <br>
+                    $variable = str_ireplace('<br>', '', $variable); // get rid of <br> tag
+                }
+
+                return $variable;
+            }
+
             session_start(); // start connection
 
             /*Get the token to prove the user was logged in*/
@@ -200,6 +211,9 @@
                             $BreweryPhoneNum = $row['PhoneNo']; // $BreweryPhoneNum = PhoneNo
                             break;
                         }
+
+                        $BreweryHours = removeBR($BreweryHours);
+                        $BreweryStory = removeBR($BreweryStory);
                     }
                     /* WILL WE USE IT?????
                     BERERY LOCATION
@@ -258,10 +272,13 @@
 			<?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
                     if (isset($_POST['brewerysettings'])) { // and it was from general settings
-                        $BreweryHours = $_POST['breweryhours']; // fn = new first name
-                        $BreweryPhoneNum = $_POST['phonenumber']; // ln = new last name
-                        $BreweryStory = $_POST['brewerystory']; // em = new email
-                        //$pw = $_POST['password']; // pw = new password
+                        $BreweryHours = $_POST['breweryhours']; // $BreweryHours = new breweryhours
+                        $BreweryPhoneNum = $_POST['phonenumber']; // $BreweryPhoneNum = new phonenumber
+                        $BreweryStory = $_POST['brewerystory']; // $BreweryStory = new brewerystory
+
+                            $BreweryHours = nl2br($BreweryHours, false); // newlines become <br>
+                            $BreweryStory = nl2br($BreweryStory, false); // newlines become <br>
+
                         $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".$BreweryStory."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
                         if (mysqli_query($connection, $updateBreweryInfo)) {
                             echo '<br><br>Records updated<br>';

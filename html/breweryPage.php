@@ -205,7 +205,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('EmptyForm.html')">
+						<a onclick="showSRC<?php echo "('Story.php?id=$BreweryID')" ?>">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/story.png?raw=true" alt="Story Icon">
 							</div>
