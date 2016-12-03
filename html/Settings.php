@@ -13,6 +13,17 @@
 	<script src="../js/analytics.js"></script>
 
 		<?php
+
+            function removeBR($variable)
+            {
+                /* removes visible <br> tag from brewery hours display in settings */
+                if (strstr($variable, '<br>')) { // if $brewryhours has <br>
+                    $variable = str_ireplace('<br>', '', $variable); // get rid of <br> tag
+                }
+
+                return $variable;
+            }
+
             session_start(); // start connection
 
             /*Get the token to prove the user was logged in*/
@@ -201,10 +212,8 @@
                             break;
                         }
 
-                        /* removes visible <br> tag from brewery hours display in settings */
-                        if (strstr($BreweryHours, '<br>')) { // if $brewryhours has <br>
-                            $BreweryHours = str_ireplace('<br>', '', $BreweryHours); // get rid of <br> tag
-                        }
+                        $BreweryHours = removeBR($BreweryHours);
+                        $BreweryStory = removeBR($BreweryStory);
                     }
                     /* WILL WE USE IT?????
                     BERERY LOCATION
@@ -266,8 +275,9 @@
                         $BreweryHours = $_POST['breweryhours']; // $BreweryHours = new breweryhours
                         $BreweryPhoneNum = $_POST['phonenumber']; // $BreweryPhoneNum = new phonenumber
                         $BreweryStory = $_POST['brewerystory']; // $BreweryStory = new brewerystory
-                        //$pw = $_POST['password']; // pw = new password
+
                             $BreweryHours = nl2br($BreweryHours, false); // newlines become <br>
+                            $BreweryStory = nl2br($BreweryStory, false); // newlines become <br>
 
                         $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".$BreweryStory."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
                         if (mysqli_query($connection, $updateBreweryInfo)) {
