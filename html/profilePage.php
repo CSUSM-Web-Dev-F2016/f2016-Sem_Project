@@ -247,7 +247,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a href="#" onclick="showSRC('BeerInfo.php');return false;" class="moreClicked">more</a>
+					<a href="#" onclick="showSRC('BestTastes.php');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
 		<div class="stdSection" id="eventCalendar">
