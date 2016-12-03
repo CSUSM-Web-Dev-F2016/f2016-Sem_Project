@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="46a92af3-5935-49ef-be1e-7eda3fde0727" name="Default" comment="-Updated UserSignUp.html and UserSignUp.php&#10;--.html now is just the form and posts to the php page&#10;--all create user functions are now in /php/create_user.php">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+>>>>>>> chris
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/html/breweryPage.php" afterPath="$PROJECT_DIR$/html/breweryPage.php" />
     </list>
     <ignored path="f2016-Sem_Project.iws" />
@@ -52,6 +55,7 @@
           <file leaf-file-name="breweryPage.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/html/breweryPage.php">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state relative-caret-position="240">
                   <caret line="255" column="44" selection-start-line="255" selection-start-column="44" selection-end-line="255" selection-end-column="44" />
                   <folding>
@@ -61,6 +65,20 @@
                     <marker date="1480715621000" expanded="true" signature="4745:4801" ph="UPDATE Brewe... " />
                     <marker date="1480715621000" expanded="true" signature="11467:11674" ph="SELECT DISTI... BreweryFollowsBrewery" />
                     <marker date="1480715621000" expanded="true" signature="12368:12484" ph="SELECT DISTI... Beers" />
+=======
+                <state relative-caret-position="575">
+                  <caret line="414" column="63" selection-start-line="414" selection-start-column="63" selection-end-line="414" selection-end-column="63" />
+                  <folding>
+                    <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
+                    <marker date="1480724704000" expanded="true" signature="2617:2798" ph="SELECT Brewe... BreweryTable" />
+                    <marker date="1480724704000" expanded="true" signature="3039:3126" ph="SELECT * FRO... UserFollowsBrewery" />
+                    <marker date="1480724704000" expanded="true" signature="4494:4550" ph="UPDATE Brewe... " />
+                    <marker date="1480724704000" expanded="true" signature="11261:11468" ph="SELECT DISTI... BreweryFollowsBrewery" />
+                    <marker date="1480724704000" expanded="true" signature="12162:12278" ph="SELECT DISTI... Beers" />
+                    <marker date="1480724704000" expanded="true" signature="14992:15089" ph="DELETE FROM " />
+                    <marker date="1480724704000" expanded="true" signature="15461:15538" ph="INSERT INTO UserFollowsBrewery... " />
+                    <marker date="1480724704000" expanded="true" signature="15461:15542" ph="INSERT INTO UserFollowsBrewery... " />
+>>>>>>> chris
                   </folding>
                 </state>
               </provider>
@@ -73,8 +91,13 @@
           <file leaf-file-name="profilePage.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/html/profilePage.php">
               <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
                 <state relative-caret-position="6816">
                   <caret line="385" column="0" selection-start-line="385" selection-start-column="0" selection-end-line="385" selection-end-column="0" />
+=======
+                <state relative-caret-position="24">
+                  <caret line="310" column="0" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
+>>>>>>> chris
                   <folding>
                     <marker date="1480715431000" expanded="true" signature="4192:4246" ph="SELECT * FRO... Users" />
                     <marker date="1480715431000" expanded="true" signature="4986:5137" ph="SELECT COUNT... " />
@@ -158,38 +181,7 @@
       <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="f2016-Sem_Project" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="html" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
     </panes>
   </component>
@@ -264,12 +256,20 @@
       <workItem from="1479352630390" duration="170000" />
       <workItem from="1479352810160" duration="8586000" />
       <workItem from="1479855971751" duration="8772000" />
+<<<<<<< HEAD
       <workItem from="1479951650888" duration="20153000" />
+=======
+      <workItem from="1479951650888" duration="24278000" />
+>>>>>>> chris
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="39931000" />
+=======
+    <option name="totallyTimeSpent" value="44056000" />
+>>>>>>> chris
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="6" />
@@ -528,6 +528,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/html/breweryPage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -539,10 +540,23 @@
             <marker date="1480715621000" expanded="true" signature="4745:4801" ph="UPDATE Brewe... " />
             <marker date="1480715621000" expanded="true" signature="11467:11674" ph="SELECT DISTI... BreweryFollowsBrewery" />
             <marker date="1480715621000" expanded="true" signature="12368:12484" ph="SELECT DISTI... Beers" />
+=======
+    <entry file="file://$PROJECT_DIR$/html/profilePage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="310" column="0" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
+          <folding>
+            <marker date="1480715431000" expanded="true" signature="4192:4246" ph="SELECT * FRO... Users" />
+            <marker date="1480715431000" expanded="true" signature="4986:5137" ph="SELECT COUNT... " />
+            <marker date="1480715431000" expanded="true" signature="8251:8330" ph="UPDATE Users... " />
+            <marker date="1480715431000" expanded="true" signature="8953:9128" ph="SELECT DISTI... UserFavoritesBeer" />
+            <marker date="1480715431000" expanded="true" signature="11322:11554" ph="SELECT DISTI... BreweryTable" />
+>>>>>>> chris
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/html/profilePage.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="6816">
@@ -553,6 +567,22 @@
             <marker date="1480715431000" expanded="true" signature="8251:8330" ph="UPDATE Users... " />
             <marker date="1480715431000" expanded="true" signature="8953:9128" ph="SELECT DISTI... UserFavoritesBeer" />
             <marker date="1480715431000" expanded="true" signature="11322:11554" ph="SELECT DISTI... BreweryTable" />
+=======
+    <entry file="file://$PROJECT_DIR$/html/breweryPage.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="575">
+          <caret line="414" column="63" selection-start-line="414" selection-start-column="63" selection-end-line="414" selection-end-column="63" />
+          <folding>
+            <element signature="n#head#0;n#html#0;n#!!top" expanded="false" />
+            <marker date="1480724704000" expanded="true" signature="2617:2798" ph="SELECT Brewe... BreweryTable" />
+            <marker date="1480724704000" expanded="true" signature="3039:3126" ph="SELECT * FRO... UserFollowsBrewery" />
+            <marker date="1480724704000" expanded="true" signature="4494:4550" ph="UPDATE Brewe... " />
+            <marker date="1480724704000" expanded="true" signature="11261:11468" ph="SELECT DISTI... BreweryFollowsBrewery" />
+            <marker date="1480724704000" expanded="true" signature="12162:12278" ph="SELECT DISTI... Beers" />
+            <marker date="1480724704000" expanded="true" signature="14992:15089" ph="DELETE FROM " />
+            <marker date="1480724704000" expanded="true" signature="15461:15538" ph="INSERT INTO UserFollowsBrewery... " />
+            <marker date="1480724704000" expanded="true" signature="15461:15542" ph="INSERT INTO UserFollowsBrewery... " />
+>>>>>>> chris
           </folding>
         </state>
       </provider>
