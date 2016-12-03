@@ -46,33 +46,66 @@
        searchResultsTable($follow_result, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
 
        //Free the results
-       if($breweriesFollowingResults) mysqli_free_result($breweriesFollowingResults);
+       if($follow_result) mysqli_free_result($follow_result);
         ?>
       </div>
     </div>
 
     <div class="stdSection" id="followers">
       <div class="stdSectionTitle">
-        People You're Following
+        People You Are Following
       </div>
       <div class="table">
         <?php
-        $getFollowUser = "SELECT Fname, Lname, ProfilePicURL FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
+        $getFollowUser = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
         $followUser_result = mysqli_query($connection, $getFollowUser);
 
        //Build the table
-       searchResultsTable($followUser_result, 'Email', 'ProfilePicURL', 'Fname', 'user');
+       searchResultsTable($followUser_result, 'Email', 'ProfilePicURL', 'Name', 'user');
 
        //Free the results
-       if($breweriesFollowingResults) mysqli_free_result($breweriesFollowingResults);
+       if($followUser_result) mysqli_free_result($followUser_result);
+        ?>
+      </div>
+    </div>
+
+    <div class="stdSection" id="followers">
+      <div class="stdSectionTitle">
+        Breweries Following You
+      </div>
+      <div class="table">
+        <?php
+        $getBrewFollowMe = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM BreweryFollowsUser, BreweryTable WHERE BreweryFollowsUser.BreweryID = BreweryTable.BreweryID AND UserEmail = '" . $CurrentUser . "'";
+        $brewFollowMe_result = mysqli_query($connection, $getBrewFollowMe);
+
+       //Build the table
+       searchResultsTable($brewFollowMe_result, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
+
+       //Free the results
+       if($brewFollowMe_result) mysqli_free_result($brewFollowMe_result);
+        ?>
+      </div>
+    </div>
+
+    <div class="stdSection" id="followers">
+      <div class="stdSectionTitle">
+        People Following You
+      </div>
+      <div class="table">
+        <?php
+        $getPeopleFollowMe = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL FROM Users, UserFollowsUser WHERE OtherUserEmail = '" . $CurrentUser . "' AND UserEmail = Email";
+        $peopleFollowMe_result = mysqli_query($connection, $getPeopleFollowMe);
+
+       //Build the table
+       searchResultsTable($peopleFollowMe_result, 'Email', 'ProfilePicURL', 'Name', 'user');
+
+       //Free the results
+       if($peopleFollowMe_result) mysqli_free_result($peopleFollowMe_result);
         ?>
       </div>
     </div>
 
     <?php
-    //free query results
-    mysqli_free_result($follow_result);
-    mysqli_free_result($followUser_result);
     //close database connection
     mysqli_close($connection);
     ?>
