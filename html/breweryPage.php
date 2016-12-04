@@ -72,6 +72,14 @@
 		//Get breweries that user is following
 		$signedInUserBreweriesQuery = "SELECT * FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=" . $_GET['id'];
 		$signedInUserBreweriesResults = mysqli_query($connection, $signedInUserBreweriesQuery);
+		//Determine if user is brewery owner
+		$getBreweryOwnerQuery = "SELECT UserEmail FROM BreweryOwner WHERE BreweryID=" . $_GET['id'];
+		$getBreweryOwnerResults = mysqli_query($connection, $getBreweryOwnerQuery);
+		if ($getBreweryOwnerResults-> num_rows > 0){
+			//Signed in user is the brewery owner
+			$isUserBreweryOwner = true;
+		} else
+			$isUserBreweryOwner = false;
 
 		//Check to see if user has favorited brewery
 		if ($signedInUserBreweriesResults-> num_rows == 0){
@@ -179,8 +187,10 @@
 					About
 				</div>
 				<div class="table">
+
+
 					<div class="smalltableCell">
-						<a onclick="showSRC('hours.html')">
+						<a onclick="showSRC<?php echo "('Hours.php?id=$id')";?>">
 							<!-- hours -->
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/time.png?raw=true" alt="Hours Icon">
@@ -190,6 +200,8 @@
 							</div>
 						</a>
 					</div>
+
+
 					<div class="smalltableCell">
 						<a onclick="showSRC('EmptyForm.html')">
 							<div class="tableCell img">

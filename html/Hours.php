@@ -23,10 +23,9 @@
 
              // Create a basic connection
             $connection = include '../php/DBConnectionReturn.php';
-            $BreweryInformationQuery = "SELECT * FROM BreweryTable WHERE BreweryID='".$_GET['id']."'";
+            $BreweryInformationQuery = "SELECT Hours FROM BreweryTable WHERE BreweryID='".$_GET['id']."'";
             $BreweryInfoResults = mysqli_query($connection, $BreweryInformationQuery);
-            //echo "$BreweryLocationQuery";
-
+           
             $BreweryID = $_GET['id'];
             if ($BreweryInfoResults->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($BreweryInfoResults)) {
@@ -34,6 +33,10 @@
                     break;
                 }
             }
+
+            if (empty($BreweryHours)){
+				$BreweryHours = "Brewery hasn't entered their hours yet!";
+			}
             ?>
 	</head>
 
@@ -43,7 +46,7 @@
 				<div class="hourstitle">Hours of Operation:</div>
 				<hr>
 				<div class="listhours">
-					<?php echo "$BreweryHours" ?>
+					<?php echo "$BreweryHours"; ?>
 				</div>
 		</div>
 		</div>
