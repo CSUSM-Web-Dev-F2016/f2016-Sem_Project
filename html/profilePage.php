@@ -88,6 +88,7 @@
 
 	//Import needed PHP files
 	include "../php/create_table.php";
+	include "../php/LogEvent.php";
 
 	//Create a basic connection
 	$connection = include '../php/DBConnectionReturn.php';
