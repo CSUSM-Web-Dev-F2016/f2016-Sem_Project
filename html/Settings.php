@@ -286,23 +286,23 @@
                     echo '<div class="brewerysettings"></div>';
                     echo "<h3 id='displaybreweryname'>$BreweryName</h3>";
                     echo '<form class="stdForm" method="POST" name="brewerysettingsform">';
-                    echo '<div class="BreweryHours">Brewery Hours:<br>';
-                    echo "<textarea class='breweryhours' name='breweryhours' >$BreweryHours</textarea>";
+                    echo '<div class="PhoneNumber"><p>Brewery Phone Number:<br>';
+                    echo "<input class='PhoneNumber' type='tel' name='phonenumber' value='$BreweryPhoneNum'></p>";
+                    echo '</div>';
+                    echo '<div class="BreweryHours"><p>Brewery Hours:<br>';
+                    echo "<textarea rows ='' id='breweryhours' name='breweryhours'>$BreweryHours</textarea></p>";
                     echo '</div>';
                     //echo '</div> || rows='10' colums='30'';
-                    echo '<div class="PhoneNumber">Brewery Phone Number:<br>';
-                    echo "<input class='PhoneNumber' type='tel' name='phonenumber' value='$BreweryPhoneNum'>";
+                    echo '<div class="BreweryStory"><p>Brewery Story:<br>';
+                    echo "<textarea id='brewerystory' name='brewerystory'>$BreweryStory</textarea></p>";
                     echo '</div>';
-                    echo '<div class="BreweryStory">Brewery Story:<br>';
-                    echo "<textarea name='brewerystory'>$BreweryStory</textarea>";
-                    echo '</div>';
-                    echo '<br><button type="submit" name="brewerysettings">Confirm</button>';
+                    echo '<br><button id="submitbrewerysettings" type="submit" name="brewerysettings">Confirm</button>';
                     echo '</form>';
                     //echo '</div>';
                 } else { // the user has no breweries
                     echo 'You do not have any breweries'; // Output the user does not have a brewery
                 }
-                echo "<br><br><button type='submit' onclick='location.href=\"BrewerySignUp.php\"'>Add Brewery</button>";
+                echo "<p><br><br><button type='submit' onclick='location.href=\"BrewerySignUp.php\"'>Add Brewery</button></p>";
             ?>
 			<?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
