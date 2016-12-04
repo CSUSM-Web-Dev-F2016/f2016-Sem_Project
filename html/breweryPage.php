@@ -69,7 +69,6 @@
 
 		//Get current user info
 		$signedInUser = $_SESSION['signedInUser'];
-		echo $_SESSION['signedInUser'];
 		//Get breweries that user is following
 		$signedInUserBreweriesQuery = "SELECT * FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=" . $_GET['id'];
 		$signedInUserBreweriesResults = mysqli_query($connection, $signedInUserBreweriesQuery);
