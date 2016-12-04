@@ -51,7 +51,7 @@
 		include "../php/create_table.php";
   	//Start the session
 	  session_start();
-		 $id= $_GET['id'];
+		$id = $_GET['id'];
 	  //Get the token to prove the user was logged in
 	  if(strlen($_SESSION['loginToken']) == 0){
 		  //redirect to the login page
@@ -69,6 +69,7 @@
 
 		//Get current user info
 		$signedInUser = $_SESSION['signedInUser'];
+		echo $_SESSION['signedInUser'];
 		//Get breweries that user is following
 		$signedInUserBreweriesQuery = "SELECT * FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=" . $_GET['id'];
 		$signedInUserBreweriesResults = mysqli_query($connection, $signedInUserBreweriesQuery);
@@ -79,19 +80,16 @@
 			$following = 'n';
 			$followText = "Follow";
 			$followingImage = "../img/Follow.png?raw=true";
-			//echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Not Following</p>";
-
 		} else {
+			//Is following
 			$following = 'y';
 			$followText = "UnFollow";
 			$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
-			//echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Following</p>";
 		}
 	  //Check to see if the brewery exists, should only be one result
 	  if($getBreweryInnfoResults-> num_rows > 0){
 		  //If the brewery exists, get the info
 		  while($row = mysqli_fetch_assoc($getBreweryInnfoResults)){
-			//echo "<p style=\"color:white;\">Hello World</p>";
 
 			  //Save the values
 			  $BreweryName = $row['BreweryName'];
@@ -361,9 +359,6 @@
 
 						//Clear the results
 						if($GetUsersFollowingBreweryResults) mysqli_free_result($GetUsersFollowingBreweryResults);
-
-						//Close the sql connection
-						$connection-> close();
 					?>
 				</div>
 				<div class="stdSectionFooter">
@@ -404,12 +399,12 @@
 			//User is going to Follow the user$
 			if($following == 'y'){
 				//If the user is currently following the user, unfollow it and change the image
-				$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BreweryID=$id";
+				$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID='" . $id . "'";
 				if(mysqli_query($connection, $DeleteQuery)){
 					//Success
 					$followText = "Follow";
 					$followingImage = "../img/Follow.png?raw=true";
-
+					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
 				}else{
 					die("Error: " . mysqli_error($connection));
 				}
@@ -422,7 +417,6 @@
 					echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">success</p>";
 					$followText = "UnFollow";
 					$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
-					$followSuccess = "User successfully added";
 					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
 				} else {
 					die("Error: " . mysqli_error($connection));
@@ -431,7 +425,7 @@
 		}
 
 		//Ends the current session
-		//session_write_close();
+		session_write_close();
 
 		//Close the sql session
 		$connection->close();

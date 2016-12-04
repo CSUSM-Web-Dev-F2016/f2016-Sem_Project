@@ -329,7 +329,7 @@
 									}else{
 										die("Error: " . mysqli_error($connection));
 									}
-								}else{
+								}else {
 									//If the user is not following the user, follow it and change the image.
 									$addQuery = "INSERT INTO UserFollowsUser (UserEmail, OtherUserEmail) VALUES ('" . $_SESSION['signedInUser'] . "', '" . $_SESSION['currentUser'] . "')";
 									if(mysqli_query($connection, $addQuery)){
