@@ -31,6 +31,10 @@
 
 	<!-- Meta data -->
 	<title>Beer Hopper</title>
+
+	<!-- Preview Image -->
+	<meta property="og:image" content="/img/BeerHopperLogo.png" />
+
 	<!-- Analytics Script -->
 	<script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -49,6 +53,8 @@
 	//If the user is logged in, take them to the profile page
 	//Start the session
 	  session_start();
+
+		include "php/LogEvent.php";
 
 	  //Get the token to prove the user was logged in
 	  if(strlen($_SESSION['loginToken']) != 0){
@@ -131,6 +137,10 @@
 								//echo "<script type=\"text/javascript\">window.alert(\"User Updated: " . $row['Email'] . "\");</script>";
 							}
 
+							//Log the sign in
+							if(CustomLog($connection, $_SESSION['signedInUser'], 'Login', "User logged in.")){
+								echo "<script type=\"text/javascript\"> window.alert(\"Error Found when trying to submit a logfile\");</script>";
+							}
 
 							//Close the SQL connection
 							$connection->close();
