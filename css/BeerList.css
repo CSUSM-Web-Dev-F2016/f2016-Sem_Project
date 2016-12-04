@@ -1,13 +1,18 @@
 @import url('http://fonts.googleapis.com/earlyaccess/notosanskannada.css');
 html, body, head {
+
     padding: 0px;
     margin: 0px;
-    padding-bottom: 25px;
+    /*padding-bottom: 25px;
     overflow: hidden;
     font-family: 'Noto Sans Kannada', sans-serif;
-    width: 100%;
+    width: 100%;*/
 }
 
 .beers {
     justify-content: center;
+}
+
+iframe{
+  background-color: transparent;
 }

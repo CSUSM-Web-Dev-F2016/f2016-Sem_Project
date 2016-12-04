@@ -41,7 +41,7 @@
                     $FName = $row['FName'];
                     $LName = $row['LName'];
                     $Email = $row['Email'];
-                    $Password = password_verify($row["Password"], password_hash($row["Password"], PASSWORD_DEFAULT));
+                    $Password = password_verify($row['Password'], password_hash($row['Password'], PASSWORD_DEFAULT));
                     break;
                 }
             }
@@ -58,29 +58,27 @@
                     /* If the user has info */
                     if ($userInfoResults->num_rows > 0) {
                         /* echo the form data for them */
-                        echo "<form action='' class='stdForm' method='POST'' name='generalsettingsform'>";
+                        echo "<form action='' class='stdForm' method='POST' name='generalsettingsform'>";
                         echo '<div>First Name: </div>';
                         echo "<input class='leftAlign' id='fname' type='text' name='fname' value='$FName'><br>";
                         echo '<div> Last Name: </div>';
                         echo "<input class='leftAlign' id='lname' type='text' name='lname' value='$LName'><br>";
                         echo '<div> Email: </div>';
                         echo "<input class='leftAlign' id='email' type='text' name='email' value='$Email'><br>";
-                        echo '<div> Password: </div>';
-                        echo "<input class='leftAlign' id='password' type='text' name='password' value='$Password'>";
-                        echo '<br><br><button type="submit" name="generalsettings">Confirm</button>';
+                        echo '<br><button type="submit" name="generalsettings">Confirm</button>';
                         echo '</form>';
                     } else {
-                        //Error getting info
+                        echo 'err: there is no data to be displayed'; //Error getting info
                     }
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
                     if (isset($_POST['generalsettings'])) { // and it was from general settings
                         $fn = $_POST['fname']; // fn = new first name
                         $ln = $_POST['lname']; // ln = new last name
                         $em = $_POST['email']; // em = new email
-                        $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new password
-                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."', Password = '".$pw."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
+
+                        $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
                         if (mysqli_query($connection, $updateUserInfo)) {
-                            echo '<br><br>Records updated<br>';
+                            echo 'Records updated';
                             /* refresh parent page */
                             //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
@@ -93,6 +91,43 @@
                 ?>
 		</div>
 		<!-- end general settings -->
+		<h3> Password Settings: </h3> <!-- header for gs -->
+		<div class="generalsettings"><br>
+			<?php
+                /* If there are results then display password form */
+                if ($userInfoResults->num_rows > 0) {
+                    echo "<form action='' class='stdForm' method='POST' name='passwordsettingsform'>";
+                    echo '<div> Password: </div>';
+                    echo "<input class='leftAlign' id='password' type='password' name='password' value='$Password'>";
+                    echo '<div> Re-Enter Password: </div>';
+                    echo "<input class='leftAlign' id='reenterPassword' type='password' name='reenterPassword' value='$Password'>";
+                    echo '<br><br><button type="submit" name="passwordsettings">Confirm</button>';
+                    echo '</form>';
+                } else {
+                    echo 'err: There is no password to be displayed'; // there is no password
+                }
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+                    if (isset($_POST['passwordsettings'])) {
+                        if ($_POST['password'] == $_POST['reenterPassword']) {
+                            $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new (hashed) passowrd
+                            $updateUserInfo = "UPDATE Users Set Password = '".$pw."' WHERE Email = '".$_SESSION['signedInUser']."'"; // get update statement
+                            if (mysqli_query($connection, $updateUserInfo)) {
+                                echo 'Records updated';
+                                /* refresh parent page */
+                                //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
+                            } else {
+                                echo '<br><br><br>';
+                                echo "$updateUserInfo";
+                                echo 'ERORRRR';
+                            }
+                        } else {
+                            echo '<p><br><br></p><span style="color: red;">Error Updating</span>'; // red error msg if passwords do not match
+                            echo '<br><span style="color: red;">Passwords did not match</span></p>';
+                        }
+                    }
+                }
+            ?>
+		</div>
 
 		<h3> Privacy Settings: </h3> <!-- header for ps -->
 		<div class="privacysettings"> <!-- privacy settings class -->
@@ -173,7 +208,7 @@
                         /* actually update the privacy settings */
                         $updatePrivacySettings = "UPDATE PrivacySettings Set AllowEmails = '".$EmailOpt."', AllowSearch = '".$SearchOpt."', ShowLocation = '".$ShowLocation."', PersonalizedAds = '".$PersonalizedAds."' WHERE UserEmail = '".$_SESSION['signedInUser']."'"; // get update statement
                         if (mysqli_query($connection, $updatePrivacySettings)) {
-                            echo '<br><br>Records updated<br>';
+                            echo 'Records updated';
                             /* refresh parent page */
                             /*echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>'; */
                         } else {
@@ -191,83 +226,75 @@
 			<?php
             /*Get brewery owner info */
                 $GetBreweryOwnerQuery = "SELECT * FROM BreweryOwner WHERE UserEmail='".$_SESSION['signedInUser']."'"; // get brewery owner info query
+                $BreweriesOwned = array();
+                $BreweryNames = array();
+                $BreweryStories = array();
+                $BreweriesHours = array();
+                $BreweryPhoneNumbers = array();
                 $BreweryOwner = mysqli_query($connection, $GetBreweryOwnerQuery); // get brewery owner info
                 if ($BreweryOwner->num_rows > 0) { // if there are results
                     while ($row = mysqli_fetch_assoc($BreweryOwner)) {
                         $OwnerID = $row['OwnerID']; // OwnerID = OwnerID
                         $UserEmail = $row['UserEmail']; // UserEmail = UserEmail
                         $BreweryID = $row['BreweryID']; // BreweryID = BreweryID
-                        break;
+                        array_push($BreweriesOwned, $BreweryID);
+                        //break;
                     }
 
-                    /* get brewery information */
-                    $GetBreweryInformation = "SELECT * FROM BreweryTable WHERE BreweryID='".$BreweryID."'"; // Breweryinfo query
+                    foreach ($BreweriesOwned as $key) {
+                        /* get brewery information */
+                    $GetBreweryInformation = "SELECT * FROM BreweryTable WHERE BreweryID='".$key."'"; // Breweryinfo query
                     $BreweryInfo = mysqli_query($connection, $GetBreweryInformation); // brewery info
-                    if ($BreweryOwner->num_rows > 0) { // if there are results
-                        while ($row = mysqli_fetch_assoc($BreweryInfo)) {
-                            $BreweryName = $row['BreweryName']; // $BreweryName = BreweryName
-                            $BreweryStory = $row['About']; // $BreweryStory = About
-                            $BreweryHours = $row['Hours']; // $BreweryHours = Hours
-                            $BreweryPhoneNum = $row['PhoneNo']; // $BreweryPhoneNum = PhoneNo
-                            break;
-                        }
 
-                        $BreweryHours = removeBR($BreweryHours);
-                        $BreweryStory = removeBR($BreweryStory);
+                        if ($BreweryOwner->num_rows > 0) { // if there are results
+                        while ($row = mysqli_fetch_assoc($BreweryInfo)) {
+                            $BreweryNames[] = $row['BreweryName']; // push BreweryName to BreweryNames array
+                            $BreweryStories[] = removeBR($row['About']); // push Brewery About to BreweryStories array
+                            $BreweriesHours[] = removeBR($row['Hours']); // push Brewery Hours to BreweryHours array
+                            $BreweryPhoneNumbers[] = $row['PhoneNo']; // push Brewery PhoneNums to PhoneNum array
+                        }
+                        }
                     }
-                    /* WILL WE USE IT?????
-                    BERERY LOCATION
-                    $GetBreweryLocation = "SELECT * FROM BreweryLocation WHERE BreweryID='".$BreweryID."'";
-                    $BreweryLocation = mysqli_query($connection, $GetBreweryLocation);
-                    if ($BreweryLocation->num_rows > 0) {
-                        while ($row = mysqli_fetch_assoc($BreweryLocation)) {
-                            $BreweryAddr1 = $row['AddrLineOne'];
-                            $BreweryAddr2 = $row['AddrLineTwo'];
-                            $BreweryCity = $row['City'];
-                            $BreweryState = $row['State'];
-                            $BreweryZip = $row['Zip'];
-                            if ($BreweryAdd2 == null) { // if brewery has no addr2
-                                $BreweryAddress = $BreweryAddr1.' '.$BreweryCity.' '.$BreweryState.' '.$BreweryZip;
-                            } else {  // if brewery has addr2
-                                $BreweryAddress = $BreweryAddr1.' '.$BreweryAddr2.' '.$BreweryCity.' '.$BreweryState.' '.$BreweryZip;
-                            }
-                            echo "$BreweryAddress";
+                    $BreweryChoice = 0; // inialize brewerychoice to 0
+                    if (count($BreweryNames) > 1) { // if the owner has > 1 brewery
+                        /* Brewery Selection */
+                        unset($value); // reset value
+                        echo '<form method="POST" id="breweryselection" name="breweryselection">'; // form to choose brewery
+                        echo '<select name="Brewery" onchange="this.form.submit()">'; // onchange submit
+                        echo '<option selected value="">Choose Brewery</option>';
+                        foreach ($BreweryNames as $key => $value): // for each brewery name gets value
+                        echo '<option value="'.$key.'">'.$value.'</option>'; // value becomes option for select
+                        endforeach; // end for each
+                        echo '</select><br>'; // end select
+                        echo '</form>'; // end form
+
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
+                        if (isset($_POST['Brewery'])) { // and it was from the brewery select
+                            $BreweryChoice = $_POST['Brewery']; // brewerychoice becomes new brewerychoice
+                        } else {
                         }
-                    }*/
-                            /*
-                            $BreweryCity = $row['City'];
-                            $BreweryState = $row['State'];
-                            $BreweryZip= $row['zip'];
-                            if($BreweryAddr2 != NULL)
-                                $BreweryAddress = $BreweryAddr1 . " " . $BreweryAddr2 . " " . $BreweryCity . " " . $BreweryState . " " . $BreweryZip;
-                            else
-                                $BreweryAddress = $BreweryAddr1 .  " " . $BreweryCity . " " . $BreweryState . " " . $BreweryZip;
-                            //echo "$BreweryAddres";
-                            break;
                         }
-                    }*/
+                    }
 
                     /* Brewery settings form */
                     echo '<div class="brewerysettings"></div>';
-                    echo "<h3 id='displaybreweryname'>$BreweryName</h3>";
+                    echo "<h3 id='displaybreweryname'>$BreweryNames[$BreweryChoice]</h3>";
                     echo '<form class="stdForm" method="POST" name="brewerysettingsform">';
-                    echo '<div class="BreweryHours">Brewery Hours:<br>';
-                    echo "<textarea class='breweryhours' name='breweryhours' >$BreweryHours</textarea>";
+                    echo '<div class="PhoneNumber"><p>Brewery Phone Number:<br>';
+                    echo "<input class='PhoneNumber' type='tel' name='phonenumber' value='$BreweryPhoneNumbers[$BreweryChoice]'></p>";
                     echo '</div>';
-                    //echo '</div> || rows='10' colums='30'';
-                    echo '<div class="PhoneNumber">Brewery Phone Number:<br>';
-                    echo "<input class='PhoneNumber' type='tel' name='phonenumber' value='$BreweryPhoneNum'>";
+                    echo '<div class="BreweryHours"><p>Brewery Hours:<br>';
+                    echo "<textarea rows ='' id='breweryhours' name='breweryhours'>$BreweriesHours[$BreweryChoice]</textarea></p>";
                     echo '</div>';
-                    echo '<div class="BreweryStory">Brewery Story:<br>';
-                    echo "<textarea name='brewerystory'>$BreweryStory</textarea>";
+                    echo '<div class="BreweryStory"><p>Brewery Story:<br>';
+                    echo "<textarea id='brewerystory' name='brewerystory'>$BreweryStories[$BreweryChoice]</textarea></p>";
                     echo '</div>';
-                    echo '<br><button type="submit" name="brewerysettings">Confirm</button>';
+                    echo '<br><button class="submitbrewerysettings" type="submit" name="brewerysettings">Confirm</button>';
                     echo '</form>';
-                    //echo '</div>';
                 } else { // the user has no breweries
                     echo 'You do not have any breweries'; // Output the user does not have a brewery
                 }
-                echo "<br><br><button type='submit' onclick='location.href=\"BrewerySignUp.php\"'>Add Brewery</button>";
+                echo "<p><br><br><button type='submit' onclick='location.href=\"BrewerySignUp.php\"'>Add Brewery</button></p>";
             ?>
 			<?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
@@ -281,7 +308,6 @@
 
                         $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".$BreweryStory."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
                         if (mysqli_query($connection, $updateBreweryInfo)) {
-                            echo '<br><br>Records updated<br>';
                             echo '<br><br>Records updated<br>';
                             /* refresh parent page */
                             //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';

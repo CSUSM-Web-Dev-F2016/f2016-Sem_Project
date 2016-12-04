@@ -88,7 +88,7 @@ function goHomeAnd(address) {
     window.location.href = "../html/profilePage.php";
 
     //Show the requested source after the page loaded
-    //showSRC(address);
+    if(window.loaded) showSRC(address);
 }
 
 

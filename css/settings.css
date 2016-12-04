@@ -110,9 +110,11 @@ a {
 
 .brewerysettings {
     background-color: grey;
+    color: inherit;
 }
 
 #displaybreweryname {
+    background-color: inherit;
     color: black;
 }
 
@@ -126,19 +128,22 @@ textarea {
     overflow: auto;
 }
 
-input.breweryhours [type="textarea"] {
+#breweryhours {
     height: 100px;
-    width: 80%;
+    width: 50%;
 }
 
-input.BreweryStory [type="textarea"] {
-    height: 350px;
+#brewerystory {
+    height: 200px;
     width: 80%;
 }
 
 textarea:focus {
-    outline: 2px solid black;
-    /*opacity: 0.1;*/
+    outline: 1px solid black;
+}
+
+text:focus {
+    outline: 1px solid black;
 }
 
 .mybreweries:hover {
@@ -204,6 +209,16 @@ input[type=text], input[type=password], input[type=email] {
     display: table-cell;
 }
 
+input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, input[type=tel]:focus {
+    outline: 1px solid black;
+}
+
+select:focus {
+    outline: 1px solid black;
+}
+
+
+/*
 button {
     margin-top: 15px;
     margin-bottom: 20px;
@@ -218,12 +233,17 @@ button {
     background-color: #191d24;
     border: 1px solid gray;
     justify-content: center;
-    /*    margin: auto;*/
     text-align: center;
     /* Postion Stuff */
-    position: absolute;
+
+
+/*position: absolute;
     width: 50%;
     left: 25%;
+}*/
+
+.submitbrewerysettings button {
+    width: 35%;
 }
 
 button:hover {
@@ -232,9 +252,26 @@ button:hover {
     text-shadow: -2px 2px #000000;
 }
 
+
+/*
+#brewerysettingsbutton {
+    border-radius: 10px;
+    color: white;
+    text-shadow: -2px 2px #333333;
+    font-size: 14px;
+    background-color: #191d24;
+    border: 2px solid lightgray;
+}*/
+
 select option {
     margin: 40px;
     background: rgba(0, 0, 0, 0.3);
     color: #fff;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+div.errorMsg {
+    background-color: inherit;
+    color: red;
+    padding: 5px;
 }
