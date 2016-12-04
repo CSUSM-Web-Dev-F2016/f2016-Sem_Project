@@ -126,21 +126,7 @@ a {
 
 textarea {
     overflow: auto;
-    /*width: 100%;*/
 }
-
-
-/*
-.BreweryHours {
-    height: 100%;
-    width: 100%;
-}
-
-.BreweryStory {
-    height: 100%;
-    width: 100%;
-}
-*/
 
 #breweryhours {
     height: 100px;
@@ -152,27 +138,12 @@ textarea {
     width: 80%;
 }
 
-
-/* 	DONT DO NOTHING
-input #breweryhours [type="textarea"] {
-    height: auto;
-    width: 50%;
-}
-	DONT DO NOTHING
-input #brewerystory [type="textarea"] {
-    height: auto;
-    width: 80%;
-}
-*/
-
 textarea:focus {
     outline: 1px solid black;
-    /*opacity: 0.1;*/
 }
 
 text:focus {
     outline: 1px solid black;
-    /*opacity: 0.1;*/
 }
 
 .mybreweries:hover {
@@ -246,6 +217,8 @@ select:focus {
     outline: 1px solid black;
 }
 
+
+/*
 button {
     margin-top: 15px;
     margin-bottom: 20px;
@@ -260,12 +233,17 @@ button {
     background-color: #191d24;
     border: 1px solid gray;
     justify-content: center;
-    /*    margin: auto;*/
     text-align: center;
     /* Postion Stuff */
-    position: absolute;
+
+
+/*position: absolute;
     width: 50%;
     left: 25%;
+}*/
+
+.submitbrewerysettings button {
+    width: 35%;
 }
 
 button:hover {
@@ -274,6 +252,8 @@ button:hover {
     text-shadow: -2px 2px #000000;
 }
 
+
+/*
 #brewerysettingsbutton {
     border-radius: 10px;
     color: white;
@@ -281,7 +261,7 @@ button:hover {
     font-size: 14px;
     background-color: #191d24;
     border: 2px solid lightgray;
-}
+}*/
 
 select option {
     margin: 40px;
