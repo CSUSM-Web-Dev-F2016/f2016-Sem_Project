@@ -226,83 +226,75 @@
 			<?php
             /*Get brewery owner info */
                 $GetBreweryOwnerQuery = "SELECT * FROM BreweryOwner WHERE UserEmail='".$_SESSION['signedInUser']."'"; // get brewery owner info query
+                $BreweriesOwned = array();
+                $BreweryNames = array();
+                $BreweryStories = array();
+                $BreweriesHours = array();
+                $BreweryPhoneNumbers = array();
                 $BreweryOwner = mysqli_query($connection, $GetBreweryOwnerQuery); // get brewery owner info
                 if ($BreweryOwner->num_rows > 0) { // if there are results
                     while ($row = mysqli_fetch_assoc($BreweryOwner)) {
                         $OwnerID = $row['OwnerID']; // OwnerID = OwnerID
                         $UserEmail = $row['UserEmail']; // UserEmail = UserEmail
                         $BreweryID = $row['BreweryID']; // BreweryID = BreweryID
-                        break;
+                        array_push($BreweriesOwned, $BreweryID);
+                        //break;
                     }
 
-                    /* get brewery information */
-                    $GetBreweryInformation = "SELECT * FROM BreweryTable WHERE BreweryID='".$BreweryID."'"; // Breweryinfo query
+                    foreach ($BreweriesOwned as $key) {
+                        /* get brewery information */
+                    $GetBreweryInformation = "SELECT * FROM BreweryTable WHERE BreweryID='".$key."'"; // Breweryinfo query
                     $BreweryInfo = mysqli_query($connection, $GetBreweryInformation); // brewery info
-                    if ($BreweryOwner->num_rows > 0) { // if there are results
-                        while ($row = mysqli_fetch_assoc($BreweryInfo)) {
-                            $BreweryName = $row['BreweryName']; // $BreweryName = BreweryName
-                            $BreweryStory = $row['About']; // $BreweryStory = About
-                            $BreweryHours = $row['Hours']; // $BreweryHours = Hours
-                            $BreweryPhoneNum = $row['PhoneNo']; // $BreweryPhoneNum = PhoneNo
-                            break;
-                        }
 
-                        $BreweryHours = removeBR($BreweryHours);
-                        $BreweryStory = removeBR($BreweryStory);
+                        if ($BreweryOwner->num_rows > 0) { // if there are results
+                        while ($row = mysqli_fetch_assoc($BreweryInfo)) {
+                            $BreweryNames[] = $row['BreweryName']; // push BreweryName to BreweryNames array
+                            $BreweryStories[] = removeBR($row['About']); // push Brewery About to BreweryStories array
+                            $BreweriesHours[] = removeBR($row['Hours']); // push Brewery Hours to BreweryHours array
+                            $BreweryPhoneNumbers[] = $row['PhoneNo']; // push Brewery PhoneNums to PhoneNum array
+                        }
+                        }
                     }
-                    /* WILL WE USE IT?????
-                    BERERY LOCATION
-                    $GetBreweryLocation = "SELECT * FROM BreweryLocation WHERE BreweryID='".$BreweryID."'";
-                    $BreweryLocation = mysqli_query($connection, $GetBreweryLocation);
-                    if ($BreweryLocation->num_rows > 0) {
-                        while ($row = mysqli_fetch_assoc($BreweryLocation)) {
-                            $BreweryAddr1 = $row['AddrLineOne'];
-                            $BreweryAddr2 = $row['AddrLineTwo'];
-                            $BreweryCity = $row['City'];
-                            $BreweryState = $row['State'];
-                            $BreweryZip = $row['Zip'];
-                            if ($BreweryAdd2 == null) { // if brewery has no addr2
-                                $BreweryAddress = $BreweryAddr1.' '.$BreweryCity.' '.$BreweryState.' '.$BreweryZip;
-                            } else {  // if brewery has addr2
-                                $BreweryAddress = $BreweryAddr1.' '.$BreweryAddr2.' '.$BreweryCity.' '.$BreweryState.' '.$BreweryZip;
-                            }
-                            echo "$BreweryAddress";
+                    $BreweryChoice = 0; // inialize brewerychoice to 0
+                    if (count($BreweryNames) > 1) { // if the owner has > 1 brewery
+                        /* Brewery Selection */
+                        unset($value); // reset value
+                        echo '<form method="POST" id="breweryselection" name="breweryselection">'; // form to choose brewery
+                        echo '<select name="Brewery" onchange="this.form.submit()">'; // onchange submit
+                        echo '<option selected value="">Choose Brewery</option>';
+                        foreach ($BreweryNames as $key => $value): // for each brewery name gets value
+                        echo '<option value="'.$key.'">'.$value.'</option>'; // value becomes option for select
+                        endforeach; // end for each
+                        echo '</select><br>'; // end select
+                        echo '</form>'; // end form
+
+                        if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
+                        if (isset($_POST['Brewery'])) { // and it was from the brewery select
+                            $BreweryChoice = $_POST['Brewery']; // brewerychoice becomes new brewerychoice
+                        } else {
                         }
-                    }*/
-                            /*
-                            $BreweryCity = $row['City'];
-                            $BreweryState = $row['State'];
-                            $BreweryZip= $row['zip'];
-                            if($BreweryAddr2 != NULL)
-                                $BreweryAddress = $BreweryAddr1 . " " . $BreweryAddr2 . " " . $BreweryCity . " " . $BreweryState . " " . $BreweryZip;
-                            else
-                                $BreweryAddress = $BreweryAddr1 .  " " . $BreweryCity . " " . $BreweryState . " " . $BreweryZip;
-                            //echo "$BreweryAddres";
-                            break;
                         }
-                    }*/
+                    }
 
                     /* Brewery settings form */
                     echo '<div class="brewerysettings"></div>';
-                    echo "<h3 id='displaybreweryname'>$BreweryName</h3>";
+                    echo "<h3 id='displaybreweryname'>$BreweryNames[$BreweryChoice]</h3>";
                     echo '<form class="stdForm" method="POST" name="brewerysettingsform">';
-                    echo '<div class="BreweryHours">Brewery Hours:<br>';
-                    echo "<textarea class='breweryhours' name='breweryhours' >$BreweryHours</textarea>";
+                    echo '<div class="PhoneNumber"><p>Brewery Phone Number:<br>';
+                    echo "<input class='PhoneNumber' type='tel' name='phonenumber' value='$BreweryPhoneNumbers[$BreweryChoice]'></p>";
                     echo '</div>';
-                    //echo '</div> || rows='10' colums='30'';
-                    echo '<div class="PhoneNumber">Brewery Phone Number:<br>';
-                    echo "<input class='PhoneNumber' type='tel' name='phonenumber' value='$BreweryPhoneNum'>";
+                    echo '<div class="BreweryHours"><p>Brewery Hours:<br>';
+                    echo "<textarea rows ='' id='breweryhours' name='breweryhours'>$BreweriesHours[$BreweryChoice]</textarea></p>";
                     echo '</div>';
-                    echo '<div class="BreweryStory">Brewery Story:<br>';
-                    echo "<textarea name='brewerystory'>$BreweryStory</textarea>";
+                    echo '<div class="BreweryStory"><p>Brewery Story:<br>';
+                    echo "<textarea id='brewerystory' name='brewerystory'>$BreweryStories[$BreweryChoice]</textarea></p>";
                     echo '</div>';
-                    echo '<br><button type="submit" name="brewerysettings">Confirm</button>';
+                    echo '<br><button class="submitbrewerysettings" type="submit" name="brewerysettings">Confirm</button>';
                     echo '</form>';
-                    //echo '</div>';
                 } else { // the user has no breweries
                     echo 'You do not have any breweries'; // Output the user does not have a brewery
                 }
-                echo "<br><br><button type='submit' onclick='location.href=\"BrewerySignUp.php\"'>Add Brewery</button>";
+                echo "<p><br><br><button type='submit' onclick='location.href=\"BrewerySignUp.php\"'>Add Brewery</button></p>";
             ?>
 			<?php
                 if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
