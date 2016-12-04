@@ -311,6 +311,7 @@
     						if(isset($_POST['brewery'])){
 								  //redirect to the login page
 								  $_SESSION['currentUser'] = $_SESSION['signedInUser'];
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
 
 							  //Navigate to the brewery page iwth the new id
 							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
@@ -327,6 +328,7 @@
 										//Success
 										$followText = "Follow";
 										$followingImage = "../img/Follow.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Comparison', "User Un-Followed " . $_SESSION['currentUser'] . "");
 									}else{
 										die("Error: " . mysqli_error($connection));
 									}
@@ -336,16 +338,19 @@
 									if(mysqli_query($connection, $addQuery)){
 										$followText = "UnFollow";
 										$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Comparison', "User Followed " . $_SESSION['currentUser'] . "");
 									}
 								}
 								//Take the user back to their page by directing them to their page
 								$_SESSION['currentUser'] = $_SESSION['signedInUser'];
+								CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User went to homepage");
 
 								echo "<script type=\"text/javascript\"> document.location.href = \"../index.php\";</script>";
 
 							}
 							else if(isset($_POST['user'])) {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
 						 	else {
@@ -355,7 +360,7 @@
 									$postText = $_POST['postBox'];
 
 									//Post to the DB then refresh the page
-									$addPost = "INSERT INTO Post VALUES (NULL, '" . $_SESSION['signedInUser'] . "', UTC_TIMESTAMP(), '" . $postText . "', 1)";
+									$addPost = "INSERT INTO Post VALUES (NULL, '" . $_SESSION['signedInUser'] . "', UTC_TIMESTAMP(), '" .  htmlspecialchars($postText, ENT_QUOTES) . "', 1)";
 									if(isset($postText) && strlen($postText) > 0){
 										if( mysqli_query($connection, $addPost)){
 										//Success

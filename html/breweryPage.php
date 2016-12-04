@@ -49,6 +49,8 @@
 <?php
 		//Import needed PHP files
 		include "../php/create_table.php";
+		include "../php/LogEvent.php";
+
   	//Start the session
 	  session_start();
 		 $id= $_GET['id'];
@@ -392,6 +394,9 @@
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								//Check which form was ssent then get the appropriate id.
     						if(isset($_POST['brewery'])){
+
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
+
 							  	//Navigate to the brewery page iwth the new id
 							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
     						}
@@ -404,6 +409,7 @@
 										//Success
 										$followText = "Follow";
 										$followingImage = "../img/Follow.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Followed BreweryID=" . end(array_keys($_POST)) . "");
 									}else{
 										die("Error: " . mysqli_error($connection));
 									}
@@ -413,6 +419,7 @@
 									if(mysqli_query($connection, $addQuery)){
 										$followText = "UnFollow";
 										$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Un-Followed BreweryID=" . end(array_keys($_POST)) . "");
 									} else{
 										die("Error: " . mysqli_error($connection));
 									}
@@ -420,6 +427,7 @@
 							}
     						else {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
 
