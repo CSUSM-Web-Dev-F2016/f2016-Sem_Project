@@ -53,7 +53,7 @@
 
   	//Start the session
 	  session_start();
-		 $id= $_GET['id'];
+		$id = $_GET['id'];
 	  //Get the token to prove the user was logged in
 	  if(strlen($_SESSION['loginToken']) == 0){
 		  //redirect to the login page
@@ -74,6 +74,14 @@
 		//Get breweries that user is following
 		$signedInUserBreweriesQuery = "SELECT * FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=" . $_GET['id'];
 		$signedInUserBreweriesResults = mysqli_query($connection, $signedInUserBreweriesQuery);
+		//Determine if user is brewery owner
+		$getBreweryOwnerQuery = "SELECT UserEmail FROM BreweryOwner WHERE BreweryID=" . $_GET['id'];
+		$getBreweryOwnerResults = mysqli_query($connection, $getBreweryOwnerQuery);
+		if ($getBreweryOwnerResults-> num_rows > 0){
+			//Signed in user is the brewery owner
+			$isUserBreweryOwner = true;
+		} else
+			$isUserBreweryOwner = false;
 
 		//Check to see if user has favorited brewery
 		if ($signedInUserBreweriesResults-> num_rows == 0){
@@ -82,6 +90,7 @@
 			$followText = "Follow";
 			$followingImage = "../img/Follow.png?raw=true";
 		} else {
+			//Is following
 			$following = 'y';
 			$followText = "UnFollow";
 			$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
@@ -90,7 +99,6 @@
 	  if($getBreweryInnfoResults-> num_rows > 0){
 		  //If the brewery exists, get the info
 		  while($row = mysqli_fetch_assoc($getBreweryInnfoResults)){
-			//echo "<p style=\"color:white;\">Hello World</p>";
 
 			  //Save the values
 			  $BreweryName = $row['BreweryName'];
@@ -181,8 +189,10 @@
 					About
 				</div>
 				<div class="table">
+
+
 					<div class="smalltableCell">
-						<a onclick="showSRC('hours.html')">
+						<a onclick="showSRC<?php echo "('Hours.php?id=$id')";?>">
 							<!-- hours -->
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/time.png?raw=true" alt="Hours Icon">
@@ -192,6 +202,8 @@
 							</div>
 						</a>
 					</div>
+
+
 					<div class="smalltableCell">
 						<a onclick="showSRC('EmptyForm.html')">
 							<div class="tableCell img">
@@ -238,12 +250,12 @@
 					end following button old-->
 
 					<div class="smalltableCell">
-						<form action="" class="stdForm" method="POST" name="followBrew">
-							<button type="submit" class="defaultSetBtn" name="followBrew" style="padding-top:-10px;">
-								<div class="tableCell img">";
+						<form action="" method="POST" name="followBrew" id="followBrewForm">
+							<button type="submit" class="defaultSetBtn" name="followBrew">
+								<div class="tableCell img">
 									<img class="smalltableCell" src="<?php echo $followingImage ?>" alt="<?php echo $followText ?>">
 								</div>
-								<div class="smalltableCell title" style="padding-top:20px; padding-bottom:15px; max-height:50px"> <?php echo $followText ?> </div>
+								<div class="smalltableCell title"> <?php echo $followText ?> </div>
 							</button>
 							<input type="hidden" value="" name="<?php echo strtr($_GET['id'], array('.' => '#-#')) ?>">
 						</form>
@@ -360,9 +372,6 @@
 
 						//Clear the results
 						if($GetUsersFollowingBreweryResults) mysqli_free_result($GetUsersFollowingBreweryResults);
-
-						//Close the sql connection
-						$connection-> close();
 					?>
 				</div>
 				<div class="stdSectionFooter">
@@ -431,10 +440,44 @@
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
 
-								//Ends the current session
-								session_write_close();
-					}
-		?>
+			//echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Hit trigger for POST</p>";
+			//User is going to Follow the user$
+			if($following == 'y'){
+				//If the user is currently following the user, unfollow it and change the image
+				$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID='" . $id . "'";
+				if(mysqli_query($connection, $DeleteQuery)){
+					//Success
+					$followText = "Follow";
+					$followingImage = "../img/Follow.png?raw=true";
+					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
+				}else{
+					die("Error: " . mysqli_error($connection));
+				}
+			}else{
+				//If the user is not following the brewery, follow it and change the image.
+				//echo $signedInUser . "," . $id . "," . gettype($id);
+				$addQuery = "INSERT INTO UserFollowsBrewery (UserEmail, BreweryID) VALUES ('" . $signedInUser ."', '" . $id ."')";
+				//echo $addQuery;
+				if(mysqli_query($connection, $addQuery)){
+					echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">success</p>";
+					$followText = "UnFollow";
+					$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
+				} else {
+					die("Error: " . mysqli_error($connection));
+				}
+			}
+		}
+
+		//Ends the current session
+		session_write_close();
+
+		//Close the sql session
+		$connection->close();
+
+		exit();
+	}
+	?>
 
 </body>
 
