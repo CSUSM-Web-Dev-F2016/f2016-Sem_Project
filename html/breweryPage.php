@@ -49,8 +49,6 @@
 <?php
 		//Import needed PHP files
 		include "../php/create_table.php";
-		include "../php/LogEvent.php";
-
   	//Start the session
 	  session_start();
 		$id = $_GET['id'];
@@ -66,7 +64,7 @@
 	 	$connection = include '../php/DBConnectionReturn.php';
 
 	  //Start the SQL Query to get the brewery information
-	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City, visits FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
+	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
 	  $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
 
 		//Get current user info
@@ -105,7 +103,29 @@
 			  $ProfilePicURL = $row['ProfilePicURL'];
 			  $CoverPicURL = $row['CoverPicURL'];
 			  $City = $row['City'];
-				$Visits = $row['visits'] + 1;
+
+				//Get the visits count (from a different table)
+				$visitsCountGet = "SELECT DISTINCT uvb.UserEmail, COUNT(*) AS vists FROM UserVisitsBrewery uvb WHERE uvb.BreweryID=" . $_GET['id'] . " GROUP BY uvb.UserEmail";
+				$visitsResult = mysqli_query($connection, $visitsCountGet);
+				if($visitsResult->num_rows > 0){
+					while (mysqli_fetch_assoc($visitsResult)) {
+						$Visits++;
+					}
+				}else{
+					$Visits = 0;
+				}
+
+				//Get the visits count (from a different table)
+				$visitsCountGetTotal = "SELECT COUNT(*) AS visits FROM UserVisitsBrewery";
+				$visitsResultTotal = mysqli_query($connection, $visitsCountGetTotal);
+				if($visitsResultTotal->num_rows > 0){
+					while ($row = mysqli_fetch_assoc($visitsResultTotal)) {
+						$VisitsTotal = $row['visits'];
+						break;
+					}
+				}else{
+					$VisitsTotal = 0;
+				}
 
 			  //If the cover pic does not exist, set it to the default
 				if(empty($CoverPicURL)){
@@ -121,7 +141,7 @@
 	  }
 
 		//Now, increment the visit count of said brewery
-		$UpdateVisits = "UPDATE BreweryTable SET visits=visits+1 WHERE breweryID=" . $_GET['id'];
+		$UpdateVisits = "INSERT INTO UserVisitsBrewery VALUES(NULL, '" . $signedInUser . "', " . $_GET['id'] .")";
 		if(mysqli_query($connection, $UpdateVisits)){
 			//Success
 		}else{
@@ -189,8 +209,6 @@
 					About
 				</div>
 				<div class="table">
-
-
 					<div class="smalltableCell">
 						<a onclick="showSRC<?php echo "('Hours.php?id=$id')";?>">
 							<!-- hours -->
@@ -202,10 +220,12 @@
 							</div>
 						</a>
 					</div>
-
-
 					<div class="smalltableCell">
+<<<<<<< HEAD
 						<a onclick="showSRC<?php echo "('Story.php?id=$id')";?>">
+=======
+						<a onclick="showSRC('Story.php?id=<?php echo $_GET['id'];?>')">
+>>>>>>> master
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/story.png?raw=true" alt="Story Icon">
 							</div>
@@ -215,7 +235,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a onclick="showSRC('address.html')">
+						<a onclick="showSRC<?php echo "('Address.php?id=" . $_GET['id'] . "')" ?>">
 							<!-- address -->
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/location.png?raw=true" alt="Address Icon">
@@ -226,7 +246,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="BeerList.html" onclick="showSRC('BeerList.html');return false;resizeIframeBeerList(this);">
+						<a href="BeerList.html" onclick="showSRC('BeerList.php?breweryID=<?php echo $_GET['id']; ?>');return false;resizeIframeBeerList(this);">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/Beer.png?raw=true" alt="Beers Icon">
 							</div>
@@ -235,20 +255,6 @@
 							</div>
 						</a>
 					</div>
-
-					<!-- following button old
-					<div class="smalltableCell">
-						<a onclick="showSRC('FollowingPage.php')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
-							</div>
-							<div class="smalltableCell title">
-								Follow
-							</div>
-						</a>
-					</div>
-					end following button old-->
-
 					<div class="smalltableCell">
 						<form action="" method="POST" name="followBrew" id="followBrewForm">
 							<button type="submit" class="defaultSetBtn" name="followBrew">
@@ -260,51 +266,16 @@
 							<input type="hidden" value="" name="<?php echo strtr($_GET['id'], array('.' => '#-#')) ?>">
 						</form>
 					</div>
-
-					<div class="smalltableCell">
-						<a onclick="showSRC('message.html')">
-							<!-- message -->
-							<div class="tableCell img">
-								<img class="smalltableCell" src="../img/message.png?raw=true" alt="Message">
-							</div>
-							<div class="smalltableCell title">
-								Message
-							</div>
-						</a>
-					</div>
 				</div>
 			</div>
-
-			<!-- Followers Section -->
-			<!--
-			<div class="stdSection FollowingBrewery" id="followersOfBreweries">
-				<div class="stdSectionTitle">
-					Brewery Followers
-				</div>
-				<div class="table"> -->
-					<!-- Brewery Following Brewery -->
-					<!--<
-						//$query = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . "LIMIT 6";
-						//$resultSet = mysqli_query($connection, $query);
-
-						//Create a basic form
-						//createBasicForm($resultSet, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
-
-						//Free results
-						//if($resultSet) mysqli_free_result($resultSet);
-
-					?>-->
-				<!--</div>
-				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
-				</div>
-			</div>-->
-
 						<!-- Total visit count. Increments on each page visit/refresh -->
 						<div class="stdSection Calendar" id="calendar">
 							<div class="stdSectionTitle">
-								Total Visits
+								Unique Visits
 									<div class="numberOfVisits"><?php echo number_format($Visits); ?></div>
+							</div>
+							<div class="stdSectionFooter">
+									<?php echo $VisitsTotal ?> Total Visits
 							</div>
 						</div>
 		</div>
@@ -400,6 +371,7 @@
 
 	<!-- Footer information; additional links etc -->
 	<?php
+<<<<<<< HEAD
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								//Check which form was ssent then get the appropriate id.
     						if(isset($_POST['brewery'])){
@@ -442,6 +414,15 @@
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+=======
+	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+		//Check which form was set then get the appropriate id.
+		if(isset($_POST['brewery'])){
+			//Navigate to the brewery page iwth the new id
+			echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+		}
+		else if(isset($_POST['followBrew'])){
+>>>>>>> master
 
 		}
 

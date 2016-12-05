@@ -16,7 +16,7 @@
 
     .LargeTable {
         height: auto;
-        width: 99.5%;
+        width: 100%;
         position: absolute;
         margin: auto;
         text-align: center;
@@ -26,7 +26,7 @@
         display: block;
         overflow: hidden;;
         background-color: white;
-        padding: 0px;
+        padding: 2px;
     }
 
     .beerImage {}

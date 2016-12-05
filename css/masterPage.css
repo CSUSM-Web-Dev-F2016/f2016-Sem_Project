@@ -224,7 +224,7 @@ div.table {
 }
 
 iframe {
-    width: 100%;
+    width: 99.5%;
     position: relative;
     top: 0px;
     padding-bottom: 50px;
@@ -232,6 +232,7 @@ iframe {
     margin: 0px;
     padding-bottom: 50px;
     overflow: hidden;
+    background-color:transparent;
 }
 
 button.defaultSetBtn {
