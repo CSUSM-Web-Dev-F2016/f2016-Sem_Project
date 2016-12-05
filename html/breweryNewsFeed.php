@@ -24,8 +24,8 @@
   //Now, once the connection is etablished, get the news feed
   //Basic posts only, presently
   $GetNewsFeedElements = "SELECT DISTINCT p.auto_ID, p.UserEmail, p.PostDate, p.TextContent, CONCAT(u.FName, ' ', u.LName) AS Name, u.ProfilePicURL
-                          FROM Post p, BreweryFollowsUser bfu, Users u
-                          WHERE p.shown=1 AND bfu.BreweryID ='" . $id . "'AND p.UserEmail=bfu.UserEmail AND p.UserEmail=u.Email
+                          FROM Post p, BreweryFollowsUser bfu, Users u, UserFollowsBrewery ufb
+                          WHERE p.shown=1 AND ((bfu.BreweryID ='" . $id . "' AND p.UserEmail=bfu.UserEmail AND p.UserEmail=u.Email) OR (ufb.BreweryID ='" . $id . "' AND p.UserEmail=ufb.UserEmail AND p.UserEmail=u.Email))
                           ORDER BY p.PostDate DESC";
 
 
