@@ -39,7 +39,7 @@
 			//Get the token to prove the user was logged in
 		  if(strlen($_SESSION['loginToken']) == 0){
 				//redirect to the login page
-		 	header("Location: ../index.php");
+		 		header("Location: ../index.php");
 			}
 			else{
 				//e	cho "<p>You rock";
@@ -341,6 +341,11 @@
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+
+								else if(isset($_POST['beerID'])) {
+										//echo "<script type=\"text/javascript\"> window.alert(\"Found a Beer: " . $_POST['BeerID'] . "\");</script>";
+										echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?BeerID=" . $_POST['beerID'] . "\";</script>";
+								}
 						 	else {
 
 									//Get the text field value

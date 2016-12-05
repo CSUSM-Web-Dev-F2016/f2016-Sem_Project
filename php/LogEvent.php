@@ -13,9 +13,10 @@ function CustomLog($connection, $user, $LogType, $LogEvent){
   }
 
   //Log the event with google analytics
+  /*
   echo "<script type=\"text/javascript\">"
   echo "ga('send', 'event', 'User', '" . $LogType . "', '" . $LogEvent . "');";
-  echo "</script>";
+  echo "</script>";*/
 
 }
 
