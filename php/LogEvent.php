@@ -12,6 +12,11 @@ function CustomLog($connection, $user, $LogType, $LogEvent){
       echo "<script type=\"text/javascript\">top.window.alert(\"Log Failed: " . $logQuery . "\");</script>";
   }
 
+  //Log the event with google analytics
+  echo "<script type=\"text/javascript\">"
+  echo "ga('send', 'event', 'User', '" . $LogType . "', '" . $LogEvent . "');";
+  echo "</script>";
+
 }
 
 

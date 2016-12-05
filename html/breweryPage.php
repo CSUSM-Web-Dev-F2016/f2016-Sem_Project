@@ -242,7 +242,7 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-						<a href="BeerList.html" onclick="showSRC('BeerList.php?breweryID=<?php echo $_GET['id']; ?>');return false;resizeIframeBeerList(this);">
+						<a href="BeerList.php" onclick="showSRC('BeerList.php?breweryID=<?php echo $_GET['id']; ?>');return false;resizeIframeBeerList(this);">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/Beer.png?raw=true" alt="Beers Icon">
 							</div>
@@ -271,7 +271,7 @@
 									<div class="numberOfVisits"><?php echo number_format($Visits); ?></div>
 							</div>
 							<div class="stdSectionFooter">
-									<?php echo $VisitsTotal ?> Total Visits
+									<?php echo number_format($VisitsTotal) ?> Total Visits
 							</div>
 						</div>
 		</div>
