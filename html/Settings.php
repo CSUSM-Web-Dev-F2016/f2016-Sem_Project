@@ -1,3 +1,7 @@
+<?php
+    header('Content-Type: text/html; charset=ISO-8859-1');
+?>
+
 <!Doctype html>
 <html lang="en">
 <!-- settings page html-->
@@ -25,6 +29,7 @@
             }
 
             session_start(); // start connection
+            //import
 
             /*Get the token to prove the user was logged in*/
               if (strlen($_SESSION['loginToken']) == 0) { // if the user is not logged in
@@ -249,7 +254,7 @@
                         if ($BreweryOwner->num_rows > 0) { // if there are results
                         while ($row = mysqli_fetch_assoc($BreweryInfo)) {
                             $BreweryNames[] = $row['BreweryName']; // push BreweryName to BreweryNames array
-                            $BreweryStories[] = removeBR($row['About']); // push Brewery About to BreweryStories array
+                            $BreweryStories[] = htmlspecialchars_decode(removeBR($row['About'])); // push Brewery About to BreweryStories array
                             $BreweriesHours[] = removeBR($row['Hours']); // push Brewery Hours to BreweryHours array
                             $BreweryPhoneNumbers[] = $row['PhoneNo']; // push Brewery PhoneNums to PhoneNum array
                         }
@@ -271,6 +276,8 @@
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
                         if (isset($_POST['Brewery'])) { // and it was from the brewery select
                             $BreweryChoice = $_POST['Brewery']; // brewerychoice becomes new brewerychoice
+                            //$BreweryID = $BreweriesOwned[$BreweryChoice];
+                            //echo "$BreweryID<br>";
                         } else {
                         }
                         }
@@ -280,6 +287,7 @@
                     echo '<div class="brewerysettings"></div>';
                     echo "<h3 id='displaybreweryname'>$BreweryNames[$BreweryChoice]</h3>";
                     echo '<form class="stdForm" method="POST" name="brewerysettingsform">';
+                    echo "<input type='hidden' value='$BreweriesOwned[$BreweryChoice]' name='breweryid'>";
                     echo '<div class="PhoneNumber"><p>Brewery Phone Number:<br>';
                     echo "<input class='PhoneNumber' type='tel' name='phonenumber' value='$BreweryPhoneNumbers[$BreweryChoice]'></p>";
                     echo '</div>';
@@ -302,13 +310,15 @@
                         $BreweryHours = $_POST['breweryhours']; // $BreweryHours = new breweryhours
                         $BreweryPhoneNum = $_POST['phonenumber']; // $BreweryPhoneNum = new phonenumber
                         $BreweryStory = $_POST['brewerystory']; // $BreweryStory = new brewerystory
+                        $BreweryID = $_POST['breweryid'];
 
-                            $BreweryHours = nl2br($BreweryHours, false); // newlines become <br>
+                        $BreweryHours = nl2br($BreweryHours, false); // newlines become <br>
                             $BreweryStory = nl2br($BreweryStory, false); // newlines become <br>
 
-                        $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".$BreweryStory."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
+                        $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".htmlspecialchars($BreweryStory, ENT_QUOTES)."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
                         if (mysqli_query($connection, $updateBreweryInfo)) {
                             echo '<br><br>Records updated<br>';
+                            echo "$BreweryID";
                             /* refresh parent page */
                             //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
