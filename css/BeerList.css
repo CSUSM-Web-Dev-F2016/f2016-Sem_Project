@@ -3,6 +3,7 @@ html, body, head {
 
     padding: 0px;
     margin: 0px;
+    background-color: transparent;
     /*padding-bottom: 25px;
     overflow: hidden;
     font-family: 'Noto Sans Kannada', sans-serif;
@@ -15,4 +16,6 @@ html, body, head {
 
 iframe{
   background-color: transparent;
+  width: 100%;
+  padding: 2px;
 }
