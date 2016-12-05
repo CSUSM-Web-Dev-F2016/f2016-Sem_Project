@@ -9,10 +9,11 @@
 
 	<!-- Analytics Script -->
   <script src="../js/analytics.js"></script>
-  
+
 </head>
 <?php
     session_start();
+    include "../php/LogEvent.php";
 	 //Create a basic connection
   $connection = include '../php/DBConnectionReturn.php';
   $id = $_GET['id'];
@@ -57,6 +58,7 @@ $coverURL = $_POST['coverURL'];
             if(mysqli_query($connection, $changeCoverQuery)){
               //Now, refresh parent page
               echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
+              CustomLog($connection, $_SESSION['signedInUser'], 'Brewery', "Changed Cover Photo for BreweryID=$id");
               }
               else {
                 echo "Error updating cover photo.";
@@ -69,6 +71,7 @@ $coverURL = $_POST['coverURL'];
 
 
 echo "</div>";
+else : echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
 endif;
 mysqli_close($connection);
 ?>

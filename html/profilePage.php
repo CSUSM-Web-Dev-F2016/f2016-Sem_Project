@@ -39,7 +39,7 @@
 			//Get the token to prove the user was logged in
 		  if(strlen($_SESSION['loginToken']) == 0){
 				//redirect to the login page
-		 	header("Location: ../index.php");
+		 		header("Location: ../index.php");
 			}
 			else{
 				//e	cho "<p>You rock";
@@ -108,9 +108,21 @@
 			$FName = $row["FName"];
 			$LName = $row["LName"];
 			$PicURL = $row["ProfilePicURL"];
-			$visits = $row['visits'];
+			//$visits = $row['visits'];
+
 			break; //Only want the first occurance
 		}
+		//Get the unique visits
+		$UniqueVisits = "SELECT DISTINCT uvb.UserEmail, COUNT(*) AS visits FROM UserVisitsUser uvb WHERE uvb.OtherUserEmail='" . $_SESSION['currentUser'] . "' GROUP BY uvb.UserEmail";
+		$visitsResult = mysqli_query($connection, $UniqueVisits);
+		if($visitsResult->num_rows > 0){
+			while (mysqli_fetch_assoc($visitsResult)) {
+				$Visits++;
+			}
+		}else{
+			$Visits = 0;
+		}
+
 		//Unset the results
 		mysqli_free_result($userInfoResults);
 
@@ -185,35 +197,11 @@
             </button>
             <input type="hidden" value="" name="<?php echo strtr($_SESSION['currentUser'], array('.' => '#-#')); ?>">
           </form>
-
-					<!--
-				<div class="smalltableCell">
-						<a onclick="showSRC('FollowingPage.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
-							</div>
-							<div class="smalltableCell title">
-								Follow
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a onclick="showSRC('message.html')">-->
-							<!-- message -->
-							<!--
-							<div class="tableCell img">
-								<img class="smalltableCell" src="../img/message.png?raw=true" alt="Message">
-							</div>
-							<div class="smalltableCell title">
-								Message
-							</div>
-						</a>
-					</div>-->
 					</div>
 			</div>
 		<?php
 		//Now, update the visit count of this user
-		$updateUserCount = "UPDATE Users SET visits=visits+1 WHERE Email='" . $_SESSION['currentUser'] . "'";
+		$updateUserCount = "INSERT INTO UserVisitsUser VALUES (NULL, '" . $_SESSION['signedInUser'] . "', '" . $_SESSION['currentUser'] . "')";
 		if(mysqli_query($connection, $updateUserCount)){
 			//Update was handled
 		}else{
@@ -225,8 +213,8 @@
 	<!-- Total visit count. Increments on each page visit/refresh -->
 	<div class="stdSection" id="calendar">
 		<div class="stdSectionTitle">
-			Total Visits
-				<div class="numberOfVisits"><?php echo number_format($visits); ?></div>
+			Total Unique Visits
+				<div class="numberOfVisits"><?php echo number_format($Visits); ?></div>
 		</div>
 	</div>
 
@@ -353,6 +341,11 @@
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+
+								else if(isset($_POST['beerID'])) {
+										//echo "<script type=\"text/javascript\"> window.alert(\"Found a Beer: " . $_POST['BeerID'] . "\");</script>";
+										echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?BeerID=" . $_POST['beerID'] . "\";</script>";
+								}
 						 	else {
 
 									//Get the text field value
@@ -364,9 +357,11 @@
 									if(isset($postText) && strlen($postText) > 0){
 										if( mysqli_query($connection, $addPost)){
 										//Success
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Created Post', "No Post Text Available. Please See Post table.");
 
 										}else{
-											echo "<script type=\"text/javascript\">window.alert(\"Error: " . mysqli_error($connection) . "\");</script>";
+											CustomLog($connection, $_SESSION['signedInUser'], 'User Post Failed', "Err: " . mysqli_error($connection));
+											die("Error Creating new Post");
 										}
 									}
 									//Reload the page

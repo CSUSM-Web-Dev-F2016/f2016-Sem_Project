@@ -25,7 +25,7 @@
             $connection = include '../php/DBConnectionReturn.php';
             $BreweryInformationQuery = "SELECT Hours FROM BreweryTable WHERE BreweryID='".$_GET['id']."'";
             $BreweryInfoResults = mysqli_query($connection, $BreweryInformationQuery);
-           
+
             $BreweryID = $_GET['id'];
             if ($BreweryInfoResults->num_rows > 0) {
                 while ($row = mysqli_fetch_assoc($BreweryInfoResults)) {

@@ -4,7 +4,6 @@
     head {
         padding: 0px;
         margin: 0px;
-        top: 10px;
         padding-bottom: 25px;
         background-color: white;
         font-family: 'Noto Sans Kannada', sans-serif;
@@ -16,7 +15,7 @@
 
     .LargeTable {
         height: auto;
-        width: 99.5%;
+        width: 100%;
         position: absolute;
         margin: auto;
         text-align: center;
@@ -26,7 +25,7 @@
         display: block;
         overflow: hidden;;
         background-color: white;
-        padding: 0px;
+        padding: 2px;
     }
 
     .beerImage {}
@@ -107,7 +106,6 @@
         object-fit: scale-down;
         padding: 0px;
         border-radius: 50%;
-        ;
         border: 2px solid lightgray;
     }
 
