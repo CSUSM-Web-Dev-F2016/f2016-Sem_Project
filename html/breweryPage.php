@@ -408,6 +408,10 @@
 									}
 								}
 							}
+							else if(isset($_POST['user'])){
+
+
+							}
     						else {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
