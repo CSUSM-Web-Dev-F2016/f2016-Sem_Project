@@ -205,7 +205,7 @@
 
 
 					<div class="smalltableCell">
-						<a onclick="showSRC('EmptyForm.html')">
+						<a onclick="showSRC<?php echo "('Story.php?id=$id')";?>">
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/story.png?raw=true" alt="Story Icon">
 							</div>
@@ -404,7 +404,7 @@
 								//Check which form was ssent then get the appropriate id.
     						if(isset($_POST['brewery'])){
 
-									CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
+									//CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
 
 							  	//Navigate to the brewery page iwth the new id
 							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
@@ -413,22 +413,25 @@
 								//User is going to Follow the user$
 								if($following == 'y'){
 									//If the user is currently following the user, unfollow it and change the image
-									$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BreweryID=$id";
+									$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=$id";
 									if(mysqli_query($connection, $DeleteQuery)){
 										//Success
 										$followText = "Follow";
 										$followingImage = "../img/Follow.png?raw=true";
 										CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Followed BreweryID=" . end(array_keys($_POST)) . "");
+										echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
 									}else{
 										die("Error: " . mysqli_error($connection));
 									}
 								}else{
 									//If the user is not following the user, follow it and change the image.
-									$addQuery = "INSERT INTO UserFollowsBrewery (UserEmail, BreweryID) VALUES ($signedInUser, $id)";
+									$addQuery = "INSERT INTO UserFollowsBrewery (UserEmail, BreweryID) VALUES ('" . $signedInUser ."', '" . $id ."')";
 									if(mysqli_query($connection, $addQuery)){
+
 										$followText = "UnFollow";
 										$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
 										CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Un-Followed BreweryID=" . end(array_keys($_POST)) . "");
+										echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
 									} else{
 										die("Error: " . mysqli_error($connection));
 									}
@@ -440,33 +443,6 @@
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
 
-			//echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Hit trigger for POST</p>";
-			//User is going to Follow the user$
-			if($following == 'y'){
-				//If the user is currently following the user, unfollow it and change the image
-				$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID='" . $id . "'";
-				if(mysqli_query($connection, $DeleteQuery)){
-					//Success
-					$followText = "Follow";
-					$followingImage = "../img/Follow.png?raw=true";
-					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
-				}else{
-					die("Error: " . mysqli_error($connection));
-				}
-			}else{
-				//If the user is not following the brewery, follow it and change the image.
-				//echo $signedInUser . "," . $id . "," . gettype($id);
-				$addQuery = "INSERT INTO UserFollowsBrewery (UserEmail, BreweryID) VALUES ('" . $signedInUser ."', '" . $id ."')";
-				//echo $addQuery;
-				if(mysqli_query($connection, $addQuery)){
-					echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">success</p>";
-					$followText = "UnFollow";
-					$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
-					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
-				} else {
-					die("Error: " . mysqli_error($connection));
-				}
-			}
 		}
 
 		//Ends the current session
@@ -476,7 +452,6 @@
 		$connection->close();
 
 		exit();
-	}
 	?>
 
 </body>
