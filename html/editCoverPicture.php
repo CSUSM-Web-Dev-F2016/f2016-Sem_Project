@@ -9,7 +9,7 @@
 
 	<!-- Analytics Script -->
   <script src="../js/analytics.js"></script>
-  
+
 </head>
 <?php
     session_start();
@@ -69,6 +69,7 @@ $coverURL = $_POST['coverURL'];
 
 
 echo "</div>";
+else : echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
 endif;
 mysqli_close($connection);
 ?>

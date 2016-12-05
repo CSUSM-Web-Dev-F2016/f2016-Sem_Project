@@ -72,6 +72,7 @@ if(isset($_POST['submit'])){
 		}
 }
 echo "</div>";
+else : echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
 endif;
 mysqli_close($connection);
 ?>

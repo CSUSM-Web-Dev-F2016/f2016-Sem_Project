@@ -75,6 +75,7 @@
 
   }
   echo "</div>";
+  else : echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
   endif;
   mysqli_close($connection);
   ?>
