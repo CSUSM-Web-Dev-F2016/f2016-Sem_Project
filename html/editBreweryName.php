@@ -20,6 +20,7 @@
 </head>
 <?php
     session_start();
+		include "../php/LogEvent.php";
 	 //Create a basic connection
   $connection = include '../php/DBConnectionReturn.php';
   $id = $_GET['id'];
@@ -64,6 +65,7 @@
 		    		if(mysqli_query($connection, $changeBreweryNameQuery)){
 							//Success. Now, refresh parent page
 							echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
+							CustomLog($connection, $_SESSION['signedInUser'], 'Brewery', "Changed Brewery Name for BreweryID=$id");
 		    		}
 		      	else {
 		        	echo "Error updating record.";

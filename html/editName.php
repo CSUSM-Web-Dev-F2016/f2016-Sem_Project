@@ -14,6 +14,7 @@
 
 <?php
     session_start();
+		include "../php/LogEvent.php";
 	 //Create a basic connection
 $connection = include '../php/DBConnectionReturn.php';
 $currentUser = $_SESSION['currentUser'];
@@ -58,6 +59,7 @@ if(isset($_POST['submit'])){
     		if(mysqli_query($connection, $changeNameQuery)){
 					//Success. Now, refresh parent page
 					echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+					CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "Changed name to $fNameinput $lNameinput");
     		}
       	else {
         	echo "Error updating record.";

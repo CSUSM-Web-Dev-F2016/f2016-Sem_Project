@@ -13,6 +13,7 @@
 
 <?php
     session_start();
+    include "../php/LogEvent.php";
 	 //Create a basic connection
     $connection = include '../php/DBConnectionReturn.php';
 
@@ -51,6 +52,7 @@
               if(mysqli_query($connection, $changePicQuery)){
             					//Updated. Now, refresh parent page
         				echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+                CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "Changed Profile Picture");
         		    }
               else {
                 echo "Error updating picture.";
