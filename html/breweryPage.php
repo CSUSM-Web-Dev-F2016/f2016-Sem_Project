@@ -49,6 +49,8 @@
 <?php
 		//Import needed PHP files
 		include "../php/create_table.php";
+		include "../php/LogEvent.php";
+
   	//Start the session
 	  session_start();
 		$id = $_GET['id'];
@@ -209,6 +211,8 @@
 					About
 				</div>
 				<div class="table">
+
+
 					<div class="smalltableCell">
 						<a onclick="showSRC<?php echo "('Hours.php?id=$id')";?>">
 							<!-- hours -->
@@ -220,6 +224,8 @@
 							</div>
 						</a>
 					</div>
+
+
 					<div class="smalltableCell">
 						<a onclick="showSRC('Story.php?id=<?php echo $_GET['id'];?>')">
 							<div class="tableCell img">
@@ -367,54 +373,76 @@
 
 	<!-- Footer information; additional links etc -->
 	<?php
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		//Check which form was set then get the appropriate id.
-		if(isset($_POST['brewery'])){
-			//Navigate to the brewery page iwth the new id
-			CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
-			echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
-		}
-		else if(isset($_POST['followBrew'])){
 
-				CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
+			if($_SERVER['REQUEST_METHOD'] == 'POST'){
+								//Check which form was ssent then get the appropriate id.
+    						if(isset($_POST['brewery'])){
 
-				//Navigate to the brewery page iwth the new id
-				echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
-    }
-    else if(isset($_POST['followBrew'])){
-				//User is going to Follow the user$
-				if($following == 'y'){
-						//If the user is currently following the user, unfollow it and change the image
-						$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID=$id";
-						if(mysqli_query($connection, $DeleteQuery)){
-								//Success
-								$followText = "Follow";
-								$followingImage = "../img/Follow.png?raw=true";
-								CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Followed BreweryID=" . end(array_keys($_POST)) . "");
-								echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
-						}else{
-								die("Error: " . mysqli_error($connection));
-						}
-		}else{
-				//If the user is not following the user, follow it and change the image.
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
+
+							  	//Navigate to the brewery page iwth the new id
+							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+    						}
+    						else if(isset($_POST['followBrew'])){
+								//User is going to Follow the user$
+								if($following == 'y'){
+									//If the user is currently following the user, unfollow it and change the image
+									$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $_SESSION['signedInUser'] . "' AND BreweryID=$id";
+									if(mysqli_query($connection, $DeleteQuery)){
+										//Success
+										$followText = "Follow";
+										$followingImage = "../img/Follow.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Followed BreweryID=" . end(array_keys($_POST)) . "");
+									}else{
+										die("Error: " . mysqli_error($connection));
+									}
+								}else{
+									//If the user is not following the user, follow it and change the image.
+									$addQuery = "INSERT INTO UserFollowsBrewery (UserEmail, BreweryID) VALUES ($signedInUser, $id)";
+									if(mysqli_query($connection, $addQuery)){
+										$followText = "UnFollow";
+										$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Un-Followed BreweryID=" . end(array_keys($_POST)) . "");
+									} else{
+										die("Error: " . mysqli_error($connection));
+									}
+								}
+							}
+    						else {
+							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
+									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+						    }
+
+			//echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">Hit trigger for POST</p>";
+			//User is going to Follow the user$
+			if($following == 'y'){
+				//If the user is currently following the user, unfollow it and change the image
+				$DeleteQuery = "DELETE FROM UserFollowsBrewery WHERE UserEmail='" . $signedInUser . "' AND BreweryID='" . $id . "'";
+				if(mysqli_query($connection, $DeleteQuery)){
+					//Success
+					$followText = "Follow";
+					$followingImage = "../img/Follow.png?raw=true";
+					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
+				}else{
+					die("Error: " . mysqli_error($connection));
+				}
+			}else{
+				//If the user is not following the brewery, follow it and change the image.
+				//echo $signedInUser . "," . $id . "," . gettype($id);
 				$addQuery = "INSERT INTO UserFollowsBrewery (UserEmail, BreweryID) VALUES ('" . $signedInUser ."', '" . $id ."')";
+				//echo $addQuery;
 				if(mysqli_query($connection, $addQuery)){
-						$followText = "UnFollow";
-						$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
-						CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Un-Followed BreweryID=" . end(array_keys($_POST)) . "");
-						echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
-				} else{
-						die("Error: " . mysqli_error($connection));
-					}
+					echo "<p style=\"text-align:center; color:red; width:100%; font-size:18px;\">success</p>";
+					$followText = "UnFollow";
+					$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+					echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . $id . "\";</script>";
+				} else {
+					die("Error: " . mysqli_error($connection));
 				}
 			}
-    else {
-				$_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
-				CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
-				echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 		}
 
-}
 
 		//Ends the current session
 		session_write_close();
@@ -423,6 +451,9 @@
 		$connection->close();
 
 		exit();
+
+	}
+
 	?>
 
 </body>
