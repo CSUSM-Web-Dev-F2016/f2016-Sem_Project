@@ -49,6 +49,7 @@
 <?php
 		//Import needed PHP files
 		include "../php/create_table.php";
+		include "../php/LogEvent.php";
   	//Start the session
 	  session_start();
 		$id = $_GET['id'];
