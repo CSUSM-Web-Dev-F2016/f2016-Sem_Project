@@ -358,7 +358,7 @@
 
 		<div class="breweryPage newsFeed">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="../html/NewsFeed.html" style="min-width:480px" title="subframe" onload="resizeIframe(this);"></iframe>
+			<iframe id="contentFrame" src="../html/NewsFeed.php" style="min-width:480px" title="subframe" onload="resizeIframe(this);"></iframe>
 			<div class="newsFeed" id="MainArea"></div>
 
 		</div>
