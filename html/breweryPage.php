@@ -352,6 +352,7 @@
 
 	<!-- Footer information; additional links etc -->
 	<?php
+
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								//Check which form was ssent then get the appropriate id.
     						if(isset($_POST['brewery'])){
@@ -386,12 +387,18 @@
 									}
 								}
 							}
+							else if(isset($_POST['user'])){
+
+
+							}
     						else {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+
 		}
+
 		//Ends the current session
 		session_write_close();
 		//Close the sql session
