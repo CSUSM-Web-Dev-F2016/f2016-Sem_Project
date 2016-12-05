@@ -42,7 +42,7 @@
         $favBeer_result = mysqli_query($connection, $getFavBeer);
 
        //Build the table
-       searchResultsTable($favBeer_result, 'BeerID', 'PictureURL', 'BeerName', 'user');
+       beersSearchTable($favBeer_result);
 
        //Free the results
        if($favBeer_result) mysqli_free_result($favBeer_result);
@@ -51,8 +51,18 @@
     </div>
 
     <?php
-    //close database connection
-    mysqli_close($connection);
+
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+       if(isset($_POST['beerID'])) {
+            //echo "<script type=\"text/javascript\"> window.alert(\"Found a Beer: " . $_POST['BeerID'] . "\");</script>";
+            echo "<script type=\"text/javascript\"> window.location.href = \"../html/BeerInfo.php?BeerID=" . $_POST['beerID'] . "\";</script>";
+        }
+
+
+      //close database connection
+      mysqli_close($connection);
+    }
     ?>
 
   </body>

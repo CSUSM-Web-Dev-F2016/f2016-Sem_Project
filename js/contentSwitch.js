@@ -17,7 +17,7 @@ function showSRC(address) {
     sectionDOM.src = "../html/" + address;
 
     //Set the frame width to 100% (in case it isnt);
-    sectionDOM.style.width = "99.5%";
+    sectionDOM.style.width = "100%";
 
 }
 
