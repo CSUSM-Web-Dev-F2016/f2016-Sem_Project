@@ -258,9 +258,11 @@
 								<div class="tableCell img">
 									<img class="smalltableCell" src="<?php echo $followingImage ?>" alt="<?php echo $followText ?>">
 								</div>
+
 								<div class="smalltableCell title"> <?php echo $followText ?> </div>
-							</button>
+
 							<input type="hidden" value="" name="<?php echo strtr($_GET['id'], array('.' => '#-#')) ?>">
+							</button>
 						</form>
 					</div>
 				</div>
@@ -299,7 +301,7 @@
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php?breweryID=<?php echo $id ?>')" class="moreClicked">more</a>
 				</div>
 			</div>
 
@@ -343,7 +345,7 @@
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php?breweryID=<?php echo $id ?>')" class="moreClicked">more</a>
 				</div>
 			</div>
 
