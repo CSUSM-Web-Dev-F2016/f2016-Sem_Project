@@ -14,6 +14,8 @@
 	<!-- Header Bar -->
 	<div class="header">
 		<img class="logo" src="img/Beer_Hopper_Banner.png" alt="Beer Hopper Logo">
+		<meta property="og:image" content="img/BeerHopperLogo.png" />
+		<meta name="description" content="The Social Network you always wanted to connect Microbreweries and people like you."/>;
 	</div>
 
 	<!-- Navigation Bar -->
