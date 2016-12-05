@@ -32,7 +32,7 @@ $signedInUser = $_SESSION['signedInUser'];
 
 <body>
 <?php
-if(($ownerEmail == $signedInUser)):
+    if(($ownerEmail == $signedInUser)):
 ?>
 <div class="container">
     <div class="edit-header">
@@ -41,12 +41,17 @@ if(($ownerEmail == $signedInUser)):
         <h1>Edit Brewery Hours</h1>
         <div class="box-line"></div>
     </div>
-    <form class="edit-form" id="form" method="POST">
+    <form class="edit-form" id="editHoursForm" method="POST">
         <div class="outer-section">
             <div class="inner-sections">
-                Enter link to brewery profile picture (.jpg or .png)
-                <br />
-                <input type="text" name="picURL" title="Profile Link"/>
+                Enter the hours for your brewery:
+                <br><input type="text" name="mo" title="Monday"/>
+                <br><input type="text" name="tu" title="Tuesday"/>
+                <br><input type="text" name="we" title="Wednesday"/>
+                <br><input type="text" name="th" title="Thursday"/>
+                <br><input type="text" name="fr" title="Friday"/>
+                <br><input type="text" name="sat" title="Saturday"/>
+                <br><input type="text" name="sun" title="Sunday"/>
             </div>
         </div>
         <button type="submit" name="submit" onclick="">Submit</button>
