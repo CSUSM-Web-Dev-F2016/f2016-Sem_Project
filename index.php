@@ -138,7 +138,7 @@
 							}
 
 							//Log the sign in
-							if(CustomLog($connection, $_SESSION['signedInUser'], 'Login', "User logged in.")){
+							if(CustomLog($connection, $_SESSION['signedInUser'], 'Login', $_SERVER['REMOTE_ADDR'])){
 								echo "<script type=\"text/javascript\"> window.alert(\"Error Found when trying to submit a logfile\");</script>";
 							}
 
