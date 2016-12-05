@@ -221,11 +221,8 @@
 						</a>
 					</div>
 					<div class="smalltableCell">
-<<<<<<< HEAD
-						<a onclick="showSRC<?php echo "('Story.php?id=$id')";?>">
-=======
 						<a onclick="showSRC('Story.php?id=<?php echo $_GET['id'];?>')">
->>>>>>> master
+
 							<div class="tableCell img">
 								<img class="smalltableCell" src="../img/story.png?raw=true" alt="Story Icon">
 							</div>
@@ -371,7 +368,7 @@
 
 	<!-- Footer information; additional links etc -->
 	<?php
-<<<<<<< HEAD
+
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								//Check which form was ssent then get the appropriate id.
     						if(isset($_POST['brewery'])){
@@ -414,15 +411,6 @@
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
-=======
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
-		//Check which form was set then get the appropriate id.
-		if(isset($_POST['brewery'])){
-			//Navigate to the brewery page iwth the new id
-			echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
-		}
-		else if(isset($_POST['followBrew'])){
->>>>>>> master
 
 		}
 
