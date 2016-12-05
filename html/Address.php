@@ -53,10 +53,10 @@
         }
 
         if (!isset($BreweryAdd2)) { // if brewery has no addr2
-            echo 'NULLL';
+            //echo 'NULLL';
             $BreweryAddress = $BreweryAddr1.' '.$BreweryCity.' '.$BreweryState.' '.$BreweryZip;
         } else {  // if brewery has addr2
-            echo 'NOT NULL';
+            //echo 'NOT NULL';
             $BreweryAddress = $BreweryAddr1; //.' '.$BreweryAddr2.' '; //.$BreweryCity.' '.$BreweryState.' '.$BreweryZip;
         }
         //echo "$BreweryAddress";
