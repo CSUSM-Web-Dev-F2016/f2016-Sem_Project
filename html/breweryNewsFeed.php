@@ -6,7 +6,7 @@
      <!-- CSS Files -->
      <link rel="stylesheet" href="../css/updateStatus.css" type="text/css">
 	    <script src="../NewsFeedBuilder.js" type="text/javascript"></script>
-     <title> News Feed </title>
+     <title> Brewery News Feed </title>
      <meta charset="utf-8">
  		  <script src="../js/analytics.js"></script>
 
@@ -19,13 +19,15 @@
   session_start();
 
   $connection = include '../php/DBConnectionReturn.php';
+  $id = $_GET['id'];
 
   //Now, once the connection is etablished, get the news feed
   //Basic posts only, presently
   $GetNewsFeedElements = "SELECT DISTINCT p.auto_ID, p.UserEmail, p.PostDate, p.TextContent, CONCAT(u.FName, ' ', u.LName) AS Name, u.ProfilePicURL
-                          FROM Post p, UserFollowsUser ufu, Users u
-                          WHERE p.shown=1 AND (ufu.UserEmail ='" . $_SESSION['currentUser'] . "' AND (p.UserEmail=ufu.OtherUserEmail AND u.Email=ufu.OtherUserEmail) OR (p.UserEmail='" . $_SESSION['currentUser'] . "' AND p.UserEmail=u.Email))
-                          ORDER BY p.PostDate DESC;";
+                          FROM Post p, BreweryFollowsUser bfu, Users u
+                          WHERE p.shown=1 AND bfu.BreweryID ='" . $id . "'AND p.UserEmail=bfu.UserEmail AND p.UserEmail=u.Email
+                          ORDER BY p.PostDate DESC";
+
 
   $NewsFeedResults = mysqli_query($connection, $GetNewsFeedElements);
 
