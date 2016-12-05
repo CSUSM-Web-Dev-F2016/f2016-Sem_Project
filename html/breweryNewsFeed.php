@@ -20,7 +20,6 @@
 
   $connection = include '../php/DBConnectionReturn.php';
   $id = $_GET['id'];
-  echo "The BreweryID is: " . $id . "<br>";
 
   //Now, once the connection is etablished, get the news feed
   //Basic posts only, presently
