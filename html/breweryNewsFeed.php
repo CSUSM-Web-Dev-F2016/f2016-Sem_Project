@@ -17,23 +17,17 @@
 <?php
   //Start the current session
   session_start();
-
   $connection = include '../php/DBConnectionReturn.php';
   $id = $_GET['id'];
-
   //Now, once the connection is etablished, get the news feed
   //Basic posts only, presently
   $GetNewsFeedElements = "SELECT DISTINCT p.auto_ID, p.UserEmail, p.PostDate, p.TextContent, CONCAT(u.FName, ' ', u.LName) AS Name, u.ProfilePicURL
-                          FROM Post p, BreweryFollowsUser bfu, Users u
-                          WHERE p.shown=1 AND bfu.BreweryID ='" . $id . "'AND p.UserEmail=bfu.UserEmail AND p.UserEmail=u.Email
+                          FROM Post p, BreweryFollowsUser bfu, Users u, UserFollowsBrewery ufb
+                          WHERE p.shown=1 AND ((bfu.BreweryID ='" . $id . "' AND p.UserEmail=bfu.UserEmail AND p.UserEmail=u.Email) OR (ufb.BreweryID ='" . $id . "' AND p.UserEmail=ufb.UserEmail AND p.UserEmail=u.Email))
                           ORDER BY p.PostDate DESC";
-
-
   $NewsFeedResults = mysqli_query($connection, $GetNewsFeedElements);
-
   if($NewsFeedResults->num_rows > 0){
     while($row = mysqli_fetch_assoc($NewsFeedResults)){
-
  ?>
     <div class="newsFeedBox" style="width:100%; padding: 0px; padding-bottom:25px;">
       <div class="inline">
@@ -75,9 +69,7 @@ else {
     echo "<p class\"postText\"> Error: " . $GetNewsFeedElements . "<br>" . $NewsFeedResults->num_rows;
   }
 }
-
     if($_SERVER['REQUEST_METHOD'] == 'POST'){
-
       if(isset($_POST['user'])){
         //Set the current page to the new user
         $_SESSION['currentUser'] = strtr($_POST['user'], array('#-#' => '.'));
@@ -89,24 +81,18 @@ else {
           //Success
           //refresh the page
           echo "<script type=\"text/javascript\"> window.location.href = \"NewsFeed.php\";</script>";
-
         }else{
           //Failed
           echo "<script type=\"text/javascript\"> window.alert(\"" . mysqli_error($connection). "\");</script>";
         }
       }
-
     }
-
 //Free the results and close the connection
 mysqli_free_result($NewsFeedResults);
-
 //Close the session
 session_write_close();
-
 //Close teh connection
 $conection->close();
-
 /**
 * @Date-Created:        November 27, 2016
 * @Date-Last-Modified:  December 01, 2016
@@ -119,10 +105,8 @@ function time_elapsed_string($datetime, $full = false) {
     $now = new DateTime;
     $ago = new DateTime($datetime);
     $diff = $now->diff($ago);
-
     $diff->w = floor($diff->d / 7);
     $diff->d -= $diff->w * 7;
-
     $string = array(
         'y' => 'year',
         'm' => 'month',
@@ -139,7 +123,6 @@ function time_elapsed_string($datetime, $full = false) {
             unset($string[$k]);
         }
     }
-
     if (!$full) $string = array_slice($string, 0, 1);
     return $string ? implode(', ', $string) . ' ago' : 'just now';
 }

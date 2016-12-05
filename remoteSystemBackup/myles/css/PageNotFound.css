@@ -1,0 +1,61 @@
+
+body{
+     margin: 0px;
+     padding: 0px;
+}
+
+.PNFContainer{
+     width: 100%;
+     position: absolute;
+     flex: auto;
+     flex-wrap: wrap;
+     flex-direction: column;
+     margin: auto;
+     padding-bottom: 45px;
+}
+
+.PNFTitle{
+     font-size: 23px;
+    width: 100%;
+    margin: auto;
+    font-weight: lighter;
+    font-style: italic;
+    color: gray;
+    text-align: center;
+   padding-top: 10px;
+}
+
+.PNFDescription{
+     font-size: 16px;
+     width: 100%;
+     font-weight: lighter;
+    font-style: normal;
+    color: gray;
+    margin: auto;
+    text-align: center;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}
+
+img.largeImageForPNF{
+     margin: auto;
+     width: 100%;
+     height: auto;
+}
+
+div.stdSection{
+     width: 100%;
+     border: 1px solid lightgray;
+     border-radius: 2px;
+     box-shadow: 0px 5px 5px lightgray;
+     overflow: hidden;
+     margin-bottom: 25px;
+     margin-top: 0px; 
+     flex: auto;
+     flex-wrap: wrap;
+     background-color: white;
+}
+
+div.stdSection:hover {
+    box-shadow: 0px 5px 5px gray;
+}

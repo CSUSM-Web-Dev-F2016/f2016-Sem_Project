@@ -59,14 +59,11 @@
 	  }else{
 		  //echo "<p style=\"color:white\">You rock: " . $_GET['id'] . "<br></p>";
 	  }
-
 	  	//Connect to the DB
 	 	$connection = include '../php/DBConnectionReturn.php';
-
 	  //Start the SQL Query to get the brewery information
 	  $getBreweryInfoQuery = "SELECT BreweryName, ProfilePicURL, CoverPicURL, CONCAT(l.City, ', ', l.State) AS City FROM BreweryTable b, BreweryLocation l WHERE b.breweryID = l.breweryID AND b.breweryID=" . $_GET['id'];
 	  $getBreweryInnfoResults = mysqli_query($connection, $getBreweryInfoQuery);
-
 		//Get current user info
 		$signedInUser = $_SESSION['signedInUser'];
 		//Get breweries that user is following
@@ -80,7 +77,6 @@
 			$isUserBreweryOwner = true;
 		} else
 			$isUserBreweryOwner = false;
-
 		//Check to see if user has favorited brewery
 		if ($signedInUserBreweriesResults-> num_rows == 0){
 			//Is not following
@@ -97,13 +93,11 @@
 	  if($getBreweryInnfoResults-> num_rows > 0){
 		  //If the brewery exists, get the info
 		  while($row = mysqli_fetch_assoc($getBreweryInnfoResults)){
-
 			  //Save the values
 			  $BreweryName = $row['BreweryName'];
 			  $ProfilePicURL = $row['ProfilePicURL'];
 			  $CoverPicURL = $row['CoverPicURL'];
 			  $City = $row['City'];
-
 				//Get the visits count (from a different table)
 				$visitsCountGet = "SELECT DISTINCT uvb.UserEmail, COUNT(*) AS vists FROM UserVisitsBrewery uvb WHERE uvb.BreweryID=" . $_GET['id'] . " GROUP BY uvb.UserEmail";
 				$visitsResult = mysqli_query($connection, $visitsCountGet);
@@ -114,7 +108,6 @@
 				}else{
 					$Visits = 0;
 				}
-
 				//Get the visits count (from a different table)
 				$visitsCountGetTotal = "SELECT COUNT(*) AS visits FROM UserVisitsBrewery";
 				$visitsResultTotal = mysqli_query($connection, $visitsCountGetTotal);
@@ -126,20 +119,17 @@
 				}else{
 					$VisitsTotal = 0;
 				}
-
 			  //If the cover pic does not exist, set it to the default
 				if(empty($CoverPicURL)){
 					$CoverPicURL = "../img/DefaultCoverImage.png";
 				}
 		  }
-
 			//Free the results
 			mysqli_free_result($getBreweryInnfoResults);
 	  }else{
 		  //DNE Exist (Show page not found)
 		  header("Location: ./PageNotFound.html?breweryID=" . $_GET['id']);
 	  }
-
 		//Now, increment the visit count of said brewery
 		$UpdateVisits = "INSERT INTO UserVisitsBrewery VALUES(NULL, '" . $signedInUser . "', " . $_GET['id'] .")";
 		if(mysqli_query($connection, $UpdateVisits)){
@@ -147,7 +137,6 @@
 		}else{
 			echo "Error With Query: " . mysqli_error($connection);
 		}
-
   ?>
 
 <body>
@@ -293,9 +282,7 @@
 						//Build the table
 						$GetWhoBreweryIsFollowing = "SELECT DISTINCT b.OtherBreweryID AS BreweryID, ob.ProfilePicURL, ob.BreweryName FROM BreweryFollowsBrewery b, BreweryTable ob WHERE ob.BreweryID = b.OtherBreweryID AND b.BreweryID=" . $_GET['id'] . " LIMIT 6";
 						$GetWhoBreweryIsFollowingResults = mysqli_query($connection, $GetWhoBreweryIsFollowing);
-
 						createBasicForm($GetWhoBreweryIsFollowingResults, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
-
 						//Free the results
 						if($GetWhoBreweryIsFollowingResults) mysqli_free_result($GetWhoBreweryIsFollowingResults);
 					?>
@@ -314,12 +301,9 @@
 					<?php
 						$getFavoritedBeersQuery = "SELECT DISTINCT BeerID, BeerName, PictureURL FROM Beers WHERE OnTap='T' AND  BreweryID = " . $_GET['id'] . " LIMIT 6";
 						$favoritedBeersResults = mysqli_query($connection, $getFavoritedBeersQuery);
-
 						createClickableTable($favoritedBeersResults, 'BeerID', 'PictureURL', 'BeerName');
-
 						//Free results
 						mysqli_free_result($favoritedBeersResults);
-
 					?>
 				</div>
 				<div class="stdSectionFooter">
@@ -336,10 +320,8 @@
 					<?php
 						$GetUsersFollowingBrewery = "SELECT u.ProfilePicURL, CONCAT(u.FName, '<br>', u.LName) AS Name, u.Email FROM Users u, UserFollowsBrewery ufb WHERE u.Email = ufb.UserEmail AND ufb.BreweryID=" . $_GET['id'] . " LIMIT 6";
 						$GetUsersFollowingBreweryResults = mysqli_query($connection, $GetUsersFollowingBrewery);
-
 						//Create a basic form
 						if($GetUsersFollowingBreweryResults) createBasicForm($GetUsersFollowingBreweryResults, 'Email', 'ProfilePicURL', 'Name', 'user');
-
 						//Clear the results
 						if($GetUsersFollowingBreweryResults) mysqli_free_result($GetUsersFollowingBreweryResults);
 					?>
@@ -361,7 +343,7 @@
 
 		<div class="breweryPage newsFeed">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="../html/breweryNewsFeed.php?id=<?php echo $_GET['id'];?>" style="min-width:480px" title="subframe" onload="resizeIframe(this);"></iframe>
+			<iframe id="contentFrame" src="../html/breweryNewsFeed.php?id=<?php echo $_GET['id'];?>" style="min-width:100%" title="subframe" onload="resizeIframe(this);"></iframe>
 			<div class="newsFeed" id="MainArea"></div>
 
 		</div>
@@ -374,9 +356,7 @@
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 								//Check which form was ssent then get the appropriate id.
     						if(isset($_POST['brewery'])){
-
 								CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
-
 							  	//Navigate to the brewery page iwth the new id
 								echo end(array_keys($_POST));
 							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
@@ -399,7 +379,6 @@
 									//If the user is not following the user, follow it and change the image.
 									$addQuery = "INSERT INTO UserFollowsBrewery (UserEmail, BreweryID) VALUES ('" . $signedInUser ."', '" . $id ."')";
 									if(mysqli_query($connection, $addQuery)){
-
 										$followText = "UnFollow";
 										$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
 										CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Un-Followed BreweryID=" . end(array_keys($_POST)) . "");
@@ -424,10 +403,8 @@
 
 		//Ends the current session
 		session_write_close();
-
 		//Close the sql session
 		$connection->close();
-
 		exit();
 	?>
 

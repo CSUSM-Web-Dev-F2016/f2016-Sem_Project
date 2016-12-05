@@ -1,0 +1,98 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: black;
+}
+
+#beerDes {
+    margin-top: 50px;
+}
+
+#profileImg {
+    background-color: white;
+}
+
+header {
+    height: 3em;
+    background-color: #191d24;
+}
+
+.header {
+    position: fixed;
+    z-index: 5;
+    width: 100%;
+}
+
+nav {
+    top: 0px;
+    position: fixed;
+    z-index: 6;
+}
+
+header {
+    justify-content: center;
+}
+
+header a img.logo {
+    height: 3em;
+    top: 0px;
+    margin: auto;
+    position: fixed;
+    margin-left: 45%;
+}
+
+section.breweryPage {
+    margin: 0px;
+    top: 0px;
+}
+
+#coverImage {
+    height: 250px;
+    object-fit: cover;
+    width: 150%;
+    top: 3em;
+    position: absolute;
+    margin: auto;
+    margin-left: -25%;
+    z-index: 0;
+    /* For reflection underneath */
+}
+.profileName:hover{
+  color: lightgrey;
+}
+
+#coverImage:hover{
+  opacity: .9;
+}
+
+img.profileImg {
+    top: -7em;
+    left: 25%;
+    position: absolute;
+    object-fit: contain;
+}
+
+#profileContainer {
+    padding-top: 50px;
+    top: 2em;
+    color: white;
+}
+
+img.profileImg:hover{
+    opacity: .75;
+}
+
+img.smalltableCell {
+    border: 2px solid white;
+    background-color: white;
+}
+
+.breweryPage.newsFeed {
+    top: 350px;
+    width: 100%;
+    height: 100px;
+}
+
+.stdSection.FollowingBreweries {
+    margin-top: 165.5px;
+}

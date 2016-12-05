@@ -97,9 +97,9 @@
       echo "<form action=\"\" class=\"stdForm\" name=\"user\" onsubmit=\"return false;\">";
           echo "<button type=\"submit\" class=\"defaultSetBtn\" name=\"\">";
             echo "<div class=\"tableCell img\">";
-              echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
+              echo "<img class=\"smalltableCell\" src=\"http://beerhopper.me/img/x.png\" alt=\"" . "" . "\">";
             echo "</div>";
-            echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "Not Followed By Anyone" . "</div>";
+            echo "<div class=\"smalltableCell title\" style=\"padding-top:10px; padding-bottom:15px; max-height:50px;\">" . "Nothing Found!" . "</div>";
           echo "</button>";
         echo "</form>";
     }
@@ -123,7 +123,7 @@
             echo "<div class=\"tableCell img\">";
               echo "<img class=\"smalltableCell\" src=\"" . $row[$PictureURL] . "\" alt=\"" . $row[$CellName] . "\">";
             echo "</div>";
-            echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row[$CellName] . "</div>";
+            echo "<div class=\"smalltableCell title\" style=\"padding-top:10px; padding-bottom:15px; max-height:50px;\">" . $row[$CellName] . "</div>";
           echo "</button>";
           echo "<input type=\"hidden\" name=\"" . strtr($row[$PK], array('.' => '#-#')) . "\" value=\"\">";
         echo "</form>";
@@ -142,7 +142,7 @@
             echo "<div class=\"tableCell img\">";
               echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
             echo "</div>";
-            echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No " . $CellName . "'s Found!" . "</div>";
+            echo "<div class=\"smalltableCell title\" style=\"padding-top:10px; padding-bottom:15px; max-height:50px;\">" . "No " . $CellName . "'s Found!" . "</div>";
           echo "</button>";
         echo "</form>";
     }
@@ -158,7 +158,7 @@
              echo "<div class=\"tableCell img\">";
                echo "<img class=\"smalltableCell\" src=\"" . $row['PictureURL'] . "\" alt=\"" . $row['BeerName'] . "\">";
              echo "</div>";
-             echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row['BeerName'] . "</div>";
+             echo "<div class=\"smalltableCell title\" style=\"padding-top:10px; padding-bottom:15px;\">" . $row['BeerName'] . "</div>";
            echo "</button>";
            echo "<input type=\"hidden\" name=\"beerID\" value=\"" . $row['BeerID'] . "\">";
          echo "</form>";
@@ -174,7 +174,7 @@
              echo "<div class=\"tableCell img\">";
                echo "<img class=\"smalltableCell\" src=\"" . "http://beerhopper.me/img/x.png" . "\" alt=\"" . "" . "\">";
              echo "</div>";
-             echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . "No Beers Found!" . "</div>";
+             echo "<div class=\"smalltableCell title\" style=\"padding-top:10px; padding-bottom:15px; max-height:50px;\">" . "No Beers Found!" . "</div>";
            echo "</button>";
            //echo "<input type=\"hidden\" name=\"brewery\" value=\"\">";
          echo "</form>";

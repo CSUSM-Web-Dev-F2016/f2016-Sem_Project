@@ -9,6 +9,7 @@
 	<script src="../js/analytics.js"></script>
 	<?php
 
+		include "../php/LogEvent.php";
         session_start(); // start connection
 
         /*Get the token to prove the user was logged in*/
@@ -26,13 +27,13 @@
             while ($row = mysqli_fetch_assoc($BreweryInfoResults)) {
                 $BreweryName = $row['BreweryName'];
                 $BreweryStory = $row['About'];
+								CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User viewed the story for BreweryID= " . $_GET['id'] . " Name: " . $BreweryName);
                 break;
             }
-						CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User viewed the story for BreweryID= " . $$_GET['id'] . "Name: " . $BreweryName);
         }
 
 				if(mysqli_error($connection)){
-					CustomLog($connection, $_SESSION['signedInUser'], 'Story Error', "Could not load a story for BeerID=" . $_GET['BeerID'] . ", BeerName: " . $BreweryName . "Error Details: " . mysqli_error($connection));
+					CustomLog($connection, $_SESSION['signedInUser'], 'Story Error', "Could not load a story for BeerID=" . $_GET['BeerID'] . ", BeerName: " . $BreweryName . " Error Details: " . mysqli_error($connection));
 				}
 
 				if(sizeof(trim($BreweryStory)) == 0){
