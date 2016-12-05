@@ -123,7 +123,7 @@
             echo "<div class=\"tableCell img\">";
               echo "<img class=\"smalltableCell\" src=\"" . $row[$PictureURL] . "\" alt=\"" . $row[$CellName] . "\">";
             echo "</div>";
-            echo "<div class=\"smalltableCell title\" style=\"padding-bottom:15px; max-height:50px;\">" . $row[$CellName] . "</div>";
+            echo "<div class=\"smalltableCell title\" style=\"padding-top:10px; padding-bottom:15px; max-height:50px;\">" . $row[$CellName] . "</div>";
           echo "</button>";
           echo "<input type=\"hidden\" name=\"" . strtr($row[$PK], array('.' => '#-#')) . "\" value=\"\">";
         echo "</form>";
