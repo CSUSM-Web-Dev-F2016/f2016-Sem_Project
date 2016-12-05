@@ -97,3 +97,6 @@ img.smalltableCell {
 .stdSection.FollowingBreweries {
     margin-top: 165.5px;
 }
+iframe {
+  margin-right:2px;
+}

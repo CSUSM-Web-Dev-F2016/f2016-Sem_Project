@@ -20,7 +20,18 @@
        //Create a basic connection
        $connection = include '../php/DBConnectionReturn.php';
 
-    	 $CurrentUser = $_SESSION['currentUser'];
+       $CurrentUser = $_SESSION['currentUser'];
+        $brewID = $_GET['breweryID'];
+        //checks to see if breweryID is empty
+        if (!empty($brewID)) {
+            //request is coming from a brewery page
+            $userIsBrewery = true;
+        } else {
+            //request is coming from a user page
+            $userIsBrewery = false;
+        }
+
+
     ?>
   </head>
   <body>
@@ -39,8 +50,16 @@
       </div>
       <div class="table">
         <?php
-        $getFollowBrew = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM UserFollowsBrewery, BreweryTable WHERE UserFollowsBrewery.BreweryID = BreweryTable.BreweryID AND UserEmail = '" . $CurrentUser . "'";
-        $follow_result = mysqli_query($connection, $getFollowBrew);
+        //If request is coming from a brewery page, get the breweries that it is following
+        if ($userIsBrewery){
+            $getFollowBrew = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM BreweryFollowsBrewery, BreweryTable WHERE BreweryFollowsBrewery.OtherBreweryID = BreweryTable.BreweryID AND BreweryFollowsBrewery.BreweryID = '" . $brewID . "'";
+            $follow_result = mysqli_query($connection, $getFollowBrew);
+        } else {
+            //Get breweries that the user is following
+            $getFollowBrew = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM UserFollowsBrewery, BreweryTable WHERE UserFollowsBrewery.BreweryID = BreweryTable.BreweryID AND UserEmail = '" . $CurrentUser . "'";
+            $follow_result = mysqli_query($connection, $getFollowBrew);
+        }
+
 
        //Build the table
        searchResultsTable($follow_result, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
@@ -57,8 +76,17 @@
       </div>
       <div class="table">
         <?php
-        $getFollowUser = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
-        $followUser_result = mysqli_query($connection, $getFollowUser);
+        if ($userIsBrewery){
+            //Get users the brewery is following
+            $getFollowUser = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, BreweryFollowsUser WHERE BreweryID = '" . $brewID . "' AND UserEmail = Email";
+            $followUser_result = mysqli_query($connection, $getFollowUser);
+        }
+        else {
+            //Get users the user is following
+            $getFollowUser = "SELECT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, UserFollowsUser WHERE UserEmail = '" . $CurrentUser . "' AND OtherUserEmail = Email";
+            $followUser_result = mysqli_query($connection, $getFollowUser);
+        }
+
 
        //Build the table
        searchResultsTable($followUser_result, 'Email', 'ProfilePicURL', 'Name', 'user');
@@ -75,8 +103,16 @@
       </div>
       <div class="table">
         <?php
-        $getBrewFollowMe = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM BreweryFollowsUser, BreweryTable WHERE BreweryFollowsUser.BreweryID = BreweryTable.BreweryID AND UserEmail = '" . $CurrentUser . "'";
-        $brewFollowMe_result = mysqli_query($connection, $getBrewFollowMe);
+        if ($userIsBrewery) {
+            //Get other breweries that are following the brewery
+            $getFollowBrew = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM BreweryFollowsBrewery, BreweryTable WHERE BreweryFollowsBrewery.BreweryID = BreweryTable.BreweryID AND BreweryFollowsBrewery.OtherBreweryID = '" . $brewID . "'";
+            $follow_result = mysqli_query($connection, $getFollowBrew);
+        } else {
+            //Get breweries that are following the user
+            $getBrewFollowMe = "SELECT BreweryTable.BreweryID, BreweryName, ProfilePicURL FROM BreweryFollowsUser, BreweryTable WHERE BreweryFollowsUser.BreweryID = BreweryTable.BreweryID AND UserEmail = '" . $CurrentUser . "'";
+            $brewFollowMe_result = mysqli_query($connection, $getBrewFollowMe);
+        }
+
 
        //Build the table
        searchResultsTable($brewFollowMe_result, 'BreweryID', 'ProfilePicURL', 'BreweryName', 'brewery');
@@ -93,8 +129,16 @@
       </div>
       <div class="table">
         <?php
-        $getPeopleFollowMe = "SELECT DISTINCT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, UserFollowsUser WHERE OtherUserEmail = '" . $CurrentUser . "' AND UserEmail = Email";
-        $peopleFollowMe_result = mysqli_query($connection, $getPeopleFollowMe);
+
+        if ($userIsBrewery) {
+            //Get users following the brewery
+            $getPeopleFollowMe = "SELECT DISTINCT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, UserFollowsBrewery WHERE BreweryID = '" . $brewID . "' AND UserEmail = Email";
+            $peopleFollowMe_result = mysqli_query($connection, $getPeopleFollowMe);
+        } else {
+            //Get users following the user
+            $getPeopleFollowMe = "SELECT DISTINCT CONCAT(FName, '<br>', LName) AS Name, ProfilePicURL, Email FROM Users, UserFollowsUser WHERE OtherUserEmail = '" . $CurrentUser . "' AND UserEmail = Email";
+            $peopleFollowMe_result = mysqli_query($connection, $getPeopleFollowMe);
+        }
 
        //Build the table
        searchResultsTable($peopleFollowMe_result, 'Email', 'ProfilePicURL', 'Name', 'user');
