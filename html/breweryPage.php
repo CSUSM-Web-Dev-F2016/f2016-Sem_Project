@@ -49,6 +49,7 @@
 <?php
 		//Import needed PHP files
 		include "../php/create_table.php";
+		include "../php/LogEvent.php";
   	//Start the session
 	  session_start();
 		$id = $_GET['id'];
@@ -343,7 +344,7 @@
 
 		<div class="breweryPage newsFeed">
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="../html/breweryNewsFeed.php?id=<?php echo $_GET['id'];?>" style="min-width:100%" title="subframe" onload="resizeIframe(this);"></iframe>
+			<iframe id="contentFrame" src="../html/breweryNewsFeed.php?id=<?php echo $_GET['id'];?>" style="min-width:100%;" height="auto" title="subframe" onload="resizeIframe(this);"></iframe>
 			<div class="newsFeed" id="MainArea"></div>
 
 		</div>
@@ -386,11 +387,11 @@
 										die("Error: " . mysqli_error($connection));
 									}
 								}
-							}
+							}/*
 							else if(isset($_POST['user'])){
 
 
-							}
+							}*/
     						else {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");

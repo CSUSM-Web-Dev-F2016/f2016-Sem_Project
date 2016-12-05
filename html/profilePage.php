@@ -443,7 +443,7 @@
 			<div class="newsFeed" id="MainArea">
 
 			<!-- For example purposes, add the add brewery panel -->
-			<iframe id="contentFrame" src="../html/NewsFeed.php" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
+			<iframe id="contentFrame" src="../html/NewsFeed.php" title="subcontent" style="width:100%; height:350px;" onload="resizeIframe(this);"></iframe>
 		</div>
 		</div>
 		<!-- Black Field to Post -->

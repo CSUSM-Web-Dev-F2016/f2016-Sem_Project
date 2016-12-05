@@ -32,7 +32,7 @@
           //Loop trhough all beers, creating a new beer view for each.
           while($row = mysqli_fetch_assoc($GetBeersResults)){
             ?>
-            <iframe id="contentFrame" height="300px" src="../html/BeerInfo.php?BeerID=<?PHP echo $row['BeerID']; ?>" title="BeerView" style="width:99.5%; padding:0px;" onload="resizeIframe(this);"></iframe>
+            <iframe id="contentFrame" height="300px" src="../html/BeerInfo.php?BeerID=<?PHP echo $row['BeerID']; ?>" title="BeerView" style="width:99.5%; padding:0px; height:100px;" onload="resizeIframe(this);"></iframe>
             <?PHP
           }
         }else{
