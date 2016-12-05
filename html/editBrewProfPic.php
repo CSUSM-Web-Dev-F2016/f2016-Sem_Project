@@ -23,6 +23,7 @@
 <?php
     session_start();
 	 //Create a basic connection
+   include "../php/LogEvent.php";
     $connection = include '../php/DBConnectionReturn.php';
     $id = $_GET['id'];
 
@@ -62,8 +63,9 @@
 	        if((strpos($picURL, '.png') !== false) || (strpos($picURL, '.jpg') !== false)){
             	$changePicQuery = "UPDATE BreweryTable SET ProfilePicURL='" . $picURL . "' WHERE BreweryID=$id";
               if(mysqli_query($connection, $changePicQuery)){
-            					//Updated. Now, refresh parent page
+            					//Updated. Now, refresh parent page, and LogEvent
         				echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
+                CustomLog($connection, $_SESSION['signedInUser'], 'Brewery', "Changed Profile Photo for BreweryID=$id");
         		    }
               else {
                 echo "Error updating brewery picture.";
@@ -75,6 +77,7 @@
 
   }
   echo "</div>";
+  else : echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
   endif;
   mysqli_close($connection);
   ?>
