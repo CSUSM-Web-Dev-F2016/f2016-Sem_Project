@@ -110,7 +110,7 @@
 					$Visits = 0;
 				}
 				//Get the visits count (from a different table)
-				$visitsCountGetTotal = "SELECT COUNT(*) AS visits FROM UserVisitsBrewery";
+				$visitsCountGetTotal = "SELECT COUNT(*) AS visits FROM UserVisitsBrewery WHERE BreweryID=" . $_GET['id'];
 				$visitsResultTotal = mysqli_query($connection, $visitsCountGetTotal);
 				if($visitsResultTotal->num_rows > 0){
 					while ($row = mysqli_fetch_assoc($visitsResultTotal)) {
