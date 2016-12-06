@@ -156,65 +156,48 @@
 			<form action="" class="stdForm" method="POST" name="privacysettingsform">
 				<br>Allow Beerhopper to send you occasional emails?
 				<select name="emailopt">
-					<option selected value=""><?php if ($AllowEmails) { // selected value is user's value
-                 echo 'Yes';
+					<?php if ($AllowEmails) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
              } else {
-                 echo 'No';
-             } ?></option>
-			 		<?php
-                    if (!$AllowEmails) { // then the other option is displayed
-                        echo '<option value="yes">Yes</option>';
-                    } else {
-                        echo '<option value="no">No</option>';
-                    }
-                    ?>
-				</select>
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
+		 		</select>
+
 				<br><br> Allow other users to search you via email?
 				<select name="searchopt">
-					<option selected value=""><?php if ($AllowSearch) { // selected value is user's value
-                        echo 'Yes';
-                    } else {
-                        echo 'No';
-                    } ?></option>
-					<?php
-                    if (!$AllowSearch) { // then the other option is displayed
-                        echo '<option value="yes">Yes</option>';
-                    } else {
-                        echo '<option value="no">No</option>';
-                    }
-                    ?>
-				</select>
+					<?php if ($AllowSearch) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
+             } else {
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
+		 		</select>
+
 				<br><br> Show location on profile
 				<select name="showlocation">
-					<option selected value=""><?php if ($ShowLocation) {
-                        echo 'Yes';
-                    } else {
-                        echo 'No';
-                    } ?></option>
-					<?php
-                    if (!$ShowLocation) { // then the other option is displayed
-                        echo '<option value="yes">Yes</option>';
-                    } else {
-                        echo '<option value="no">No</option>';
-                    }
-                    ?>
-					</select>
+					<?php if ($ShowLocation) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
+             } else {
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
+		 		</select>
+
 				<br><br> Opt out of personalized ads?
 				<select name="personalizedads">
-					<option selected value=""><?php if ($PersonalizedAds) { // selected value is user's value
-                        echo 'Yes';
-                    } else {
-                        echo 'No';
-                    } ?></option>
-					<?php
-                    if (!$PersonalizedAds) { // then the other option is displayed
-                        echo '<option value="yes">Yes</option>';
-                    } else {
-                        echo '<option value="no">No</option>';
-                    }
-                    ?>
+					<?php if ($PersonalizedAds) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
+             } else {
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
 					<option value="etc">Sell my soul for all the loot</option>
-					</select>
+				</select>
 
 				<br><br><button type="submit" name="privacysettings">Comfirm</button>
 			</form>
@@ -267,7 +250,7 @@
                         if (mysqli_query($connection, $UpdatePrivacySettings) || mysqli_query($connection, $CreatePrivacySettings)) {
                             echo 'Records updated<br>';
                             /* refresh parent page */
-                            //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
+                            echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
                             echo '<br><br><br>';
                             echo "$UpdatePrivacySettings";
@@ -281,7 +264,7 @@
 		<h3> My Breweries: </h3><!-- header for my breweries -->
 		<div class="mybreweries"><br> <!-- my breweries class -->
 			<?php
-            /*Get brewery owner info */
+                /*Get brewery owner info */
                 $GetBreweryOwnerQuery = "SELECT * FROM BreweryOwner WHERE UserEmail='".$_SESSION['signedInUser']."'"; // get brewery owner info query
                 $BreweriesOwned = array();
                 $BreweryNames = array();
@@ -364,7 +347,7 @@
                         if (mysqli_query($connection, $updateBreweryInfo)) {
                             echo '<br><br>Records updated<br>';
                             /* refresh parent page */
-                            //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
+                            echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
                             echo '<br>';
                             echo "$updateBreweryInfo";
