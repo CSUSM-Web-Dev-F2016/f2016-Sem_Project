@@ -18,10 +18,10 @@
 
 		<?php
 
+            /* removes visible <br> tag from brewery hours & brewery story to display in settings */
             function removeBR($variable)
             {
-                /* removes visible <br> tag from brewery hours display in settings */
-                if (strstr($variable, '<br>')) { // if $brewryhours has <br>
+                if (strstr($variable, '<br>')) { // if $variable has <br>
                     $variable = str_ireplace('<br>', '', $variable); // get rid of <br> tag
                 }
 
@@ -29,7 +29,6 @@
             }
 
             session_start(); // start connection
-            //import
 
             /*Get the token to prove the user was logged in*/
               if (strlen($_SESSION['loginToken']) == 0) { // if the user is not logged in
@@ -38,15 +37,15 @@
              // Create a basic connection
             $connection = include '../php/DBConnectionReturn.php';
 
-            $GetUserInformationQuery = "SELECT * FROM Users WHERE Email='".$_SESSION['signedInUser']."'";
-            $userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
+            $GetUserInformationQuery = "SELECT * FROM Users WHERE Email='".$_SESSION['signedInUser']."'"; // query to get user's information
+            $userInfoResults = mysqli_query($connection, $GetUserInformationQuery); // store into results
 
-            if ($userInfoResults->num_rows > 0) {
+            if ($userInfoResults->num_rows > 0) { // if there are results
                 while ($row = mysqli_fetch_assoc($userInfoResults)) {
-                    $FName = $row['FName'];
-                    $LName = $row['LName'];
-                    $Email = $row['Email'];
-                    $Password = password_verify($row['Password'], password_hash($row['Password'], PASSWORD_DEFAULT));
+                    $FName = $row['FName']; // assign FName in db to $FName
+                    $LName = $row['LName']; // assign LName in db to $LName
+                    $Email = $row['Email']; // assign Email in db to $email
+                    $Password = password_verify($row['Password'], password_hash($row['Password'], PASSWORD_DEFAULT)); // assign Password in db to $Password
                     break;
                 }
             }
@@ -82,14 +81,14 @@
                         $em = $_POST['email']; // em = new email
 
                         $updateUserInfo = "UPDATE Users Set FName = '".$fn."', LName = '".$ln."', Email = '".$em."' WHERE Email = '".$_SESSION['currentUser']."'"; // get update statement
-                        if (mysqli_query($connection, $updateUserInfo)) {
+                        if (mysqli_query($connection, $updateUserInfo)) { // if records updated
                             echo 'Records updated';
                             /* refresh parent page */
-                            //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
-                        } else {
+                            echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
+                        } else { // there was an error updating records
                             echo '<br><br><br>';
                             echo "$updateUserInfo";
-                            echo 'ERORRRR';
+                            echo 'ERORRRR: There was an error updating your user information<br>';
                         }
                     }
                 }
@@ -111,22 +110,22 @@
                 } else {
                     echo 'err: There is no password to be displayed'; // there is no password
                 }
-                if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-                    if (isset($_POST['passwordsettings'])) {
-                        if ($_POST['password'] == $_POST['reenterPassword']) {
-                            $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new (hashed) passowrd
+                if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
+                    if (isset($_POST['passwordsettings'])) { // and it was from passwordsettings
+                        if ($_POST['password'] == $_POST['reenterPassword']) { // and if password and reenter password match
+                            $pw = password_hash($_POST['password'], PASSWORD_DEFAULT); // pw = new (hashed) password
                             $updateUserInfo = "UPDATE Users Set Password = '".$pw."' WHERE Email = '".$_SESSION['signedInUser']."'"; // get update statement
-                            if (mysqli_query($connection, $updateUserInfo)) {
+                            if (mysqli_query($connection, $updateUserInfo)) { // if update was successful
                                 echo 'Records updated';
                                 /* refresh parent page */
-                                //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
-                            } else {
+                                echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
+                            } else { // update was not successful
                                 echo '<br><br><br>';
                                 echo "$updateUserInfo";
                                 echo 'ERORRRR';
                             }
-                        } else {
-                            echo '<p><br><br></p><span style="color: red;">Error Updating</span>'; // red error msg if passwords do not match
+                        } else { /* red error msg if passwords do not match */
+                            echo '<p><br><br></p><span style="color: red;">Error Updating</span>';
                             echo '<br><span style="color: red;">Passwords did not match</span></p>';
                         }
                     }
@@ -140,40 +139,66 @@
 			<!-- get current privacy settings -->
 			<?php
             $GetUserPrivacySettingsQuery = "SELECT * FROM PrivacySettings WHERE UserEmail='".$_SESSION['signedInUser']."'"; // privacy settings query
-            $userInfoResults = mysqli_query($connection, $GetUserInformationQuery); // user privacy settings results
-            if ($userInfoResults->num_rows > 0) { // if there are results
-                while ($row = mysqli_fetch_assoc($userInfoResults)) {
+            $UserPrivacySettings = mysqli_query($connection, $GetUserPrivacySettingsQuery); // user privacy settings results
+            if ($UserPrivacySettings->num_rows > 0) { // if there are results
+                while ($row = mysqli_fetch_assoc($UserPrivacySettings)) {
                     $AllowEmails = $row['AllowEmails']; // $AllowEmails = AllowEmails
                     $AllowSearch = $row['AllowSearch']; // $AllowSearch = AllowSearch
                     $ShowLocation = $row['ShowLocation']; // $ShowLocation = ShowLocation
                     $PersonalizedAds = $row['PersonalizedAds']; // $PersonalizedAds = PersonalizedAds
                     break;
                 }
+            } else { // if the user is not in the table yet
+                $NotInTable = true; // $NotInTable is true
             }
              ?>
-			<form action ="" class="stdForm" method="POST" name="privacysettingsform">
+			 <!-- form for privacy settings -->
+			<form action="" class="stdForm" method="POST" name="privacysettingsform">
 				<br>Allow Beerhopper to send you occasional emails?
 				<select name="emailopt">
-					<option value="yes">Yes</option>
-					<option value="no">No</option>
-				</select>
+					<?php if ($AllowEmails) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
+             } else {
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
+		 		</select>
+
 				<br><br> Allow other users to search you via email?
 				<select name="searchopt">
-					<option value="yes">Yes</option>
-					<option value="no">No</option>
-				</select>
+					<?php if ($AllowSearch) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
+             } else {
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
+		 		</select>
+
 				<br><br> Show location on profile
 				<select name="showlocation">
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-						<option value="follow">Only to users I follow</option>
-					</select>
+					<?php if ($ShowLocation) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
+             } else {
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
+		 		</select>
+
 				<br><br> Opt out of personalized ads?
 				<select name="personalizedads">
-						<option value="yes">Yes</option>
-						<option value="no">No</option>
-						<option value="etc">Sell my soul for all the loot</option>
-					</select>
+					<?php if ($PersonalizedAds) {
+                 echo '<option selected value="yes">Yes</option>';
+                 echo '<option value="no">No</option>';
+             } else {
+                 echo '<option selected value="no">No</option>';
+                 echo '<option value="yes">Yes</option>';
+             }?>
+					<option value="etc">Sell my soul for all the loot</option>
+				</select>
+
 				<br><br><button type="submit" name="privacysettings">Comfirm</button>
 			</form>
 
@@ -183,11 +208,14 @@
                     if (isset($_POST['privacysettings'])) { // and it was from general settings
                         $EmailOpt = $_POST['emailopt']; // $EmailOpt gets emailopt
                         $SearchOpt = $_POST['searchopt']; // $SearchOpt gets searchopt
-                        $ShowLocation = $_POST['showlocation'];
-                        $PersonalizedAds = $_POST['personalizedads'];
+                        $ShowLocation = $_POST['showlocation']; // $Show location gets showlocation
+                        $PersonalizedAds = $_POST['personalizedads']; // $PersonalizedAds gets personalizedads
+                        $UserEmail = $_SESSION['signedInUser']; // $UserEmail assigned to singed in user
+
                         /* convert result to tiny int */
                         if ($EmailOpt == 'yes') {
                             $EmailOpt = 1;
+                            echo "it's a yes";
                         } else {
                             $EmailOpt = 0;
                         }
@@ -211,14 +239,21 @@
                         }
 
                         /* actually update the privacy settings */
-                        $updatePrivacySettings = "UPDATE PrivacySettings Set AllowEmails = '".$EmailOpt."', AllowSearch = '".$SearchOpt."', ShowLocation = '".$ShowLocation."', PersonalizedAds = '".$PersonalizedAds."' WHERE UserEmail = '".$_SESSION['signedInUser']."'"; // get update statement
-                        if (mysqli_query($connection, $updatePrivacySettings)) {
-                            echo 'Records updated';
+                        if ($NotInTable) {
+                            echo '<br>NOT IN TABLE<br>';
+                            $CreatePrivacySettings = "INSERT INTO PrivacySettings (AllowEmails, AllowSearch, ShowLocation, PersonalizedAds, UserEmail)
+						        VALUES ('" .$EmailOpt."','".$SearchOpt."','".$ShowLocation."','".$PersonalizedAds."','".$UserEmail."')";
+                        } else {
+                            echo '<br>IN TABLE<br>';
+                            $UpdatePrivacySettings = "UPDATE PrivacySettings Set AllowEmails = '".$EmailOpt."', AllowSearch = '".$SearchOpt."', ShowLocation = '".$ShowLocation."', PersonalizedAds = '".$PersonalizedAds."' WHERE UserEmail = '".$UserEmail."'"; // get update statement
+                        }
+                        if (mysqli_query($connection, $UpdatePrivacySettings) || mysqli_query($connection, $CreatePrivacySettings)) {
+                            echo 'Records updated<br>';
                             /* refresh parent page */
-                            /*echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>'; */
+                            echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
                             echo '<br><br><br>';
-                            echo "$updatePrivacySettings";
+                            echo "$UpdatePrivacySettings";
                             echo 'ERORRRR';
                         }
                     }
@@ -229,7 +264,7 @@
 		<h3> My Breweries: </h3><!-- header for my breweries -->
 		<div class="mybreweries"><br> <!-- my breweries class -->
 			<?php
-            /*Get brewery owner info */
+                /*Get brewery owner info */
                 $GetBreweryOwnerQuery = "SELECT * FROM BreweryOwner WHERE UserEmail='".$_SESSION['signedInUser']."'"; // get brewery owner info query
                 $BreweriesOwned = array();
                 $BreweryNames = array();
@@ -243,21 +278,19 @@
                         $UserEmail = $row['UserEmail']; // UserEmail = UserEmail
                         $BreweryID = $row['BreweryID']; // BreweryID = BreweryID
                         array_push($BreweriesOwned, $BreweryID);
-                        //break;
                     }
 
                     foreach ($BreweriesOwned as $key) {
                         /* get brewery information */
-                    $GetBreweryInformation = "SELECT * FROM BreweryTable WHERE BreweryID='".$key."'"; // Breweryinfo query
-                    $BreweryInfo = mysqli_query($connection, $GetBreweryInformation); // brewery info
-
+                        $GetBreweryInformation = "SELECT * FROM BreweryTable WHERE BreweryID='".$key."'"; // Breweryinfo query
+                        $BreweryInfo = mysqli_query($connection, $GetBreweryInformation); // brewery info
                         if ($BreweryOwner->num_rows > 0) { // if there are results
-                        while ($row = mysqli_fetch_assoc($BreweryInfo)) {
-                            $BreweryNames[] = $row['BreweryName']; // push BreweryName to BreweryNames array
-                            $BreweryStories[] = htmlspecialchars_decode(removeBR($row['About'])); // push Brewery About to BreweryStories array
-                            $BreweriesHours[] = removeBR($row['Hours']); // push Brewery Hours to BreweryHours array
-                            $BreweryPhoneNumbers[] = $row['PhoneNo']; // push Brewery PhoneNums to PhoneNum array
-                        }
+                            while ($row = mysqli_fetch_assoc($BreweryInfo)) {
+                                $BreweryNames[] = $row['BreweryName']; // push BreweryName to BreweryNames array
+                                $BreweryStories[] = html_entity_decode(removeBR($row['About'])); // push Brewery About to BreweryStories array
+                                $BreweriesHours[] = html_entity_decode(removeBR($row['Hours'])); // push Brewery Hours to BreweryHours array
+                                $BreweryPhoneNumbers[] = $row['PhoneNo']; // push Brewery PhoneNums to PhoneNum array
+                            }
                         }
                     }
                     $BreweryChoice = 0; // inialize brewerychoice to 0
@@ -276,8 +309,6 @@
                         if ($_SERVER['REQUEST_METHOD'] == 'POST') { // if a post request was found
                         if (isset($_POST['Brewery'])) { // and it was from the brewery select
                             $BreweryChoice = $_POST['Brewery']; // brewerychoice becomes new brewerychoice
-                            //$BreweryID = $BreweriesOwned[$BreweryChoice];
-                            //echo "$BreweryID<br>";
                         } else {
                         }
                         }
@@ -312,15 +343,11 @@
                         $BreweryStory = $_POST['brewerystory']; // $BreweryStory = new brewerystory
                         $BreweryID = $_POST['breweryid'];
 
-                        $BreweryHours = nl2br($BreweryHours, false); // newlines become <br>
-                            $BreweryStory = nl2br($BreweryStory, false); // newlines become <br>
-
-                        $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".$BreweryHours."', PhoneNo = '".$BreweryPhoneNum."', About = '".htmlspecialchars($BreweryStory, ENT_QUOTES)."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
+                        $updateBreweryInfo = "UPDATE BreweryTable Set Hours = '".nl2br(htmlentities($BreweryHours, ENT_QUOTES), false)."', PhoneNo = '".$BreweryPhoneNum."', About = '".nl2br(htmlentities($BreweryStory, ENT_QUOTES), false)."' WHERE BreweryID = '".$BreweryID."'"; // get update statement
                         if (mysqli_query($connection, $updateBreweryInfo)) {
                             echo '<br><br>Records updated<br>';
-                            echo "$BreweryID";
                             /* refresh parent page */
-                            //echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
+                            echo '<script type="text/javascript"> top.window.location.href = "../html/profilePage.php";</script>';
                         } else {
                             echo '<br>';
                             echo "$updateBreweryInfo";
