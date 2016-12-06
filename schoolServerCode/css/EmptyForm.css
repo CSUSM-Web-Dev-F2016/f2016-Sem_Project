@@ -1,0 +1,49 @@
+body {
+    padding-bottom: 35px;
+}
+
+h1 {
+    font-size: 0px;
+}
+
+
+/** For an empty form. This will just have a header, a line and a content field */
+
+.emptyForm {
+    height: auto;
+    width: 99.5%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /*padding-top: 60px;*/
+    padding-bottom: 50px;
+    border-radius: 2px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.formTitle {
+    font-size: 23px;
+    width: 100%;
+    margin: auto;
+    font-weight: lighter;
+    font-style: italic;
+    background-color: inherit;
+    color: grey;
+    text-align: center;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.formContent {
+    font-style: italic;
+    width: 100%;
+    margin: auto;
+    padding-top: 0px;
+    padding-bottom: 15px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
