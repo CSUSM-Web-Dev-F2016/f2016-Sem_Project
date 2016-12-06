@@ -50,6 +50,7 @@ function showBeerView(beerID) {
 
     //Set the frame width to 100% (in case it isnt);
     sectionDOM.style.width = "100%";
+
 }
 
 /**
@@ -102,13 +103,18 @@ function resizeIframe(obj) {
     obj.style.width = "100%";
     obj.style.margin = "auto";
 
-    //if(obj.contentWindow.location.href.indexOf("BeerInfo.php") == -1){
+    //if(obj.contentWindow.location.href.indexOf("BeerInfo.php") === -1){
       obj.style.height = 0;
 
       //Set the new height of the frame
       obj.style.height = (obj.contentWindow.document.body.scrollHeight) + 'px';
-      //return;
+  //else{
+    //obj.style.height = (obj.contentWidonw.document.body.height()) + 'px';
   //}
+  if(obj.style.height <= 200){
+    //obj.style.height = 0;
+    obj.style.height = '450px';
+  }
     //obj.style.height = '450px';
 }
 
