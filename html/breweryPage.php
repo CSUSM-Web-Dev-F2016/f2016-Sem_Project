@@ -308,7 +308,7 @@
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('BeerList.html')" class="moreClicked">more</a>
+					<a href="BeerList.php" onclick="showSRC('BeerList.php?breweryID=<?php echo $_GET['id']; ?>');return false;resizeIframeBeerList(this);" class="moreClicked">more</a>
 				</div>
 			</div>
 			<!-- Followers Section -->
