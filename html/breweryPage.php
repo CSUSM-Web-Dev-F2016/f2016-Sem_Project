@@ -359,6 +359,7 @@
     						if(isset($_POST['brewery'])){
 								CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
 							  	//Navigate to the brewery page iwth the new id
+								echo end(array_keys($_POST));
 							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
     						}
     						else if(isset($_POST['followBrew'])){
@@ -389,11 +390,12 @@
 								}
 							}/*
 							else if(isset($_POST['user'])){
-
+								$_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+								CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
+								echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 
 							}*/
     						else {
-							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
