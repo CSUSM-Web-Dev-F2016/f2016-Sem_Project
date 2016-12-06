@@ -1,13 +1,12 @@
 body{
   padding: 0px;
   margin: 0px;
-  padding-top: 5px;
 }
 
 /**Feed */
 div.newsFeedBox{
     padding: 0px;
-     width: 99.5%;
+     width: 100%;
      position: relative;
      flex: auto;
      flex-wrap: wrap;
@@ -17,7 +16,8 @@ div.newsFeedBox{
      font-weight: lighter;
      font-style: italic;
      color: gray;
-     border: 2px solid lightgray;
+     border-top: 2px solid lightgray;
+     border-bottom: 2px solid lightgray;
      border-radius: 2px;
      padding-bottom: 45px;
     box-shadow: 0px 2px 2px lightgray;
@@ -129,6 +129,7 @@ div.newsFeedBox:hover{
   font-style: normal; font-size: 1.25em;
   color: black;
   padding-left: 25px; padding-right: 25px;
+  padding-bottom: 0px;
 }
 
 .postDate{

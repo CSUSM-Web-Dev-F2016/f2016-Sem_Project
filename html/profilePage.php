@@ -126,6 +126,21 @@
 		//Unset the results
 		mysqli_free_result($userInfoResults);
 
+		//Get the total number of vists (not unique)
+		$gettotalVisits = "SELECT COUNT(*) AS Count FROM UserVisitsUser uvu WHERE OtherUserEmail='" . $_SESSION['currentUser'] . "'";
+		$totalVisitsResults = mysqli_query($connection, $gettotalVisits);
+		$totalVisitsCount = 0;
+
+		if($totalVisitsResults->num_rows > 0){
+			while($row = mysqli_fetch_assoc($totalVisitsResults)){
+				$totalVisitsCount = $row['Count'];
+			}
+		}else{
+			$totalVisitsCount = 0;
+		}
+		//Free tehe results
+		mysqli_free_result($totalVisitsResults);
+
 		//Now, we need to see, if the user is different, if the user is following the current user
 		if($_SESSION['signedInUser'] != $_SESSION['currentUser']){
 			//If the user is not the same as the signed in user, see if the user is following the current user
@@ -213,8 +228,11 @@
 	<!-- Total visit count. Increments on each page visit/refresh -->
 	<div class="stdSection" id="calendar">
 		<div class="stdSectionTitle">
-			Total Unique Visits
+			Total Unique Visitors
 				<div class="numberOfVisits"><?php echo number_format($Visits); ?></div>
+		</div>
+		<div class="stdSectionFooter">
+			 <?php echo number_format($totalVisitsCount) . " "; ?> Total Visits
 		</div>
 	</div>
 
@@ -409,6 +427,7 @@
 			</div>
 		</div>
 	</aside>
+
 	<section>
 
 		<?php

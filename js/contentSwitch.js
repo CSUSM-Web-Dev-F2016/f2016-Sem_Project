@@ -99,17 +99,17 @@ function goHomeAnd(address) {
  */
 function resizeIframe(obj) {
     //Reset the frame height after every load
-    obj.style.width = "99.5%";
+    obj.style.width = "100%";
     obj.style.margin = "auto";
 
-    if(obj.contentWindow.location.href.indexOf("BeerInfo") == -1){
+    //if(obj.contentWindow.location.href.indexOf("BeerInfo.php") == -1){
       obj.style.height = 0;
 
       //Set the new height of the frame
       obj.style.height = (obj.contentWindow.document.body.scrollHeight) + 'px';
-      return;
-  }
-    obj.style.height = '450px';
+      //return;
+  //}
+    //obj.style.height = '450px';
 }
 
 /**

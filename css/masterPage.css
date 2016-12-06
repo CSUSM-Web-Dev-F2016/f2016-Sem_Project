@@ -44,9 +44,9 @@ aside.right {
 .newsFeed {
     width: 100%;
     position: absolute;
-    margin-top: 10px;
     display: flex;
     color: white;
+    margin-top: 15px;
 }
 
 .newsFeedHeader {
@@ -227,11 +227,9 @@ div.table {
 iframe {
     width: 100%;
     position: relative;
-    top: 0px;
     padding-bottom: 50px;
     padding: -10px;
     margin: 0px;
-    padding-bottom: 50px;
     overflow: hidden;
     background-color:transparent;
 }

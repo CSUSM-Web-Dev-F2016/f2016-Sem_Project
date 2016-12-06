@@ -56,9 +56,7 @@
           <?php echo $row['TextContent']; ?>
         </p>
         <p class="postDate">
-          <?php //echo humanTiming($row['PostDate']) . " ago";
-          //echo "Time is Running";
-          //echo time2string(time()-strtotime($row['PostDate'])).' ago';
+          <?php
           echo time_elapsed_string($row['PostDate']);
           ?>
         </p>
