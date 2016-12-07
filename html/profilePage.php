@@ -29,16 +29,9 @@
 		<link rel="stylesheet" href="../css/calendarview.css" type="text/css">
 		<!-- Import JS Files -->
 		<script src="../js/contentSwitch.js"></script>
-		<script src="../js/calendarview.js"></script>
+		<script src="../js/analytics.js"></script>
+		<link rel="shortcut icon" href="../img/Empty_Glass.png"/>
 
-		<!-- Analytics Script -->
-	<script>
-	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	  ga('create', 'UA-83948702-3', 'auto');
-	  ga('send', 'pageview');
 		<?php
 	  	//Start the session
 		  session_start();
@@ -52,7 +45,6 @@
 				//e	cho "<p>You rock";
 			}
 			?>
-	</script>
 		<!-- Navigation Bar -->
 		<nav>
 			<table class="menu" title="Menu">
@@ -94,18 +86,19 @@
 </head>
 <?php
 
-		//Import needed PHP files
-		include "../php/create_table.php";
+	//Import needed PHP files
+	include "../php/create_table.php";
+	include "../php/LogEvent.php";
 
-	 //Create a basic connection
-    $connection = include '../php/DBConnectionReturn.php';
+	//Create a basic connection
+	$connection = include '../php/DBConnectionReturn.php';
 
-$FName = $LName = $PicURL = $CurrentUser = "";
+	$FName = $LName = $PicURL = $CurrentUser = "";
 
 	//Use already provided var
 	$CurrentUser = $_SESSION['currentUser'];
 
-//Get the user's information
+	//Get the user's information
 	$GetUserInformationQuery = "SELECT * FROM Users WHERE Email='" . $CurrentUser . "'";
 	$userInfoResults = mysqli_query($connection, $GetUserInformationQuery);
 
@@ -115,9 +108,21 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 			$FName = $row["FName"];
 			$LName = $row["LName"];
 			$PicURL = $row["ProfilePicURL"];
-			$visits = $row['visits'];
+			//$visits = $row['visits'];
+
 			break; //Only want the first occurance
 		}
+		//Get the unique visits
+		$UniqueVisits = "SELECT DISTINCT uvb.UserEmail, COUNT(*) AS visits FROM UserVisitsUser uvb WHERE uvb.OtherUserEmail='" . $_SESSION['currentUser'] . "' GROUP BY uvb.UserEmail";
+		$visitsResult = mysqli_query($connection, $UniqueVisits);
+		if($visitsResult->num_rows > 0){
+			while (mysqli_fetch_assoc($visitsResult)) {
+				$Visits++;
+			}
+		}else{
+			$Visits = 0;
+		}
+
 		//Unset the results
 		mysqli_free_result($userInfoResults);
 
@@ -192,35 +197,11 @@ $FName = $LName = $PicURL = $CurrentUser = "";
             </button>
             <input type="hidden" value="" name="<?php echo strtr($_SESSION['currentUser'], array('.' => '#-#')); ?>">
           </form>
-
-					<!--
-				<div class="smalltableCell">
-						<a onclick="showSRC('FollowingPage.html')">
-							<div class="tableCell img">
-								<img class="smalltableCell" src="../img/Follow.png?raw=true" alt="Follow Icon">
-							</div>
-							<div class="smalltableCell title">
-								Follow
-							</div>
-						</a>
-					</div>
-					<div class="smalltableCell">
-						<a onclick="showSRC('message.html')">-->
-							<!-- message -->
-							<!--
-							<div class="tableCell img">
-								<img class="smalltableCell" src="../img/message.png?raw=true" alt="Message">
-							</div>
-							<div class="smalltableCell title">
-								Message
-							</div>
-						</a>
-					</div>-->
 					</div>
 			</div>
 		<?php
 		//Now, update the visit count of this user
-		$updateUserCount = "UPDATE Users SET visits=visits+1 WHERE Email='" . $_SESSION['currentUser'] . "'";
+		$updateUserCount = "INSERT INTO UserVisitsUser VALUES (NULL, '" . $_SESSION['signedInUser'] . "', '" . $_SESSION['currentUser'] . "')";
 		if(mysqli_query($connection, $updateUserCount)){
 			//Update was handled
 		}else{
@@ -232,8 +213,8 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 	<!-- Total visit count. Increments on each page visit/refresh -->
 	<div class="stdSection" id="calendar">
 		<div class="stdSectionTitle">
-			Total Visits
-				<div class="numberOfVisits"><?php echo number_format($visits); ?></div>
+			Total Unique Visits
+				<div class="numberOfVisits"><?php echo number_format($Visits); ?></div>
 		</div>
 	</div>
 
@@ -256,7 +237,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					?>
 				</div>
 				<div class="stdSectionFooter">
-					<a href="#" onclick="showSRC('BeerInfo.php');return false;" class="moreClicked">more</a>
+					<a href="#" onclick="showSRC('BestTastes.php');return false;" class="moreClicked">more</a>
 				</div>
 			</div>
 		<div class="stdSection" id="eventCalendar">
@@ -316,12 +297,15 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 					if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
     						if(isset($_POST['brewery'])){
+								  //redirect to the login page
+								  $_SESSION['currentUser'] = $_SESSION['signedInUser'];
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User Visited BreweryID=" . end(array_keys($_POST)) . "");
 
 							  //Navigate to the brewery page iwth the new id
-							  echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
+							  	echo "<script type=\"text/javascript\"> document.location.href = \"breweryPage.php?id=" . end(array_keys($_POST)) . "\";</script>";
 
 							}
-							if(isset($_POST['follow'])){
+							else if(isset($_POST['follow'])){
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
 
 								//User is going to Follow the user$
@@ -332,27 +316,52 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 										//Success
 										$followText = "Follow";
 										$followingImage = "../img/Follow.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Comparison', "User Un-Followed " . $_SESSION['currentUser'] . "");
 									}else{
 										die("Error: " . mysqli_error($connection));
 									}
-								}else{
+								}else {
 									//If the user is not following the user, follow it and change the image.
 									$addQuery = "INSERT INTO UserFollowsUser (UserEmail, OtherUserEmail) VALUES ('" . $_SESSION['signedInUser'] . "', '" . $_SESSION['currentUser'] . "')";
 									if(mysqli_query($connection, $addQuery)){
 										$followText = "UnFollow";
 										$followingImage = "../img/Unfollow_Follow_Color.png?raw=true";
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Comparison', "User Followed " . $_SESSION['currentUser'] . "");
 									}
 								}
 								//Take the user back to their page by directing them to their page
 								$_SESSION['currentUser'] = $_SESSION['signedInUser'];
+								CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "User went to homepage");
 
 								echo "<script type=\"text/javascript\"> document.location.href = \"../index.php\";</script>";
 
 							}
 							else if(isset($_POST['user'])) {
 							    $_SESSION['currentUser'] = strtr(end(array_keys($_POST)), array('#-#' => '.'));
+									CustomLog($connection, $_SESSION['signedInUser'], 'User Visited', "" . $_SESSION['currentUser'] . "");
 									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
 						    }
+						 	else {
+
+									//Get the text field value
+									//$postText = "<script type=\"text/javascript\">document.getElementByID(\"postBox\").value;</script>";
+									$postText = $_POST['postBox'];
+
+									//Post to the DB then refresh the page
+									$addPost = "INSERT INTO Post VALUES (NULL, '" . $_SESSION['signedInUser'] . "', UTC_TIMESTAMP(), '" .  htmlspecialchars($postText, ENT_QUOTES) . "', 1)";
+									if(isset($postText) && strlen($postText) > 0){
+										if( mysqli_query($connection, $addPost)){
+										//Success
+										CustomLog($connection, $_SESSION['signedInUser'], 'User Created Post', "No Post Text Available. Please See Post table.");
+
+										}else{
+											CustomLog($connection, $_SESSION['signedInUser'], 'User Post Failed', "Err: " . mysqli_error($connection));
+											die("Error Creating new Post");
+										}
+									}
+									//Reload the page
+									echo "<script type=\"text/javascript\"> document.location.href = \"profilePage.php\";</script>";
+								}
 
 								//Ends the current session
 								session_write_close();
@@ -366,7 +375,7 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				?>
 				</div>
 				<div class="stdSectionFooter">
-					<a onclick="showSRC('PageNotFound.html')" class="moreClicked">more</a>
+					<a onclick="showSRC('FollowingPage.php')" class="moreClicked">more</a>
 				</div>
 			</div>
 			<div class="stdSection" id="followingUsers">
@@ -420,14 +429,14 @@ $FName = $LName = $PicURL = $CurrentUser = "";
 				You:
 				<hr/>
 				<div class="feedTxt">
-					<form>
-						<textarea id="postBox" wrap="soft" rows="5"></textarea>
-						<br/>
+					<form action="" method="POST">
+						<textarea id="postBox" wrap="soft" name="postBox" rows="3" value=""></textarea>
+					  <button type="submit" value="Submit">Post</button>
 					</form>
 				</div>
-				<button type="submit" onclick="">Post</button>
-			</div>
+				</div>
 			<div class="newsFeed" id="MainArea">
+
 			<!-- For example purposes, add the add brewery panel -->
 			<iframe id="contentFrame" src="../html/NewsFeed.php" title="subcontent" style="width:100%;" onload="resizeIframe(this);"></iframe>
 		</div>

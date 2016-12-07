@@ -36,6 +36,7 @@
 <?php
   	//Start the session to share data
 	  session_start();
+		include "../php/LogEvent.php";
 
 	 //Create a basic connection
     	$connection = include '../php/DBConnectionReturn.php';
@@ -99,11 +100,13 @@
 
 		//Free the results
 		mysqli_free_result($ResultsForBeer);
+		CustomLog($connection, $_SESSION['signedInUser'], 'User Viewed Beer', "BeerID=" . $_GET['BeerID'] . ", BeerName: " . $BeerName);
 
 
 	}else{
 		//Beer does not exist
 		//echo "<p style=\"color:white;\">DNE";
+		CustomLog($connection, $_SESSION['signedInUser'], 'Beer Not Found', "Err: " . mysqli_error($connection) . "\nBeerID=" . $_GET['BeerID'] . "");
 		header("Location: ../html/PageNotFound.html");
 	}
 
@@ -168,9 +171,6 @@
 											}else{
 												echo "N/A";
 											}
-
-											//Close the connection
-											$connection-> close();
 										?>
 										</p>
 									</div>
@@ -242,6 +242,16 @@
 								</tr>
 								<?php
 							}
+						if(!empty($BeerType)){ ?>
+							<tr>
+								<th>Beer Type:
+								</th>
+								<td>
+									<?php echo $BeerType ?>
+								</td>
+							</tr>
+							<?php
+						}
 						if(!empty($BeerDescription)){ ?>
 							<tr>
 								<th>Beer Description:
@@ -310,8 +320,10 @@
 							$FollowImage = "../img/Unfollow_Follow_Color.png";
 							$_SESSION['Follows'] = "TRUE";
 							echo "<script type=\"text/javascript\">window.location.reload();</script>";
+							CustomLog($connection, $_SESSION['signedInUser'], 'User Favorited Beer', "BeerID=" . $_GET['BeerID'] . ", BeerName: " . $BeerName);
 						}else{
 							echo "<script type=\"text/javascript\">window.alert(\"Beer: " . $_POST['BeerID'] . " could not be foavorited!<br>" . $AddBeerToFavorites . "\");</script>";
+							CustomLog($connection, $_SESSION['signedInUser'], 'Beer Favoriting Error', "ERR: " . mysqli_error($connection) . "\nBeerID=" . $_GET['BeerID'] . ", BeerName: " . $BeerName);
 						}
 					}else{
 						//Unfolow
@@ -325,10 +337,12 @@
 							//echo "<script type=\"text/javascript\">window.alert(\"Unfollowed Beer: " . $_POST['BeerID'] . " successfully!\");</script>";
 							$FollowImage = "../img/Follow_Color.png";
 							$_SESSION['Follows'] = "FALSE";
+							CustomLog($connection, $_SESSION['signedInUser'], 'User Unfavorited Beer', "BeerID=" . $_GET['BeerID'] . ", BeerName: " . $BeerName);
 							echo "<script type=\"text/javascript\">window.location.reload();</script>";
 						}else{
 							//Did not remove
 							echo "<script type=\"text/javascript\">window.alert(\"Error Unfollowing Beer\n" . $RemoveBeerFromFavorites . "\");</script>";
+							CustomLog($connection, $_SESSION['signedInUser'], 'Beer Un-Favoriting Error', "ERR: " . mysqli_error($connection) . "\nBeerID=" . $_GET['BeerID'] . ", BeerName: " . $BeerName);
 						}
 
 						//Free the results

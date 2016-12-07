@@ -37,8 +37,11 @@
 					//Gather the new connection
 					$connection = include '../php/DBConnectionReturn.php';
 
+					//Convrt text to readable string (removing all apostophies)
+					$_GET['text'] = strtr($_GET['text'], array('\'' => '\''));
+
 					//Now that the connection is built, let's do teh queries (BUsers, Breweries, BEers, max of 20);
-					$MaxReturning = 20;
+					$MaxReturning = 50;
      ?>
 
 		 <!--Build the User Table -->

@@ -8,19 +8,12 @@
 
 
 	<!-- Analytics Script -->
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <script src="../js/analytics.js"></script>
 
-  ga('create', 'UA-83948702-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
 </head>
 <?php
     session_start();
+    include "../php/LogEvent.php";
 	 //Create a basic connection
   $connection = include '../php/DBConnectionReturn.php';
   $id = $_GET['id'];
@@ -31,9 +24,11 @@
   $ownerEmail = $row["UserEmail"];
 
   $signedInUser = $_SESSION['signedInUser'];
-  if(($ownerEmail == $signedInUser)):
 ?>
 <body>
+  <?php
+  if(($ownerEmail == $signedInUser)):
+    ?>
     <div class="container">
         <div class="edit-header">
             <div class="box-line"></div>
@@ -63,6 +58,7 @@ $coverURL = $_POST['coverURL'];
             if(mysqli_query($connection, $changeCoverQuery)){
               //Now, refresh parent page
               echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
+              CustomLog($connection, $_SESSION['signedInUser'], 'Brewery', "Changed Cover Photo for BreweryID=$id");
               }
               else {
                 echo "Error updating cover photo.";
@@ -75,6 +71,7 @@ $coverURL = $_POST['coverURL'];
 
 
 echo "</div>";
+else : echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/breweryPage.php?id=$id\";</script>";
 endif;
 mysqli_close($connection);
 ?>

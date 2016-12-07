@@ -1,2 +1,5 @@
-.remote-sync.json
-.DS_STORE
+# Ignore List #
+###############
+*.json
+.DS_Store
+.DS_Store?

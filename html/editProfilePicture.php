@@ -8,20 +8,12 @@
 
 
 	<!-- Analytics Script -->
-	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-83948702-3', 'auto');
-  ga('send', 'pageview');
-
-</script>
+  <script src="../js/analytics.js"></script>
 </head>
 
 <?php
     session_start();
+    include "../php/LogEvent.php";
 	 //Create a basic connection
     $connection = include '../php/DBConnectionReturn.php';
 
@@ -60,6 +52,7 @@
               if(mysqli_query($connection, $changePicQuery)){
             					//Updated. Now, refresh parent page
         				echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
+                CustomLog($connection, $_SESSION['signedInUser'], 'User Action', "Changed Profile Picture");
         		    }
               else {
                 echo "Error updating picture.";
@@ -71,6 +64,7 @@
 
   }
   echo "</div>";
+  else : echo "<script type=\"text/javascript\"> top.window.location.href = \"../html/profilePage.php\";</script>";
   endif;
   mysqli_close($connection);
   ?>
